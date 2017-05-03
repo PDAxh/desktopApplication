@@ -1,6 +1,7 @@
 package com.testverktyg.eclipselink.view;
 
 import com.testverktyg.eclipselink.view.main.MainController;
+import com.testverktyg.eclipselink.view.teacher.TeacherController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -40,6 +41,12 @@ public class MenuController {
     @FXML
     private void addUser() throws IOException{
         GridPane gridPane = FXMLLoader.load(getClass().getResource("admin/layout/addUser.fxml"));
+        borderPane.setCenter(gridPane);
+    }
+
+    @FXML
+    private void createNewTest() throws IOException{
+        GridPane gridPane = FXMLLoader.load(getClass().getResource("teacher/layout/createNewTest.fxml"));
         borderPane.setCenter(gridPane);
     }
 
