@@ -8,30 +8,28 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.testverktyg.eclipselink.view.MenuController"
             fx:id="borderPane"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="600.0" prefWidth="800.0">
 
     <top>
         <MenuBar>
-            <Menu text="File">
-                <MenuItem text="Logout" onAction="#logout"/>
+            <Menu text="Arkiv">
+                <MenuItem text="Logga ut" onAction="#logout"/>
+                <MenuItem text="Avsluta"  onAction="#getExitProgram"/>
             </Menu>
             <Menu text="Edit">
-                <MenuItem text="Add user" onAction="#addUser"/>
-                <MenuItem text="Delete user"/>
-                <MenuItem text="Edit user"/>
+                <MenuItem text="Lägg till konto" onAction="#addUser"/>
+                <MenuItem text="Ta bort konto"/>
+                <MenuItem text="Uppdatera konto"/>
                 <SeparatorMenuItem/>
-                <MenuItem text="Add class"/>
-                <MenuItem text="Delete class"/>
-                <SeparatorMenuItem/>
-                <MenuItem text="Add course"/>
-                <MenuItem text="Delete course"/>
+                <MenuItem text="Lägg till klass"/>
+                <MenuItem text="Ta bort klass"/>
             </Menu>
-            <Menu text="Tests">
-                <MenuItem text="Show test"/>
+            <Menu text="Prov">
+                <MenuItem text="Publicera prov"/>
             </Menu>
-            <Menu text="Help">
-                <MenuItem text="Help!"/>
-                <MenuItem text="About"/>
+            <Menu text="Hjälp">
+                <MenuItem text="Hjälp"/>
+                <MenuItem text="Om oss"/>
             </Menu>
         </MenuBar>
     </top>
