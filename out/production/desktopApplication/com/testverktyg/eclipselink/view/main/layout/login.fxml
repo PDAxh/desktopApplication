@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.testverktyg.eclipselink.view.main.MainController"
+          prefHeight="400.0" prefWidth="600.0">
+
+    <children>
+        <TextField fx:id="usernameTextField"  GridPane.columnIndex="0" GridPane.rowIndex="0" text="admin"/>
+        <TextField fx:id="passwordTextField" GridPane.columnIndex="0" GridPane.rowIndex="1" text="admin"/>
+        <Button text="Login" onAction="#logInButton" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <Text fx:id="loginFailed" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    </children>
+
+</GridPane>
+
+
+

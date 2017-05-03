@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.testverktyg.eclipselink.view.admin.AdminController">
+
+    <children>
+        <TextField fx:id="firstName" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="lastName" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="email" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="password" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <TextField fx:id="username" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+    </children>
+
+</GridPane>
