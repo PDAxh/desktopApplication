@@ -7,6 +7,7 @@ import javafx.scene.control.CheckBox;
 
 /**
  * Created by Grodfan on 2017-05-01.
+ *
  */
 public class TeacherController {
 
@@ -15,17 +16,20 @@ public class TeacherController {
 
     @FXML
     private void setShowResultToStudent(){
-        if(selfCorrect.isSelected()){
-            this.showResultsToStudent.setDisable(false);
+        if(getSelfCorrect().isSelected()){
+            getShowResultsToStudent().setDisable(false);
         }
         else{
-            showResultsToStudent.setSelected(false);
-            this.showResultsToStudent.setDisable(true);
+            getShowResultsToStudent().setSelected(false);
+            getShowResultsToStudent().setDisable(true);
         }
-
-
-
     }
 
+    private CheckBox getSelfCorrect() {
+        return selfCorrect;
+    }
 
+    private CheckBox getShowResultsToStudent() {
+        return showResultsToStudent;
+    }
 }
