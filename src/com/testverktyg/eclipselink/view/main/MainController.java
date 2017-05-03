@@ -5,6 +5,7 @@ import com.testverktyg.eclipselink.view.MenuController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -21,7 +22,7 @@ public class MainController {
     private Stage stage;
     @FXML private Text loginFailed;
     @FXML private TextField usernameTextField;
-    @FXML private TextField passwordTextField;
+    @FXML private PasswordField passwordTextField;
 
     private Stage getStage() {
         return stage;
