@@ -31,7 +31,7 @@
         <Label text="Självrättande:" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
         <CheckBox fx:id="selfCorrect" onAction="#setShowResultToStudent" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
 
-        <Label text="Visa resultat:" fx:id="showResultsToStudentLable" GridPane.columnIndex="1" GridPane.rowIndex="8" textFill="#d3d3d3"/>
+        <Label text="Visa resultat:" fx:id="showResultsToStudentLabel" GridPane.columnIndex="1" GridPane.rowIndex="8" textFill="#d3d3d3"/>
         <CheckBox fx:id="showResultsToStudent" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="8"/>
 
         <Button text="Skapa test" fx:id="createTestButton" GridPane.columnIndex="0" GridPane.rowIndex="12"/>

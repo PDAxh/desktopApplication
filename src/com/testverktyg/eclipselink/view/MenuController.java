@@ -43,6 +43,16 @@ public class MenuController {
         GridPane gridPane = FXMLLoader.load(getClass().getResource("admin/layout/addUser.fxml"));
         borderPane.setCenter(gridPane);
     }
+    @FXML
+    private void addClass() throws IOException{
+        GridPane gridPane = FXMLLoader.load(getClass().getResource("admin/layout/addClass.fxml"));
+        borderPane.setCenter(gridPane);
+    }
+    @FXML
+    private void removeClass() throws IOException{
+        GridPane gridPane = FXMLLoader.load(getClass().getResource("admin/layout/removeClass.fxml"));
+        borderPane.setCenter(gridPane);
+    }
 
     @FXML
     private void createNewTest() throws IOException{

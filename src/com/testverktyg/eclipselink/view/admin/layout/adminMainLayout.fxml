@@ -21,8 +21,8 @@
                 <MenuItem text="Ta bort konto"/>
                 <MenuItem text="Uppdatera konto"/>
                 <SeparatorMenuItem/>
-                <MenuItem text="Lägg till klass"/>
-                <MenuItem text="Ta bort klass"/>
+                <MenuItem text="Lägg till klass" onAction="#addClass"/>
+                <MenuItem text="Ta bort klass" onAction="#removeClass"/>
             </Menu>
             <Menu text="Prov">
                 <MenuItem text="Publicera prov"/>
