@@ -19,13 +19,10 @@ public class TeacherController{
 
     @FXML private CheckBox selfCorrect;
     @FXML private CheckBox showResultsToStudent;
-<<<<<<< HEAD
     @FXML private Label showResultsToStudentLable;
     @FXML private BorderPane roo;
-=======
     @FXML private Label showResultsToStudentLabel;
->>>>>>> origin/master
-
+    
     @FXML
     private void setShowResultToStudent(){
         if(getSelfCorrect().isSelected()){
