@@ -50,4 +50,9 @@ public class MenuController {
         borderPane.setCenter(gridPane);
     }
 
+    @FXML
+    private void getExitProgram(){
+        System.exit(0);
+    }
+
 }

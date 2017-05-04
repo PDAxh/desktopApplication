@@ -12,16 +12,17 @@
 
     <top>
         <MenuBar>
-            <Menu text="File">
-                <MenuItem text="Logout" onAction="#logout"/>
+            <Menu text="Arkiv">
+                <MenuItem text="Logga ut" onAction="#logout"/>
+                <MenuItem text="Avsluta"  onAction="#getExitProgram"/>
             </Menu>
-            <Menu text="Tests">
-                <MenuItem text="Create test" onAction="#createNewTest"/>
-                <MenuItem text="Show test"/>
+            <Menu text="Prov">
+                <MenuItem text="Nytt prov" onAction="#createNewTest"/>
+                <MenuItem text="Publicera test"/>
             </Menu>
-            <Menu text="Help">
-                <MenuItem text="Help!"/>
-                <MenuItem text="About"/>
+            <Menu text="Hjälp">
+                <MenuItem text="Hjälp"/>
+                <MenuItem text="Om oss"/>
             </Menu>
         </MenuBar>
     </top>
