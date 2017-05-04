@@ -1,21 +1,26 @@
 package com.testverktyg.eclipselink.view.teacher;
 
 import javafx.fxml.FXML;
-
-
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import java.io.IOException;
+
 
 /**
  * Created by Grodfan on 2017-05-01.
  *
  */
-public class TeacherController {
+public class TeacherController{
 
     @FXML private CheckBox selfCorrect;
     @FXML private CheckBox showResultsToStudent;
     @FXML private Label showResultsToStudentLable;
+    @FXML private BorderPane roo;
 
     @FXML
     private void setShowResultToStudent(){
@@ -37,4 +42,11 @@ public class TeacherController {
     private CheckBox getShowResultsToStudent() {
         return showResultsToStudent;
     }
+
+    @FXML
+    private void addQuestion() throws IOException{
+        GridPane gridPane = FXMLLoader.load(getClass().getResource("layout/createNewQuestion.fxml"));
+        roo.setBottom(gridPane);
+    }
+
 }
