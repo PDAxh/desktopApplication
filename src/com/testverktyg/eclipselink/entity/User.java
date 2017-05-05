@@ -23,6 +23,8 @@ import javax.persistence.*;
     private String email;
     private String typeOfUser;
     private String firstname;
+    private String lastname;
+    private String Klass;
 
     public int getUserId() {
         return userId;
@@ -55,9 +57,6 @@ import javax.persistence.*;
     public void setKlass(String klass) {
         Klass = klass;
     }
-
-    private String lastname;
-    private String Klass;
 
     public String getTypeOfUser() {
         return typeOfUser;

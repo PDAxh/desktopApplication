@@ -35,27 +35,27 @@ public class loginUser {
         entityManagerFactory.close();
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getGroup() {
-        return group;
-    }
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+//
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
+//
+//    public void setGroup(String group) {
+//        this.group = group;
+//    }
+//
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    public String getGroup() {
+//        return group;
+//    }
 }
