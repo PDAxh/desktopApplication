@@ -9,8 +9,8 @@ import javax.persistence.*;
 
  @Entity
  @NamedQueries({
-         @NamedQuery(query = "SELECT e FROM User e WHERE e.userName = :userName", name = "findByUserName"),
-         @NamedQuery(query = "SELECT e FROM User e WHERE e.userName = :userName AND e.password = :password", name="findByUsernameAndPassword")
+         @NamedQuery(query = "SELECT e FROM User e WHERE e.email = :email", name = "findByEmail"),
+         @NamedQuery(query = "SELECT e FROM User e WHERE e.email = :email AND e.password = :password", name= "findByEmailAndPassword")
  })
  public class User {
 
@@ -20,8 +20,44 @@ import javax.persistence.*;
     private int userId;
 
     private String password;
-    private String userName;
+    private String email;
     private String typeOfUser;
+    private String firstname;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getKlass() {
+        return Klass;
+    }
+
+    public void setKlass(String klass) {
+        Klass = klass;
+    }
+
+    private String lastname;
+    private String Klass;
 
     public String getTypeOfUser() {
         return typeOfUser;
@@ -31,12 +67,12 @@ import javax.persistence.*;
         this.typeOfUser = typeOfUser;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

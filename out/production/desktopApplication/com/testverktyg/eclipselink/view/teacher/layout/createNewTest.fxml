@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.geometry.Insets?>
-
 
 <GridPane vgap="5" hgap="5" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="com.testverktyg.eclipselink.view.teacher.TeacherController">
     <padding><Insets top="20"/> </padding>
-
-    <children>
 
         <Label text="Namn:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
         <TextField fx:id="testName" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
@@ -23,7 +16,7 @@
         <TextArea fx:id="descriptionInput" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.rowSpan="9"/>
 
         <Label text="Tid (i minuter):" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-        <Spinner  fx:id="timeInput" min="0" initialValue="0" amountToStepBy="1" max="600" GridPane.columnIndex="1" GridPane.rowIndex="4" prefWidth="120" editable="true"/>
+        <Spinner  fx:id="timeInput" min="0" initialValue="0" amountToStepBy="1" max="600" GridPane.columnIndex="1" GridPane.rowIndex="4" prefWidth="120" editable="true" />
 
         <Label text="Datum:" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
         <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.columnSpan="2" prefWidth="120"/>
@@ -34,11 +27,6 @@
         <Label text="Visa resultat:" fx:id="showResultsToStudentLabel" GridPane.columnIndex="1" GridPane.rowIndex="8" textFill="#d3d3d3"/>
         <CheckBox fx:id="showResultsToStudent" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="8"/>
 
-        <Button text="Skapa test" fx:id="createTestButton" GridPane.columnIndex="0" GridPane.rowIndex="12"/>
-
-
-
-
-    </children>
+        <Button text="Skapa test" onAction="#addQuestion" GridPane.columnIndex="0" GridPane.rowIndex="12"/>
 
 </GridPane>

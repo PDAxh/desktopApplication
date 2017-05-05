@@ -25,6 +25,9 @@ public class AdminController {
     @FXML private ComboBox editUserUserList;
     @FXML private Button editUserRemoveButton;
     @FXML private Button editUserEditButton;
+    @FXML private TextField firstName;
+    @FXML private TextField lastName;
+    @FXML private TextField email;
 
 
     @FXML
@@ -87,6 +90,15 @@ public class AdminController {
         }else{
             removeClassButton.setDisable(false);
         }
+    }
+
+
+    @FXML
+    private void createNewUser(){
+        String fname = firstName.getText();
+
+
+
     }
 
     //Getters for createUser

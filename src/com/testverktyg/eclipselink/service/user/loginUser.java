@@ -9,13 +9,13 @@ import javax.persistence.Persistence;
 /**
  * Created by Grodfan on 2017-04-28.
  */
-public class CreateUser {
+public class loginUser {
 
-    private String username;
+    private String email;
     private String password;
     private String group;
 
-    public CreateUser(String username, String password, String group){
+    public loginUser(String email, String password, String group){
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
        // EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
@@ -25,7 +25,7 @@ public class CreateUser {
         User user = new User();
         user.setTypeOfUser(group);
         user.setPassword(password);
-        user.setUserName(username);
+        user.setEmail(email);
 
         //user.setGroup(getGroup());
 
@@ -35,8 +35,8 @@ public class CreateUser {
         entityManagerFactory.close();
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPassword(String password) {
@@ -47,8 +47,8 @@ public class CreateUser {
         this.group = group;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
     public String getPassword() {

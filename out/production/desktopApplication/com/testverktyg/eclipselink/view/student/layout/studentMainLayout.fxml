@@ -17,7 +17,7 @@
                 <MenuItem text="Avsluta"  onAction="#getExitProgram"/>
             </Menu>
             <Menu text="Prov">
-                <MenuItem text="Visa prov"/>
+                <MenuItem text="Visa prov" onAction="#showTestToStudent"/>
             </Menu>
             <Menu text="Hjälp">
                 <MenuItem text="Hjälp"/>

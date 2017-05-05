@@ -13,29 +13,29 @@ import java.util.List;
  *
  */
 public class ReadUser {
-    private String userName;
+    private String email;
     private String password;
     private String group;
     private boolean loginStatus;
 
-    public ReadUser(String username, String password){
+    public ReadUser(String email, String password){
         setLoginStatus(false);
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        List<User> userList = entityManager.createNamedQuery("findByUsernameAndPassword", User.class)
-                .setParameter("userName", username)
+        List<User> userList = entityManager.createNamedQuery("findByEmailAndPassword", User.class)
+                .setParameter("email", email)
                 .setParameter("password", password)
                 .getResultList();
 
         for(User user : userList){
-            setUserName(user.getUserName());
+            setEmail(user.getEmail());
             setPassword(user.getPassword());
             setGroup(user.getTypeOfUser());
         }
 
-        if((getUserName() != null) && (getPassword() != null)){
+        if((getEmail() != null) && (getPassword() != null)){
             setLoginStatus(true);
         }
 
@@ -43,12 +43,12 @@ public class ReadUser {
         entityManagerFactory.close();
     }
 
-    public String getUserName() {
-        return userName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

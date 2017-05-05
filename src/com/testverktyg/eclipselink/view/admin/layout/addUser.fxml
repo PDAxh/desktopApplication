@@ -46,7 +46,7 @@
                 </FXCollections>
             </items>
             <value>
-                <String fx:value="JAVA2" />
+                <String fx:value="-" />
             </value>
         </ComboBox>
 

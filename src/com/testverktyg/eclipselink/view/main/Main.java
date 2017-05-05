@@ -1,6 +1,6 @@
 package com.testverktyg.eclipselink.view.main;
 
-import com.testverktyg.eclipselink.service.user.CreateUser;
+import com.testverktyg.eclipselink.service.user.loginUser;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,8 +28,8 @@ public class Main extends Application {
         mainController.setStage(primaryStage);
         primaryStage.show();
 
-        CreateUser user = new CreateUser("admin","admin", "admin");
-        CreateUser student = new CreateUser("student", "student", "student");
-        CreateUser teacher = new CreateUser("teacher", "teacher", "teacher");
+        loginUser user = new loginUser("admin","admin", "admin");
+        loginUser student = new loginUser("student", "student", "student");
+        loginUser teacher = new loginUser("teacher", "teacher", "teacher");
     }
 }
