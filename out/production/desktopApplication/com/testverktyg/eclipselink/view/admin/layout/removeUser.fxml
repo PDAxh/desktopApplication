@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<GridPane vgap="5" hgap="10" alignment="TOP_CENTER"
+          xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.testverktyg.eclipselink.view.admin.AdminController">
+    <padding><Insets top="20"/> </padding>
+
+    <children>
+        <Label text="Användartyp:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <ComboBox fx:id="editUserUsertypeList" GridPane.columnIndex="0" GridPane.rowIndex="1" onAction="#checkUserTypeToEdit">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Student" />
+                    <String fx:value="Lärare" />
+                    <String fx:value="Administratör" />
+                </FXCollections>
+            </items>
+            <value>
+                <String fx:value="Välj en typ" />
+            </value>
+        </ComboBox>
+
+        <Label text="Klass:" fx:id="editUserClassLabel" GridPane.columnIndex="1" GridPane.rowIndex="0" textFill="lightgray"/>
+        <ComboBox fx:id="editUserClassList" GridPane.columnIndex="1" GridPane.rowIndex="1" disable="true">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="JAVA2" />
+                </FXCollections>
+            </items>
+            <value>
+                <String fx:value="Välj en klass" />
+            </value>
+        </ComboBox>
+
+        <Label text="Användare:" fx:id="editUserUserLabel" GridPane.columnIndex="0" GridPane.rowIndex="2" textFill="lightgray"/>
+        <ComboBox fx:id="editUserUserList" GridPane.columnIndex="0" GridPane.rowIndex="3" disable="true" onAction="#checkUserTypeToEdit">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Andreas Lindgren" />
+                </FXCollections>
+            </items>
+            <value>
+                <String fx:value="Välj en användare" />
+            </value>
+        </ComboBox>
+
+        <Label fx:id="editUserMessageLabel" text="" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <Button fx:id="editUserRemoveButton" text="Ta bort" GridPane.columnIndex="0" GridPane.rowIndex="5" disable="true"/>
+        <Button fx:id="editUserEditButton" text="Redigera" GridPane.columnIndex="1" GridPane.rowIndex="5" disable="true"/>
+    </children>
+
+</GridPane>

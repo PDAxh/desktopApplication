@@ -15,7 +15,7 @@
     <children>
         <Label text="Klassnamn:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
-        <ComboBox fx:id="classList" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <ComboBox fx:id="classList" GridPane.columnIndex="0" GridPane.rowIndex="1" onAction="#checkClassChoiceToRemove">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="JAVA2" />
@@ -26,7 +26,7 @@
             </value>
         </ComboBox>
         <Label fx:id="removeClassMessageLabel" text="" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-        <Button fx:id="removeClassButton" text="Ta bort klass" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <Button fx:id="removeClassButton" text="Ta bort klass" GridPane.columnIndex="0" GridPane.rowIndex="4" disable="true"/>
     </children>
 
 </GridPane>

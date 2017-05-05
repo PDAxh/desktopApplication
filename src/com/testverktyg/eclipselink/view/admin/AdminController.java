@@ -1,10 +1,7 @@
 package com.testverktyg.eclipselink.view.admin;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
 /**
@@ -19,6 +16,15 @@ public class AdminController {
     @FXML private PasswordField password;
     @FXML private PasswordField passwordRepeat;
     @FXML private Label passwordMessageLabel;
+    @FXML private ComboBox classList;
+    @FXML private Button removeClassButton;
+    @FXML private ComboBox editUserUsertypeList;
+    @FXML private Label editUserClassLabel;
+    @FXML private ComboBox editUserClassList;
+    @FXML private Label editUserUserLabel;
+    @FXML private ComboBox editUserUserList;
+    @FXML private Button editUserRemoveButton;
+    @FXML private Button editUserEditButton;
 
 
     @FXML
@@ -43,7 +49,47 @@ public class AdminController {
             password.requestFocus();
         }
     }
+    @FXML
+    private void checkUserTypeToEdit(){
+        if(getEditUserUserList().getValue().equals("Välj en användare")) {
+            System.out.println("User not selected");
+            if (getEditUserUsertypeList().getValue().equals("Välj en typ")) {
+                System.out.println("Type not selected");
+                editUserClassLabel.setTextFill(Color.web("#d3d3d3"));
+                getEditUserClassList().setDisable(true);
+                editUserUserLabel.setTextFill(Color.web("#d3d3d3"));
+                getEditUserUserList().setDisable(true);
+                editUserClassList.setValue("Välj en klass");
+                editUserUserList.setValue("Välj en användare");
+            } else if (getEditUserUsertypeList().getValue().equals("Student")) {
+                System.out.println("Type is student");
+                editUserClassLabel.setTextFill(Color.web("#000000"));
+                getEditUserClassList().setDisable(false);
+                editUserUserLabel.setTextFill(Color.web("#000000"));
+                getEditUserUserList().setDisable(false);
+                editUserClassLabel.setTextFill(Color.web("#000000"));
+                getEditUserClassList().setDisable(false);
+            } else {
+                editUserUserLabel.setTextFill(Color.web("#000000"));
+                getEditUserUserList().setDisable(false);
+                editUserClassLabel.setTextFill(Color.web("#d3d3d3"));
+                getEditUserClassList().setDisable(true);
+            }
+        }else{
+            getEditUserEditButton().setDisable(false);
+            getEditUserRemoveButton().setDisable(false);
+        }
+    }
+    @FXML
+    private void checkClassChoiceToRemove(){
+        if(getClassList().getValue().equals("Välj en klass")){
+            removeClassButton.setDisable(true);
+        }else{
+            removeClassButton.setDisable(false);
+        }
+    }
 
+    //Getters for createUser
     private ComboBox getUserType() {
         return userType;
     }
@@ -55,5 +101,33 @@ public class AdminController {
     }
     private PasswordField getPasswordRepeat() {
         return passwordRepeat;
+    }
+    //Getters for editUser
+    private ComboBox getEditUserUsertypeList(){
+        return editUserUsertypeList;
+    }
+    private ComboBox getEditUserClassList(){
+        return editUserClassList;
+    }
+    private ComboBox getEditUserUserList() {
+        return editUserUserList;
+    }
+    private Button getEditUserRemoveButton() {
+        return editUserRemoveButton;
+    }
+    private Button getEditUserEditButton() {
+        return editUserEditButton;
+    }
+    private Label getEditUserClassLabel(){
+        return editUserClassLabel;
+    }
+
+
+    //Getters for add/remove Class
+    private ComboBox getClassList() {
+        return classList;
+    }
+    private Button getRemoveClassButton() {
+        return removeClassButton;
     }
 }

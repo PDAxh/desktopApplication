@@ -18,7 +18,7 @@
             </Menu>
             <Menu text="Edit">
                 <MenuItem text="Lägg till konto" onAction="#addUser"/>
-                <MenuItem text="Ta bort konto"/>
+                <MenuItem text="Ta bort konto" onAction="#removeUser"/>
                 <MenuItem text="Uppdatera konto"/>
                 <SeparatorMenuItem/>
                 <MenuItem text="Lägg till klass" onAction="#addClass"/>
