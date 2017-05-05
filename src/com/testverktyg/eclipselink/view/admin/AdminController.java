@@ -1,5 +1,6 @@
 package com.testverktyg.eclipselink.view.admin;
 
+import com.testverktyg.eclipselink.service.user.loginUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
@@ -95,10 +96,9 @@ public class AdminController {
 
     @FXML
     private void createNewUser(){
-        String fname = firstName.getText();
 
-
-
+        //CreateUser newUser = new CreateUser();
+        
     }
 
     //Getters for createUser
@@ -141,5 +141,28 @@ public class AdminController {
     }
     private Button getRemoveClassButton() {
         return removeClassButton;
+    }
+    public TextField getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(TextField firstName) {
+        this.firstName = firstName;
+    }
+
+    public TextField getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(TextField lastName) {
+        this.lastName = lastName;
+    }
+
+    public TextField getEmail() {
+        return email;
+    }
+
+    public void setEmail(TextField email) {
+        this.email = email;
     }
 }
