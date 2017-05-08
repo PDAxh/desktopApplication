@@ -21,6 +21,14 @@ public class Test {
     @OneToMany( targetEntity = Question.class)
     private List questionList;
 
+    public int getTestId() {
+        return testId;
+    }
+
+    public void setTestId(int testId) {
+        this.testId = testId;
+    }
+
     public String getTestName() {
         return testName;
     }
