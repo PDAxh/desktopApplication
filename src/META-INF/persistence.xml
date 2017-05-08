@@ -5,6 +5,9 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
         <class>com.testverktyg.eclipselink.entity.User</class>
+        <class>com.testverktyg.eclipselink.entity.Test</class>
+        <class>com.testverktyg.eclipselink.entity.Question</class>
+        <class>com.testverktyg.eclipselink.entity.Alternative</class>
 
         <properties>
             <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/testverktyg?useSSL=false"/>
