@@ -4,23 +4,15 @@ import com.testverktyg.eclipselink.service.Test.CreateTest;
 import com.testverktyg.eclipselink.view.teacher.createTest.NewAlternativ;
 import com.testverktyg.eclipselink.view.teacher.createTest.NewQuestion;
 import com.testverktyg.eclipselink.view.teacher.createTest.NewTest;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.util.Callback;
 import javafx.util.StringConverter;
-import javax.xml.soap.Text;
 import java.io.IOException;
-import java.util.ArrayList;
-
 
 /**
  * Created by Grodfan on 2017-05-01.
@@ -28,7 +20,7 @@ import java.util.ArrayList;
  */
 public class TeacherController{
 
-    @FXML private BorderPane createNewTestRootBorderPane;
+    //@FXML private BorderPane createNewTestRootBorderPane;
     @FXML private BorderPane borderPaneAlternatives;
     @FXML private Button deleteQuestionButton;
     @FXML private Button updateQuestionButton;
@@ -52,8 +44,9 @@ public class TeacherController{
     private RadioButton rightAnswerRadioButton[];
     private NewTest newTest = new NewTest();
     private int counter = 0;
+    private ObservableList<NewQuestion> questionObservableList;
 
-    CreateTest createTest = new CreateTest();
+    private CreateTest createTest = new CreateTest();
 
     @FXML
     private void setShowResultToStudent(){
@@ -123,7 +116,6 @@ public class TeacherController{
     private void setMultipleTextFields(int numberOfAlternatives){
         GridPane gridPane = new GridPane();
         alternativField = new TextField[numberOfAlternatives];
-        rightAnswerRadioButton = new RadioButton[numberOfAlternatives];
         rightAnswerCheckbox = new CheckBox[numberOfAlternatives];
         gridPane.setVgap(5);
         gridPane.setHgap(5);
@@ -183,7 +175,7 @@ public class TeacherController{
         createTest.commitTest();
     }
 
-    public NewTest getNewTest() {
+    private NewTest getNewTest() {
         return newTest;
     }
 
@@ -191,7 +183,7 @@ public class TeacherController{
         return testName.getText();
     }
 
-    @FXML
+/*    @FXML
     private void newQuestion() throws IOException{
         GridPane gridPane = FXMLLoader.load(getClass().getResource("layout/createNewQuestion.fxml"));
         setCreateNewTestRootBorderPaneCenter(gridPane);
@@ -199,7 +191,7 @@ public class TeacherController{
 
     private void setCreateNewTestRootBorderPaneCenter(GridPane gridPane){
         createNewTestRootBorderPane.setCenter(gridPane);
-    }
+    }*/
 
     @FXML
     private void addQuestion() throws IOException{
@@ -228,7 +220,8 @@ public class TeacherController{
             }
         }
 
-        allQuestionList.setItems(FXCollections.observableArrayList(newTest.getQuestionArrayList()));
+        questionObservableList = FXCollections.observableList(getNewTest().getQuestionArrayList());
+        allQuestionList.setItems(questionObservableList);
         StringConverter<NewQuestion> converter = new StringConverter<NewQuestion>() {
             @Override
             public String toString(NewQuestion object) {
@@ -301,15 +294,41 @@ public class TeacherController{
 
     }
 
-    public BorderPane getCreateNewTestRootBorderPane() {
-        return createNewTestRootBorderPane;
+    @FXML
+    private void setDeleteQuestion(){
+        questionObservableList.remove(allQuestionList.getSelectionModel().getSelectedIndex());
+
+      setResetNewQuestion();
     }
 
-    public RadioButton getGradeGButton() {
+  /*  public BorderPane getCreateNewTestRootBorderPane() {
+        return createNewTestRootBorderPane;
+    }*/
+
+    private RadioButton getGradeGButton() {
         return gradeGButton;
     }
 
-    public RadioButton getGradeVGButton() {
+    private RadioButton getGradeVGButton() {
         return gradeVGButton;
     }
+
+    private void setResetNewQuestion(){
+        setQuestionName("");
+        getGradeGButton().setSelected(false);
+        getGradeVGButton().setSelected(false);
+        setBorderPaneAlternatives(null);
+
+        allQuestionList.setPlaceholder(null);
+        typOfQuestion.setPlaceholder(null);
+        numberOfAlternatives.setDisable(true);
+//        numberOfAlternatives.setValue(null);
+
+
+
+
+
+    }
+
+
 }
