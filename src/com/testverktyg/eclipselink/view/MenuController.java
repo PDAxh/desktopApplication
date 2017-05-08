@@ -60,7 +60,7 @@ public class MenuController {
     }
     @FXML
     private void createNewTest() throws IOException{
-        BorderPane bp = FXMLLoader.load(getClass().getResource("teacher/layout/createNewTestRoot.fxml"));
+        BorderPane bp = FXMLLoader.load(getClass().getResource("teacher/layout/testTestLayout.fxml"));
         borderPane.setCenter(bp);
     }
     @FXML
