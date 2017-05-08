@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<!-- Created by: Andreas -->
+<BorderPane fx:id="roo"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.testverktyg.eclipselink.view.student.StudentController">
+
+    <center>
+        <fx:include source="showTestToStudentLanding.fxml"/>
+    </center>
+
+</BorderPane>

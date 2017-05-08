@@ -49,5 +49,4 @@ public class TeacherController{
         GridPane gridPane = FXMLLoader.load(getClass().getResource("layout/createNewQuestion.fxml"));
         roo.setBottom(gridPane);
     }
-
 }
