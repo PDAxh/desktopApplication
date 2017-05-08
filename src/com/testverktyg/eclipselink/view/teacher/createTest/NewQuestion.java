@@ -6,6 +6,8 @@ package com.testverktyg.eclipselink.view.teacher.createTest;
  */
 public class NewQuestion {
 
+    private boolean gradeG;
+    private boolean gradeVG;
     private String questionName;
     private String typeOfQuestion;
     private int questionId;
@@ -32,5 +34,21 @@ public class NewQuestion {
 
     public void setQuestionId(int questionId) {
         this.questionId = questionId;
+    }
+
+    public boolean isGradeG() {
+        return gradeG;
+    }
+
+    public void setGradeG(boolean gradeG) {
+        this.gradeG = gradeG;
+    }
+
+    public boolean isGradeVG() {
+        return gradeVG;
+    }
+
+    public void setGradeVG(boolean gradeVG) {
+        this.gradeVG = gradeVG;
     }
 }

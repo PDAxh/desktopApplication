@@ -1,5 +1,6 @@
 package com.testverktyg.eclipselink.view.teacher;
 
+import com.testverktyg.eclipselink.service.Test.CreateTest;
 import com.testverktyg.eclipselink.view.teacher.createTest.NewAlternativ;
 import com.testverktyg.eclipselink.view.teacher.createTest.NewQuestion;
 import com.testverktyg.eclipselink.view.teacher.createTest.NewTest;
@@ -39,6 +40,8 @@ public class TeacherController{
     @FXML private ComboBox allQuestionList;
     @FXML private DatePicker datePicker;
     @FXML private Label showResultsToStudentLabel;
+    @FXML private RadioButton gradeGButton;
+    @FXML private RadioButton gradeVGButton;
     @FXML private Spinner timeInput;
     @FXML private TextField questionName;
     @FXML private TextField testName;
@@ -49,6 +52,8 @@ public class TeacherController{
     private RadioButton rightAnswerRadioButton[];
     private NewTest newTest = new NewTest();
     private int counter = 0;
+
+    CreateTest createTest = new CreateTest();
 
     @FXML
     private void setShowResultToStudent(){
@@ -159,12 +164,23 @@ public class TeacherController{
 
     @FXML
     private void saveTestToDataBase(){
-        System.out.println("ProvNamn: " + getTestName());
-        System.out.println("Beskrivning: " + getDescriptionInput());
-        System.out.println("Tid: " + getTimeInput());
-        System.out.println("Datum: " + getDatePicker());
-        System.out.println("Självrättande: " + getSelfCorrect().isSelected());
-        System.out.println("Visa resultat: " + getShowResultsToStudent().isSelected());
+        createTest.createTest(getTestName(), getDescriptionInput(), getSelfCorrect().isSelected(), getShowResultsToStudent().isSelected(), getDatePicker(), getTimeInput());
+
+        for(int i = 0; i < newTest.getQuestionArrayList().size(); i++) {
+            createTest.createQuestion(newTest.getQuestionArrayList().get(i).getTypeOfQuestion(),
+                    newTest.getQuestionArrayList().get(i).getQuestionName(),
+                    newTest.getQuestionArrayList().get(i).isGradeVG(),
+                    newTest.getQuestionArrayList().get(i).isGradeG());
+            System.out.println(newTest.getQuestionArrayList().get(i).getQuestionName());
+            for(int j = 0; j < newTest.getAlternativArrayList().size(); j++){
+                if(newTest.getAlternativArrayList().get(j).getAlternativeId() == i) {
+                    createTest.createAlternative(newTest.getAlternativArrayList().get(j).getAlternative(), newTest.getAlternativArrayList().get(j).getRightAnswer());
+                    System.out.println(newTest.getAlternativArrayList().get(j).getAlternative() + " " + newTest.getAlternativArrayList().get(j).getRightAnswer());
+                }
+            }
+        }
+
+        createTest.commitTest();
     }
 
     public NewTest getNewTest() {
@@ -189,7 +205,10 @@ public class TeacherController{
     private void addQuestion() throws IOException{
         NewQuestion newQuestion = new NewQuestion();
         newQuestion.setQuestionId(counter);
+        newQuestion.setTypeOfQuestion(getTypOfQuestion());
         newQuestion.setQuestionName(getQuestionName());
+        newQuestion.setGradeG(getGradeGButton().isSelected());
+        newQuestion.setGradeVG(getGradeVGButton().isSelected());
         getNewTest().getQuestionArrayList().add(newQuestion);
 
         for(int i = 0; i < alternativField.length; i++){
@@ -249,8 +268,8 @@ public class TeacherController{
         this.descriptionInput.setText("");
     }
 
-    private String getTimeInput() {
-        return timeInput.getValue().toString();
+    private int getTimeInput() {
+        return Integer.parseInt(timeInput.getValue().toString());
     }
 
     public void setTimeInput(Spinner timeInput) {
@@ -280,5 +299,17 @@ public class TeacherController{
     @FXML
     private void setUpdateQuestion(){
 
+    }
+
+    public BorderPane getCreateNewTestRootBorderPane() {
+        return createNewTestRootBorderPane;
+    }
+
+    public RadioButton getGradeGButton() {
+        return gradeGButton;
+    }
+
+    public RadioButton getGradeVGButton() {
+        return gradeVGButton;
     }
 }

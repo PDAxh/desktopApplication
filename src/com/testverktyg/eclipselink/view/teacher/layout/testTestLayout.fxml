@@ -42,12 +42,21 @@
     <center>
         <GridPane vgap="5" hgap="5">
             <padding><Insets top="50" left="100"/> </padding>
-            <Label text="Ny fråga:" GridPane.rowIndex="2" GridPane.columnIndex="10"/>
+            <Label text="Betyg:" GridPane.rowIndex="2" GridPane.columnIndex="10"/>
+            <fx:define>
+                <ToggleGroup fx:id="gradeToggleGroup"/>
+            </fx:define>
+
+            <RadioButton fx:id="gradeGButton" text="G" toggleGroup="$gradeToggleGroup" GridPane.rowIndex="2" GridPane.columnIndex="11"/>
+            <RadioButton fx:id="gradeVGButton" text="VG" toggleGroup="$gradeToggleGroup" GridPane.rowIndex="2" GridPane.columnIndex="12"/>
 
             <Label text="Namn:" GridPane.rowIndex="3" GridPane.columnIndex="10"/>
             <TextField fx:id="questionName" GridPane.rowIndex="3" GridPane.columnIndex="11" GridPane.columnSpan="3"/>
 
             <Label text="Typ av fråga:" GridPane.rowIndex="4" GridPane.columnIndex="10"/>
+
+
+
             <ComboBox fx:id="typOfQuestion" onAction="#setNumberOfAlternativesToTrue" promptText="Välj" GridPane.rowIndex="4" GridPane.columnIndex="11">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
@@ -61,7 +70,6 @@
             <ComboBox fx:id="numberOfAlternatives" onAction="#getNumberOfAlternatives" disable="true" promptText="Välj" GridPane.rowIndex="4" GridPane.columnIndex="13">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <Integer fx:value="1"/>
                         <Integer fx:value="2"/>
                         <Integer fx:value="3"/>
                         <Integer fx:value="4"/>
