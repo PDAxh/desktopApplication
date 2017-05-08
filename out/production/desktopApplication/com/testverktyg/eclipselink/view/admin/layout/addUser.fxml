@@ -24,7 +24,7 @@
         <Label text="Repetera lösenord:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
         <PasswordField fx:id="passwordRepeat" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
         <Label fx:id="passwordMessageLabel" GridPane.columnIndex="0" GridPane.rowIndex="10"/>
-        <Button fx:id="createUserButton" text="Skapa" GridPane.columnIndex="0" GridPane.rowIndex="11" onAction="#comparePassword"/>
+        <Button fx:id="createUserButton" text="Skapa" GridPane.columnIndex="0" GridPane.rowIndex="11" onAction="#createNewUser"/>
         <Label text="Användartyp:" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
         <ComboBox fx:id="userType" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#setStudentClassOption">
             <items>
@@ -46,7 +46,7 @@
                 </FXCollections>
             </items>
             <value>
-                <String fx:value="-" />
+                <String fx:value="" />
             </value>
         </ComboBox>
 

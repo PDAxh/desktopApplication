@@ -1,5 +1,6 @@
 package com.testverktyg.eclipselink.view.admin;
 
+import com.testverktyg.eclipselink.service.user.CreateUser;
 import com.testverktyg.eclipselink.service.user.loginUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -97,8 +98,28 @@ public class AdminController {
     @FXML
     private void createNewUser(){
 
-        //CreateUser newUser = new CreateUser();
-        
+
+        if(getPassword().getText().equals(getPasswordRepeat().getText())) {
+            passwordMessageLabel.setText("");
+            String fname = getFirstName().getText();
+            System.out.println(fname);
+            String lname = getLastName().getText();
+            System.out.println(lname);
+            String email = getEmail().getText();
+            System.out.println(email);
+            String Klass = getStudentClass().getValue().toString();
+            System.out.println(Klass);
+            String password = getPassword().getText();
+            System.out.println(password);
+            String userType = getUserType().getValue().toString();
+            System.out.println(userType);
+            CreateUser newUser = new CreateUser(fname, lname, password, email, Klass, userType);
+        }else{
+            passwordMessageLabel.setText("Lösenorden är inte samma.");
+            getPassword().setText("");
+            getPasswordRepeat().setText("");
+            password.requestFocus();
+        }
     }
 
     //Getters for createUser
@@ -114,6 +135,7 @@ public class AdminController {
     private PasswordField getPasswordRepeat() {
         return passwordRepeat;
     }
+
     //Getters for editUser
     private ComboBox getEditUserUsertypeList(){
         return editUserUsertypeList;

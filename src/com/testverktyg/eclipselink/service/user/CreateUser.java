@@ -60,7 +60,7 @@ public class CreateUser {
 
         entitymanager.persist( user );
         entitymanager.getTransaction( ).commit( );
-
+        System.out.println("User "+user.getFirstname()+" saved");
         entitymanager.close( );
         emfactory.close( );
 }

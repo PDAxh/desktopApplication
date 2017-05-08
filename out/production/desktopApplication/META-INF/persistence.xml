@@ -8,7 +8,7 @@
 
         <properties>
             <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/testverktyg?useSSL=false"/>
-            <property name="eclipselink.jdbc.user" value="svaden"/>
+            <property name="eclipselink.jdbc.user" value="root"/>
             <property name="eclipselink.jdbc.password" value="123456789"/>
             <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="eclipselink.logging.level" value="FINE"/>
