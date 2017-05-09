@@ -11,15 +11,14 @@
             prefHeight="600.0" prefWidth="800.0">
 
     <top>
-        <MenuBar>
+     <!--   <MenuBar>
             <Menu text="Arkiv">
                 <MenuItem text="Logga ut" onAction="#logout"/>
                 <MenuItem text="Avsluta"  onAction="#getExitProgram"/>
             </Menu>
             <Menu text="Edit">
                 <MenuItem text="Lägg till konto" onAction="#addUser"/>
-                <MenuItem text="Ta bort konto" onAction="#removeUser"/>
-                <MenuItem text="Uppdatera konto"/>
+                <MenuItem text="Ändra konto" onAction="#removeUser"/>
                 <SeparatorMenuItem/>
                 <MenuItem text="Lägg till klass" onAction="#addClass"/>
                 <MenuItem text="Ta bort klass" onAction="#removeClass"/>
@@ -31,7 +30,33 @@
                 <MenuItem text="Hjälp"/>
                 <MenuItem text="Om oss"/>
             </Menu>
+
         </MenuBar>
+        -->
+        <AnchorPane xmlns:fx="http://javafx.com/fxml/1" styleClass="menu-bar">
+            <MenuBar AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
+                <Menu text="Arkiv">
+                    <MenuItem text="Logga ut" onAction="#logout"/>
+                    <MenuItem text="Avsluta"  onAction="#getExitProgram"/>
+                </Menu>
+                <Menu text="Edit">
+                    <MenuItem text="Lägg till konto" onAction="#addUser"/>
+                    <MenuItem text="Ändra konto" onAction="#removeUser"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Lägg till klass" onAction="#addClass"/>
+                    <MenuItem text="Ta bort klass" onAction="#removeClass"/>
+                </Menu>
+                <Menu text="Prov">
+                    <MenuItem text="Publicera prov"/>
+                </Menu>
+                <Menu text="Hjälp">
+                    <MenuItem text="Hjälp"/>
+                    <MenuItem text="Om oss"/>
+                </Menu>
+            </MenuBar>
+            <Label text="Andreas Lindgren (Student)" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+                   style="-fx-font-weight: bold; -fx-text-fill: orangered;"/>
+        </AnchorPane>
     </top>
 
     <center>

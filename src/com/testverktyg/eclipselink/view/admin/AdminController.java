@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
+import javax.xml.soap.Text;
+
 /**
  * Created by Grodfan on 2017-05-01.
  * Edited by Andreas on 2017-05-04
@@ -30,7 +32,6 @@ public class AdminController {
     @FXML private TextField firstName;
     @FXML private TextField lastName;
     @FXML private TextField email;
-
 
     @FXML
     private void setStudentClassOption(){
