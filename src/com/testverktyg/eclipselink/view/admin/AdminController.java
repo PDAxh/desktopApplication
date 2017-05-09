@@ -14,19 +14,19 @@ import javax.xml.soap.Text;
  */
 public class AdminController {
 
-    @FXML private ComboBox userType;
-    @FXML private ComboBox studentClass;
+    @FXML private ComboBox<String> userType;
+    @FXML private ComboBox<String> studentClass;
     @FXML private Label studentClassLabel;
     @FXML private PasswordField password;
     @FXML private PasswordField passwordRepeat;
     @FXML private Label passwordMessageLabel;
-    @FXML private ComboBox classList;
+    @FXML private ComboBox<String> classList;
     @FXML private Button removeClassButton;
     @FXML private ComboBox editUserUsertypeList;
     @FXML private Label editUserClassLabel;
-    @FXML private ComboBox editUserClassList;
+    @FXML private ComboBox<String> editUserClassList;
     @FXML private Label editUserUserLabel;
-    @FXML private ComboBox editUserUserList;
+    @FXML private ComboBox<String> editUserUserList;
     @FXML private Button editUserRemoveButton;
     @FXML private Button editUserEditButton;
     @FXML private TextField firstName;
@@ -84,6 +84,8 @@ public class AdminController {
         }else{
             getEditUserEditButton().setDisable(false);
             getEditUserRemoveButton().setDisable(false);
+            editUserUsertypeList.setDisable(true);
+            editUserUserLabel.setTextFill(Color.web("#d3d3d3"));
         }
     }
     @FXML
