@@ -32,7 +32,8 @@
                 </GridPane>
 
             <Button fx:id="showToUserStartTestButton" text="Starta" GridPane.columnIndex="0" GridPane.rowIndex="4" onAction="#startTest"/>
-            <Button fx:id="showToUserNextButton" text="Nästa" GridPane.columnIndex="0" GridPane.rowIndex="4" onAction="#startTest" visible="false"/>
+            <Button fx:id="getTestButton" text="GetTest" GridPane.columnIndex="0" GridPane.rowIndex="7" onAction="#getTest"/>
+            <Button fx:id="showToUserNextButton" text="Nästa" GridPane.columnIndex="0" GridPane.rowIndex="4" onAction="#nextQuestion" visible="false"/>
         </children>
 
 

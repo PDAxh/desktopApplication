@@ -33,6 +33,7 @@ public class ReadTest {
     private List<Alternative> activeAlternativeText;
     private List<Alternative> activeAlternativeId;
     private List<Question> activeQuestionGradeG;
+    private List<Question> activeQuestionType;
 
     public ReadTest(int testId){
         this.tempTestId = testId;
@@ -53,6 +54,7 @@ public class ReadTest {
         activeQuestionText = entitymanager.createNamedQuery("FindQuestionText", Question.class).setParameter("tId", tempTestId).getResultList();
         activeQuestionId = entitymanager.createNamedQuery("FindQuestionId", Question.class).setParameter("tId", tempTestId).getResultList();
         activeQuestionGradeG = entitymanager.createNamedQuery("FindQuestionGradeG", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
+        activeQuestionType = entitymanager.createNamedQuery("FindQuestionType", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
 
         if (activeQuestionGradeG.size() == 0){
             gradeOnActiveQuestion = "G";
@@ -77,4 +79,55 @@ public class ReadTest {
         activeAlternativeId = entitymanager.createNamedQuery("FindAlternativeId", Alternative.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
     }
 
+    public String getTestName() {
+        return testName;
+    }
+
+    public int getAmountOfQuestions() {
+        return amountOfQuestions;
+    }
+
+    public String getGradeOnActiveQuestion() {
+        return gradeOnActiveQuestion;
+    }
+
+    public String getTestDescription() {
+        return testDescription;
+    }
+
+    public String getTestLastDate() {
+        return testLastDate;
+    }
+
+    public int getTestTimeInMinutes() {
+        return testTimeInMinutes;
+    }
+
+    public int getQuestionCount() {
+        return questionCount;
+    }
+
+    public List<Question> getActiveQuestionText() {
+        return activeQuestionText;
+    }
+
+    public List<Question> getActiveQuestionId() {
+        return activeQuestionId;
+    }
+
+    public List<Alternative> getActiveAlternativeText() {
+        return activeAlternativeText;
+    }
+
+    public List<Alternative> getActiveAlternativeId() {
+        return activeAlternativeId;
+    }
+
+    public List<Question> getActiveQuestionGradeG() {
+        return activeQuestionGradeG;
+    }
+
+    public List<Question> getActiveQuestionType() {
+        return activeQuestionType;
+    }
 }
