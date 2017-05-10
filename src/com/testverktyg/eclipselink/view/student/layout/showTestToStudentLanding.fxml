@@ -19,7 +19,7 @@
         <Label fx:id="showToStudentTeacherLabel" prefWidth="120" text="Jerry Johansson" GridPane.columnIndex="3" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
         <Label text="Klass:" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
         <Label fx:id="showToStudentClassLabel" prefWidth="50" text="JAVA2" GridPane.columnIndex="5" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
-        <Button fx:id="showToUserStartTestButton" text="Starta" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <Button fx:id="showToUserStartTestButton" text="Starta" GridPane.columnIndex="0" GridPane.rowIndex="3" onAction="#startTest"/>
     </children>
 
 

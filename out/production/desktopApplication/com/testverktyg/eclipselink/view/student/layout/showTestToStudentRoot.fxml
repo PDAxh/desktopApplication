@@ -2,13 +2,44 @@
 
 <?import javafx.scene.layout.*?>
 <!-- Created by: Andreas -->
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
 <BorderPane fx:id="roo"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.testverktyg.eclipselink.view.student.StudentController">
+<center>
+    <GridPane fx:id="contentPane"
+            vgap="5" hgap="10" alignment="TOP_CENTER"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml">
+        <padding><Insets top="20"/> </padding>
 
-    <center>
+        <children>
+            <Label text="ProvNamn" fx:id="showToStudentTestNameLabel" style="-fx-font-size: 20px" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="6"/>
+            <Label text="Det här är en placeholder text som används för att se hur texten wrappar i beskrivningsdelen där man presenterar provet för eleverna. Bla bla bla hopp hej!" fx:id="showToStudentTextLabel" wrapText="true" prefWidth="500" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="6"/>
+            <Label text="Tid (i minuter):" fx:id="showToStudentTimeTextLabel" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <Label fx:id="showToStudentTimeLabel" text="5" prefWidth="50" GridPane.columnIndex="1" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+            <Label text="Lärare:" fx:id="showToStudentTeacherTextLabel" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+            <Label fx:id="showToStudentTeacherLabel" prefWidth="120" text="Jerry Johansson" GridPane.columnIndex="3" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+            <Label text="Klass:" fx:id="showToStudentClassTextLabel" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
+            <Label fx:id="showToStudentClassLabel" prefWidth="50" text="JAVA2" GridPane.columnIndex="5" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+
+                <GridPane fx:id="alternativePane" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="6">
+                    <children>
+                    </children>
+                </GridPane>
+
+            <Button fx:id="showToUserStartTestButton" text="Starta" GridPane.columnIndex="0" GridPane.rowIndex="4" onAction="#startTest"/>
+            <Button fx:id="showToUserNextButton" text="Nästa" GridPane.columnIndex="0" GridPane.rowIndex="4" onAction="#startTest" visible="false"/>
+        </children>
+
+
+    </GridPane>
+</center>
+    <!--<center>
         <fx:include source="showTestToStudentLanding.fxml"/>
-    </center>
+    </center>-->
 
 </BorderPane>
