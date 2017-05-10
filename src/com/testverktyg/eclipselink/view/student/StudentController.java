@@ -73,6 +73,7 @@ public class StudentController {
     private void printAlternatives() {
         ReadTest newTest = new ReadTest(2);
         newTest.getActiveTest();
+        showToStudentTestNameLabel.setText(newTest.getTestName());
         String typeOfQuestion = "Flervals";
         short numberOfAlternatives = 2;
         short correctAnswer = 0;
