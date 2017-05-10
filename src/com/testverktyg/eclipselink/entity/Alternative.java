@@ -5,6 +5,11 @@ import javax.persistence.*;
 /*Created by jennifergisslow on 2017-05-08.*/
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "FindAlternativeText", query = "select a.alternativeText from Alternative a where a.questionId = :qId"),
+        @NamedQuery(name = "FindAlternativeId", query = "select a.alternativeId from Alternative a where a.questionId = :qId")
+})
+
 public class Alternative {
 
     @Id

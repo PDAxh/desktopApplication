@@ -6,6 +6,12 @@ import java.util.List;
 /*Created by jennifergisslow on 2017-05-08.*/
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "FindQuestionText", query = "select q.questionText from Question q where q.testId = :tId"),
+        @NamedQuery(name = "FindQuestionId", query = "select q.questionId from Question q where q.testId = :tId"),
+        @NamedQuery(name = "FindQuestionGradeG", query = "select q.gradeG from Question q where q.questionId = :qId")
+})
+
 public class Question {
 
     @Id
