@@ -4,8 +4,6 @@ import com.testverktyg.eclipselink.service.Test.CreateTest;
 import com.testverktyg.eclipselink.view.teacher.createTest.NewAlternativ;
 import com.testverktyg.eclipselink.view.teacher.createTest.NewQuestion;
 import com.testverktyg.eclipselink.view.teacher.createTest.NewTest;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -15,21 +13,20 @@ import javafx.util.StringConverter;
 import java.io.IOException;
 
 /**
- * Created by Grodfan on 2017-05-01.
+ * Created by Jonas Johansson, Java2 on 2017-05-01.
  *
  */
-public class TeacherController{
+public class TeacherController {
 
-    //@FXML private BorderPane createNewTestRootBorderPane;
     @FXML private BorderPane borderPaneAlternatives;
     @FXML private Button deleteQuestionButton;
     @FXML private Button updateQuestionButton;
     @FXML private Button addQuestionButton;
     @FXML private CheckBox selfCorrect;
     @FXML private CheckBox showResultsToStudent;
-    @FXML private ComboBox numberOfAlternatives;
-    @FXML private ComboBox typOfQuestion;
-    @FXML private ComboBox allQuestionList;
+    @FXML private ComboBox<Integer> numberOfAlternatives;
+    @FXML private ComboBox<String> typOfQuestion;
+    @FXML private ComboBox<NewQuestion> allQuestionList;
     @FXML private DatePicker datePicker;
     @FXML private Label showResultsToStudentLabel;
     @FXML private RadioButton gradeGButton;
@@ -39,13 +36,11 @@ public class TeacherController{
     @FXML private TextField testName;
     @FXML private TextArea descriptionInput;
 
+    private int indexQuestion;
     private CheckBox rightAnswerCheckbox[];
     private TextField alternativField[];
     private RadioButton rightAnswerRadioButton[];
     private NewTest newTest = new NewTest();
-    private int counter = 0;
-    private ObservableList<NewQuestion> questionObservableList;
-
     private CreateTest createTest = new CreateTest();
 
     @FXML
@@ -71,22 +66,23 @@ public class TeacherController{
 
 
     private String getTypOfQuestion(){
-        return typOfQuestion.getValue().toString();
+        return typOfQuestion.getValue();
     }
 
     @FXML
     private void getNumberOfAlternatives(){
         int numberOfAlternatives = 0;
-        if(this.numberOfAlternatives.getValue() != null){
-            numberOfAlternatives = Integer.parseInt(this.numberOfAlternatives.getValue().toString());
-        }
 
-        if(getTypOfQuestion().equals("Alternativ")){
-            setAlternativeTextFields(numberOfAlternatives);
-        }
-        else if(getTypOfQuestion().equals("Flervals")){
-            setMultipleTextFields(numberOfAlternatives);
-        }
+            if(this.numberOfAlternatives.getValue() != null){
+                numberOfAlternatives = Integer.parseInt(this.numberOfAlternatives.getValue().toString());
+            }
+
+            if(getTypOfQuestion().equals("Alternativ")){
+                setAlternativeTextFields(numberOfAlternatives);
+            }
+            else if(getTypOfQuestion().equals("Flervals")){
+                setMultipleTextFields(numberOfAlternatives);
+            }
     }
 
     private void setAlternativeTextFields(int numberOfAlternatives){
@@ -133,7 +129,6 @@ public class TeacherController{
         }
 
         setBorderPaneAlternatives(gridPane);
-
     }
 
     private void setBorderPaneAlternatives(GridPane gridPane){
@@ -154,25 +149,26 @@ public class TeacherController{
         this.questionName.setText(questionName);
     }
 
+    private CreateTest getCreateTest() {
+        return createTest;
+    }
+
     @FXML
     private void saveTestToDataBase(){
-        createTest.createTest(getTestName(), getDescriptionInput(), getSelfCorrect().isSelected(), getShowResultsToStudent().isSelected(), getDatePicker(), getTimeInput());
+        getCreateTest().createTest(getTestName(), getDescriptionInput(), getSelfCorrect().isSelected(), getShowResultsToStudent().isSelected(), getDatePicker(), getTimeInput());
 
-        for(int i = 0; i < newTest.getQuestionArrayList().size(); i++) {
-            createTest.createQuestion(newTest.getQuestionArrayList().get(i).getTypeOfQuestion(),
-                    newTest.getQuestionArrayList().get(i).getQuestionName(),
-                    newTest.getQuestionArrayList().get(i).isGradeVG(),
-                    newTest.getQuestionArrayList().get(i).isGradeG());
-            System.out.println(newTest.getQuestionArrayList().get(i).getQuestionName());
-            for(int j = 0; j < newTest.getAlternativArrayList().size(); j++){
-                if(newTest.getAlternativArrayList().get(j).getAlternativeId() == i) {
-                    createTest.createAlternative(newTest.getAlternativArrayList().get(j).getAlternative(), newTest.getAlternativArrayList().get(j).getRightAnswer());
-                    System.out.println(newTest.getAlternativArrayList().get(j).getAlternative() + " " + newTest.getAlternativArrayList().get(j).getRightAnswer());
-                }
+            for(int i = 0; i < getNewTest().getQuestionObservableList().size(); i++){
+                getCreateTest().createQuestion(getNewTest().getQuestionObservableList().get(i).getTypeOfQuestion(),
+                        getNewTest().getQuestionObservableList().get(i).getQuestionName(),
+                        getNewTest().getQuestionObservableList().get(i).isGradeVG(),
+                        getNewTest().getQuestionObservableList().get(i).isGradeG());
+
+                        getNewTest().getQuestionObservableList().get(i).getAlternativObservableList().forEach(newAlternativ ->
+                            getCreateTest().createAlternative(newAlternativ.getAlternative(), newAlternativ.getRightAnswer())
+                        );
             }
-        }
 
-        createTest.commitTest();
+        getCreateTest().commitTest();
     }
 
     private NewTest getNewTest() {
@@ -183,45 +179,34 @@ public class TeacherController{
         return testName.getText();
     }
 
-/*    @FXML
-    private void newQuestion() throws IOException{
-        GridPane gridPane = FXMLLoader.load(getClass().getResource("layout/createNewQuestion.fxml"));
-        setCreateNewTestRootBorderPaneCenter(gridPane);
-    }
-
-    private void setCreateNewTestRootBorderPaneCenter(GridPane gridPane){
-        createNewTestRootBorderPane.setCenter(gridPane);
-    }*/
-
     @FXML
     private void addQuestion() throws IOException{
         NewQuestion newQuestion = new NewQuestion();
-        newQuestion.setQuestionId(counter);
         newQuestion.setTypeOfQuestion(getTypOfQuestion());
         newQuestion.setQuestionName(getQuestionName());
         newQuestion.setGradeG(getGradeGButton().isSelected());
         newQuestion.setGradeVG(getGradeVGButton().isSelected());
-        getNewTest().getQuestionArrayList().add(newQuestion);
+        newQuestion.setNumberOfAlternatives(Integer.parseInt(this.numberOfAlternatives.getValue().toString()));
 
-        for(int i = 0; i < alternativField.length; i++){
-            if(!alternativField[i].getText().isEmpty()){
-                NewAlternativ newAlternativ = new NewAlternativ();
-                newAlternativ.setAlternative(alternativField[i].getText());
-                newAlternativ.setAlternativeId(counter);
+            for(int i = 0; i < alternativField.length; i++){
+                if(!alternativField[i].getText().isEmpty()){
+                    NewAlternativ newAlternativ = new NewAlternativ();
+                    newAlternativ.setAlternative(alternativField[i].getText());
 
-                if(getTypOfQuestion().equals("Flervals")){
-                    newAlternativ.setRightAnswer(rightAnswerCheckbox[i].isSelected());
+                        if(getTypOfQuestion().equals("Flervals")){
+                            newAlternativ.setRightAnswer(rightAnswerCheckbox[i].isSelected());
+                        }
+                        else if(getTypOfQuestion().equals("Alternativ")){
+                            newAlternativ.setRightAnswer(rightAnswerRadioButton[i].isSelected());
+                        }
+
+                    newQuestion.getAlternativObservableList().add(newAlternativ);
                 }
-                else if(getTypOfQuestion().equals("Alternativ")){
-                    newAlternativ.setRightAnswer(rightAnswerRadioButton[i].isSelected());
-                }
-
-                newTest.getAlternativArrayList().add(newAlternativ);
             }
-        }
 
-        questionObservableList = FXCollections.observableList(getNewTest().getQuestionArrayList());
-        allQuestionList.setItems(questionObservableList);
+        getNewTest().getQuestionObservableList().add(newQuestion);
+
+        allQuestionList.setItems(getNewTest().getQuestionObservableList());
         StringConverter<NewQuestion> converter = new StringConverter<NewQuestion>() {
             @Override
             public String toString(NewQuestion object) {
@@ -234,23 +219,8 @@ public class TeacherController{
             }
         };
         allQuestionList.setConverter(converter);
-        counter++;
-    }
 
-    @FXML
-    private void printQuestions() {
-        for(int i = 0; i < newTest.getQuestionArrayList().size(); i++) {
-            System.out.println(newTest.getQuestionArrayList().get(i).getQuestionName());
-            for(int j = 0; j < newTest.getAlternativArrayList().size(); j++){
-                if(newTest.getAlternativArrayList().get(j).getAlternativeId() == i) {
-                    System.out.println(newTest.getAlternativArrayList().get(j).getAlternative() + " " + newTest.getAlternativArrayList().get(j).getRightAnswer());
-                }
-            }
-        }
-
-        getAddQuestionButton().setDisable(true);
-        getDeleteQuestionButton().setDisable(false);
-        getUpdateQuestionButton().setDisable(false);
+        setResetNewQuestion();
     }
 
     private String getDescriptionInput() {
@@ -258,7 +228,7 @@ public class TeacherController{
     }
 
     public void setDescriptionInput(String descriptionInput) {
-        this.descriptionInput.setText("");
+        this.descriptionInput.setText(descriptionInput);
     }
 
     private int getTimeInput() {
@@ -289,22 +259,6 @@ public class TeacherController{
         return addQuestionButton;
     }
 
-    @FXML
-    private void setUpdateQuestion(){
-
-    }
-
-    @FXML
-    private void setDeleteQuestion(){
-        questionObservableList.remove(allQuestionList.getSelectionModel().getSelectedIndex());
-
-        setResetNewQuestion();
-    }
-
-  /*  public BorderPane getCreateNewTestRootBorderPane() {
-        return createNewTestRootBorderPane;
-    }*/
-
     private RadioButton getGradeGButton() {
         return gradeGButton;
     }
@@ -313,22 +267,77 @@ public class TeacherController{
         return gradeVGButton;
     }
 
+    @FXML
+    private void setUpdateQuestion(){
+
+        if(!getNewTest().getQuestionObservableList().get(getIndexQuestion()).getQuestionName().equals(getQuestionName())){
+            getNewTest().getQuestionObservableList().get(getIndexQuestion()).setQuestionName(getQuestionName());
+        }
+
+        setResetNewQuestion();
+    }
+
+    @FXML
+    private void setDeleteQuestion(){
+        getNewTest().getQuestionObservableList().remove(getIndexQuestion());
+        setResetNewQuestion();
+    }
+
     private void setResetNewQuestion(){
         setQuestionName("");
         getGradeGButton().setSelected(false);
         getGradeVGButton().setSelected(false);
         setBorderPaneAlternatives(null);
 
-        allQuestionList.setPlaceholder(null);
-        typOfQuestion.setPlaceholder(null);
+        allQuestionList.setValue(null);
+        typOfQuestion.setValue("Välj");
         numberOfAlternatives.setDisable(true);
-//        numberOfAlternatives.setValue(null);
+        numberOfAlternatives.setValue(null);
 
-
-
-
-
+        getAddQuestionButton().setDisable(false);
+        getDeleteQuestionButton().setDisable(true);
+        getUpdateQuestionButton().setDisable(true);
+        getAddQuestionButton().requestFocus();
     }
 
+    @FXML
+    private void getSelectedQuestionFromComboBox() {
+        setIndexQuestion(allQuestionList.getSelectionModel().getSelectedIndex());
 
+        if(allQuestionList.getSelectionModel().getSelectedItem() != null){
+
+            setQuestionName(allQuestionList.getSelectionModel().getSelectedItem().getQuestionName());
+            getGradeGButton().setSelected(allQuestionList.getSelectionModel().getSelectedItem().isGradeG());
+            getGradeVGButton().setSelected(allQuestionList.getSelectionModel().getSelectedItem().isGradeVG());
+            typOfQuestion.setValue(allQuestionList.getSelectionModel().getSelectedItem().getTypeOfQuestion());
+            this.numberOfAlternatives.setValue(allQuestionList.getSelectionModel().getSelectedItem().getNumberOfAlternatives());
+
+                for(int i = 0; i < allQuestionList.getSelectionModel().getSelectedItem().getAlternativObservableList().size(); i++){
+                    alternativField[i].setText(allQuestionList.getSelectionModel().getSelectedItem().getAlternativObservableList().get(i).getAlternative());
+
+                        if(getTypOfQuestion().equals("Flervals")){
+                            rightAnswerCheckbox[i].setSelected(allQuestionList.getSelectionModel().getSelectedItem().getAlternativObservableList().get(i).getRightAnswer());
+                        }
+                        else if(getTypOfQuestion().equals("Alternativ")){
+                            rightAnswerRadioButton[i].setSelected(allQuestionList.getSelectionModel().getSelectedItem().getAlternativObservableList().get(i).getRightAnswer());
+                        }
+                }
+
+            getAddQuestionButton().setDisable(true);
+            getDeleteQuestionButton().setDisable(false);
+            getUpdateQuestionButton().setDisable(false);
+        }
+    }
+
+    public void setNumberOfAlternatives(ComboBox<Integer> numberOfAlternatives) {
+        this.numberOfAlternatives = numberOfAlternatives;
+    }
+
+    private int getIndexQuestion() {
+        return indexQuestion;
+    }
+
+    private void setIndexQuestion(int indexQuestion) {
+        this.indexQuestion = indexQuestion;
+    }
 }

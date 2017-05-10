@@ -3,33 +3,17 @@ package com.testverktyg.eclipselink.view.teacher.createTest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-
 /**
- * Created by Grodfan on 2017-05-04.
+ * Created by Jonas Johansson, Java2, on 2017-05-04.
  *
  */
 public class NewTest {
 
-    private String testName;
-    private ArrayList<NewQuestion> questionArrayList = new ArrayList<>();
-    private ArrayList<NewAlternativ> alternativArrayList = new ArrayList<>();
+    private ObservableList<NewQuestion> questionObservableList = FXCollections.observableArrayList();
 
     public NewTest(){}
 
-    public String getTestName() {
-        return testName;
-    }
-
-    public void setTestName(String testName) {
-        this.testName = testName;
-    }
-
-    public ArrayList<NewQuestion> getQuestionArrayList() {
-        return questionArrayList;
-    }
-
-    public ArrayList<NewAlternativ> getAlternativArrayList() {
-        return alternativArrayList;
+    public ObservableList<NewQuestion> getQuestionObservableList() {
+        return questionObservableList;
     }
 }

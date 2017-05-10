@@ -55,8 +55,6 @@
 
             <Label text="Typ av fråga:" GridPane.rowIndex="4" GridPane.columnIndex="10"/>
 
-
-
             <ComboBox fx:id="typOfQuestion" onAction="#setNumberOfAlternativesToTrue" promptText="Välj" GridPane.rowIndex="4" GridPane.columnIndex="11">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
@@ -81,7 +79,7 @@
             <Button text="Lägg till" fx:id="addQuestionButton" onAction="#addQuestion" GridPane.rowIndex="1" GridPane.columnIndex="10"/>
             <Button text="Uppdatera" fx:id="updateQuestionButton" onAction="#setUpdateQuestion" disable="true" GridPane.rowIndex="1" GridPane.columnIndex="11"/>
             <Button text="Ta bort"   fx:id="deleteQuestionButton" onAction="#setDeleteQuestion" disable="true" GridPane.rowIndex="1" GridPane.columnIndex="12"/>
-            <ComboBox fx:id="allQuestionList" onAction="#printQuestions" promptText="Frågor" GridPane.rowIndex="1" GridPane.columnIndex="13"/>
+            <ComboBox fx:id="allQuestionList" onAction="#getSelectedQuestionFromComboBox" promptText="Frågor" GridPane.rowIndex="1" GridPane.columnIndex="13"/>
         </GridPane>
 
     </center>

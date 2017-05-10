@@ -1,7 +1,10 @@
 package com.testverktyg.eclipselink.view.teacher.createTest;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 /**
- * Created by Grodfan on 2017-05-04.
+ * Created by Jonas Johansson, Java2 on 2017-05-04.
  *
  */
 public class NewQuestion {
@@ -10,7 +13,10 @@ public class NewQuestion {
     private boolean gradeVG;
     private String questionName;
     private String typeOfQuestion;
-    private int questionId;
+    private int numberOfAlternatives;
+    private ObservableList<NewAlternativ> alternativObservableList = FXCollections.observableArrayList();
+
+    public NewQuestion(){}
 
     public String getQuestionName() {
         return questionName;
@@ -28,14 +34,6 @@ public class NewQuestion {
         this.typeOfQuestion = typeOfQuestion;
     }
 
-    public int getQuestionId() {
-        return questionId;
-    }
-
-    public void setQuestionId(int questionId) {
-        this.questionId = questionId;
-    }
-
     public boolean isGradeG() {
         return gradeG;
     }
@@ -50,5 +48,17 @@ public class NewQuestion {
 
     public void setGradeVG(boolean gradeVG) {
         this.gradeVG = gradeVG;
+    }
+
+    public int getNumberOfAlternatives() {
+        return numberOfAlternatives;
+    }
+
+    public void setNumberOfAlternatives(int numberOfAlternatives) {
+        this.numberOfAlternatives = numberOfAlternatives;
+    }
+
+    public ObservableList<NewAlternativ> getAlternativObservableList() {
+        return alternativObservableList;
     }
 }
