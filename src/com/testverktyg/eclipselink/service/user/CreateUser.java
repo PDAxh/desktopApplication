@@ -26,30 +26,11 @@ public class CreateUser {
         this.Klass = Klass;
         this.userType = userType;
 
-    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
-    EntityManager entitymanager = emfactory.createEntityManager( );
-    entitymanager.getTransaction( ).begin();
-
-    Scanner scanner = new Scanner(System.in);
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
+        EntityManager entitymanager = emfactory.createEntityManager( );
+        entitymanager.getTransaction( ).begin();
 
 
-////      run in console
-//
-//        System.out.println("Here we create new user");
-//        System.out.println("firstname: ");
-//        String fname = scanner.next();
-//        System.out.println("lastname: ");
-//        String lname = scanner.next();
-//        System.out.println("password");
-//        String password = scanner.next();
-//        System.out.println("Email: ");
-//        String email = scanner.next();
-//        System.out.println("Class: ");
-//        String Klass = scanner.next();
-//        System.out.println("Typ: ");
-//        String userType = scanner.next();
-
-    // ONly this below  is needed for the GUI
         User user = new User( );
         user.setFirstname( fname );
         user.setLastname( lname );
@@ -63,6 +44,6 @@ public class CreateUser {
         System.out.println("User "+user.getFirstname()+" saved");
         entitymanager.close( );
         emfactory.close( );
-}
+    }
 }
 

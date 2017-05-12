@@ -13,6 +13,7 @@ import java.util.List;
  *
  */
 public class ReadUser {
+
     private String email;
     private String password;
     private String group;
@@ -23,6 +24,7 @@ public class ReadUser {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
+
 
         List<User> userList = entityManager.createNamedQuery("findByEmailAndPassword", User.class)
                 .setParameter("email", email)
@@ -41,6 +43,7 @@ public class ReadUser {
 
         entityManager.close();
         entityManagerFactory.close();
+
     }
 
     public String getEmail() {
