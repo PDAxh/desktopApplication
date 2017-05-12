@@ -11,20 +11,24 @@
             prefHeight="600.0" prefWidth="1200.0">
 
     <top>
-        <MenuBar>
-            <Menu text="Arkiv">
-                <MenuItem text="Logga ut" onAction="#logout"/>
-                <MenuItem text="Avsluta"  onAction="#getExitProgram"/>
-            </Menu>
-            <Menu text="Prov">
-                <MenuItem text="Nytt prov" onAction="#createNewTest"/>
-                <MenuItem text="Publicera test"/>
-            </Menu>
-            <Menu text="Hjälp">
-                <MenuItem text="Hjälp"/>
-                <MenuItem text="Om oss"/>
-            </Menu>
-        </MenuBar>
+        <AnchorPane xmlns:fx="http://javafx.com/fxml/1" styleClass="menu-bar">
+            <MenuBar AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
+                <Menu text="Arkiv">
+                    <MenuItem text="Logga ut" onAction="#logout"/>
+                    <MenuItem text="Avsluta"  onAction="#getExitProgram"/>
+                </Menu>
+                <Menu text="Prov">
+                    <MenuItem text="Nytt prov" onAction="#createNewTest"/>
+                    <MenuItem text="Publicera test"/>
+                </Menu>
+                <Menu text="Hjälp">
+                    <MenuItem text="Hjälp"/>
+                    <MenuItem text="Om oss"/>
+                </Menu>
+            </MenuBar>
+            <Label text="Andreas Lindgren (Student)" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+                   style="-fx-font-weight: bold; -fx-text-fill: orangered;"/>
+        </AnchorPane>
     </top>
 
     <center>

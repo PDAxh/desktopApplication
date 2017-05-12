@@ -18,13 +18,24 @@
 
         <children>
             <Label text="ProvNamn" fx:id="showToStudentTestNameLabel" style="-fx-font-size: 20px" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="6"/>
-            <Label text="Det här är en placeholder text som används för att se hur texten wrappar i beskrivningsdelen där man presenterar provet för eleverna. Bla bla bla hopp hej!" fx:id="showToStudentTextLabel" wrapText="true" prefWidth="500" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="6"/>
-            <Label text="Tid (i minuter):" fx:id="showToStudentTimeTextLabel" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-            <Label fx:id="showToStudentTimeLabel" text="5" prefWidth="50" GridPane.columnIndex="1" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
-            <Label text="Lärare:" fx:id="showToStudentTeacherTextLabel" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-            <Label fx:id="showToStudentTeacherLabel" prefWidth="120" text="Jerry Johansson" GridPane.columnIndex="3" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
-            <Label text="Klass:" fx:id="showToStudentClassTextLabel" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
-            <Label fx:id="showToStudentClassLabel" prefWidth="50" text="JAVA2" GridPane.columnIndex="5" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+            <Label text="Det här är en placeholder text som används för att se hur texten wrappar i beskrivningsdelen där man presenterar provet för eleverna. Bla bla bla hopp hej!" fx:id="showToStudentTextLabel" wrapText="true" prefWidth="500" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="6"/>
+            <Label text="Tid (i minuter):" fx:id="showToStudentTimeTextLabel" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <Label fx:id="showToStudentTimeLabel" text="5" prefWidth="50" GridPane.columnIndex="1" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
+            <Label text="Lärare:" fx:id="showToStudentTeacherTextLabel" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+            <Label fx:id="showToStudentTeacherLabel" prefWidth="120" text="Jerry Johansson" GridPane.columnIndex="3" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
+            <Label text="Klass:" fx:id="showToStudentClassTextLabel" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+            <Label fx:id="showToStudentClassLabel" prefWidth="50" text="JAVA2" GridPane.columnIndex="5" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
+
+            <GridPane fx:id="questionInfoPane" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="6">
+                <children>
+                    <Label fx:id="showToStudentQuestionsLeftText" text="Fråga: " GridPane.columnIndex="0" GridPane.rowIndex="1" visible="false"/>
+                    <Label fx:id="showToStudentQuestionsLeft" GridPane.columnIndex="1" GridPane.rowIndex="1" visible="false"/>
+                    <Label fx:id="showToStudentGradeText" text="Betyg: " GridPane.columnIndex="2" GridPane.rowIndex="1" visible="false"/>
+                    <Label fx:id="showToStudentGrade" GridPane.columnIndex="3" GridPane.rowIndex="1" visible="false"/>
+                </children>
+            </GridPane>
+
+
 
                 <GridPane fx:id="alternativePane" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="6">
                     <children>

@@ -39,7 +39,7 @@
                     <MenuItem text="Logga ut" onAction="#logout"/>
                     <MenuItem text="Avsluta"  onAction="#getExitProgram"/>
                 </Menu>
-                <Menu text="Edit">
+                <Menu text="Administrera">
                     <MenuItem text="Lägg till konto" onAction="#addUser"/>
                     <MenuItem text="Ändra konto" onAction="#removeUser"/>
                     <SeparatorMenuItem/>

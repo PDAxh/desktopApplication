@@ -39,6 +39,10 @@ public class StudentController {
     private Button showToUserNextButton;
     @FXML
     private Button getTestButton;
+    @FXML private Label showToStudentQuestionsLeft;
+    @FXML private Label showToStudentQuestionsLeftText;
+    @FXML private Label showToStudentGrade;
+    @FXML private Label showToStudentGradeText;
     ReadTest newTest;
 
     int maxQuestions=0;
@@ -62,6 +66,14 @@ public class StudentController {
         newTest.getActiveTest();
         System.out.println("Test started");
         contentPane.getChildren().removeAll(showToUserStartTestButton, showToStudentTimeTextLabel, showToStudentTimeLabel, showToStudentTeacherTextLabel, showToStudentTeacherLabel, showToStudentClassTextLabel, showToStudentClassLabel);
+
+        showToStudentQuestionsLeftText.setVisible(true);
+        showToStudentQuestionsLeft.setVisible(true);
+        showToStudentGradeText.setVisible(true);
+        showToStudentGrade.setVisible(true);
+        showToStudentQuestionsLeft.setText(activeQuestion+"/"+newTest.getAmountOfQuestions()+"    ");
+        showToStudentGrade.setText(newTest.getGradeOnActiveQuestion());
+
         this.printAlternatives();
         showToUserNextButton.setVisible(true);
         showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
@@ -94,7 +106,7 @@ public class StudentController {
                     radioButton.setId(String.valueOf(y));
                     radioButton.setToggleGroup(toggleGroup);
                     Label alternativeText = new Label();
-                    alternativeText.setText("Text here");
+                    alternativeText.setText(String.valueOf(newTest.getActiveAlternativeText().get(y)));
                     alternativePane.add(radioButton, 0, y);
                     alternativePane.add(alternativeText, 1, y);
                 }
@@ -109,6 +121,8 @@ public class StudentController {
         questionGrade="";
         showToStudentTextLabel.setText("");
         alternativePane.getChildren().clear();
+        showToStudentQuestionsLeft.setText(activeQuestion+"/"+newTest.getAmountOfQuestions()+"    ");
+        showToStudentGrade.setText(newTest.getGradeOnActiveQuestion());
         newTest.getNextActiveQuestion();
         if(activeQuestion==maxQuestions){
             showToUserNextButton.setDisable(true);

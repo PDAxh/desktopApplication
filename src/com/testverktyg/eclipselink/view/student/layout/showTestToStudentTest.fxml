@@ -15,7 +15,8 @@
     <children>
         <Label text="ProvNamn" fx:id="showToStudentTestNameLabel" style="-fx-font-size: 20px" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="6"/>
         <Label text="Det här är en placeholder text som används för att se hur texten wrappar i beskrivningsdelen där man presenterar provet för eleverna. Bla bla bla hopp hej!" fx:id="showToStudentDescriptionLabel" wrapText="true" prefWidth="500" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="6" style="-fx-border-width: 1; -fx-border-color: lightgray; -fx-border-style: solid;"/>
-        <GridPane fx:id="answerPane" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="6">
+        <Label fx:id="labla" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <GridPane fx:id="answerPane" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="6">
             <children>
 
             </children>
