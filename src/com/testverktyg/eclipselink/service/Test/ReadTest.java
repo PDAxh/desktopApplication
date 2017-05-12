@@ -70,7 +70,7 @@ public class ReadTest {
         activeAlternativeId = entitymanager.createNamedQuery("FindAlternativeId", Alternative.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
     }
 
-    //Will be used for a next button to print out the next question with the results
+    //Will be used for a next button to print out the alternatives for the next question
     public void getNextActiveQuestion(){
 
         questionCount++;
