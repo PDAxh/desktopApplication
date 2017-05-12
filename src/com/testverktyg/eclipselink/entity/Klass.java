@@ -9,8 +9,7 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
 
-        @NamedQuery(name = "findByKlass", query = "select u.klassNamn from Klass u where u.klassId = :qId")
-
+        @NamedQuery(query = "SELECT e FROM User e WHERE e.firstname = :firstname AND e.lastname = :lastname  AND e.Klass = :klass", name= "findByKlass")
 })
 
 public class Klass {
@@ -21,6 +20,9 @@ public class Klass {
     private int klassId;
 
     private String klassNamn;
+    private String firstname;
+    private String lastname;
+    private String Klass;
 
     public int getKlassId() {
         return klassId;
@@ -36,5 +38,29 @@ public class Klass {
 
     public void setKlass(String klass) {
         this.klassNamn = klassNamn;
+    }
+
+    public String getKlassNamn() {
+        return klassNamn;
+    }
+
+    public void setKlassNamn(String klassNamn) {
+        this.klassNamn = klassNamn;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 }
