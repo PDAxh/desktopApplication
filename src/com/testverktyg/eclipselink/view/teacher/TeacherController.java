@@ -317,6 +317,8 @@ public class TeacherController {
 
         getCreateTest().commitTest();
         setResetTestInput();
+        setCreateTest(new CreateTest());
+        setNewTest(new NewTest());
     }
 
     private void setResetNewQuestion(){
@@ -430,8 +432,16 @@ public class TeacherController {
         return createTest;
     }
 
+    public void setCreateTest(CreateTest createTest) {
+        this.createTest = createTest;
+    }
+
     private NewTest getNewTest() {
         return newTest;
+    }
+
+    public void setNewTest(NewTest newTest) {
+        this.newTest = newTest;
     }
 
     private TextArea getDescriptionInput() {
