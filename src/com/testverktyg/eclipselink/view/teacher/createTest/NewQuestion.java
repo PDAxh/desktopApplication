@@ -14,6 +14,7 @@ public class NewQuestion {
     private String questionName;
     private String typeOfQuestion;
     private int numberOfAlternatives;
+    private int points;
     private ObservableList<NewAlternativ> alternativObservableList = FXCollections.observableArrayList();
 
     public NewQuestion(){}
@@ -60,5 +61,13 @@ public class NewQuestion {
 
     public ObservableList<NewAlternativ> getAlternativObservableList() {
         return alternativObservableList;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }
