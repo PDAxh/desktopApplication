@@ -5,7 +5,6 @@ import com.testverktyg.eclipselink.entity.Question;
 import com.testverktyg.eclipselink.entity.Test;
 
 import javax.persistence.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
