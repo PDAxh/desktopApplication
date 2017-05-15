@@ -7,7 +7,8 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "FindAlternativeText", query = "select a.alternativeText from Alternative a where a.questionId = :qId"),
-        @NamedQuery(name = "FindAlternativeId", query = "select a.alternativeId from Alternative a where a.questionId = :qId")
+        @NamedQuery(name = "FindAlternativeId", query = "select a.alternativeId from Alternative a where a.questionId = :qId"),
+        @NamedQuery(name = "FindAlternativeStatus", query = "select a.alternativeStatus from Alternative a where a.alternativeId = :aId")
 })
 
 public class Alternative {

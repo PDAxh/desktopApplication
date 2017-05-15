@@ -10,6 +10,7 @@ import java.util.List;
         @NamedQuery(name = "FindQuestionText", query = "select q.questionText from Question q where q.testId = :tId"),
         @NamedQuery(name = "FindQuestionId", query = "select q.questionId from Question q where q.testId = :tId"),
         @NamedQuery(name = "FindQuestionGradeG", query = "select q.gradeG from Question q where q.questionId = :qId"),
+        @NamedQuery(name = "FindQuestionGradeVG", query = "select q.gradeG from Question q where q.questionId = :qId"),
         @NamedQuery(name = "FindQuestionType", query = "select q.typeOfQuestion from Question q where q.questionId = :qId")
 })
 

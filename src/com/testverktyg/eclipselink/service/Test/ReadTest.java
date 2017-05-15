@@ -5,6 +5,8 @@ import com.testverktyg.eclipselink.entity.Question;
 import com.testverktyg.eclipselink.entity.Test;
 
 import javax.persistence.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 /* Created by jennifergisslow on 2017-05-09. */
@@ -12,15 +14,19 @@ import java.util.List;
 public class ReadTest {
 
     //Use this variable from GUI to see if next question is the last question.
-    int amountOfQuestions = 0;
+    private int amountOfQuestions = 0;
     //Use this variable from GUI to see if the question id a G or VG question.
-    String gradeOnActiveQuestion = "";
+    private String gradeOnActiveQuestion = "";
+    private String nonGradeOnActiveQuestion = "";
 
     //Temporary variable for storing the information
-    String testName = "";
-    String testDescription = "";
-    String testLastDate = "";
-    int testTimeInMinutes = 0;
+    private String testName = "";
+    private String testDescription = "";
+    private String testLastDate = "";
+    private int testTimeInMinutes = 0;
+    private boolean seeResult;
+    private boolean selfCorrecting;
+    private ArrayList<String> activeAlternativeStatus = new ArrayList<>();
 
     private int questionCount = 0;
     private int tempTestId;
@@ -32,7 +38,9 @@ public class ReadTest {
     private List<Question> activeQuestionId;
     private List<Alternative> activeAlternativeText;
     private List<Alternative> activeAlternativeId;
+    private List<Alternative> alternativeStatus;
     private List<Question> activeQuestionGradeG;
+    private List<Question> activeQuestionGradeVG;
     private List<Question> activeQuestionType;
 
     public ReadTest(int testId){
@@ -49,18 +57,24 @@ public class ReadTest {
         testDescription = activeTest.getTestDescription();
         testLastDate = activeTest.getLastDate();
         testTimeInMinutes = activeTest.getTimeForTestMinutes();
+        seeResult = activeTest.isSeeResultAfter();
+        selfCorrecting = activeTest.isSelfCorrecting();
+
 
         //Get the first question information
         activeQuestionText = entitymanager.createNamedQuery("FindQuestionText", Question.class).setParameter("tId", tempTestId).getResultList();
         activeQuestionId = entitymanager.createNamedQuery("FindQuestionId", Question.class).setParameter("tId", tempTestId).getResultList();
         activeQuestionGradeG = entitymanager.createNamedQuery("FindQuestionGradeG", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
+        activeQuestionGradeVG = entitymanager.createNamedQuery("FindQuestionGradeVG", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
         activeQuestionType = entitymanager.createNamedQuery("FindQuestionType", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
 
         if (activeQuestionGradeG.size() == 0){
             gradeOnActiveQuestion = "G";
+            nonGradeOnActiveQuestion = "VG";
         }
         else{
             gradeOnActiveQuestion = "VG";
+            nonGradeOnActiveQuestion = "G";
         }
 
         //Gets the amount of questions in this test for the next button
@@ -68,15 +82,28 @@ public class ReadTest {
 
         activeAlternativeText = entitymanager.createNamedQuery("FindAlternativeText", Alternative.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
         activeAlternativeId = entitymanager.createNamedQuery("FindAlternativeId", Alternative.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
+
+        //This part will be used for printing all the alternatives during updates
+        for (int i = 0; i< activeAlternativeId.size(); i++) {
+            alternativeStatus = entitymanager.createNamedQuery("FindAlternativeStatus", Alternative.class).setParameter("aId", activeAlternativeId.get(i)).getResultList();
+            activeAlternativeStatus.add(alternativeStatus.toString());
+        }
     }
 
     //Will be used for a next button to print out the alternatives for the next question
     public void getNextActiveQuestion(){
 
         questionCount++;
+        activeAlternativeStatus.clear();
 
         activeAlternativeText = entitymanager.createNamedQuery("FindAlternativeText", Alternative.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
         activeAlternativeId = entitymanager.createNamedQuery("FindAlternativeId", Alternative.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
+
+        //This part will be used for printing all the alternatives during updates
+        for (int i = 0; i< activeAlternativeId.size(); i++) {
+            alternativeStatus = entitymanager.createNamedQuery("FindAlternativeStatus", Alternative.class).setParameter("aId", activeAlternativeId.get(i)).getResultList();
+            activeAlternativeStatus.add(alternativeStatus.toString());
+        }
     }
 
     public String getTestName() {
@@ -89,6 +116,10 @@ public class ReadTest {
 
     public String getGradeOnActiveQuestion() {
         return gradeOnActiveQuestion;
+    }
+
+    public String getNonGradeOnActiveQuestion() {
+        return nonGradeOnActiveQuestion;
     }
 
     public String getTestDescription() {
@@ -127,7 +158,53 @@ public class ReadTest {
         return activeQuestionGradeG;
     }
 
+    public List<Question> getActiveQuestionGradeVG() {
+        return activeQuestionGradeVG;
+    }
+
     public List<Question> getActiveQuestionType() {
         return activeQuestionType;
+    }
+
+    public boolean isSeeResult() {
+        return seeResult;
+    }
+
+    public boolean isSelfCorrecting() {
+        return selfCorrecting;
+    }
+
+    public List<Alternative> getAlternativeStatus() {
+        return alternativeStatus;
+    }
+
+    //using this main for console testing\\
+    public static void main(String[] args) {
+
+        ReadTest readTest = new ReadTest(4);
+        readTest.getActiveTest();
+
+        System.out.println(readTest.testName);
+        System.out.println(readTest.testDescription);
+        System.out.println(readTest.testLastDate);
+        System.out.println(readTest.testTimeInMinutes);
+        System.out.println(readTest.seeResult);
+        System.out.println(readTest.selfCorrecting);
+
+        for (int i = 0; i < readTest.getAmountOfQuestions(); i++){
+            System.out.println("Frågans ID: " + readTest.getActiveQuestionId().get(i));
+            System.out.println("Fråga: " + readTest.getActiveQuestionText().get(i));
+            System.out.println("Typ av fråga: " + readTest.getActiveQuestionType().get(0));
+            System.out.println("Grade: " + readTest.getGradeOnActiveQuestion());
+            System.out.println("NonGrade: " + readTest.getNonGradeOnActiveQuestion());
+            for (int j = 0; j < readTest.getActiveAlternativeId().size(); j++){
+                System.out.println("Alternativ till fråge ID: " + readTest.getActiveQuestionId().get(i));
+                System.out.println("Alternativ: " + readTest.getActiveAlternativeText().get(j));
+                System.out.println("Status på alternativ: " + readTest.activeAlternativeStatus.get(j));
+            }
+            if (i != (readTest.getAmountOfQuestions()-1)){
+                readTest.getNextActiveQuestion();
+            }
+        }
     }
 }
