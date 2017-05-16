@@ -62,7 +62,7 @@
     </top>
 
     <left>
-        <ImageView fx:id="imageView" fitHeight="170.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
+        <ImageView fx:id="imageView" fitHeight="189.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
             <image>
                 <Image url="@../../../../../../newtontestverktyg.png" />
             </image>

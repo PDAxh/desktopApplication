@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -15,15 +16,18 @@
 <GridPane fx:id="gridPane" alignment="CENTER" hgap="10" prefHeight="600.0" prefWidth="1200.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testverktyg.eclipselink.view.main.MainController">
 
     <children>
-        <ImageView fx:id="imageView" fitWidth="155.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
+        <ImageView fx:id="imageView" fitHeight="43.0" fitWidth="235.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
             <image>
                 <Image url="@../../../../../../newtontestverktyglogin.png" />
             </image>
+         <GridPane.margin>
+            <Insets bottom="10.0" />
+         </GridPane.margin>
         </ImageView>
-        <Label text="Vänligen logga in" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <TextField fx:id="usernameTextField" text="teacher" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <PasswordField fx:id="passwordTextField" text="teacher" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-        <Button onAction="#logInButton" text="Logga in" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <Label text="Vänligen logga in" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+        <TextField fx:id="usernameTextField" maxWidth="-Infinity" text="teacher" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+        <PasswordField fx:id="passwordTextField" maxWidth="-Infinity" text="teacher" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+        <Button onAction="#logInButton" text="Logga in" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
         <Text fx:id="loginFailed" GridPane.columnIndex="0" GridPane.rowIndex="5" />
     </children>
    <columnConstraints>

@@ -49,7 +49,5 @@
                 <String fx:value="" />
             </value>
         </ComboBox>
-
     </children>
-
 </GridPane>
