@@ -19,6 +19,10 @@ public class ReadUser {
     private String password;
     private String group;
     private boolean loginStatus;
+    List<User> studentListFromSpecificClass;
+    List<User> studentList;
+    List<User> teacherList;
+    List<User> adminList;
 
     public ReadUser(){}
 
@@ -54,7 +58,7 @@ public class ReadUser {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
-        List<User> studentList = entityManager.createNamedQuery("FindUserByType", User.class).setParameter("typeOfUser", "student").getResultList();
+        studentList = entityManager.createNamedQuery("FindUserByType", User.class).setParameter("typeOfUser", "student").getResultList();
 
         /*
         //Use this in the GUI to collect students
@@ -68,7 +72,7 @@ public class ReadUser {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
-        List<User> studentListFromSpecificClass = entityManager.createNamedQuery("FindUserByTypeAndClass", User.class).setParameter("typeOfUser", "student").setParameter("selectedClass", selectedClass).getResultList();
+        studentListFromSpecificClass = entityManager.createNamedQuery("FindUserByTypeAndClass", User.class).setParameter("typeOfUser", "student").setParameter("selectedClass", selectedClass).getResultList();
     }
 
     public void readOnlyTeacher(){
@@ -76,7 +80,7 @@ public class ReadUser {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
-        List<User> teacherList = entityManager.createNamedQuery("FindUserByType", User.class).setParameter("typeOfUser", "teacher").getResultList();
+        teacherList = entityManager.createNamedQuery("FindUserByType", User.class).setParameter("typeOfUser", "teacher").getResultList();
     }
 
     public void readOnlyAdmin(){
@@ -84,7 +88,7 @@ public class ReadUser {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
-        List<User> adminList = entityManager.createNamedQuery("FindUserByType", User.class).setParameter("typeOfUser", "admin").getResultList();
+        adminList = entityManager.createNamedQuery("FindUserByType", User.class).setParameter("typeOfUser", "admin").getResultList();
     }
 
 
@@ -118,6 +122,22 @@ public class ReadUser {
 
     public boolean getLoginStatus(){
         return this.loginStatus;
+    }
+
+    public List<User> getStudentListFromSpecificClass() {
+        return studentListFromSpecificClass;
+    }
+
+    public List<User> getStudentList() {
+        return studentList;
+    }
+
+    public List<User> getTeacherList() {
+        return teacherList;
+    }
+
+    public List<User> getAdminList() {
+        return adminList;
     }
 
     public static void main(String[] args) {
