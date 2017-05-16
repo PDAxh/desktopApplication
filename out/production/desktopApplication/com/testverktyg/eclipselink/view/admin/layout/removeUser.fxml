@@ -14,7 +14,7 @@
 
     <children>
         <Label text="Användartyp:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <ComboBox fx:id="editUserUsertypeList" GridPane.columnIndex="0" GridPane.rowIndex="1" onAction="#checkUserTypeToEdit">
+        <ComboBox fx:id="editUserUsertypeList" GridPane.columnIndex="0" GridPane.rowIndex="1" onAction="#sortByUser">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Student" />
@@ -28,7 +28,7 @@
         </ComboBox>
 
         <Label text="Klass:" fx:id="editUserClassLabel" GridPane.columnIndex="1" GridPane.rowIndex="0" textFill="lightgray"/>
-        <ComboBox fx:id="editUserClassList" GridPane.columnIndex="1" GridPane.rowIndex="1" disable="true">
+        <ComboBox fx:id="editUserClassList" GridPane.columnIndex="1" GridPane.rowIndex="1" disable="true" onAction="#sortByClass">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="JAVA2" />

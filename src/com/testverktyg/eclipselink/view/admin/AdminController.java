@@ -4,6 +4,7 @@ import com.testverktyg.eclipselink.service.Class.CreateClass;
 import com.testverktyg.eclipselink.service.Class.DeleteClass;
 import com.testverktyg.eclipselink.service.Class.ReadClass;
 import com.testverktyg.eclipselink.service.user.CreateUser;
+import com.testverktyg.eclipselink.service.user.ReadUser;
 import com.testverktyg.eclipselink.service.user.loginUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -38,6 +39,8 @@ public class AdminController {
     @FXML private TextField studentClassName;
     @FXML private Label addClassMessageLabel;
     @FXML private Label removeClassMessageLabel;
+
+    public int userToEdit;
 
     @FXML
     private void setStudentClassOption(){
@@ -192,6 +195,65 @@ public class AdminController {
             }
         }
     }
+
+    //EDIT USER
+    @FXML
+    private void sortByUser() {
+        String choosenUserType = editUserUsertypeList.getValue().toString();
+        ReadUser ru = new ReadUser();
+            if (choosenUserType.equals("Student")) {
+                ru.readOnlyStudents();
+                editUserUserList.getItems().clear();
+
+                editUserClassLabel.setTextFill(Color.web("#000000"));
+                getEditUserClassList().setDisable(false);
+                editUserUserLabel.setTextFill(Color.web("#000000"));
+                getEditUserUserList().setDisable(false);
+                editUserClassLabel.setTextFill(Color.web("#000000"));
+                getEditUserClassList().setDisable(false);
+
+                for (int i = 0; i < ru.getStudentList().size(); i++) {
+                    editUserUserList.getItems().add(String.valueOf(ru.getStudentList().get(i).getFirstname() + " " + ru.getStudentList().get(i).getLastname()));
+                }
+            } else if (choosenUserType.equals("Lärare")) {
+                ru.readOnlyTeacher();
+                editUserUserList.getItems().clear();
+
+                editUserUserLabel.setTextFill(Color.web("#000000"));
+                getEditUserUserList().setDisable(false);
+                editUserClassLabel.setTextFill(Color.web("#d3d3d3"));
+                getEditUserClassList().setDisable(true);
+
+                for (int i = 0; i < ru.getTeacherList().size(); i++) {
+                    editUserUserList.getItems().add(String.valueOf(ru.getTeacherList().get(i).getFirstname() + " " + ru.getTeacherList().get(i).getLastname()));
+                }
+            } else {
+                ru.readOnlyAdmin();
+                editUserUserList.getItems().clear();
+
+                editUserUserLabel.setTextFill(Color.web("#000000"));
+                getEditUserUserList().setDisable(false);
+                editUserClassLabel.setTextFill(Color.web("#d3d3d3"));
+                getEditUserClassList().setDisable(true);
+
+                for (int i = 0; i < ru.getAdminList().size(); i++) {
+                    editUserUserList.getItems().add(String.valueOf(ru.getAdminList().get(i).getFirstname() + " " + ru.getAdminList().get(i).getLastname()));
+                }
+            }
+    }
+    @FXML
+    private void sortByClass(){
+        String choosenClass = editUserClassList.getValue();
+        ReadUser ru = new ReadUser();
+        ru.readOnlyStudentsInClass(choosenClass);
+        editUserUserList.getItems().clear();
+        ru.getStudentListFromSpecificClass();
+        for (int i = 0; i < ru.getStudentListFromSpecificClass().size(); i++) {
+            editUserUserList.getItems().add(String.valueOf(ru.getStudentListFromSpecificClass().get(i).getFirstname()+" "+ru.getStudentListFromSpecificClass().get(i).getLastname()));
+        }
+    }
+
+
 
     //Getters for createUser
     private ComboBox getUserType() {
