@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(query = "SELECT e FROM User e WHERE e.firstname = :firstname AND e.lastname = :lastname  AND e.Klass = :klass", name= "findByKlass"),
+        @NamedQuery(query = "Select c.className FROM Class c", name= "FindAllClassNames"),
         @NamedQuery(query = "SELECT c FROM Class c WHERE c.className = :className", name= "FindClassId")
 })
 
