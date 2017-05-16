@@ -7,8 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
 /**
- * Created by Grodfan on 2017-05-01.
- * Edited by Andreas on 2017-05-04
+ * Created by Andreas
  */
 public class AdminController {
 
@@ -30,6 +29,7 @@ public class AdminController {
     @FXML private TextField firstName;
     @FXML private TextField lastName;
     @FXML private TextField email;
+    @FXML private TextField studentClassName;
 
     @FXML
     private void setStudentClassOption(){
@@ -47,7 +47,7 @@ public class AdminController {
         if(getPassword().getText().equals(getPasswordRepeat().getText())) {
             passwordMessageLabel.setText("");
         }else{
-            passwordMessageLabel.setText("Lösenorden är inte samma.");
+            passwordMessageLabel.setText("Lösenorden stämmer inte överens. Var god försök igen.");
             getPassword().setText("");
             getPasswordRepeat().setText("");
             password.requestFocus();
@@ -121,6 +121,13 @@ public class AdminController {
             getPasswordRepeat().setText("");
             password.requestFocus();
         }
+    }
+
+    @FXML
+    private void addKlass(){
+        String klassName = studentClassName.getText();
+    //    Klass newKlass = new Klass();
+    //    newKlass.createNewClass(klassName                                                                                                                                                                                                                                                                                                                                                                                                                        );
     }
 
     //Getters for createUser

@@ -42,9 +42,7 @@ import javax.persistence.*;
         this.firstname = firstname;
     }
 
-    public String getLastname() {
-        return lastname;
-    }
+    public String getLastname() {return lastname;}
 
     public void setLastname(String lastname) {
         this.lastname = lastname;

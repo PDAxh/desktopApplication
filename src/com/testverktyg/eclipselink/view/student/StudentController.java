@@ -5,9 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-
 /**
- * Created by Grodfan on 2017-05-01.
+ * Created by Andreas.
  */
 public class StudentController {
     @FXML
@@ -43,16 +42,15 @@ public class StudentController {
     @FXML private Label showToStudentQuestionsLeftText;
     @FXML private Label showToStudentGrade;
     @FXML private Label showToStudentGradeText;
-    ReadTest newTest;
 
     int maxQuestions=0;
     int activeQuestion=1;
     int activeQuestionsForDB=0;
     String questionGrade="";
+    ReadTest newTest = new ReadTest(4);
 
     @FXML
     private void getTest() {
-        ReadTest newTest = new ReadTest(2);
         newTest.getActiveTest();
         maxQuestions=newTest.getAmountOfQuestions();
         showToStudentTestNameLabel.setText(newTest.getTestName());
@@ -62,36 +60,28 @@ public class StudentController {
 
     @FXML
     private void startTest() {
-        ReadTest newTest = new ReadTest(2);
         newTest.getActiveTest();
         System.out.println("Test started");
         contentPane.getChildren().removeAll(showToUserStartTestButton, showToStudentTimeTextLabel, showToStudentTimeLabel, showToStudentTeacherTextLabel, showToStudentTeacherLabel, showToStudentClassTextLabel, showToStudentClassLabel);
-
         showToStudentQuestionsLeftText.setVisible(true);
         showToStudentQuestionsLeft.setVisible(true);
         showToStudentGradeText.setVisible(true);
         showToStudentGrade.setVisible(true);
         showToStudentQuestionsLeft.setText(activeQuestion+"/"+newTest.getAmountOfQuestions()+"    ");
         showToStudentGrade.setText(newTest.getGradeOnActiveQuestion());
-
         this.printAlternatives();
         showToUserNextButton.setVisible(true);
         showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
-        questionGrade=newTest.getGradeOnActiveQuestion();//CREATE NODE
-
     }
 
     @FXML
     private void printAlternatives() {
-        ReadTest newTest = new ReadTest(2);
         newTest.getActiveTest();
         showToStudentTestNameLabel.setText(newTest.getTestName());
-        String typeOfQuestion = "Flervals";
-        short numberOfAlternatives = 2;
-        short correctAnswer = 0;
+        String typeOfQuestion = newTest.getActiveQuestionType().toString();
         ToggleGroup toggleGroup = new ToggleGroup();
 
-            if (typeOfQuestion.equals("Flervals")) {
+            if (typeOfQuestion.equals("[Flervals]")) {
                 for (int i = 0; i < newTest.getActiveAlternativeId().size(); i++) {
                     CheckBox checkBox = new CheckBox();
                     checkBox.setId(String.valueOf(i));
@@ -101,7 +91,7 @@ public class StudentController {
                     alternativePane.add(alternativeText, 1, i);
                 }
             }else {
-                for (int y = 0; y < numberOfAlternatives; y++) {
+                for (int y = 0; y < newTest.getActiveAlternativeId().size(); y++) {
                     RadioButton radioButton = new RadioButton();
                     radioButton.setId(String.valueOf(y));
                     radioButton.setToggleGroup(toggleGroup);
@@ -114,11 +104,9 @@ public class StudentController {
     }
     @FXML
     private void nextQuestion() {
-        ReadTest newTest = new ReadTest(2);
         newTest.getActiveTest();
         activeQuestion++;
         activeQuestionsForDB++;
-        questionGrade="";
         showToStudentTextLabel.setText("");
         alternativePane.getChildren().clear();
         showToStudentQuestionsLeft.setText(activeQuestion+"/"+newTest.getAmountOfQuestions()+"    ");
@@ -127,14 +115,11 @@ public class StudentController {
         if(activeQuestion==maxQuestions){
             showToUserNextButton.setDisable(true);
             showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
-            questionGrade=newTest.getGradeOnActiveQuestion();//CREATE NODE
             this.printAlternatives();
         }else{
             showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
-            questionGrade=newTest.getGradeOnActiveQuestion();//CREATE NODE
             this.printAlternatives();
         }
     }
-
 }
 
