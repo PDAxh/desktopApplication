@@ -46,6 +46,12 @@ public class ReadUser {
 
     }
 
+    public void readOnlyStudents(){}
+    public void readOnlyStudentsInClass(){}
+    public void readOnlyTeacher(){}
+    public void readOnlyAdmin(){}
+
+
     public String getEmail() {
         return email;
     }
