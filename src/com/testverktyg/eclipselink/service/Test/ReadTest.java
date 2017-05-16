@@ -63,18 +63,10 @@ public class ReadTest {
         //Get the first question information
         activeQuestionText = entitymanager.createNamedQuery("FindQuestionText", Question.class).setParameter("tId", tempTestId).getResultList();
         activeQuestionId = entitymanager.createNamedQuery("FindQuestionId", Question.class).setParameter("tId", tempTestId).getResultList();
-        activeQuestionGradeG = entitymanager.createNamedQuery("FindQuestionGradeG", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
-        activeQuestionGradeVG = entitymanager.createNamedQuery("FindQuestionGradeVG", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
+        //activeQuestionGradeG = entitymanager.createNamedQuery("FindQuestionGradeG", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
         activeQuestionType = entitymanager.createNamedQuery("FindQuestionType", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
 
-        if (activeQuestionGradeG.size() == 0){
-            gradeOnActiveQuestion = "G";
-            nonGradeOnActiveQuestion = "VG";
-        }
-        else{
-            gradeOnActiveQuestion = "VG";
-            nonGradeOnActiveQuestion = "G";
-        }
+        getGrade(questionCount);
 
         //Gets the amount of questions in this test for the next button
         amountOfQuestions = activeQuestionId.size();
@@ -89,10 +81,24 @@ public class ReadTest {
         }
     }
 
+    private void getGrade(int questionCount){
+        activeQuestionGradeG = entitymanager.createNamedQuery("FindQuestionGradeVG", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
+
+        if (activeQuestionGradeG.size() == 0){
+            gradeOnActiveQuestion = "G";
+            nonGradeOnActiveQuestion = "VG";
+        } else{
+            gradeOnActiveQuestion = "VG";
+            nonGradeOnActiveQuestion = "G";
+        }
+    }
+
     //Will be used for a next button to print out the alternatives for the next question
     public void getNextActiveQuestion(){
 
         questionCount++;
+        getGrade(questionCount);
+
         activeAlternativeStatus.clear();
 
         activeAlternativeText = entitymanager.createNamedQuery("FindAlternativeText", Alternative.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();

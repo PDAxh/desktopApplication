@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c32ca5e2-35c1-443b-8347-19d9412016f9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/src/editUser.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/service/Test/UpdateTest.class" afterPath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/service/Test/UpdateTest.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/entity/Klass.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/service/user/CreateGroup.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/service/Test/ReadTest.class" afterPath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/service/Test/ReadTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/admin/AdminController.class" afterPath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/admin/AdminController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/student/StudentController.class" afterPath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/student/StudentController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/admin/layout/adminMainLayout.fxml" afterPath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/admin/layout/adminMainLayout.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/adminMainLayout.fxml" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/adminMainLayout.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/studentMainLayout.fxml" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/studentMainLayout.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/teacher/layout/teacherMainLayout.fxml" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/teacher/layout/teacherMainLayout.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/META-INF/persistence.xml" afterPath="$PROJECT_DIR$/out/production/desktopApplication/META-INF/persistence.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/Test/ReadTest.java" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/Test/ReadTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,13 +23,60 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="StudentController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StudentController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="19" column="27" lean-forward="true" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+            <state relative-caret-position="193">
+              <caret line="113" column="31" lean-forward="false" selection-start-line="113" selection-start-column="31" selection-end-line="113" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReadTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/Test/ReadTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3909">
+              <caret line="214" column="1" lean-forward="false" selection-start-line="214" selection-start-column="1" selection-end-line="214" selection-end-column="1" />
+              <folding>
+                <element signature="e#5337#5338#0" expanded="true" />
+                <element signature="e#5368#5369#0" expanded="true" />
+                <element signature="e#5409#5410#0" expanded="true" />
+                <element signature="e#5449#5450#0" expanded="true" />
+                <element signature="e#5497#5498#0" expanded="true" />
+                <element signature="e#5541#5542#0" expanded="true" />
+                <element signature="e#5592#5593#0" expanded="true" />
+                <element signature="e#5639#5640#0" expanded="true" />
+                <element signature="e#5681#5682#0" expanded="true" />
+                <element signature="e#5719#5720#0" expanded="true" />
+                <element signature="e#5758#5759#0" expanded="true" />
+                <element signature="e#5793#5794#0" expanded="true" />
+                <element signature="e#5834#5835#0" expanded="true" />
+                <element signature="e#5874#5875#0" expanded="true" />
+                <element signature="e#5911#5912#0" expanded="true" />
+                <element signature="e#5947#5948#0" expanded="true" />
+                <element signature="e#6000#6001#0" expanded="true" />
+                <element signature="e#6041#6042#0" expanded="true" />
+                <element signature="e#6092#6093#0" expanded="true" />
+                <element signature="e#6131#6132#0" expanded="true" />
+                <element signature="e#6190#6191#0" expanded="true" />
+                <element signature="e#6234#6235#0" expanded="true" />
+                <element signature="e#6291#6292#0" expanded="true" />
+                <element signature="e#6333#6334#0" expanded="true" />
+                <element signature="e#6388#6389#0" expanded="true" />
+                <element signature="e#6431#6432#0" expanded="true" />
+                <element signature="e#6487#6488#0" expanded="true" />
+                <element signature="e#6531#6532#0" expanded="true" />
+                <element signature="e#6584#6585#0" expanded="true" />
+                <element signature="e#6625#6626#0" expanded="true" />
+                <element signature="e#6661#6662#0" expanded="true" />
+                <element signature="e#6693#6694#0" expanded="true" />
+                <element signature="e#6734#6735#0" expanded="true" />
+                <element signature="e#6771#6772#0" expanded="true" />
+                <element signature="e#6826#6827#0" expanded="true" />
+                <element signature="e#6866#6867#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -37,10 +85,44 @@
       <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state relative-caret-position="-198">
+              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <marker date="1494925178295" expanded="false" signature="5364:5375" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="5391:5397" ph=" }" />
+                <marker date="1494925178295" expanded="false" signature="5436:5447" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="5467:5473" ph=" }" />
+                <marker date="1494925178295" expanded="false" signature="5513:5524" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="5540:5546" ph=" }" />
+                <marker date="1494925178295" expanded="false" signature="5592:5603" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="5625:5631" ph=" }" />
+                <marker date="1494925178295" expanded="false" signature="5706:5716" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="5744:5750" ph=" }" />
+                <marker date="1494925178295" expanded="false" signature="5794:5804" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="5829:5835" ph=" }" />
+                <marker date="1494925178295" expanded="false" signature="5878:5889" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="5913:5919" ph=" }" />
+                <marker date="1494925178295" expanded="false" signature="5964:5975" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="6003:6009" ph=" }" />
+                <marker date="1494925178295" expanded="false" signature="6052:6063" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="6089:6095" ph=" }" />
+                <marker date="1494925178295" expanded="false" signature="6137:6147" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="6173:6179" ph=" }" />
+                <marker date="1494925178295" expanded="false" signature="6252:6263" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="6280:6286" ph=" }" />
+                <marker date="1494925178295" expanded="false" signature="6328:6339" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="6364:6370" ph=" }" />
+                <marker date="1494925178295" expanded="false" signature="6406:6417" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="6434:6440" ph=" }" />
+                <marker date="1494925178295" expanded="false" signature="6491:6502" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="6529:6535" ph=" }" />
+                <marker date="1494925178295" expanded="false" signature="6571:6582" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="6598:6604" ph=" }" />
+                <marker date="1494925178295" expanded="false" signature="6653:6664" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="6689:6695" ph=" }" />
+                <marker date="1494925178295" expanded="false" signature="6728:6739" ph=" { " />
+                <marker date="1494925178295" expanded="false" signature="6752:6758" ph=" }" />
               </folding>
             </state>
           </provider>
@@ -50,7 +132,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/adminMainLayout.fxml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="63" column="4" lean-forward="true" selection-start-line="63" selection-start-column="4" selection-end-line="69" selection-end-column="11" />
+              <caret line="63" column="4" lean-forward="false" selection-start-line="63" selection-start-column="4" selection-end-line="69" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -76,7 +158,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/teacher/layout/teacherMainLayout.fxml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="140">
-              <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+              <caret line="28" column="23" lean-forward="false" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -85,7 +167,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.fxml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="login.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="396">
@@ -98,11 +180,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ReadUser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/user/ReadUser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-43">
+              <caret line="30" column="50" lean-forward="true" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="showTestToStudentTest.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/showTestToStudentTest.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="324">
+              <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -114,23 +206,10 @@
       <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/entity/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+            <state relative-caret-position="550">
+              <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addClass.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addClass.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
           </provider>
         </entry>
       </file>
@@ -151,6 +230,7 @@
       <find>setva</find>
       <find>Grade</find>
       <find>grade</find>
+      <find>textlabel</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -180,13 +260,15 @@
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/teacher/TeacherController.java" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/entity/User.java" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addClass.fxml" />
-        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/src/editUser.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/adminMainLayout.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/studentMainLayout.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/teacher/layout/teacherMainLayout.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml" />
+        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/showTestToStudentTest.fxml" />
+        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/Test/ReadTest.java" />
+        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java" />
       </list>
     </option>
   </component>
@@ -1061,7 +1143,7 @@
       <workItem from="1494179002876" duration="607000" />
       <workItem from="1494232615199" duration="906000" />
       <workItem from="1494233962343" duration="13877000" />
-      <workItem from="1494846042532" duration="11428000" />
+      <workItem from="1494846042532" duration="13511000" />
     </task>
     <task id="LOCAL-00001" summary="Created new service Class.">
       <created>1493989621171</created>
@@ -1081,7 +1163,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30828000" />
+    <option name="totallyTimeSpent" value="32911000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="0" width="1855" height="1078" extended-state="0" />
@@ -1490,30 +1572,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/Test/ReadTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/user/ReadUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/entity/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/Test/CreateTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
@@ -1530,41 +1588,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="19" column="27" lean-forward="true" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addClass.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/showTestToStudentTest.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1586,7 +1613,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/adminMainLayout.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="63" column="4" lean-forward="true" selection-start-line="63" selection-start-column="4" selection-end-line="69" selection-end-column="11" />
+          <caret line="63" column="4" lean-forward="false" selection-start-line="63" selection-start-column="4" selection-end-line="69" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -1608,12 +1635,28 @@
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/teacher/layout/teacherMainLayout.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
-          <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+          <caret line="28" column="23" lean-forward="false" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
           <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/user/ReadUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-43">
+          <caret line="30" column="50" lean-forward="true" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/entity/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml">
@@ -1625,6 +1668,116 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/Test/ReadTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3909">
+          <caret line="214" column="1" lean-forward="false" selection-start-line="214" selection-start-column="1" selection-end-line="214" selection-end-column="1" />
+          <folding>
+            <element signature="e#5337#5338#0" expanded="true" />
+            <element signature="e#5368#5369#0" expanded="true" />
+            <element signature="e#5409#5410#0" expanded="true" />
+            <element signature="e#5449#5450#0" expanded="true" />
+            <element signature="e#5497#5498#0" expanded="true" />
+            <element signature="e#5541#5542#0" expanded="true" />
+            <element signature="e#5592#5593#0" expanded="true" />
+            <element signature="e#5639#5640#0" expanded="true" />
+            <element signature="e#5681#5682#0" expanded="true" />
+            <element signature="e#5719#5720#0" expanded="true" />
+            <element signature="e#5758#5759#0" expanded="true" />
+            <element signature="e#5793#5794#0" expanded="true" />
+            <element signature="e#5834#5835#0" expanded="true" />
+            <element signature="e#5874#5875#0" expanded="true" />
+            <element signature="e#5911#5912#0" expanded="true" />
+            <element signature="e#5947#5948#0" expanded="true" />
+            <element signature="e#6000#6001#0" expanded="true" />
+            <element signature="e#6041#6042#0" expanded="true" />
+            <element signature="e#6092#6093#0" expanded="true" />
+            <element signature="e#6131#6132#0" expanded="true" />
+            <element signature="e#6190#6191#0" expanded="true" />
+            <element signature="e#6234#6235#0" expanded="true" />
+            <element signature="e#6291#6292#0" expanded="true" />
+            <element signature="e#6333#6334#0" expanded="true" />
+            <element signature="e#6388#6389#0" expanded="true" />
+            <element signature="e#6431#6432#0" expanded="true" />
+            <element signature="e#6487#6488#0" expanded="true" />
+            <element signature="e#6531#6532#0" expanded="true" />
+            <element signature="e#6584#6585#0" expanded="true" />
+            <element signature="e#6625#6626#0" expanded="true" />
+            <element signature="e#6661#6662#0" expanded="true" />
+            <element signature="e#6693#6694#0" expanded="true" />
+            <element signature="e#6734#6735#0" expanded="true" />
+            <element signature="e#6771#6772#0" expanded="true" />
+            <element signature="e#6826#6827#0" expanded="true" />
+            <element signature="e#6866#6867#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/showTestToStudentTest.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-198">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1494925178295" expanded="false" signature="5364:5375" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="5391:5397" ph=" }" />
+            <marker date="1494925178295" expanded="false" signature="5436:5447" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="5467:5473" ph=" }" />
+            <marker date="1494925178295" expanded="false" signature="5513:5524" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="5540:5546" ph=" }" />
+            <marker date="1494925178295" expanded="false" signature="5592:5603" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="5625:5631" ph=" }" />
+            <marker date="1494925178295" expanded="false" signature="5706:5716" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="5744:5750" ph=" }" />
+            <marker date="1494925178295" expanded="false" signature="5794:5804" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="5829:5835" ph=" }" />
+            <marker date="1494925178295" expanded="false" signature="5878:5889" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="5913:5919" ph=" }" />
+            <marker date="1494925178295" expanded="false" signature="5964:5975" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="6003:6009" ph=" }" />
+            <marker date="1494925178295" expanded="false" signature="6052:6063" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="6089:6095" ph=" }" />
+            <marker date="1494925178295" expanded="false" signature="6137:6147" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="6173:6179" ph=" }" />
+            <marker date="1494925178295" expanded="false" signature="6252:6263" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="6280:6286" ph=" }" />
+            <marker date="1494925178295" expanded="false" signature="6328:6339" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="6364:6370" ph=" }" />
+            <marker date="1494925178295" expanded="false" signature="6406:6417" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="6434:6440" ph=" }" />
+            <marker date="1494925178295" expanded="false" signature="6491:6502" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="6529:6535" ph=" }" />
+            <marker date="1494925178295" expanded="false" signature="6571:6582" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="6598:6604" ph=" }" />
+            <marker date="1494925178295" expanded="false" signature="6653:6664" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="6689:6695" ph=" }" />
+            <marker date="1494925178295" expanded="false" signature="6728:6739" ph=" { " />
+            <marker date="1494925178295" expanded="false" signature="6752:6758" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="113" column="31" lean-forward="false" selection-start-line="113" selection-start-column="31" selection-end-line="113" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>

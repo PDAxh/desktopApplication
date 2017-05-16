@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
+
 /**
  * Created by Andreas.
  */
@@ -15,7 +17,8 @@ public class StudentController {
     private GridPane alternativePane;
     @FXML
     private GridPane contentPane;
-    @FXML private GridPane testList;
+    @FXML
+    private GridPane testList;
     @FXML
     private Label showToStudentTestNameLabel;
     @FXML
@@ -38,16 +41,20 @@ public class StudentController {
     private Button showToUserNextButton;
     @FXML
     private Button getTestButton;
-    @FXML private Label showToStudentQuestionsLeft;
-    @FXML private Label showToStudentQuestionsLeftText;
-    @FXML private Label showToStudentGrade;
-    @FXML private Label showToStudentGradeText;
+    @FXML private
+    Label showToStudentQuestionsLeft;
+    @FXML private
+    Label showToStudentQuestionsLeftText;
+    @FXML private
+    Label showToStudentGrade;
+    @FXML private
+    Label showToStudentGradeText;
 
     int maxQuestions=0;
     int activeQuestion=1;
     int activeQuestionsForDB=0;
     String questionGrade="";
-    ReadTest newTest = new ReadTest(4);
+    ReadTest newTest = new ReadTest(5);
 
     @FXML
     private void getTest() {
@@ -107,11 +114,11 @@ public class StudentController {
         newTest.getActiveTest();
         activeQuestion++;
         activeQuestionsForDB++;
+        newTest.getNextActiveQuestion();
         showToStudentTextLabel.setText("");
         alternativePane.getChildren().clear();
         showToStudentQuestionsLeft.setText(activeQuestion+"/"+newTest.getAmountOfQuestions()+"    ");
         showToStudentGrade.setText(newTest.getGradeOnActiveQuestion());
-        newTest.getNextActiveQuestion();
         if(activeQuestion==maxQuestions){
             showToUserNextButton.setDisable(true);
             showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
