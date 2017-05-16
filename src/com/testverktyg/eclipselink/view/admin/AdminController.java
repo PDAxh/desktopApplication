@@ -98,6 +98,8 @@ public class AdminController {
     @FXML
     public void fillClassList(){
         classList.getItems().clear();
+        classList.getItems().add("Välj en klass");
+        classList.setValue("Välj en klass");
         ReadClass newReadClass = new ReadClass();
         newReadClass.readAllClasses();
         for (int i = 0; i < newReadClass.getClassNameList().size(); i++){
@@ -108,7 +110,7 @@ public class AdminController {
 
     @FXML
     private void checkClassChoiceToRemove(){
-        if(getClassList().getValue().equals("Välj en klass")||getClassList().getValue().equals(null)){
+        if(getClassList().getValue().equals("Välj en klass")){
             removeClassButton.setDisable(true);
         }else{
             removeClassButton.setDisable(false);

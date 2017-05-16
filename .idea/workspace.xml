@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c32ca5e2-35c1-443b-8347-19d9412016f9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/entity/User.class" afterPath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/entity/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/service/user/ReadUser.class" afterPath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/service/user/ReadUser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/admin/AdminController.class" afterPath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/admin/AdminController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml" afterPath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/main/layout/login.fxml" afterPath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/main/layout/login.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/MenuController.java" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/MenuController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/adminMainLayout.fxml" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/adminMainLayout.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/removeClass.fxml" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/removeClass.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/Main.java" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/MainController.java" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/MainController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/showTestToStudentRoot.fxml" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/showTestToStudentRoot.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,15 +42,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1173">
-              <caret line="110" column="20" lean-forward="false" selection-start-line="110" selection-start-column="20" selection-end-line="110" selection-end-column="20" />
+            <state relative-caret-position="183">
+              <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.fxml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="25" column="20" lean-forward="true" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+              <folding>
+                <marker date="1494945037476" expanded="true" signature="1151:1172" ph="..." />
+              </folding>
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+            <state />
           </provider>
         </entry>
       </file>
@@ -98,23 +100,6 @@
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="adminMainLayout.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/adminMainLayout.fxml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="63" column="4" lean-forward="false" selection-start-line="63" selection-start-column="4" selection-end-line="69" selection-end-column="11" />
-              <folding>
-                <marker date="1494937739851" expanded="true" signature="2952:3087" ph="..." />
-                <marker date="1494937739851" expanded="true" signature="2972:3066" ph="..." />
-                <marker date="1494937739851" expanded="true" signature="3113:3163" ph="..." />
-              </folding>
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-            <state />
           </provider>
         </entry>
       </file>
@@ -209,7 +194,6 @@
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addClass.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml" />
-        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/showTestToStudentRoot.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/adminMainLayout.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/Main.java" />
@@ -217,6 +201,7 @@
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/MenuController.java" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/removeClass.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java" />
+        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml" />
       </list>
     </option>
   </component>
@@ -1062,7 +1047,7 @@
       <workItem from="1494179002876" duration="607000" />
       <workItem from="1494232615199" duration="906000" />
       <workItem from="1494233962343" duration="13877000" />
-      <workItem from="1494846042532" duration="25666000" />
+      <workItem from="1494846042532" duration="26143000" />
     </task>
     <task id="LOCAL-00001" summary="Created new service Class.">
       <created>1493989621171</created>
@@ -1082,7 +1067,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45066000" />
+    <option name="totallyTimeSpent" value="45543000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="9" width="1855" height="1069" extended-state="0" />
@@ -1613,23 +1598,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="25" column="20" lean-forward="true" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-          <folding>
-            <marker date="1494937379284" expanded="true" signature="1151:1172" ph="..." />
-            <marker date="1494937379284" expanded="true" signature="1151:1850" ph="..." />
-            <marker date="1494937379284" expanded="true" signature="1151:2129" ph="..." />
-            <marker date="1494937379284" expanded="true" signature="1873:1925" ph="..." />
-            <marker date="1494937379284" expanded="true" signature="1945:2116" ph="..." />
-          </folding>
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/adminMainLayout.fxml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1727,12 +1695,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="110" column="20" lean-forward="false" selection-start-line="110" selection-start-column="20" selection-end-line="110" selection-end-column="20" />
+        <state relative-caret-position="183">
+          <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="25" column="20" lean-forward="true" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+          <folding>
+            <marker date="1494945037476" expanded="true" signature="1151:1172" ph="..." />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
   </component>

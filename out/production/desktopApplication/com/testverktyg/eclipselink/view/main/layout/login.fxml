@@ -16,7 +16,7 @@
 <GridPane fx:id="gridPane" alignment="CENTER" hgap="10" prefHeight="600.0" prefWidth="1200.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testverktyg.eclipselink.view.main.MainController">
 
     <children>
-        <ImageView fx:id="imageView" fitHeight="43.0" fitWidth="235.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
+        <ImageView fx:id="imageView" fitHeight="36.0" fitWidth="219.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
             <image>
                 <Image url="@../../../../../../newtontestverktyglogin.png" />
             </image>
