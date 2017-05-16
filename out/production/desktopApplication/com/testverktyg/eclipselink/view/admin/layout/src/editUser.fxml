@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by: Andreas -->
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<GridPane vgap="5" hgap="10" alignment="TOP_CENTER"
+          xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.testverktyg.eclipselink.view.admin.AdminController">
+    <padding><Insets top="20"/> </padding>
+
+    <children>
+        <Label text="Ändra email" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="editMail" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <Label text="Ändra lösenord" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <PasswordField fx:id="editPassword" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <PasswordField fx:id="verifyEditPassword" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <Label fx:id="addClassMessageLabel" text="" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <Button fx:id="editUserButton" text="Ändra" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+    </children>
+
+</GridPane>

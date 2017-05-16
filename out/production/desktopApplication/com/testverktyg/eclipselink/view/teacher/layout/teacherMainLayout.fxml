@@ -4,6 +4,8 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.testverktyg.eclipselink.view.MenuController"
@@ -26,7 +28,7 @@
                     <MenuItem text="Om oss"/>
                 </Menu>
             </MenuBar>
-            <Label text="Andreas Lindgren (Student)" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+            <Label text="Teacher (Lärare)" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
                    style="-fx-font-weight: bold; -fx-text-fill: orangered;"/>
         </AnchorPane>
     </top>
@@ -34,5 +36,13 @@
     <center>
         <Text text="you, Teacher!" />
     </center>
+
+    <left>
+        <ImageView fx:id="imageView" fitHeight="170.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
+            <image>
+                <Image url="@../../../../../../newtontestverktyg.png" />
+            </image>
+        </ImageView>
+    </left>
 
 </BorderPane>

@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Text?>
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.testverktyg.eclipselink.view.MenuController"
-            fx:id="borderPane"
-            prefHeight="600.0" prefWidth="1200.0">
+
+<BorderPane fx:id="borderPane" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testverktyg.eclipselink.view.MenuController">
 
     <top>
      <!--   <MenuBar>
@@ -33,34 +36,40 @@
 
         </MenuBar>
         -->
-        <AnchorPane xmlns:fx="http://javafx.com/fxml/1" styleClass="menu-bar">
+        <AnchorPane styleClass="menu-bar" xmlns:fx="http://javafx.com/fxml/1">
             <MenuBar AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
                 <Menu text="Arkiv">
-                    <MenuItem text="Logga ut" onAction="#logout"/>
-                    <MenuItem text="Avsluta"  onAction="#getExitProgram"/>
+                    <MenuItem onAction="#logout" text="Logga ut" />
+                    <MenuItem onAction="#getExitProgram" text="Avsluta" />
                 </Menu>
                 <Menu text="Administrera">
-                    <MenuItem text="Lägg till konto" onAction="#addUser"/>
-                    <MenuItem text="Ändra konto" onAction="#removeUser"/>
-                    <SeparatorMenuItem/>
-                    <MenuItem text="Lägg till klass" onAction="#addClass"/>
-                    <MenuItem text="Ta bort klass" onAction="#removeClass"/>
+                    <MenuItem onAction="#addUser" text="Lägg till konto" />
+                    <MenuItem onAction="#removeUser" text="Ändra konto" />
+                    <SeparatorMenuItem />
+                    <MenuItem onAction="#addClass" text="Lägg till klass" />
+                    <MenuItem onAction="#removeClass" text="Ta bort klass" />
                 </Menu>
                 <Menu text="Prov">
-                    <MenuItem text="Publicera prov"/>
+                    <MenuItem text="Publicera prov" />
                 </Menu>
                 <Menu text="Hjälp">
-                    <MenuItem text="Hjälp"/>
-                    <MenuItem text="Om oss"/>
+                    <MenuItem text="Hjälp" />
+                    <MenuItem text="Om oss" />
                 </Menu>
             </MenuBar>
-            <Label text="Andreas Lindgren (Student)" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
-                   style="-fx-font-weight: bold; -fx-text-fill: orangered;"/>
+            <Label style="-fx-font-weight: bold; -fx-text-fill: orangered;" text="Admin (Administratör)" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
         </AnchorPane>
     </top>
+
+    <left>
+        <ImageView fx:id="imageView" fitHeight="170.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
+            <image>
+                <Image url="@../../../../../../newtontestverktyg.png" />
+            </image>
+        </ImageView>
+    </left>
 
     <center>
         <Text text="you, Admin!" />
     </center>
-
 </BorderPane>
