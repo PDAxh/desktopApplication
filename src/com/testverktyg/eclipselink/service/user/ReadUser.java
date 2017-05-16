@@ -5,6 +5,7 @@ import com.testverktyg.eclipselink.entity.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,6 +19,8 @@ public class ReadUser {
     private String password;
     private String group;
     private boolean loginStatus;
+
+    public ReadUser(){}
 
     public ReadUser(String email, String password){
         setLoginStatus(false);
@@ -46,10 +49,43 @@ public class ReadUser {
 
     }
 
-    public void readOnlyStudents(){}
-    public void readOnlyStudentsInClass(){}
-    public void readOnlyTeacher(){}
-    public void readOnlyAdmin(){}
+    public void readOnlyStudents(){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+
+        List<User> studentList = entityManager.createNamedQuery("FindUserByType", User.class).setParameter("typeOfUser", "student").getResultList();
+
+        /*
+        //Use this in the GUI to collect students
+        for (int i = 0; i < studentList.size(); i++){
+            System.out.println(studentList.get(i).getFirstname() + " " + studentList.get(i).getLastname());
+        }
+        */
+    }
+    public void readOnlyStudentsInClass(String selectedClass){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+
+        List<User> studentListFromSpecificClass = entityManager.createNamedQuery("FindUserByTypeAndClass", User.class).setParameter("typeOfUser", "student").setParameter("selectedClass", selectedClass).getResultList();
+    }
+
+    public void readOnlyTeacher(){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+
+        List<User> teacherList = entityManager.createNamedQuery("FindUserByType", User.class).setParameter("typeOfUser", "teacher").getResultList();
+    }
+
+    public void readOnlyAdmin(){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+
+        List<User> adminList = entityManager.createNamedQuery("FindUserByType", User.class).setParameter("typeOfUser", "admin").getResultList();
+    }
 
 
     public String getEmail() {
@@ -82,5 +118,11 @@ public class ReadUser {
 
     public boolean getLoginStatus(){
         return this.loginStatus;
+    }
+
+    public static void main(String[] args) {
+        ReadUser readUser = new ReadUser();
+
+        readUser.readOnlyAdmin();
     }
 }

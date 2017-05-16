@@ -10,7 +10,9 @@ import javax.persistence.*;
  @Entity
  @NamedQueries({
          @NamedQuery(query = "SELECT e FROM User e WHERE e.email = :email", name = "findByEmail"),
-         @NamedQuery(query = "SELECT e FROM User e WHERE e.email = :email AND e.password = :password", name= "findByEmailAndPassword")
+         @NamedQuery(query = "SELECT e FROM User e WHERE e.email = :email AND e.password = :password", name= "findByEmailAndPassword"),
+         @NamedQuery(query = "SELECT u FROM User u WHERE u.typeOfUser = :typeOfUser", name= "FindUserByType"),
+         @NamedQuery(query = "SELECT u FROM User u WHERE u.typeOfUser = :typeOfUser AND u.Klass = :selectedClass", name= "FindUserByTypeAndClass")
  })
  public class User {
 
