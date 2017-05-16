@@ -8,13 +8,13 @@
           xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="com.testverktyg.eclipselink.view.admin.AdminController">
-    <padding><Insets top="20"/> </padding>
+    <padding><Insets top="20"/></padding>
 
     <children>
         <Label text="Klassnamn:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
         <TextField fx:id="studentClassName" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
         <Label fx:id="addClassMessageLabel" text="" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-        <Button fx:id="createClassButton" text="Skapa ny" GridPane.columnIndex="0" GridPane.rowIndex="4" onAction="#addKlass"/>
+        <Button fx:id="createClassButton" text="Skapa ny" GridPane.columnIndex="0" GridPane.rowIndex="4" onAction="#addClass"/>
     </children>
 
 </GridPane>

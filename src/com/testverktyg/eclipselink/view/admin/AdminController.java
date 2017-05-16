@@ -31,10 +31,11 @@ public class AdminController {
     @FXML private TextField lastName;
     @FXML private TextField email;
     @FXML private TextField studentClassName;
+    @FXML private Label addClassMessageLabel;
 
     @FXML
     private void setStudentClassOption(){
-        if(getUserType().getValue().equals("Student")){
+        if(getUserType().getValue().equals("student")){
             getStudentClass().setDisable(false);
             studentClassLabel.setTextFill(Color.web("#000000"));
         }
@@ -107,15 +108,21 @@ public class AdminController {
             System.out.println(fname);
             String lname = getLastName().getText();
             System.out.println(lname);
-            String email = getEmail().getText();
+            String emailString = getEmail().getText();
             System.out.println(email);
             String Klass = getStudentClass().getValue().toString();
             System.out.println(Klass);
-            String password = getPassword().getText();
+            String passwordString = getPassword().getText();
             System.out.println(password);
             String userType = getUserType().getValue().toString();
             System.out.println(userType);
-            CreateUser newUser = new CreateUser(fname, lname, password, email, Klass, userType);
+            CreateUser newUser = new CreateUser(fname, lname, passwordString, emailString, Klass, userType);
+            firstName.setText("");
+            lastName.setText("");
+            email.setText("");
+            passwordRepeat.setText("");
+            password.setText("");
+
         }else{
             passwordMessageLabel.setText("Lösenorden är inte samma.");
             getPassword().setText("");
@@ -125,10 +132,12 @@ public class AdminController {
     }
 
     @FXML
-    private void addKlass(){
+    private void addClass(){
         String className = studentClassName.getText();
         CreateClass addClass = new CreateClass();
         addClass.CreateClass(className);
+        addClassMessageLabel.setText("Klass är skapad");
+        studentClassName.setText("");
     }
 
     //Getters for createUser

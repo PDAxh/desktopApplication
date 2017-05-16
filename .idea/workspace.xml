@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c32ca5e2-35c1-443b-8347-19d9412016f9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/entity/Klass.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/service/user/CreateGroup.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/service/Test/ReadTest.class" afterPath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/service/Test/ReadTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/admin/AdminController.class" afterPath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/admin/AdminController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/student/StudentController.class" afterPath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/student/StudentController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/META-INF/persistence.xml" afterPath="$PROJECT_DIR$/out/production/desktopApplication/META-INF/persistence.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/Test/ReadTest.java" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/Test/ReadTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addClass.fxml" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addClass.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,15 +18,41 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="StudentController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="addUser.fxml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-56">
+              <caret line="26" column="15" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StudentController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="113" column="31" lean-forward="false" selection-start-line="113" selection-start-column="31" selection-end-line="113" selection-end-column="31" />
+            <state relative-caret-position="105">
+              <caret line="103" column="57" lean-forward="false" selection-start-line="103" selection-start-column="57" selection-end-line="103" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="removeClass.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/removeClass.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="27" column="44" lean-forward="true" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
           </provider>
         </entry>
       </file>
@@ -85,54 +106,54 @@
       <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-198">
-              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state relative-caret-position="396">
+              <caret line="123" column="30" lean-forward="false" selection-start-line="123" selection-start-column="30" selection-end-line="123" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1494925178295" expanded="false" signature="5364:5375" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="5391:5397" ph=" }" />
-                <marker date="1494925178295" expanded="false" signature="5436:5447" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="5467:5473" ph=" }" />
-                <marker date="1494925178295" expanded="false" signature="5513:5524" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="5540:5546" ph=" }" />
-                <marker date="1494925178295" expanded="false" signature="5592:5603" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="5625:5631" ph=" }" />
-                <marker date="1494925178295" expanded="false" signature="5706:5716" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="5744:5750" ph=" }" />
-                <marker date="1494925178295" expanded="false" signature="5794:5804" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="5829:5835" ph=" }" />
-                <marker date="1494925178295" expanded="false" signature="5878:5889" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="5913:5919" ph=" }" />
-                <marker date="1494925178295" expanded="false" signature="5964:5975" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="6003:6009" ph=" }" />
-                <marker date="1494925178295" expanded="false" signature="6052:6063" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="6089:6095" ph=" }" />
-                <marker date="1494925178295" expanded="false" signature="6137:6147" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="6173:6179" ph=" }" />
-                <marker date="1494925178295" expanded="false" signature="6252:6263" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="6280:6286" ph=" }" />
-                <marker date="1494925178295" expanded="false" signature="6328:6339" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="6364:6370" ph=" }" />
-                <marker date="1494925178295" expanded="false" signature="6406:6417" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="6434:6440" ph=" }" />
-                <marker date="1494925178295" expanded="false" signature="6491:6502" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="6529:6535" ph=" }" />
-                <marker date="1494925178295" expanded="false" signature="6571:6582" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="6598:6604" ph=" }" />
-                <marker date="1494925178295" expanded="false" signature="6653:6664" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="6689:6695" ph=" }" />
-                <marker date="1494925178295" expanded="false" signature="6728:6739" ph=" { " />
-                <marker date="1494925178295" expanded="false" signature="6752:6758" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="5704:5715" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="5731:5737" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="5776:5787" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="5807:5813" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="5853:5864" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="5880:5886" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="5932:5943" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="5965:5971" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="6046:6056" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="6084:6090" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="6134:6144" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="6169:6175" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="6218:6229" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="6253:6259" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="6304:6315" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="6343:6349" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="6392:6403" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="6429:6435" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="6477:6487" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="6513:6519" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="6592:6603" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="6620:6626" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="6668:6679" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="6704:6710" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="6746:6757" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="6774:6780" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="6831:6842" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="6869:6875" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="6911:6922" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="6938:6944" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="6993:7004" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="7029:7035" ph=" }" />
+                <marker date="1494929248692" expanded="false" signature="7068:7079" ph=" { " />
+                <marker date="1494929248692" expanded="false" signature="7092:7098" ph=" }" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="adminMainLayout.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/adminMainLayout.fxml">
+      <file leaf-file-name="login.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="63" column="4" lean-forward="false" selection-start-line="63" selection-start-column="4" selection-end-line="69" selection-end-column="11" />
+            <state relative-caret-position="418">
+              <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -144,49 +165,13 @@
       <file leaf-file-name="studentMainLayout.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/studentMainLayout.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
+            <state relative-caret-position="492">
+              <caret line="43" column="20" lean-forward="true" selection-start-line="39" selection-start-column="8" selection-end-line="43" selection-end-column="20" />
               <folding />
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder">
             <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="teacherMainLayout.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/teacher/layout/teacherMainLayout.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="28" column="23" lean-forward="false" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="18" column="15" lean-forward="true" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReadUser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/user/ReadUser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-43">
-              <caret line="30" column="50" lean-forward="true" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
-              <folding />
-            </state>
           </provider>
         </entry>
       </file>
@@ -195,6 +180,19 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="324">
               <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addClass.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addClass.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -230,7 +228,10 @@
       <find>setva</find>
       <find>Grade</find>
       <find>grade</find>
+      <find>student</find>
+      <find>admini</find>
       <find>textlabel</find>
+      <find>button</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -254,21 +255,21 @@
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/MenuController.java" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/showTestToStudentRoot.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/showTestToStudentLanding.fxml" />
-        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/removeClass.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/removeUser.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/teacher/TeacherController.java" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/entity/User.java" />
-        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addClass.fxml" />
-        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/src/editUser.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/adminMainLayout.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/studentMainLayout.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/teacher/layout/teacherMainLayout.fxml" />
-        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/showTestToStudentTest.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/Test/ReadTest.java" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java" />
+        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addClass.fxml" />
+        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml" />
+        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml" />
+        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java" />
       </list>
     </option>
   </component>
@@ -1143,7 +1144,7 @@
       <workItem from="1494179002876" duration="607000" />
       <workItem from="1494232615199" duration="906000" />
       <workItem from="1494233962343" duration="13877000" />
-      <workItem from="1494846042532" duration="13511000" />
+      <workItem from="1494846042532" duration="15590000" />
     </task>
     <task id="LOCAL-00001" summary="Created new service Class.">
       <created>1493989621171</created>
@@ -1163,7 +1164,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32911000" />
+    <option name="totallyTimeSpent" value="34990000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="0" width="1855" height="1078" extended-state="0" />
@@ -1425,17 +1426,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="28" lean-forward="false" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/META-INF/persistence.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -1448,17 +1438,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="814">
           <caret line="37" column="19" lean-forward="false" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/removeClass.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="28" lean-forward="false" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -1588,17 +1567,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addClass.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/src/editUser.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1614,17 +1582,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="63" column="4" lean-forward="false" selection-start-line="63" selection-start-column="4" selection-end-line="69" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/studentMainLayout.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -1657,17 +1614,6 @@
           <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="15" lean-forward="true" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/Test/ReadTest.java">
@@ -1726,58 +1672,113 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java">
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addClass.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-198">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1494925178295" expanded="false" signature="5364:5375" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="5391:5397" ph=" }" />
-            <marker date="1494925178295" expanded="false" signature="5436:5447" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="5467:5473" ph=" }" />
-            <marker date="1494925178295" expanded="false" signature="5513:5524" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="5540:5546" ph=" }" />
-            <marker date="1494925178295" expanded="false" signature="5592:5603" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="5625:5631" ph=" }" />
-            <marker date="1494925178295" expanded="false" signature="5706:5716" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="5744:5750" ph=" }" />
-            <marker date="1494925178295" expanded="false" signature="5794:5804" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="5829:5835" ph=" }" />
-            <marker date="1494925178295" expanded="false" signature="5878:5889" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="5913:5919" ph=" }" />
-            <marker date="1494925178295" expanded="false" signature="5964:5975" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="6003:6009" ph=" }" />
-            <marker date="1494925178295" expanded="false" signature="6052:6063" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="6089:6095" ph=" }" />
-            <marker date="1494925178295" expanded="false" signature="6137:6147" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="6173:6179" ph=" }" />
-            <marker date="1494925178295" expanded="false" signature="6252:6263" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="6280:6286" ph=" }" />
-            <marker date="1494925178295" expanded="false" signature="6328:6339" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="6364:6370" ph=" }" />
-            <marker date="1494925178295" expanded="false" signature="6406:6417" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="6434:6440" ph=" }" />
-            <marker date="1494925178295" expanded="false" signature="6491:6502" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="6529:6535" ph=" }" />
-            <marker date="1494925178295" expanded="false" signature="6571:6582" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="6598:6604" ph=" }" />
-            <marker date="1494925178295" expanded="false" signature="6653:6664" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="6689:6695" ph=" }" />
-            <marker date="1494925178295" expanded="false" signature="6728:6739" ph=" { " />
-            <marker date="1494925178295" expanded="false" signature="6752:6758" ph=" }" />
-          </folding>
+        <state relative-caret-position="330">
+          <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="42" />
+          <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/studentMainLayout.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="43" column="20" lean-forward="true" selection-start-line="39" selection-start-column="8" selection-end-line="43" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/removeClass.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="27" column="44" lean-forward="true" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="113" column="31" lean-forward="false" selection-start-line="113" selection-start-column="31" selection-end-line="113" selection-end-column="31" />
+        <state relative-caret-position="105">
+          <caret line="103" column="57" lean-forward="false" selection-start-line="103" selection-start-column="57" selection-end-line="103" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="123" column="30" lean-forward="false" selection-start-line="123" selection-start-column="30" selection-end-line="123" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1494929248692" expanded="false" signature="5704:5715" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="5731:5737" ph=" }" />
+            <marker date="1494929248692" expanded="false" signature="5776:5787" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="5807:5813" ph=" }" />
+            <marker date="1494929248692" expanded="false" signature="5853:5864" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="5880:5886" ph=" }" />
+            <marker date="1494929248692" expanded="false" signature="5932:5943" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="5965:5971" ph=" }" />
+            <marker date="1494929248692" expanded="false" signature="6046:6056" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="6084:6090" ph=" }" />
+            <marker date="1494929248692" expanded="false" signature="6134:6144" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="6169:6175" ph=" }" />
+            <marker date="1494929248692" expanded="false" signature="6218:6229" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="6253:6259" ph=" }" />
+            <marker date="1494929248692" expanded="false" signature="6304:6315" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="6343:6349" ph=" }" />
+            <marker date="1494929248692" expanded="false" signature="6392:6403" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="6429:6435" ph=" }" />
+            <marker date="1494929248692" expanded="false" signature="6477:6487" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="6513:6519" ph=" }" />
+            <marker date="1494929248692" expanded="false" signature="6592:6603" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="6620:6626" ph=" }" />
+            <marker date="1494929248692" expanded="false" signature="6668:6679" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="6704:6710" ph=" }" />
+            <marker date="1494929248692" expanded="false" signature="6746:6757" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="6774:6780" ph=" }" />
+            <marker date="1494929248692" expanded="false" signature="6831:6842" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="6869:6875" ph=" }" />
+            <marker date="1494929248692" expanded="false" signature="6911:6922" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="6938:6944" ph=" }" />
+            <marker date="1494929248692" expanded="false" signature="6993:7004" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="7029:7035" ph=" }" />
+            <marker date="1494929248692" expanded="false" signature="7068:7079" ph=" { " />
+            <marker date="1494929248692" expanded="false" signature="7092:7098" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-56">
+          <caret line="26" column="15" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
   </component>
