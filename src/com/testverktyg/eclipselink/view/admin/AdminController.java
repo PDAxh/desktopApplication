@@ -126,8 +126,8 @@ public class AdminController {
     @FXML
     private void addKlass(){
         String klassName = studentClassName.getText();
-    //    Klass newKlass = new Klass();
-    //    newKlass.createNewClass(klassName                                                                                                                                                                                                                                                                                                                                                                                                                        );
+    //    CreateClass createClass = new CreateClass();
+        //    createClass.createClass(klassName);                                                                                                                                                                                                                                                                                                                                                                                                                        );
     }
 
     //Getters for createUser
