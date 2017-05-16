@@ -1,5 +1,6 @@
 package com.testverktyg.eclipselink.view.admin;
 
+import com.testverktyg.eclipselink.service.Class.CreateClass;
 import com.testverktyg.eclipselink.service.user.CreateUser;
 import com.testverktyg.eclipselink.service.user.loginUser;
 import javafx.fxml.FXML;
@@ -125,9 +126,9 @@ public class AdminController {
 
     @FXML
     private void addKlass(){
-        String klassName = studentClassName.getText();
-    //    CreateClass createClass = new CreateClass();
-        //    createClass.createClass(klassName);                                                                                                                                                                                                                                                                                                                                                                                                                        );
+        String className = studentClassName.getText();
+        CreateClass addClass = new CreateClass();
+        addClass.CreateClass(className);
     }
 
     //Getters for createUser
