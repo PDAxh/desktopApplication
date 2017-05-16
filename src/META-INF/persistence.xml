@@ -8,6 +8,7 @@
         <class>com.testverktyg.eclipselink.entity.Test</class>
         <class>com.testverktyg.eclipselink.entity.Question</class>
         <class>com.testverktyg.eclipselink.entity.Alternative</class>
+        <class>com.testverktyg.eclipselink.entity.Class</class>
 
         <properties>
             <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/testverktyg?useSSL=false"/>
