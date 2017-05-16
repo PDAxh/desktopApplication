@@ -10,6 +10,7 @@ import java.util.List;
 /* Created by Daniel on 2017-05-16. */
 public class DeleteClass {
 
+    //deletes a class from the database with a specific className
     public void deleteClass(String className) {
 
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");

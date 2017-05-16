@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 
 public class CreateClass {
 
+    //Creates a new class to the database
     public void CreateClass(String klassName){
 
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );

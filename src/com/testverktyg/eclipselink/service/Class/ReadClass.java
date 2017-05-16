@@ -13,6 +13,7 @@ public class ReadClass {
 
     List<Class> classNameList;
 
+    //reads all the classes from the database
     public void readAllClasses(){
 
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
@@ -23,8 +24,11 @@ public class ReadClass {
 
     }
 
-    public void readOneClass(){
+    public void readOneClass(){}
 
+
+    public List<Class> getClassNameList() {
+        return classNameList;
     }
 
     public static void main(String[] args) {
