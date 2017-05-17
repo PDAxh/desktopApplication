@@ -6,6 +6,12 @@ import java.util.List;
 /*Created by jennifergisslow on 2017-05-08.*/
 
 @Entity
+//------------TestKod----------------------------------
+@NamedQueries({
+        @NamedQuery(query = "SELECT e FROM Test e WHERE e.testId = :testId", name="getTest")
+})
+
+//-----------------------------------------------------
 public class Test {
 
     @Id

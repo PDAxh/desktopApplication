@@ -21,7 +21,7 @@
                 </Menu>
                 <Menu text="Prov">
                     <MenuItem text="Nytt prov" onAction="#createNewTest"/>
-                    <MenuItem text="Publicera test"/>
+                    <MenuItem text="Publicera test" onAction="#showTests"/>
                 </Menu>
                 <Menu text="Hjälp">
                     <MenuItem text="Hjälp"/>

@@ -1,13 +1,20 @@
 package com.testverktyg.eclipselink.view.teacher;
 
+import com.testverktyg.eclipselink.entity.Test;
+import com.testverktyg.eclipselink.entity.UserTests;
 import com.testverktyg.eclipselink.service.Test.CreateTest;
+import com.testverktyg.eclipselink.service.Test.ReadTest;
+import com.testverktyg.eclipselink.service.userTests.CreateUserTests;
+import com.testverktyg.eclipselink.service.userTests.ReadUserTests;
 import com.testverktyg.eclipselink.view.teacher.createTest.NewAlternativ;
 import com.testverktyg.eclipselink.view.teacher.createTest.NewQuestion;
 import com.testverktyg.eclipselink.view.teacher.createTest.NewTest;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.StringConverter;
@@ -44,6 +51,12 @@ public class TeacherController {
     private TextField alternativField[];
     private RadioButton rightAnswerRadioButton[];
     private NewTest newTest = new NewTest();
+
+    //test
+    @FXML private VBox showTeacherTestVbox;
+    private RadioButton selectTestToPublishOrEdit[];
+    private int userId;
+    //test
 
     @FXML
     private void setShowResultToStudent(){
@@ -315,7 +328,11 @@ public class TeacherController {
                         );
             }
 
-        getCreateTest().commitTest();
+        CreateUserTests createUserTests = new CreateUserTests();
+        createUserTests.setTestId(getCreateTest().commitTest());
+        createUserTests.setUserId(getUserId());
+        createUserTests.commitTestToUser();
+
         setResetTestInput();
         setCreateTest(new CreateTest());
         setNewTest(new NewTest());
@@ -474,5 +491,58 @@ public class TeacherController {
 
     private RadioButton getGradeVGButton() {
         return gradeVGButton;
+    }
+
+    //----Show-Tests------------
+
+    @FXML
+    private void getTeacherTest(){
+        ReadTest readTest = new ReadTest();
+        ReadUserTests readUserTests = new ReadUserTests(getUserId());
+        ToggleGroup toggleGroup = new ToggleGroup();
+        setSelectTestToPublishOrEdit(new RadioButton[readUserTests.getUserTestsList().size()]);
+        int counter = 0;
+        for(UserTests userTests: readUserTests.getUserTestsList()){
+
+            readTest.getTest(userTests.getTestId());
+            for(Test test : readTest.getTestList()){
+                HBox hBoxLeft = new HBox();
+                HBox hBoxRight = new HBox();
+                BorderPane borderPane = new BorderPane();
+                hBoxLeft.setSpacing(50.0);
+                getSelectTestToPublishOrEdit()[counter] = new RadioButton();
+                getSelectTestToPublishOrEdit()[counter].setToggleGroup(toggleGroup);
+                getSelectTestToPublishOrEdit()[counter].setId(String.valueOf(test.getTestId()));
+                hBoxLeft.getChildren().addAll(new Label("Prov: " + test.getTestName()), new Label(" Beskrivning: " + test.getTestDescription()),
+                        new Label(" Datum: " + test.getLastDate()), new Label(" Tid: " + String.valueOf(test.getTimeForTestMinutes())));
+                hBoxRight.getChildren().addAll( new Label("Välj:"), getSelectTestToPublishOrEdit()[counter]);
+                borderPane.setStyle("-fx-border-color: black;");
+                borderPane.setPadding(new Insets(10));
+                borderPane.setLeft(hBoxLeft);
+                borderPane.setRight(hBoxRight);
+                getShowTeacherTestVbox().getChildren().add(borderPane);
+                counter++;
+            }
+        }
+    }
+
+    private VBox getShowTeacherTestVbox() {
+        return showTeacherTestVbox;
+    }
+
+    private int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    private RadioButton[] getSelectTestToPublishOrEdit() {
+        return selectTestToPublishOrEdit;
+    }
+
+    private void setSelectTestToPublishOrEdit(RadioButton[] selectTestToPublishOrEdit) {
+        this.selectTestToPublishOrEdit = selectTestToPublishOrEdit;
     }
 }

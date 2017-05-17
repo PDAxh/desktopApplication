@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <VBox xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.testverktyg.eclipselink.view.teacher.TeacherController">
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.testverktyg.eclipselink.view.teacher.TeacherController"
+      fx:id="showTeacherTestVbox" spacing="15">
+    <padding><Insets top="30" left="120" right="120" bottom="30"/> </padding>
 
-    <Button text="Ändra" visible="false"/>
-    <Button text="Skicka in" visible="false"/>
+    <Button text="Ändra"/>
+    <Button text="Hämta prov" onAction="#getTeacherTest" />
 
 </VBox>

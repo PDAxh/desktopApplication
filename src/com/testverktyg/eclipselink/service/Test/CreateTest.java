@@ -74,7 +74,7 @@ public class CreateTest {
         alternativeList.add(alternative);
     }
 
-    public void commitTest(){
+    public int commitTest(){
 
         question.setAlternativeList(alternativeList);
         test.setQuestionList(questionList);
@@ -83,5 +83,6 @@ public class CreateTest {
         entitymanager.getTransaction().commit();
         entitymanager.close();
         emfactory.close();
+        return test.getTestId();
     }
 }

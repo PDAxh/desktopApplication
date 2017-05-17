@@ -23,6 +23,7 @@ public class ReadUser {
     List<User> studentList;
     List<User> teacherList;
     List<User> adminList;
+    private int userId;
 
     public ReadUser(){}
 
@@ -42,6 +43,7 @@ public class ReadUser {
             setEmail(user.getEmail());
             setPassword(user.getPassword());
             setGroup(user.getTypeOfUser());
+            setUserId(user.getUserId());
         }
 
         if((getEmail() != null) && (getPassword() != null)){
@@ -144,5 +146,13 @@ public class ReadUser {
         ReadUser readUser = new ReadUser();
 
         readUser.readOnlyAdmin();
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    private void setUserId(int userId) {
+        this.userId = userId;
     }
 }

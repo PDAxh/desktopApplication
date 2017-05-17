@@ -1,11 +1,13 @@
 package com.testverktyg.eclipselink.view;
 
 import com.testverktyg.eclipselink.view.main.MainController;
+import com.testverktyg.eclipselink.view.teacher.TeacherController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,6 +20,7 @@ public class MenuController {
 
     private Stage stage;
     @FXML private BorderPane borderPane;
+    private int userId;
 
     public Stage getStage() {
         return stage;
@@ -59,8 +62,11 @@ public class MenuController {
     }
     @FXML
     private void createNewTest() throws IOException{
-        BorderPane bp = FXMLLoader.load(getClass().getResource("teacher/layout/testTestLayout.fxml"));
-        borderPane.setCenter(bp);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("teacher/layout/testTestLayout.fxml"));
+        BorderPane borderPane = loader.load();
+        this.borderPane.setCenter(borderPane);
+        TeacherController teacherController = loader.getController();
+        teacherController.setUserId(getUserId());
     }
     @FXML
     private void showTestToStudent() throws IOException{
@@ -69,8 +75,25 @@ public class MenuController {
     }
 
     @FXML
+    private void showTests() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("teacher/layout/teacherShowTestsToPublishLayout.fxml"));
+        VBox vBox = loader.load();
+        borderPane.setCenter(vBox);
+        TeacherController teacherController = loader.getController();
+        teacherController.setUserId(getUserId());
+    }
+
+    @FXML
     private void getExitProgram(){
         System.exit(0);
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
 }

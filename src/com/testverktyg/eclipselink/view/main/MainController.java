@@ -55,13 +55,14 @@ public class MainController {
         this.loginFailed.setText("Try again!");
     }
 
-    private void setNewUserLayout(String layout) throws IOException{
+    private void setNewUserLayout(String layout, int userId) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource(layout));
         BorderPane borderPane = loader.load();
         Scene scene = new Scene(borderPane);
         getStage().setScene(scene);
         MenuController menuController = loader.getController();
         menuController.setStage(getStage());
+        menuController.setUserId(userId);
         setUsernameTextField("");
         setPasswordTextField("");
     }
@@ -69,16 +70,17 @@ public class MainController {
     @FXML
     private void logInButton() throws IOException{
         ReadUser readUser = new ReadUser(getUsernameTextField(), getPasswordTextField());
+        int userid = readUser.getUserId();
 
         if(readUser.getLoginStatus()){
             if(readUser.getGroup().equals("admin")){
-               setNewUserLayout("../admin/layout/adminMainLayout.fxml");
+               setNewUserLayout("../admin/layout/adminMainLayout.fxml", userid);
             }
             else if(readUser.getGroup().equals("student")){
-                setNewUserLayout("../student/layout/studentMainLayout.fxml");
+                setNewUserLayout("../student/layout/studentMainLayout.fxml", userid);
             }
             else if(readUser.getGroup().equals("teacher")){
-                setNewUserLayout("../teacher/layout/teacherMainLayout.fxml");
+                setNewUserLayout("../teacher/layout/teacherMainLayout.fxml", userid);
             }
         }
         else{

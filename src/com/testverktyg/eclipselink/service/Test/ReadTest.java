@@ -42,6 +42,14 @@ public class ReadTest {
     private List<Question> activeQuestionGradeVG;
     private List<Question> activeQuestionType;
 
+    //---testkod---
+
+    private List<Test> testList;
+
+    public ReadTest(){}
+
+    //---testkod--
+
     public ReadTest(int testId){
         this.tempTestId = testId;
     }
@@ -212,4 +220,23 @@ public class ReadTest {
             }
         }
     }
+
+    //----TESTKOD-----
+    public void getTest(int testId){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        setTestList(entityManager.createNamedQuery("getTest", Test.class).setParameter("testId", testId).getResultList());
+        entityManager.close();
+        entityManagerFactory.close();
+    }
+
+    public List<Test> getTestList() {
+        return testList;
+    }
+
+    private void setTestList(List<Test> testList) {
+        this.testList = testList;
+    }
+
+    //---TESTKOD-----
 }
