@@ -18,8 +18,8 @@
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Student" />
-                    <String fx:value="Lärare" />
-                    <String fx:value="Administratör" />
+                    <String fx:value="Teacher" />
+                    <String fx:value="Admin" />
                 </FXCollections>
             </items>
             <value>
@@ -42,9 +42,6 @@
         <Label text="Användare:" fx:id="editUserUserLabel" GridPane.columnIndex="0" GridPane.rowIndex="2" textFill="lightgray"/>
         <ComboBox fx:id="editUserUserList" GridPane.columnIndex="0" GridPane.rowIndex="3" disable="true" onAction="#checkUserTypeToEdit">
             <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Andreas Lindgren" />
-                </FXCollections>
             </items>
             <value>
                 <String fx:value="Välj en användare" />
@@ -52,7 +49,7 @@
         </ComboBox>
 
         <Label fx:id="editUserMessageLabel" text="" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-        <Button fx:id="editUserRemoveButton" text="Ta bort" GridPane.columnIndex="0" GridPane.rowIndex="5" disable="true"/>
+        <Button fx:id="editUserRemoveButton" text="Ta bort" GridPane.columnIndex="0" GridPane.rowIndex="5" disable="true" onAction="#removeSelectedUser"/>
         <Button fx:id="editUserEditButton" text="Redigera" GridPane.columnIndex="1" GridPane.rowIndex="5" disable="true"/>
     </children>
 

@@ -1,8 +1,6 @@
 package com.testverktyg.eclipselink.view;
 
 import com.testverktyg.eclipselink.view.main.MainController;
-import com.testverktyg.eclipselink.view.teacher.TeacherController;
-import com.testverktyg.eclipselink.view.admin.AdminController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

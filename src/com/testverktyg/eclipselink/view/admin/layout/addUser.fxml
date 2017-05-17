@@ -30,8 +30,8 @@
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="student" />
-                    <String fx:value="lärare" />
-                    <String fx:value="administratör" />
+                    <String fx:value="teacher" />
+                    <String fx:value="admin" />
                 </FXCollections>
             </items>
             <value>
@@ -41,9 +41,6 @@
         <Label text="Klass:" fx:id="studentClassLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" textFill="#d3d3d3"/>
         <ComboBox fx:id="studentClass" GridPane.columnIndex="1" GridPane.rowIndex="3" disable="true">
             <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="JAVA2" />
-                </FXCollections>
             </items>
             <value>
                 <String fx:value="" />

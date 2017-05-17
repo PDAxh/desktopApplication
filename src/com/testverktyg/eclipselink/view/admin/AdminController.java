@@ -9,10 +9,6 @@ import com.testverktyg.eclipselink.service.user.loginUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
-
-import java.net.URL;
-import java.util.ResourceBundle;
-
 /**
  * Created by Andreas
  */
@@ -40,13 +36,15 @@ public class AdminController {
     @FXML private Label addClassMessageLabel;
     @FXML private Label removeClassMessageLabel;
 
-    public int userToEdit;
+    //public int userToEdit;
+    //public ArrayList<tempUser> tempUserList;
 
     @FXML
     private void setStudentClassOption(){
         if(getUserType().getValue().equals("student")){
             getStudentClass().setDisable(false);
             studentClassLabel.setTextFill(Color.web("#000000"));
+            fillClasses(studentClass);
         }
         else{
             getStudentClass().setDisable(true);
@@ -64,6 +62,20 @@ public class AdminController {
             password.requestFocus();
         }
     }
+
+    @FXML
+    public void fillClasses(ComboBox cb){
+        cb.getItems().clear();
+        cb.getItems().add("Välj en klass");
+        cb.setValue("Välj en klass");
+        ReadClass newReadClass = new ReadClass();
+        newReadClass.readAllClasses();
+        for (int i = 0; i < newReadClass.getClassNameList().size(); i++){
+            System.out.println(newReadClass.getClassNameList().get(i));
+            cb.getItems().add(String.valueOf(newReadClass.getClassNameList().get(i)));
+        }
+    }
+
     @FXML
     private void checkUserTypeToEdit(){
         if(getEditUserUserList().getValue().equals("Välj en användare")) {
@@ -99,19 +111,6 @@ public class AdminController {
     }
 
     @FXML
-    public void fillClassList(){
-        classList.getItems().clear();
-        classList.getItems().add("Välj en klass");
-        classList.setValue("Välj en klass");
-        ReadClass newReadClass = new ReadClass();
-        newReadClass.readAllClasses();
-        for (int i = 0; i < newReadClass.getClassNameList().size(); i++){
-            System.out.println(newReadClass.getClassNameList().get(i));
-            classList.getItems().add(String.valueOf(newReadClass.getClassNameList().get(i)));
-        }
-    }
-
-    @FXML
     private void checkClassChoiceToRemove(){
         if(getClassList().getValue().equals("Välj en klass")){
             removeClassButton.setDisable(true);
@@ -126,14 +125,11 @@ public class AdminController {
         String classToDelete = classList.getValue();
         dc.deleteClass(classToDelete);
         removeClassMessageLabel.setText(classList.getValue()+" är borttagen");
-        fillClassList();
+        fillClasses(classList);
     }
-
 
     @FXML
     private void createNewUser(){
-
-
         if(getPassword().getText().equals(getPasswordRepeat().getText())) {
             passwordMessageLabel.setText("");
             String fname = getFirstName().getText();
@@ -149,12 +145,12 @@ public class AdminController {
             String userType = getUserType().getValue().toString();
             System.out.println(userType);
             CreateUser newUser = new CreateUser(fname, lname, passwordString, emailString, Klass, userType);
+            passwordMessageLabel.setText("Användare för "+fname+" "+lname+" "+" är tillagd");
             firstName.setText("");
             lastName.setText("");
             email.setText("");
             passwordRepeat.setText("");
             password.setText("");
-
         }else{
             passwordMessageLabel.setText("Lösenorden är inte samma.");
             getPassword().setText("");
@@ -204,21 +200,21 @@ public class AdminController {
             if (choosenUserType.equals("Student")) {
                 ru.readOnlyStudents();
                 editUserUserList.getItems().clear();
-
+                fillClasses(editUserClassList);
                 editUserClassLabel.setTextFill(Color.web("#000000"));
                 getEditUserClassList().setDisable(false);
                 editUserUserLabel.setTextFill(Color.web("#000000"));
                 getEditUserUserList().setDisable(false);
                 editUserClassLabel.setTextFill(Color.web("#000000"));
                 getEditUserClassList().setDisable(false);
-
                 for (int i = 0; i < ru.getStudentList().size(); i++) {
                     editUserUserList.getItems().add(String.valueOf(ru.getStudentList().get(i).getFirstname() + " " + ru.getStudentList().get(i).getLastname()));
+                    //tempUserList.clear();
+                    //createTempList(String.valueOf(ru.getStudentList().get(i).getFirstname() + " " + ru.getStudentList().get(i).getLastname()), ru.getStudentList().get(i).getUserId());
                 }
-            } else if (choosenUserType.equals("Lärare")) {
+            }else if (choosenUserType.equals("Teacher")) {
                 ru.readOnlyTeacher();
                 editUserUserList.getItems().clear();
-
                 editUserUserLabel.setTextFill(Color.web("#000000"));
                 getEditUserUserList().setDisable(false);
                 editUserClassLabel.setTextFill(Color.web("#d3d3d3"));
@@ -226,11 +222,12 @@ public class AdminController {
 
                 for (int i = 0; i < ru.getTeacherList().size(); i++) {
                     editUserUserList.getItems().add(String.valueOf(ru.getTeacherList().get(i).getFirstname() + " " + ru.getTeacherList().get(i).getLastname()));
+                    //tempUserList.clear();
+                    //createTempList(String.valueOf(ru.getTeacherList().get(i).getFirstname() + " " + ru.getTeacherList().get(i).getLastname()), ru.getTeacherList().get(i).getUserId());
                 }
-            } else {
+            }else {
                 ru.readOnlyAdmin();
                 editUserUserList.getItems().clear();
-
                 editUserUserLabel.setTextFill(Color.web("#000000"));
                 getEditUserUserList().setDisable(false);
                 editUserClassLabel.setTextFill(Color.web("#d3d3d3"));
@@ -238,9 +235,26 @@ public class AdminController {
 
                 for (int i = 0; i < ru.getAdminList().size(); i++) {
                     editUserUserList.getItems().add(String.valueOf(ru.getAdminList().get(i).getFirstname() + " " + ru.getAdminList().get(i).getLastname()));
+                    //tempUserList.clear();
+                    //createTempList(String.valueOf(ru.getAdminList().get(i).getFirstname() + " " + ru.getAdminList().get(i).getLastname()), ru.getAdminList().get(i).getUserId());
                 }
             }
     }
+
+    /*@FXML
+    private void createTempList(String name, int id){
+        tempUser newTempUser = new tempUser();
+        newTempUser.setName(name);
+        newTempUser.setId(id);
+        tempUserList.add(newTempUser);
+    }*/
+
+    @FXML
+    private void removeSelectedUser(){
+        String selectedUser = editUserUserList.getValue();
+        System.out.println(editUserUserList.getSelectionModel().getSelectedIndex());
+    }
+
     @FXML
     private void sortByClass(){
         String choosenClass = editUserClassList.getValue();
@@ -252,8 +266,6 @@ public class AdminController {
             editUserUserList.getItems().add(String.valueOf(ru.getStudentListFromSpecificClass().get(i).getFirstname()+" "+ru.getStudentListFromSpecificClass().get(i).getLastname()));
         }
     }
-
-
 
     //Getters for createUser
     private ComboBox getUserType() {
@@ -320,4 +332,27 @@ public class AdminController {
     public void setEmail(TextField email) {
         this.email = email;
     }
+
+    /*private class tempUser{
+        String name;
+        int id;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            name = name;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+    }*/
+
+
 }

@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c32ca5e2-35c1-443b-8347-19d9412016f9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/admin/AdminController.class" afterPath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/admin/AdminController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/admin/layout/removeUser.fxml" afterPath="$PROJECT_DIR$/out/production/desktopApplication/com/testverktyg/eclipselink/view/admin/layout/removeUser.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/MenuController.java" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/MenuController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/removeUser.fxml" afterPath="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/removeUser.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -19,6 +18,19 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="addUser.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="439">
+              <caret line="33" column="47" lean-forward="true" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -29,21 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReadUser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/user/ReadUser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="65" column="31" lean-forward="false" selection-start-line="65" selection-start-column="31" selection-end-line="65" selection-end-column="105" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="removeUser.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/removeUser.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="30" column="128" lean-forward="false" selection-start-line="30" selection-start-column="128" selection-end-line="30" selection-end-column="128" />
+            <state relative-caret-position="280">
+              <caret line="51" column="133" lean-forward="false" selection-start-line="51" selection-start-column="133" selection-end-line="51" selection-end-column="151" />
               <folding />
             </state>
           </provider>
@@ -52,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-96">
-              <caret line="215" column="160" lean-forward="false" selection-start-line="215" selection-start-column="160" selection-end-line="215" selection-end-column="160" />
+            <state relative-caret-position="779">
+              <caret line="354" column="7" lean-forward="false" selection-start-line="354" selection-start-column="7" selection-end-line="354" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -64,14 +66,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MenuController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MenuController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/MenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="59" column="39" lean-forward="false" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="176">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -101,6 +101,16 @@
       <find>string</find>
       <find>classlist</find>
       <find>getclasslist</find>
+      <find>lär</find>
+      <find>getUserType</find>
+      <find>createUser</find>
+      <find>createNew</find>
+      <find>readc</find>
+      <find>lärar</find>
+      <find>createN</find>
+      <find>se</find>
+      <find>setstude</find>
+      <find>sort</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -129,14 +139,14 @@
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/Test/ReadTest.java" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addClass.fxml" />
-        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/showTestToStudentRoot.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/adminMainLayout.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/Main.java" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/MainController.java" />
-        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/MenuController.java" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/removeClass.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml" />
+        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/MenuController.java" />
+        <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/removeUser.fxml" />
         <option value="$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java" />
       </list>
@@ -149,10 +159,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="10" />
-    <option name="y" value="9" />
+    <option name="x" value="9" />
+    <option name="y" value="8" />
     <option name="width" value="1855" />
-    <option name="height" value="1069" />
+    <option name="height" value="1070" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -984,7 +994,7 @@
       <workItem from="1494179002876" duration="607000" />
       <workItem from="1494232615199" duration="906000" />
       <workItem from="1494233962343" duration="13877000" />
-      <workItem from="1494846042532" duration="29757000" />
+      <workItem from="1494846042532" duration="35967000" />
     </task>
     <task id="LOCAL-00001" summary="Created new service Class.">
       <created>1493989621171</created>
@@ -1004,10 +1014,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49157000" />
+    <option name="totallyTimeSpent" value="55367000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="9" width="1855" height="1069" extended-state="0" />
+    <frame x="9" y="8" width="1855" height="1070" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1029,7 +1039,7 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3388947" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33854166" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16965742" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1484,17 +1494,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -1582,17 +1581,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/removeClass.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="25" column="22" lean-forward="true" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/layout/login.fxml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -1606,6 +1594,14 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/user/ReadUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="74" column="110" lean-forward="false" selection-start-line="74" selection-start-column="108" selection-end-line="74" selection-end-column="110" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
@@ -1614,18 +1610,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/user/ReadUser.java">
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/MenuController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="65" column="31" lean-forward="false" selection-start-line="65" selection-start-column="31" selection-end-line="65" selection-end-column="105" />
+        <state relative-caret-position="176">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/addUser.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="33" column="47" lean-forward="true" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/removeClass.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="25" column="22" lean-forward="true" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/layout/removeUser.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="30" column="128" lean-forward="false" selection-start-line="30" selection-start-column="128" selection-end-line="30" selection-end-column="128" />
+        <state relative-caret-position="280">
+          <caret line="51" column="133" lean-forward="false" selection-start-line="51" selection-start-column="133" selection-end-line="51" selection-end-column="151" />
           <folding />
         </state>
       </provider>
@@ -1635,18 +1653,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-96">
-          <caret line="215" column="160" lean-forward="false" selection-start-line="215" selection-start-column="160" selection-end-line="215" selection-end-column="160" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/MenuController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="59" column="39" lean-forward="false" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
+        <state relative-caret-position="779">
+          <caret line="354" column="7" lean-forward="false" selection-start-line="354" selection-start-column="7" selection-end-line="354" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
