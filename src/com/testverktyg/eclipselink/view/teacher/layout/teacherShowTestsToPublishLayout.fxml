@@ -4,13 +4,28 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx"
+<BorderPane xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.testverktyg.eclipselink.view.teacher.TeacherController"
-      fx:id="showTeacherTestVbox" spacing="15">
-    <padding><Insets top="30" left="120" right="120" bottom="30"/> </padding>
+      fx:id="showTeacherTestBorderPane">
+    <padding><Insets top="30" left="80" right="120" bottom="30"/> </padding>
 
-    <Button text="Ändra"/>
-    <Button text="Hämta prov" onAction="#getTeacherTest" />
+    <top>
+        <HBox spacing="15">
+            <padding><Insets  bottom="30"/> </padding>
+            <Button text="Ändra" onAction="#getSelectedTestToEdit"/>
+            <Button text="Hämta prov" onAction="#getTeacherTest" />
+        </HBox>
+    </top>
 
-</VBox>
+    <left>
+        <ScrollPane  styleClass="edge-to-edge">
+            <VBox fx:id="showTeacherTestVbox" spacing="20" >
+                <padding><Insets right="120"/> </padding>
+            </VBox>
+        </ScrollPane>
+    </left>
+
+
+
+</BorderPane>

@@ -1,5 +1,7 @@
 package com.testverktyg.eclipselink.view.teacher;
 
+import com.testverktyg.eclipselink.entity.Alternative;
+import com.testverktyg.eclipselink.entity.Question;
 import com.testverktyg.eclipselink.entity.Test;
 import com.testverktyg.eclipselink.entity.UserTests;
 import com.testverktyg.eclipselink.service.Test.CreateTest;
@@ -12,10 +14,7 @@ import com.testverktyg.eclipselink.view.teacher.createTest.NewTest;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.StringConverter;
 import java.io.IOException;
@@ -54,6 +53,7 @@ public class TeacherController {
 
     //test
     @FXML private VBox showTeacherTestVbox;
+    @FXML private BorderPane showTeacherTestBorderPane;
     private RadioButton selectTestToPublishOrEdit[];
     private int userId;
     //test
@@ -497,6 +497,7 @@ public class TeacherController {
 
     @FXML
     private void getTeacherTest(){
+        getShowTeacherTestVbox().getChildren().clear();
         ReadTest readTest = new ReadTest();
         ReadUserTests readUserTests = new ReadUserTests(getUserId());
         ToggleGroup toggleGroup = new ToggleGroup();
@@ -526,6 +527,106 @@ public class TeacherController {
         }
     }
 
+    @FXML
+    private void getSelectedTestToEdit(){
+        FlowPane flowPane = new FlowPane();
+        ReadTest readTest = new ReadTest();
+        flowPane.setVgap(10);
+        flowPane.setHgap(10);
+
+        for(int i = 0; i <  getSelectTestToPublishOrEdit().length; i++){
+            if(getSelectTestToPublishOrEdit()[i].isSelected()){
+                int id = Integer.parseInt(getSelectTestToPublishOrEdit()[i].getId());
+                readTest.getTest(id);
+
+                /*for(Test test : readTest.getTestList()){
+                    int counter = 0;
+                    VBox vBox = new VBox();
+                    vBox.getChildren().add(new Label(test.getTestName()));
+                    vBox.getChildren().add(new Label(test.getTestDescription()));
+                    vBox.getChildren().add(new Label(test.getLastDate()));
+                    vBox.getChildren().add(new Label(String.valueOf(test.getTimeForTestMinutes())));
+                    flowPane.getChildren().add(vBox);
+
+                    for(Question question: readTest.getTestList().get(0).getQuestionList()){
+                        VBox vBox1 = new VBox();
+
+                        String grade = "";
+
+                        if( readTest.getTestList().get(0).getQuestionList().get(counter).isGradeG()){
+                            grade = "G";
+                        }
+                        else if(readTest.getTestList().get(0).getQuestionList().get(counter).isGradeVG()){
+                            grade="VG";
+                        }
+
+                        vBox1.getChildren().add(new Label(question.getQuestionText()));
+                        vBox1.getChildren().add(new Label(question.getTypeOfQuestion()));
+                        vBox1.getChildren().add(new Label("Betyg: " + grade));
+
+                        for(Alternative alternative : readTest.getTestList().get(0).getQuestionList().get(2).getAlternativeList()){
+                            vBox1.getChildren().add(new Label(alternative.getAlternativeText() + " Rätt svar: " + alternative.isAlternativeStatus()));
+                            System.out.println(alternative.getAlternativeText() + " Rätt svar: " + alternative.isAlternativeStatus());
+                        }
+
+
+
+
+                        flowPane.getChildren().add(vBox1);
+                        System.out.println(counter);
+                        counter++;
+                    }
+
+                }*/
+
+                for(int j = 0; j < readTest.getTestList().size(); j++){
+                    VBox vBox = new VBox();
+                    vBox.setStyle("-fx-border-color: black;");
+                    vBox.setPadding(new Insets(10));
+                    vBox.setSpacing(5);
+                    vBox.getChildren().add(new Label("Test: " + readTest.getTestList().get(j).getTestName()));
+                    vBox.getChildren().add(new Label("Beskrivning: " + readTest.getTestList().get(j).getTestDescription()));
+                    vBox.getChildren().add(new Label("Datum: " + readTest.getTestList().get(j).getLastDate()));
+                    vBox.getChildren().add(new Label("Tid:" + String.valueOf(readTest.getTestList().get(j).getTimeForTestMinutes())));
+                    flowPane.getChildren().add(vBox);
+
+                    for(int k = 0; k < readTest.getTestList().get(j).getQuestionList().size(); k++){
+                        VBox vBox1 = new VBox();
+                        vBox1.setStyle("-fx-border-color: black;");
+                        vBox1.setPadding(new Insets(10));
+                        vBox1.setSpacing(5);
+
+                        String grade = "";
+
+                        if( readTest.getTestList().get(j).getQuestionList().get(k).isGradeG()){
+                            grade = "G";
+                        }
+                        else if(readTest.getTestList().get(j).getQuestionList().get(k).isGradeVG()){
+                            grade="VG";
+                        }
+
+                        vBox1.getChildren().add(new Label("Fråga " + (k+1) ));
+                        vBox1.getChildren().add(new Label("Namn: " + readTest.getTestList().get(j).getQuestionList().get(k).getQuestionText()));
+                        vBox1.getChildren().add(new Label("Typ av fråga: " + readTest.getTestList().get(j).getQuestionList().get(k).getTypeOfQuestion()));
+                        vBox1.getChildren().add(new Label("Betyg: " + grade));
+                        System.out.println(k);
+
+                            for(int m = 0; m < readTest.getTestList().get(j).getQuestionList().get(k).getAlternativeList().size(); m++){
+                                vBox1.getChildren().add(new Label("Alternativ " + (m+1) + " : " + readTest.getTestList().get(j).getQuestionList().get(k).getAlternativeList().get(m).getAlternativeText() +
+                                        " Rätt svar: " + readTest.getTestList().get(j).getQuestionList().get(k).getAlternativeList().get(m).isAlternativeStatus()));
+                                System.out.println(m);
+                            }
+
+                        flowPane.getChildren().add(vBox1);
+                    }
+                }
+
+            }
+        }
+
+        getShowTeacherTestBorderPane().setCenter(flowPane);
+    }
+
     private VBox getShowTeacherTestVbox() {
         return showTeacherTestVbox;
     }
@@ -544,5 +645,9 @@ public class TeacherController {
 
     private void setSelectTestToPublishOrEdit(RadioButton[] selectTestToPublishOrEdit) {
         this.selectTestToPublishOrEdit = selectTestToPublishOrEdit;
+    }
+
+    public BorderPane getShowTeacherTestBorderPane() {
+        return showTeacherTestBorderPane;
     }
 }

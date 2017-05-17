@@ -26,7 +26,7 @@ public class Question {
     private boolean gradeVG;
 
     @OneToMany( targetEntity = Alternative.class)
-    private List alternativeList;
+    private List<Alternative> alternativeList;
 
     public int getQuestionId() {
         return questionId;
@@ -76,7 +76,7 @@ public class Question {
         this.gradeVG = gradeVG;
     }
 
-    public List getAlternativeList(){
+    public List<Alternative> getAlternativeList(){
         return alternativeList;
     }
 

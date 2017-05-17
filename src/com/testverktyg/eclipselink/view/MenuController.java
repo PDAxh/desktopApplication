@@ -77,8 +77,8 @@ public class MenuController {
     @FXML
     private void showTests() throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("teacher/layout/teacherShowTestsToPublishLayout.fxml"));
-        VBox vBox = loader.load();
-        borderPane.setCenter(vBox);
+        BorderPane borderPane = loader.load();
+        this.borderPane.setCenter(borderPane);
         TeacherController teacherController = loader.getController();
         teacherController.setUserId(getUserId());
     }

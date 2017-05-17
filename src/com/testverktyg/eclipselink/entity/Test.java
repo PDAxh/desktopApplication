@@ -25,7 +25,7 @@ public class Test {
     private int timeForTestMinutes;
 
     @OneToMany( targetEntity = Question.class)
-    private List questionList;
+    private List<Question> questionList;
 
     public int getTestId() {
         return testId;
@@ -83,7 +83,7 @@ public class Test {
         this.timeForTestMinutes = timeForTestMinutes;
     }
 
-    public List getQuestionList(){
+    public List<Question> getQuestionList(){
         return questionList;
     }
 
