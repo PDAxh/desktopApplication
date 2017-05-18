@@ -10,16 +10,17 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class DeleteUser {
-    public static void main( String[ ] args ) {
+
+    private int userId;
+
+    public void DeleteUser() {
 
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
         EntityManager entitymanager = emfactory.createEntityManager( );
         entitymanager.getTransaction( ).begin( );
 
-        // TODO make function that connects id to entitymanager.find. on row below.
-        // TODO function  that will select person via id?
 
-        User user = entitymanager.find( User.class, 1 );
+        User user = entitymanager.find( User.class,userId  );
         entitymanager.remove(user);
         // TESYAR D`FÖR SYNK
         entitymanager.getTransaction( ).commit( );
@@ -27,4 +28,11 @@ public class DeleteUser {
         emfactory.close( );
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 }
