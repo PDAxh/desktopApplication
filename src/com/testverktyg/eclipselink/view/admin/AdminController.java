@@ -1,11 +1,15 @@
 package com.testverktyg.eclipselink.view.admin;
 
+import com.sun.org.apache.regexp.internal.RE;
 import com.testverktyg.eclipselink.service.Class.CreateClass;
 import com.testverktyg.eclipselink.service.Class.DeleteClass;
 import com.testverktyg.eclipselink.service.Class.ReadClass;
 import com.testverktyg.eclipselink.service.user.CreateUser;
 import com.testverktyg.eclipselink.service.user.ReadUser;
-import com.testverktyg.eclipselink.service.user.loginUser;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
@@ -35,9 +39,46 @@ public class AdminController {
     @FXML private TextField studentClassName;
     @FXML private Label addClassMessageLabel;
     @FXML private Label removeClassMessageLabel;
+    @FXML private TableView userTable;
+    @FXML private ComboBox userTypeList;
+    @FXML private TableColumn IDCol;
+    @FXML private TableColumn fnameCol;
+    @FXML private TableColumn lnameCol;
+    @FXML private TableColumn emailCol;
+    @FXML private TableColumn klassCol;
+    @FXML private TableColumn typeCol;
+    @FXML private TextField searchField;
 
-    //public int userToEdit;
-    //public ArrayList<tempUser> tempUserList;
+
+    private ObservableList<User> data = FXCollections.observableArrayList();
+
+    public void addSearchListener(){
+        FilteredList<User> filteredData = new FilteredList<>(data, p -> true);
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(user -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (user.getFname().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (user.getLname().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (user.getEmail().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (user.getKlass().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (user.getType().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        SortedList<User> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(userTable.comparatorProperty());
+        userTable.setItems(sortedData);
+    }
 
     @FXML
     private void setStudentClassOption(){
@@ -51,6 +92,7 @@ public class AdminController {
             studentClassLabel.setTextFill(Color.web("#d3d3d3"));
         }
     }
+
     @FXML
     private void comparePassword(){
         if(getPassword().getText().equals(getPasswordRepeat().getText())) {
@@ -77,6 +119,68 @@ public class AdminController {
     }
 
     @FXML
+    private void showUsers(){
+        System.out.println("showUser Started");
+        String userType = String.valueOf(userTypeList.getValue());
+        fillUserList(userType);
+    }
+
+    @FXML
+    private void fillUserList(String type){
+        ReadUser newReadUser = new ReadUser();
+        if(type.equals("Student")){
+            //addSearchListener();
+            newReadUser.readOnlyStudents();
+            data.clear();
+            for (int i = 0; i < newReadUser.getStudentList().size(); i++) {
+                int ID = newReadUser.getStudentList().get(i).getUserId();
+                String fname = newReadUser.getStudentList().get(i).getFirstname();
+                String lname = newReadUser.getStudentList().get(i).getLastname();
+                String email = newReadUser.getStudentList().get(i).getEmail();
+                String klass = newReadUser.getStudentList().get(i).getKlass();
+                String usertype = newReadUser.getStudentList().get(i).getTypeOfUser();
+                User newUser = new User();
+                newUser.createNewUser(ID, fname, lname, email, klass, usertype);
+                data.add(newUser);
+            }
+            userTable.setItems(data);
+            userTable.getColumns().setAll(IDCol, fnameCol, lnameCol, emailCol, klassCol, typeCol);
+        }else if(type.equals("Teacher")){
+            newReadUser.readOnlyTeacher();
+            data.clear();
+            for (int i = 0; i < newReadUser.getTeacherList().size(); i++) {
+                int ID = newReadUser.getTeacherList().get(i).getUserId();
+                String fname = newReadUser.getTeacherList().get(i).getFirstname();
+                String lname = newReadUser.getTeacherList().get(i).getLastname();
+                String email = newReadUser.getTeacherList().get(i).getEmail();
+                String klass = newReadUser.getTeacherList().get(i).getKlass();
+                String usertype = newReadUser.getTeacherList().get(i).getTypeOfUser();
+                User newUser = new User();
+                newUser.createNewUser(ID, fname, lname, email, klass, usertype);
+                data.add(newUser);
+            }
+            userTable.setItems(data);
+            userTable.getColumns().setAll(IDCol, fnameCol, lnameCol, emailCol, klassCol, typeCol);
+        }else if(type.equals("Admin")){
+            newReadUser.readOnlyAdmin();
+            data.clear();
+            for (int i = 0; i < newReadUser.getAdminList().size(); i++) {
+                int ID = newReadUser.getAdminList().get(i).getUserId();
+                String fname = newReadUser.getAdminList().get(i).getFirstname();
+                String lname = newReadUser.getAdminList().get(i).getLastname();
+                String email = newReadUser.getAdminList().get(i).getEmail();
+                String klass = newReadUser.getAdminList().get(i).getKlass();
+                String usertype = newReadUser.getAdminList().get(i).getTypeOfUser();
+                User newUser = new User();
+                newUser.createNewUser(ID, fname, lname, email, klass, usertype);
+                data.add(newUser);
+            }
+            userTable.setItems(data);
+            userTable.getColumns().setAll(IDCol, fnameCol, lnameCol, emailCol, klassCol, typeCol);
+        }
+    }
+
+        @FXML
     private void checkUserTypeToEdit(){
         if(getEditUserUserList().getValue().equals("Välj en användare")) {
             System.out.println("User not selected");
@@ -88,7 +192,7 @@ public class AdminController {
                 getEditUserUserList().setDisable(true);
                 editUserClassList.setValue("Välj en klass");
                 editUserUserList.setValue("Välj en användare");
-            } else if (getEditUserUsertypeList().getValue().equals("Student")) {
+            }else if (getEditUserUsertypeList().getValue().equals("Student")) {
                 System.out.println("Type is student");
                 editUserClassLabel.setTextFill(Color.web("#000000"));
                 getEditUserClassList().setDisable(false);
@@ -96,7 +200,7 @@ public class AdminController {
                 getEditUserUserList().setDisable(false);
                 editUserClassLabel.setTextFill(Color.web("#000000"));
                 getEditUserClassList().setDisable(false);
-            } else {
+            }else {
                 editUserUserLabel.setTextFill(Color.web("#000000"));
                 getEditUserUserList().setDisable(false);
                 editUserClassLabel.setTextFill(Color.web("#d3d3d3"));
@@ -209,8 +313,6 @@ public class AdminController {
                 getEditUserClassList().setDisable(false);
                 for (int i = 0; i < ru.getStudentList().size(); i++) {
                     editUserUserList.getItems().add(String.valueOf(ru.getStudentList().get(i).getFirstname() + " " + ru.getStudentList().get(i).getLastname()));
-                    //tempUserList.clear();
-                    //createTempList(String.valueOf(ru.getStudentList().get(i).getFirstname() + " " + ru.getStudentList().get(i).getLastname()), ru.getStudentList().get(i).getUserId());
                 }
             }else if (choosenUserType.equals("Teacher")) {
                 ru.readOnlyTeacher();
@@ -222,8 +324,6 @@ public class AdminController {
 
                 for (int i = 0; i < ru.getTeacherList().size(); i++) {
                     editUserUserList.getItems().add(String.valueOf(ru.getTeacherList().get(i).getFirstname() + " " + ru.getTeacherList().get(i).getLastname()));
-                    //tempUserList.clear();
-                    //createTempList(String.valueOf(ru.getTeacherList().get(i).getFirstname() + " " + ru.getTeacherList().get(i).getLastname()), ru.getTeacherList().get(i).getUserId());
                 }
             }else {
                 ru.readOnlyAdmin();
@@ -235,19 +335,9 @@ public class AdminController {
 
                 for (int i = 0; i < ru.getAdminList().size(); i++) {
                     editUserUserList.getItems().add(String.valueOf(ru.getAdminList().get(i).getFirstname() + " " + ru.getAdminList().get(i).getLastname()));
-                    //tempUserList.clear();
-                    //createTempList(String.valueOf(ru.getAdminList().get(i).getFirstname() + " " + ru.getAdminList().get(i).getLastname()), ru.getAdminList().get(i).getUserId());
                 }
             }
     }
-
-    /*@FXML
-    private void createTempList(String name, int id){
-        tempUser newTempUser = new tempUser();
-        newTempUser.setName(name);
-        newTempUser.setId(id);
-        tempUserList.add(newTempUser);
-    }*/
 
     @FXML
     private void removeSelectedUser(){
@@ -301,7 +391,6 @@ public class AdminController {
         return editUserClassLabel;
     }
 
-
     //Getters for add/remove Class
     private ComboBox getClassList() {
         return classList;
@@ -312,47 +401,84 @@ public class AdminController {
     public TextField getFirstName() {
         return firstName;
     }
-
     public void setFirstName(TextField firstName) {
         this.firstName = firstName;
     }
-
     public TextField getLastName() {
         return lastName;
     }
-
     public void setLastName(TextField lastName) {
         this.lastName = lastName;
     }
-
     public TextField getEmail() {
         return email;
     }
-
     public void setEmail(TextField email) {
         this.email = email;
     }
 
-    /*private class tempUser{
-        String name;
-        int id;
-
-        public String getName() {
-            return name;
+    public class User{
+        int ID;
+        String fname;
+        String lname;
+        String email;
+        String klass;
+        String type;
+        public void createNewUser(int inID, String infname, String inlname, String inemail, String inklass, String intype){
+            ID=inID;
+            fname=infname;
+            lname=inlname;
+            email=inemail;
+            klass=inklass;
+            type=intype;
         }
 
-        public void setName(String name) {
-            name = name;
+        public int getID() {
+            return ID;
         }
 
-        public int getId() {
-            return id;
+        public void setID(int ID) {
+            this.ID = ID;
         }
 
-        public void setId(int id) {
-            this.id = id;
+        public String getFname() {
+            return fname;
         }
-    }*/
 
+        public void setFname(String fname) {
+            this.fname = fname;
+        }
 
+        public String getLname() {
+            return lname;
+        }
+
+        public void setLname(String lname) {
+            this.lname = lname;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getKlass() {
+            return klass;
+        }
+
+        public void setKlass(String klass) {
+            this.klass = klass;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+    }
 }
