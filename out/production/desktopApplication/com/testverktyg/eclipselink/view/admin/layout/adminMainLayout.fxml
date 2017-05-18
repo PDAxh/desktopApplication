@@ -53,7 +53,7 @@
                     <MenuItem text="Publicera prov" />
                 </Menu>
                 <Menu text="Hjälp">
-                    <MenuItem text="Hjälp" />
+                    <MenuItem text="Hjälp" onAction="#getHelpMenueForAdmin"/>
                     <MenuItem text="Om oss" />
                 </Menu>
             </MenuBar>

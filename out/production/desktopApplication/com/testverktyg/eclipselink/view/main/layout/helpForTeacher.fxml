@@ -9,16 +9,16 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.testverktyg.eclipselink.view.MenuController">
 
-    <left>
+    <top>
         <GridPane vgap="5" hgap="5" alignment="TOP_CENTER" >
-            <padding><Insets top="30" left="50"/> </padding>
+            <padding><Insets top="30" left="50" right="50"/> </padding>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="Välkommen till Hjälp!" underline="true"/>
-            <Label GridPane.columnIndex="0" GridPane.rowIndex="1" maxWidth="350" wrapText="true"
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="1" maxWidth="1000" wrapText="true"
                    text="På denna sidan finns det hjälp inom de olika delarna i programmet. Varje del har sin egna kategori men en beskrivning för hur det fungerar och för att du enklare ska hitta det du behöver hjälp med. Skulle det var någon anledning inte finnas det du behöver ha hjälp med vänligen kontakta oss på hjalp@testverktygnewton.se så hjälper vi dig."/>
         </GridPane>
-    </left>
+    </top>
 
-    <center>
+    <left>
         <GridPane vgap="5" hgap="5">
             <padding><Insets top="40" left="20"/></padding>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="0" wrapText="true"
@@ -52,11 +52,11 @@
                   text="Här visas en kort beskrivning om programmet och skaparna bakom det."/>
 
         </GridPane>
-    </center>
+    </left>
 
-    <right>
+    <center>
         <GridPane vgap="5" hgap="5">
-            <padding><Insets top="40" left="20" right="50"/></padding>
+        <padding><Insets top="40" left="20"/></padding>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="0" wrapText="true"
                    underline="true" text="Prov: "/>
             <Text GridPane.columnIndex="0" GridPane.rowIndex="1" wrappingWidth="350"
@@ -74,7 +74,12 @@ Detta gör du genom att trycka på fliken 'frågor' och väljer den frågan du v
 När du har ändrat i frågan trycker du på 'uppdatera' för att uppdatera frågan.
 När du är nöjd med ditt prov trycker du på knappen 'spara', du får då upp en ruta som innehåller all information om ditt test.
 Du sparar sedan testet genom att trycka på spara på denna rutan."/>
+        </GridPane>
+    </center>
 
+    <right>
+        <GridPane vgap="5" hgap="5">
+            <padding><Insets top="40" left="20" right="50"/></padding>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="4" wrapText="true"
                    underline="true" text="Dina prov: "/>
             <Text GridPane.columnIndex="0" GridPane.rowIndex="5" wrappingWidth="350"

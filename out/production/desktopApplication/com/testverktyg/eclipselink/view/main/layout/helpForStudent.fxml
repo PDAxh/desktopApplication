@@ -9,16 +9,16 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.testverktyg.eclipselink.view.MenuController">
 
-    <left>
+    <top>
         <GridPane vgap="5" hgap="5" alignment="TOP_CENTER" >
-            <padding><Insets top="30" left="50"/> </padding>
+            <padding><Insets top="30" left="50" right="50"/> </padding>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="Välkommen till Hjälp!" underline="true"/>
-            <Label GridPane.columnIndex="0" GridPane.rowIndex="1" maxWidth="350" wrapText="true"
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="1" maxWidth="1000" wrapText="true"
                    text="På denna sidan finns det hjälp inom de olika delarna i programmet. Varje del har sin egna kategori men en beskrivning för hur det fungerar och för att du enklare ska hitta det du behöver hjälp med. Skulle det var någon anledning inte finnas det du behöver ha hjälp med vänligen kontakta oss på hjalp@testverktygnewton.se så hjälper vi dig."/>
         </GridPane>
-    </left>
+    </top>
 
-    <center>
+    <left>
         <GridPane vgap="5" hgap="5">
             <padding><Insets top="40" left="20"/></padding>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="0" wrapText="true"
@@ -52,9 +52,9 @@
                   text="Här visas en kort beskrivning om programmet och skaparna bakom det."/>
 
         </GridPane>
-    </center>
+    </left>
 
-    <right>
+    <center>
         <GridPane vgap="5" hgap="5">
             <padding><Insets top="40" left="20" right="50"/></padding>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="0" wrapText="true"
@@ -71,6 +71,6 @@ Det finns även till varje prov två knappar, 'genomför prov' och 'se resultat'
 'Genomför prov' kommer endast gå att trycka på om man inte har genomfört testet tidigare och 'se resultat' kommer endast gå att trycka på om provet redan är genomfört.
 På 'se resultat' kommer du att kunna se hur mycket poäng du har fått på provet, hur många av frågorna du fick rätt på, hur många av de frågorna som var G-frågor och VG-frågor och vilket betyg du fick på provet."/>
         </GridPane>
-    </right>
+    </center>
 
 </BorderPane>
