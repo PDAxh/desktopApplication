@@ -24,7 +24,7 @@
                     <MenuItem text="Publicera test" onAction="#showTests"/>
                 </Menu>
                 <Menu text="Hjälp">
-                    <MenuItem text="Hjälp"/>
+                    <MenuItem text="Hjälp" onAction="#getHelpMenueForTeacher"/>
                     <MenuItem text="Om oss"/>
                 </Menu>
             </MenuBar>

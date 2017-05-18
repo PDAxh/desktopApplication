@@ -96,4 +96,22 @@ public class MenuController {
         this.userId = userId;
     }
 
+    @FXML
+    private void getHelpMenueForTeacher() throws IOException{
+        BorderPane bP = FXMLLoader.load(getClass().getResource("main/layout/helpForTeacher.fxml"));
+        borderPane.setCenter(bP);
+    }
+
+    @FXML
+    private void getHelpMenueForStudent() throws IOException{
+        BorderPane bP = FXMLLoader.load(getClass().getResource("main/layout/helpForTeacher.fxml"));
+        borderPane.setCenter(bP);
+    }
+
+    @FXML
+    private void getHelpMenueForAdmin() throws IOException{
+        BorderPane bP = FXMLLoader.load(getClass().getResource("main/layout/helpForTeacher.fxml"));
+        borderPane.setCenter(bP);
+    }
+
 }
