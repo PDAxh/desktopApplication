@@ -104,13 +104,13 @@ public class MenuController {
 
     @FXML
     private void getHelpMenueForStudent() throws IOException{
-        BorderPane bP = FXMLLoader.load(getClass().getResource("main/layout/helpForTeacher.fxml"));
+        BorderPane bP = FXMLLoader.load(getClass().getResource("main/layout/helpForStudent.fxml"));
         borderPane.setCenter(bP);
     }
 
     @FXML
     private void getHelpMenueForAdmin() throws IOException{
-        BorderPane bP = FXMLLoader.load(getClass().getResource("main/layout/helpForTeacher.fxml"));
+        BorderPane bP = FXMLLoader.load(getClass().getResource("main/layout/helpForAdmin.fxml"));
         borderPane.setCenter(bP);
     }
 

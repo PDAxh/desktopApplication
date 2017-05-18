@@ -1,0 +1,89 @@
+<?import javafx.scene.layout.BorderPane?>
+
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.testverktyg.eclipselink.view.MenuController">
+
+    <left>
+        <GridPane vgap="5" hgap="5" alignment="TOP_CENTER" >
+            <padding><Insets top="30" left="50"/> </padding>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="Välkommen till Hjälp!" underline="true"/>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="1" maxWidth="350" wrapText="true"
+                   text="På denna sidan finns det hjälp inom de olika delarna i programmet. Varje del har sin egna kategori men en beskrivning för hur det fungerar och för att du enklare ska hitta det du behöver hjälp med. Skulle det var någon anledning inte finnas det du behöver ha hjälp med vänligen kontakta oss på hjalp@testverktygnewton.se så hjälper vi dig."/>
+        </GridPane>
+    </left>
+
+    <center>
+        <GridPane vgap="5" hgap="5">
+            <padding><Insets top="40" left="20"/></padding>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="0" wrapText="true"
+                   underline="true" text="Arkiv: "/>
+            <Text GridPane.columnIndex="0" GridPane.rowIndex="1" wrappingWidth="300"
+                  text="Denna flik innehåller 'logga ut' och 'avsluta'."/>
+
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="2" wrapText="true"
+                   underline="true" text="Logga ut: "/>
+            <Text GridPane.columnIndex="0" GridPane.rowIndex="3" wrappingWidth="300"
+                  text="Genom att trycka på denna flik loggas du ut ur systemet och kommer tillbaka till inloggningssidan."/>
+
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="4" wrapText="true"
+                   underline="true" text="Avsluta: "/>
+            <Text GridPane.columnIndex="0" GridPane.rowIndex="5" wrappingWidth="300"
+                  text="Genom att trycka på denna flik loggas du ut ur systemet och hela programmet stängs ner."/>
+
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="6" wrapText="true"
+                   underline="true" text="Hjälp:"/>
+            <Text GridPane.columnIndex="0" GridPane.rowIndex="7" wrappingWidth="300"
+                  text="Denna flik innehåller underflikerna 'hjälp' och 'om oss'."/>
+
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="8" wrapText="true"
+                   underline="true" text="Hjälp:"/>
+            <Text GridPane.columnIndex="0" GridPane.rowIndex="9" wrappingWidth="300"
+                  text="Underfliken hjälp är den du är inne på för tillfället och innehåller information om de olika delarna i programmet. Detta ska vara en guid för dig om du skulle behöva hjälp inom någon område."/>
+
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="10" wrapText="true"
+                   underline="true" text="Om oss: "/>
+            <Text GridPane.columnIndex="0" GridPane.rowIndex="11" wrappingWidth="300"
+                  text="Här visas en kort beskrivning om programmet och skaparna bakom det."/>
+
+        </GridPane>
+    </center>
+
+    <right>
+        <GridPane vgap="5" hgap="5">
+            <padding><Insets top="40" left="20" right="50"/></padding>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="0" wrapText="true"
+                   underline="true" text="Prov: "/>
+            <Text GridPane.columnIndex="0" GridPane.rowIndex="1" wrappingWidth="350"
+                  text="Denna flik innehåller underflikerna 'skapa nytt prov' och 'dina prov'."/>
+
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="2" wrapText="true"
+                   underline="true" text="Skapa nytt prov: "/>
+            <Text GridPane.columnIndex="0" GridPane.rowIndex="3" wrappingWidth="350"
+                  text="Här kan du skapa ett nytt prov som eleverna ska utföra. Du börjar med att fylla i namn, beskrivning, tid, datum, självrättande och visa resultat.
+När väl detta är valt kan du börja lägga till frågor.
+Skriv in frågan på höger sidan, välj betyg, antal poäng, vilken typ av fråga det ska vara och sedan hur många alternativ frågan ska ha.
+När du sedan fyllt i de olika alternativen och markerat rätt svar trycker du på knappen 'lägg till fråga'.
+Frågan läggs få till och du kan undertiden du skapar du skapar provet alltid gå tillbaka till en fråga och ändra den.
+Detta gör du genom att trycka på fliken 'frågor' och väljer den frågan du vill redigera. Vill du ta bort frågan helt kan du även göra detta.
+När du har ändrat i frågan trycker du på 'uppdatera' för att uppdatera frågan.
+När du är nöjd med ditt prov trycker du på knappen 'spara', du får då upp en ruta som innehåller all information om ditt test.
+Du sparar sedan testet genom att trycka på spara på denna rutan."/>
+
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="4" wrapText="true"
+                   underline="true" text="Dina prov: "/>
+            <Text GridPane.columnIndex="0" GridPane.rowIndex="5" wrappingWidth="350"
+                  text="Här listas alla prov som du har skapat upp efter varandra.
+Du kan välja att se statistik från provet som visar hur många elever som har gjort testet, vad genomsnittspoängen är och hur lång tid det är kvar tills testet går ut.
+Du kan även välja att uppdatera testet, men detta alternativ kommer endast vara möjligt när datumet för testet är utgånget och inga elever kan genomföra testet längre.
+Under 'uppdatera test' kan du välja att uppdatera informationen som redan finns på både testet, frågorna och alternativen.
+Du kan även välja att ta bort en fråga/ett alternativ samt lägga till en fråga/ett alternativ."/>
+        </GridPane>
+    </right>
+
+</BorderPane>

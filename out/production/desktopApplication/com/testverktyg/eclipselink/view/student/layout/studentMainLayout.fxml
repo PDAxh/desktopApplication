@@ -23,7 +23,7 @@
                     <MenuItem text="Visa prov" onAction="#showTestToStudent"/>
                 </Menu>
                 <Menu text="Hjälp">
-                    <MenuItem text="Hjälp"/>
+                    <MenuItem text="Hjälp" onAction="#getHelpMenueForStudent"/>
                     <MenuItem text="Om oss"/>
                 </Menu>
             </MenuBar>
