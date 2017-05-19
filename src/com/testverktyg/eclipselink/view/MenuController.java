@@ -114,4 +114,10 @@ public class MenuController {
         borderPane.setCenter(bP);
     }
 
+    @FXML
+    private void getAboutUs() throws IOException{
+        BorderPane bP = FXMLLoader.load(getClass().getResource("main/layout/aboutUs.fxml"));
+        borderPane.setCenter(bP);
+    }
+
 }
