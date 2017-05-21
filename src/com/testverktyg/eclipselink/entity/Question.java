@@ -24,6 +24,7 @@ public class Question {
     private String questionText;
     private boolean gradeG;
     private boolean gradeVG;
+    private int points;
 
     @OneToMany( targetEntity = Alternative.class)
     private List<Alternative> alternativeList;
@@ -74,6 +75,14 @@ public class Question {
 
     public void setGradeVG(boolean gradeVG) {
         this.gradeVG = gradeVG;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     public List<Alternative> getAlternativeList(){

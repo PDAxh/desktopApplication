@@ -17,7 +17,7 @@ public class CreateTest {
 
     //Variable
     private List<Question> questionList = new ArrayList<>();
-    private List<Alternative> alternativeList = new ArrayList<>();
+    private List<Alternative> alternativeList;
 
     private Test test;
     private Question question;
@@ -47,7 +47,7 @@ public class CreateTest {
 
     }
 
-    public void createQuestion(String typeQuestion, String textQuestion, boolean gradeVg, boolean gradeG){
+    public void createQuestion(String typeQuestion, String textQuestion, boolean gradeVg, boolean gradeG, int points){
 
         //Add a new question to the active test
         question = new Question();
@@ -56,7 +56,7 @@ public class CreateTest {
         question.setQuestionText(textQuestion);
         question.setGradeVG(gradeVg);
         question.setGradeG(gradeG);
-
+        question.setPoints(points);
         entitymanager.persist(question);
         entitymanager.flush();
         questionList.add(question);
@@ -74,9 +74,15 @@ public class CreateTest {
         alternativeList.add(alternative);
     }
 
-    public int commitTest(){
-
+    public void addAlternativListToQuestion(){
         question.setAlternativeList(alternativeList);
+    }
+
+    public void createNewAlternativeList(){
+        alternativeList  = new ArrayList<>();
+    }
+
+    public int commitTest(){
         test.setQuestionList(questionList);
 
         //Commit to database and close the connection
