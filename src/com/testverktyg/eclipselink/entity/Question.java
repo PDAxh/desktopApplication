@@ -11,7 +11,8 @@ import java.util.List;
         @NamedQuery(name = "FindQuestionId", query = "select q.questionId from Question q where q.testId = :tId"),
         @NamedQuery(name = "FindQuestionGradeG", query = "select q.gradeG from Question q where q.questionId = :qId"),
         @NamedQuery(name = "FindQuestionGradeVG", query = "select q.gradeG from Question q where q.questionId = :qId"),
-        @NamedQuery(name = "FindQuestionType", query = "select q.typeOfQuestion from Question q where q.questionId = :qId")
+        @NamedQuery(name = "FindQuestionType", query = "select q.typeOfQuestion from Question q where q.questionId = :qId"),
+        @NamedQuery(name = "FindAndDeleteAllAlternatives", query = "delete  from Question  q where q.questionId = :qId")
 })
 
 public class Question {
@@ -26,7 +27,7 @@ public class Question {
     private boolean gradeVG;
     private int points;
 
-    @OneToMany( targetEntity = Alternative.class)
+    @OneToMany(targetEntity = Alternative.class, orphanRemoval = true)
     private List<Alternative> alternativeList;
 
     public int getQuestionId() {

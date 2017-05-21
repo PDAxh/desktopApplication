@@ -10,6 +10,8 @@ import javax.persistence.*;
 
 public class UpdateTest {
 
+
+
     //To be able to use several methods after each other without calling the class again
     // EntityManagerFactory and EntityManager needs to be in every method.
 
@@ -35,7 +37,7 @@ public class UpdateTest {
     }
 
     // updatest the information for the chosen question
-    public void updateQuestionInformation(int questionId, String newQuestionText, String newQuestionType, boolean newGradeG, boolean newGradeVG){
+    public void updateQuestionInformation(int questionId, String newQuestionText, String newQuestionType, boolean newGradeG, boolean newGradeVG, int newPoints){
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
         EntityManager entitymanager = emfactory.createEntityManager( );
 
@@ -46,6 +48,7 @@ public class UpdateTest {
         question.setTypeOfQuestion(newQuestionType);
         question.setGradeG(newGradeG);
         question.setGradeVG(newGradeVG);
+        question.setPoints(newPoints);
 
         entitymanager.getTransaction( ).commit( );
         entitymanager.close();

@@ -81,6 +81,7 @@ public class MenuController {
         this.borderPane.setCenter(borderPane);
         TeacherController teacherController = loader.getController();
         teacherController.setUserId(getUserId());
+        teacherController.getTeacherTest();
     }
 
     @FXML

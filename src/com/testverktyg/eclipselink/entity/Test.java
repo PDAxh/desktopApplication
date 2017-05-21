@@ -24,7 +24,7 @@ public class Test {
     private String lastDate;
     private int timeForTestMinutes;
 
-    @OneToMany( targetEntity = Question.class)
+    @OneToMany( targetEntity = Question.class, orphanRemoval = true)
     private List<Question> questionList;
 
     public int getTestId() {
