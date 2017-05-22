@@ -10,6 +10,7 @@
         <class>com.testverktyg.eclipselink.entity.Alternative</class>
         <class>com.testverktyg.eclipselink.entity.Class</class>
         <class>com.testverktyg.eclipselink.entity.UserTests</class>
+        <class>com.testverktyg.eclipselink.entity.StudentAnswer</class>
 
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/testverktyg?useSSL=false"/>
