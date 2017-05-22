@@ -6,7 +6,8 @@
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
-<GridPane vgap="5" hgap="10" alignment="TOP_CENTER"
+<GridPane fx:id="newUserPane"
+          vgap="5" hgap="10" alignment="TOP_CENTER"
           xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="com.testverktyg.eclipselink.view.admin.AdminController">

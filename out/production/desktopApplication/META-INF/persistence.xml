@@ -9,12 +9,13 @@
         <class>com.testverktyg.eclipselink.entity.Question</class>
         <class>com.testverktyg.eclipselink.entity.Alternative</class>
         <class>com.testverktyg.eclipselink.entity.Class</class>
+        <class>com.testverktyg.eclipselink.entity.UserTests</class>
 
         <properties>
-            <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/testverktyg?useSSL=false"/>
-            <property name="eclipselink.jdbc.user" value="root"/>
-            <property name="eclipselink.jdbc.password" value="123456789"/>
-            <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/testverktyg?useSSL=false"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="123456789"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="eclipselink.logging.level" value="FINE"/>
             <property name="eclipselink.ddl-generation" value="create-tables"/>
         </properties>

@@ -1,58 +1,110 @@
 package com.testverktyg.eclipselink.view.admin;
 
-import com.sun.org.apache.regexp.internal.RE;
+
 import com.testverktyg.eclipselink.service.Class.CreateClass;
 import com.testverktyg.eclipselink.service.Class.DeleteClass;
 import com.testverktyg.eclipselink.service.Class.ReadClass;
 import com.testverktyg.eclipselink.service.user.CreateUser;
+import com.testverktyg.eclipselink.service.user.DeleteUser;
 import com.testverktyg.eclipselink.service.user.ReadUser;
+import com.testverktyg.eclipselink.service.user.UpdateUser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+
 /**
  * Created by Andreas
  */
 public class AdminController {
 
-    @FXML private ComboBox<String> userType;
-    @FXML private ComboBox<String> studentClass;
-    @FXML private Label studentClassLabel;
-    @FXML private PasswordField password;
-    @FXML private PasswordField passwordRepeat;
-    @FXML private Label passwordMessageLabel;
-    @FXML private ComboBox<String> classList;
-    @FXML private Button removeClassButton;
-    @FXML private ComboBox editUserUsertypeList;
-    @FXML private Label editUserClassLabel;
-    @FXML private ComboBox<String> editUserClassList;
-    @FXML private Label editUserUserLabel;
-    @FXML private ComboBox<String> editUserUserList;
-    @FXML private Button editUserRemoveButton;
-    @FXML private Button editUserEditButton;
-    @FXML private TextField firstName;
-    @FXML private TextField lastName;
-    @FXML private TextField email;
-    @FXML private TextField studentClassName;
-    @FXML private Label addClassMessageLabel;
-    @FXML private Label removeClassMessageLabel;
-    @FXML private TableView userTable;
-    @FXML private ComboBox userTypeList;
-    @FXML private TableColumn IDCol;
-    @FXML private TableColumn fnameCol;
-    @FXML private TableColumn lnameCol;
-    @FXML private TableColumn emailCol;
-    @FXML private TableColumn klassCol;
-    @FXML private TableColumn typeCol;
-    @FXML private TextField searchField;
+    @FXML
+    private ComboBox<String> userType;
+    @FXML
+    private ComboBox<String> studentClass;
+    @FXML
+    private Label studentClassLabel;
+    @FXML
+    private PasswordField password;
+    @FXML
+    private PasswordField passwordRepeat;
+    @FXML
+    private Label passwordMessageLabel;
+    @FXML
+    private ComboBox<String> classList;
+    @FXML
+    private Button removeClassButton;
+    @FXML
+    private ComboBox editUserUsertypeList;
+    @FXML
+    private Label editUserClassLabel;
+    @FXML
+    private ComboBox<String> editUserClassList;
+    @FXML
+    private Label editUserUserLabel;
+    @FXML
+    private ComboBox<String> editUserUserList;
+    @FXML
+    private Button editUserRemoveButton;
+    @FXML
+    private Button editUserEditButton;
+    @FXML
+    private TextField firstName;
+    @FXML
+    private TextField lastName;
+    @FXML
+    private TextField email;
+    @FXML
+    private TextField studentClassName;
+    @FXML
+    private Label addClassMessageLabel;
+    @FXML
+    private Label removeClassMessageLabel;
+    @FXML
+    private TableView userTable;
+    @FXML
+    private ComboBox userTypeList;
+    @FXML
+    private TableColumn IDCol;
+    @FXML
+    private TableColumn fnameCol;
+    @FXML
+    private TableColumn lnameCol;
+    @FXML
+    private TableColumn emailCol;
+    @FXML
+    private TableColumn klassCol;
+    @FXML
+    private TableColumn typeCol;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private GridPane editUserPane;
+    @FXML
+    private GridPane newUserPane;
 
 
     private ObservableList<User> data = FXCollections.observableArrayList();
+    int selectedID;
 
-    public void addSearchListener(){
+    Label fnameLabel = new Label();
+    Label lnameLabel = new Label();
+    Label emailLabel = new Label();
+    Label newPasswordLabel = new Label();
+    Label verifyPasswordLabel = new Label();
+    TextField fnameField = new TextField();
+    TextField lnameField = new TextField();
+    TextField emailField = new TextField();
+    TextField newPasswordField = new TextField();
+    TextField verifyPasswordField = new TextField();
+    Label updateUserMessageLabel = new Label();
+    Button updateUserButton = new Button();
+
+    public void addSearchListener() {
         FilteredList<User> filteredData = new FilteredList<>(data, p -> true);
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(user -> {
@@ -81,23 +133,22 @@ public class AdminController {
     }
 
     @FXML
-    private void setStudentClassOption(){
-        if(getUserType().getValue().equals("student")){
+    private void setStudentClassOption() {
+        if (getUserType().getValue().equals("student")) {
             getStudentClass().setDisable(false);
             studentClassLabel.setTextFill(Color.web("#000000"));
             fillClasses(studentClass);
-        }
-        else{
+        } else {
             getStudentClass().setDisable(true);
             studentClassLabel.setTextFill(Color.web("#d3d3d3"));
         }
     }
 
     @FXML
-    private void comparePassword(){
-        if(getPassword().getText().equals(getPasswordRepeat().getText())) {
+    private void comparePassword() {
+        if (getPassword().getText().equals(getPasswordRepeat().getText())) {
             passwordMessageLabel.setText("");
-        }else{
+        } else {
             passwordMessageLabel.setText("Lösenorden stämmer inte överens. Var god försök igen.");
             getPassword().setText("");
             getPasswordRepeat().setText("");
@@ -106,29 +157,35 @@ public class AdminController {
     }
 
     @FXML
-    public void fillClasses(ComboBox cb){
+    public void fillClassList() {
+        //TEMP METHOD
+        fillClasses(classList);
+    }
+
+    @FXML
+    public void fillClasses(ComboBox cb) {
         cb.getItems().clear();
         cb.getItems().add("Välj en klass");
         cb.setValue("Välj en klass");
         ReadClass newReadClass = new ReadClass();
         newReadClass.readAllClasses();
-        for (int i = 0; i < newReadClass.getClassNameList().size(); i++){
+        for (int i = 0; i < newReadClass.getClassNameList().size(); i++) {
             System.out.println(newReadClass.getClassNameList().get(i));
             cb.getItems().add(String.valueOf(newReadClass.getClassNameList().get(i)));
         }
     }
 
     @FXML
-    private void showUsers(){
+    private void showUsers() {
         System.out.println("showUser Started");
         String userType = String.valueOf(userTypeList.getValue());
         fillUserList(userType);
     }
 
     @FXML
-    private void fillUserList(String type){
+    private void fillUserList(String type) {
         ReadUser newReadUser = new ReadUser();
-        if(type.equals("Student")){
+        if (type.equals("Student")) {
             //addSearchListener();
             newReadUser.readOnlyStudents();
             data.clear();
@@ -145,7 +202,7 @@ public class AdminController {
             }
             userTable.setItems(data);
             userTable.getColumns().setAll(IDCol, fnameCol, lnameCol, emailCol, klassCol, typeCol);
-        }else if(type.equals("Teacher")){
+        } else if (type.equals("Teacher")) {
             newReadUser.readOnlyTeacher();
             data.clear();
             for (int i = 0; i < newReadUser.getTeacherList().size(); i++) {
@@ -161,7 +218,7 @@ public class AdminController {
             }
             userTable.setItems(data);
             userTable.getColumns().setAll(IDCol, fnameCol, lnameCol, emailCol, klassCol, typeCol);
-        }else if(type.equals("Admin")){
+        } else if (type.equals("Admin")) {
             newReadUser.readOnlyAdmin();
             data.clear();
             for (int i = 0; i < newReadUser.getAdminList().size(); i++) {
@@ -180,61 +237,27 @@ public class AdminController {
         }
     }
 
-        @FXML
-    private void checkUserTypeToEdit(){
-        if(getEditUserUserList().getValue().equals("Välj en användare")) {
-            System.out.println("User not selected");
-            if (getEditUserUsertypeList().getValue().equals("Välj en typ")) {
-                System.out.println("Type not selected");
-                editUserClassLabel.setTextFill(Color.web("#d3d3d3"));
-                getEditUserClassList().setDisable(true);
-                editUserUserLabel.setTextFill(Color.web("#d3d3d3"));
-                getEditUserUserList().setDisable(true);
-                editUserClassList.setValue("Välj en klass");
-                editUserUserList.setValue("Välj en användare");
-            }else if (getEditUserUsertypeList().getValue().equals("Student")) {
-                System.out.println("Type is student");
-                editUserClassLabel.setTextFill(Color.web("#000000"));
-                getEditUserClassList().setDisable(false);
-                editUserUserLabel.setTextFill(Color.web("#000000"));
-                getEditUserUserList().setDisable(false);
-                editUserClassLabel.setTextFill(Color.web("#000000"));
-                getEditUserClassList().setDisable(false);
-            }else {
-                editUserUserLabel.setTextFill(Color.web("#000000"));
-                getEditUserUserList().setDisable(false);
-                editUserClassLabel.setTextFill(Color.web("#d3d3d3"));
-                getEditUserClassList().setDisable(true);
-            }
-        }else{
-            getEditUserEditButton().setDisable(false);
-            getEditUserRemoveButton().setDisable(false);
-            editUserUsertypeList.setDisable(true);
-            editUserUserLabel.setTextFill(Color.web("#d3d3d3"));
-        }
-    }
-
     @FXML
-    private void checkClassChoiceToRemove(){
-        if(getClassList().getValue().equals("Välj en klass")){
+    private void checkClassChoiceToRemove() {
+        if (getClassList().getValue().equals("Välj en klass")) {
             removeClassButton.setDisable(true);
-        }else{
+        } else {
             removeClassButton.setDisable(false);
         }
     }
 
     @FXML
-    private void removeSelectedClass(){
+    private void removeSelectedClass() {
         DeleteClass dc = new DeleteClass();
         String classToDelete = classList.getValue();
         dc.deleteClass(classToDelete);
-        removeClassMessageLabel.setText(classList.getValue()+" är borttagen");
+        removeClassMessageLabel.setText(classToDelete + " är borttagen");
         fillClasses(classList);
     }
 
     @FXML
-    private void createNewUser(){
-        if(getPassword().getText().equals(getPasswordRepeat().getText())) {
+    private void createNewUser() {
+        if (getPassword().getText().equals(getPasswordRepeat().getText())) {
             passwordMessageLabel.setText("");
             String fname = getFirstName().getText();
             System.out.println(fname);
@@ -249,13 +272,13 @@ public class AdminController {
             String userType = getUserType().getValue().toString();
             System.out.println(userType);
             CreateUser newUser = new CreateUser(fname, lname, passwordString, emailString, Klass, userType);
-            passwordMessageLabel.setText("Användare för "+fname+" "+lname+" "+" är tillagd");
+            passwordMessageLabel.setText("Användare för " + fname + " " + lname + " " + " är tillagd");
             firstName.setText("");
             lastName.setText("");
             email.setText("");
             passwordRepeat.setText("");
             password.setText("");
-        }else{
+        } else {
             passwordMessageLabel.setText("Lösenorden är inte samma.");
             getPassword().setText("");
             getPasswordRepeat().setText("");
@@ -264,30 +287,30 @@ public class AdminController {
     }
 
     @FXML
-    private void addClass(){
+    private void addClass() {
         String className = studentClassName.getText();
         boolean matchFound = false;
         ReadClass newReadClass = new ReadClass();
         newReadClass.readAllClasses();
-        if(newReadClass.getClassNameList().size()==0){
+        if (newReadClass.getClassNameList().size() == 0) {
             System.out.println("Class list is empty. 0 expcetion");
             CreateClass addClass = new CreateClass();
             addClass.CreateClass(className);
             addClassMessageLabel.setText("Klass är skapad");
             studentClassName.setText("");
-        }else{
-            for (int i = 0; i < newReadClass.getClassNameList().size(); i++){
-                System.out.println("Comparing: "+className+" and "+String.valueOf(newReadClass.getClassNameList().get(i)));
-                if(className.equals(String.valueOf(newReadClass.getClassNameList().get(i)))){
-                    matchFound=true;
-                }else{
+        } else {
+            for (int i = 0; i < newReadClass.getClassNameList().size(); i++) {
+                System.out.println("Comparing: " + className + " and " + String.valueOf(newReadClass.getClassNameList().get(i)));
+                if (className.equals(String.valueOf(newReadClass.getClassNameList().get(i)))) {
+                    matchFound = true;
+                } else {
                 }
             }
-            if(matchFound==true){
+            if (matchFound == true) {
                 System.out.println("Match");
-                addClassMessageLabel.setText(className+" finns redan");
+                addClassMessageLabel.setText(className + " finns redan");
                 studentClassName.setText("");
-            }else{
+            } else {
                 CreateClass addClass = new CreateClass();
                 addClass.CreateClass(className);
                 addClassMessageLabel.setText("Klass är skapad");
@@ -296,98 +319,102 @@ public class AdminController {
         }
     }
 
-    //EDIT USER
     @FXML
-    private void sortByUser() {
-        String choosenUserType = editUserUsertypeList.getValue().toString();
-        ReadUser ru = new ReadUser();
-            if (choosenUserType.equals("Student")) {
-                ru.readOnlyStudents();
-                editUserUserList.getItems().clear();
-                fillClasses(editUserClassList);
-                editUserClassLabel.setTextFill(Color.web("#000000"));
-                getEditUserClassList().setDisable(false);
-                editUserUserLabel.setTextFill(Color.web("#000000"));
-                getEditUserUserList().setDisable(false);
-                editUserClassLabel.setTextFill(Color.web("#000000"));
-                getEditUserClassList().setDisable(false);
-                for (int i = 0; i < ru.getStudentList().size(); i++) {
-                    editUserUserList.getItems().add(String.valueOf(ru.getStudentList().get(i).getFirstname() + " " + ru.getStudentList().get(i).getLastname()));
-                }
-            }else if (choosenUserType.equals("Teacher")) {
-                ru.readOnlyTeacher();
-                editUserUserList.getItems().clear();
-                editUserUserLabel.setTextFill(Color.web("#000000"));
-                getEditUserUserList().setDisable(false);
-                editUserClassLabel.setTextFill(Color.web("#d3d3d3"));
-                getEditUserClassList().setDisable(true);
+    private void deleteSelectedUser() {
 
-                for (int i = 0; i < ru.getTeacherList().size(); i++) {
-                    editUserUserList.getItems().add(String.valueOf(ru.getTeacherList().get(i).getFirstname() + " " + ru.getTeacherList().get(i).getLastname()));
-                }
-            }else {
-                ru.readOnlyAdmin();
-                editUserUserList.getItems().clear();
-                editUserUserLabel.setTextFill(Color.web("#000000"));
-                getEditUserUserList().setDisable(false);
-                editUserClassLabel.setTextFill(Color.web("#d3d3d3"));
-                getEditUserClassList().setDisable(true);
+        int selectedUserIndex = userTable.getSelectionModel().getFocusedIndex();
+        int selectedID = data.get(selectedUserIndex).getID();
+        DeleteUser du = new DeleteUser();
+        du.setUserId(selectedID);
+        du.DeleteUser();
+        String userType = String.valueOf(userTypeList.getValue());
+        fillUserList(userType);
+    }
 
-                for (int i = 0; i < ru.getAdminList().size(); i++) {
-                    editUserUserList.getItems().add(String.valueOf(ru.getAdminList().get(i).getFirstname() + " " + ru.getAdminList().get(i).getLastname()));
-                }
+    @FXML
+    private void editSelectedUser() {
+        int selectedUserIndex = userTable.getSelectionModel().getFocusedIndex();
+        selectedID = data.get(selectedUserIndex).getID();
+        editUserPane.getChildren().clear();
+
+        fnameLabel.setText("Förnamn:");
+        lnameLabel.setText("Efternamn");
+        emailLabel.setText("Email:");
+        newPasswordLabel.setText("Nytt lösenord");
+        verifyPasswordLabel.setText("Repetera lösenord");
+        updateUserButton.setText("Uppdatera");
+        updateUserButton.setOnAction(event -> {
+            if (newPasswordField.getText().equals(verifyPasswordField.getText())) {
+                UpdateUser uu = new UpdateUser();
+                uu.setNewfirstname(fnameField.getText());
+                uu.setNewLastname(lnameField.getText());
+                uu.setNewEmail(emailField.getText());
+                uu.setNewPassword(newPasswordField.getText());
+                uu.UpdateUser();
+                updateUserMessageLabel.setText("Användaren har ändrats");
+            } else {
+                updateUserMessageLabel.setText("Lösenord stämmer inte överens");
             }
-    }
+        });
 
-    @FXML
-    private void removeSelectedUser(){
-        String selectedUser = editUserUserList.getValue();
-        System.out.println(editUserUserList.getSelectionModel().getSelectedIndex());
-    }
+        editUserPane.add(fnameLabel, 0, 0);
+        editUserPane.add(fnameField, 0, 1);
+        editUserPane.add(lnameLabel, 0, 2);
+        editUserPane.add(lnameField, 0, 3);
+        editUserPane.add(emailLabel, 0, 4);
+        editUserPane.add(emailField, 0, 5);
+        editUserPane.add(newPasswordLabel, 0, 6);
+        editUserPane.add(newPasswordField, 0, 7);
+        editUserPane.add(verifyPasswordLabel, 0, 8);
+        editUserPane.add(verifyPasswordField, 0, 9);
+        editUserPane.add(updateUserMessageLabel, 0, 10);
+        editUserPane.add(updateUserButton, 0, 11);
 
-    @FXML
-    private void sortByClass(){
-        String choosenClass = editUserClassList.getValue();
-        ReadUser ru = new ReadUser();
-        ru.readOnlyStudentsInClass(choosenClass);
-        editUserUserList.getItems().clear();
-        ru.getStudentListFromSpecificClass();
-        for (int i = 0; i < ru.getStudentListFromSpecificClass().size(); i++) {
-            editUserUserList.getItems().add(String.valueOf(ru.getStudentListFromSpecificClass().get(i).getFirstname()+" "+ru.getStudentListFromSpecificClass().get(i).getLastname()));
-        }
+        fnameField.setText(data.get(selectedUserIndex).fname);
+        lnameField.setText(data.get(selectedUserIndex).lname);
+        emailField.setText(data.get(selectedUserIndex).email);
+
     }
 
     //Getters for createUser
     private ComboBox getUserType() {
         return userType;
     }
+
     private ComboBox getStudentClass() {
         return studentClass;
     }
+
     private PasswordField getPassword() {
         return password;
     }
+
     private PasswordField getPasswordRepeat() {
         return passwordRepeat;
     }
 
     //Getters for editUser
-    private ComboBox getEditUserUsertypeList(){
+    private ComboBox getEditUserUsertypeList() {
         return editUserUsertypeList;
     }
-    private ComboBox getEditUserClassList(){
+
+    private ComboBox getEditUserClassList() {
         return editUserClassList;
     }
+
     private ComboBox getEditUserUserList() {
         return editUserUserList;
     }
+
     private Button getEditUserRemoveButton() {
         return editUserRemoveButton;
     }
+
     private Button getEditUserEditButton() {
         return editUserEditButton;
     }
-    private Label getEditUserClassLabel(){
+
+    private Label getEditUserClassLabel() {
         return editUserClassLabel;
     }
 
@@ -395,42 +422,50 @@ public class AdminController {
     private ComboBox getClassList() {
         return classList;
     }
+
     private Button getRemoveClassButton() {
         return removeClassButton;
     }
+
     public TextField getFirstName() {
         return firstName;
     }
+
     public void setFirstName(TextField firstName) {
         this.firstName = firstName;
     }
+
     public TextField getLastName() {
         return lastName;
     }
+
     public void setLastName(TextField lastName) {
         this.lastName = lastName;
     }
+
     public TextField getEmail() {
         return email;
     }
+
     public void setEmail(TextField email) {
         this.email = email;
     }
 
-    public class User{
+    public class User {
         int ID;
         String fname;
         String lname;
         String email;
         String klass;
         String type;
-        public void createNewUser(int inID, String infname, String inlname, String inemail, String inklass, String intype){
-            ID=inID;
-            fname=infname;
-            lname=inlname;
-            email=inemail;
-            klass=inklass;
-            type=intype;
+
+        public void createNewUser(int inID, String infname, String inlname, String inemail, String inklass, String intype) {
+            ID = inID;
+            fname = infname;
+            lname = inlname;
+            email = inemail;
+            klass = inklass;
+            type = intype;
         }
 
         public int getID() {
