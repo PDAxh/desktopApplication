@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Alternative {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "seq" )
+    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "seq")
     private int alternativeId;
     private int questionId;
     private boolean alternativeStatus;

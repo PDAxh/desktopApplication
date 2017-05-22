@@ -53,4 +53,17 @@ public class DeleteTest {
         entitymanager.close( );
         emfactory.close( );
     }
+
+    public void deleteTest(int testId){
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
+        EntityManager entitymanager = emfactory.createEntityManager( );
+
+        entitymanager.getTransaction( ).begin( );
+        Test test = entitymanager.find(Test.class, testId);
+        entitymanager.remove(test);
+
+        entitymanager.getTransaction( ).commit( );
+        entitymanager.close();
+        emfactory.close();
+    }
 }

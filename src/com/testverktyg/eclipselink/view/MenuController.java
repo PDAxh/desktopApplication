@@ -81,6 +81,7 @@ public class MenuController {
         this.borderPane.setCenter(borderPane);
         TeacherController teacherController = loader.getController();
         teacherController.setUserId(getUserId());
+        teacherController.getTeacherTest();
     }
 
     @FXML
@@ -111,6 +112,12 @@ public class MenuController {
     @FXML
     private void getHelpMenueForAdmin() throws IOException{
         BorderPane bP = FXMLLoader.load(getClass().getResource("main/layout/helpForAdmin.fxml"));
+        borderPane.setCenter(bP);
+    }
+
+    @FXML
+    private void getAboutUs() throws IOException{
+        BorderPane bP = FXMLLoader.load(getClass().getResource("main/layout/aboutUs.fxml"));
         borderPane.setCenter(bP);
     }
 

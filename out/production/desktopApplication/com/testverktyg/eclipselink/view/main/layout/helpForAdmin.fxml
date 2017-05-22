@@ -96,9 +96,9 @@ Skulle klassen redan finnas i systemet kommer ett meddelande komma upp."/>
             <Text GridPane.columnIndex="0" GridPane.rowIndex="5" wrappingWidth="350"
                   text="Denna flik innehåller underfliken 'publicera prov'."/>
 
-            <Label GridPane.columnIndex="0" GridPane.rowIndex="4" wrapText="true"
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="6" wrapText="true"
                    underline="true" text="Publicera prov: "/>
-            <Text GridPane.columnIndex="0" GridPane.rowIndex="5" wrappingWidth="350"
+            <Text GridPane.columnIndex="0" GridPane.rowIndex="7" wrappingWidth="350"
                   text="Under denna flik kommer alla prov som finns i systemet att synas och det är här som man tilldelar proven till de olika klasserna.
 Genom att tilldela proven kommer studenterna som finns i den klassen att få upp proven de kan göra på sin egna sida."/>
         </GridPane>
