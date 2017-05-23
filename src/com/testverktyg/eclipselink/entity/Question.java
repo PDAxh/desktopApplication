@@ -12,7 +12,8 @@ import java.util.List;
         @NamedQuery(name = "FindQuestionGradeG", query = "select q.gradeG from Question q where q.questionId = :qId"),
         @NamedQuery(name = "FindQuestionGradeVG", query = "select q.gradeG from Question q where q.questionId = :qId"),
         @NamedQuery(name = "FindQuestionType", query = "select q.typeOfQuestion from Question q where q.questionId = :qId"),
-        @NamedQuery(name = "FindAndDeleteAllAlternatives", query = "delete  from Question  q where q.questionId = :qId")
+        @NamedQuery(name = "FindAndDeleteAllAlternatives", query = "delete  from Question  q where q.questionId = :qId"),
+        @NamedQuery(name = "FindAllPoints", query = "select q.points from Question q where q.questionId = :qId")
 })
 
 public class Question {
