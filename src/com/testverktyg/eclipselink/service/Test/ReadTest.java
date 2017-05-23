@@ -71,7 +71,6 @@ public class ReadTest {
         //Get the first question information
         activeQuestionText = entitymanager.createNamedQuery("FindQuestionText", Question.class).setParameter("tId", tempTestId).getResultList();
         activeQuestionId = entitymanager.createNamedQuery("FindQuestionId", Question.class).setParameter("tId", tempTestId).getResultList();
-        //activeQuestionGradeG = entitymanager.createNamedQuery("FindQuestionGradeG", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
         activeQuestionType = entitymanager.createNamedQuery("FindQuestionType", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
         activeQuestionPoints = entitymanager.createNamedQuery("FindAllPoints", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
         getGrade(questionCount);
