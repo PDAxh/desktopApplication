@@ -61,10 +61,10 @@
                 </TableColumn>
             </columns>
         </TableView>
-        <HBox GridPane.columnIndex="0" GridPane.rowIndex="2">
-            <Label fx:id="messagebutton"/>
-            <Button text="Redigera" onAction="#editSelectedUser"/>
-            <Button text="Ta bort" onAction="#deleteSelectedUser"/>
-        </HBox>
+            <HBox GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <Label fx:id="messagebutton"/>
+                <Button text="Redigera" onAction="#editSelectedUser"/>
+                <Button text="Ta bort" onAction="#deleteSelectedUser"/>
+            </HBox>
         </children>
 </GridPane>
