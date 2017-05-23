@@ -62,13 +62,17 @@ public class StudentController {
     @FXML private
     Label questionPointsLabel;
     @FXML private
+    Label questionPointsTextLabel;
+    @FXML private
     Label timerLabel;
+    @FXML private
+    Label timeTextLabel;
 
     int maxQuestions=0;
     int activeQuestion=1;
     int activeQuestionsForDB=0;
     String questionGrade="";
-    ReadTest newTest = new ReadTest(2);
+    ReadTest newTest = new ReadTest(1);
 
     @FXML
     private void getTest() {
@@ -88,12 +92,18 @@ public class StudentController {
         showToStudentQuestionsLeft.setVisible(true);
         showToStudentGradeText.setVisible(true);
         showToStudentGrade.setVisible(true);
+        timeTextLabel.setVisible(true);
+        timerLabel.setVisible(true);
+        questionPointsTextLabel.setVisible(true);
+        questionPointsLabel.setVisible(true);
+
         showToStudentQuestionsLeft.setText(activeQuestion+"/"+newTest.getAmountOfQuestions()+"    ");
         showToStudentGrade.setText(newTest.getGradeOnActiveQuestion());
         questionPointsLabel.setText("");
         this.printAlternatives();
         showToUserNextButton.setVisible(true);
         showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
+        questionPointsLabel.setText(String.valueOf(newTest.getActiveQuestionPoints().get(0)+"   "));
 
         Timer timer = new Timer();
 
@@ -122,7 +132,6 @@ public class StudentController {
 
                 } catch (InterruptedException e) {
                 }
-
             }
         }
     }
@@ -165,6 +174,7 @@ public class StudentController {
         alternativePane.getChildren().clear();
         showToStudentQuestionsLeft.setText(activeQuestion+"/"+newTest.getAmountOfQuestions()+"    ");
         showToStudentGrade.setText(newTest.getGradeOnActiveQuestion());
+        questionPointsLabel.setText(String.valueOf(newTest.getActiveQuestionPoints().get(0)+"   "));
         if(activeQuestion==maxQuestions){
             showToUserNextButton.onActionProperty();
             showToUserNextButton.setOnAction(event -> {
