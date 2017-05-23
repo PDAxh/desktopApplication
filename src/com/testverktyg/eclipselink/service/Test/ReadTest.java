@@ -39,7 +39,7 @@ public class ReadTest {
     private List<Alternative> activeAlternativeId;
     private List<Alternative> alternativeStatus;
     private List<Question> activeQuestionGradeG;
-    private List<Question> activeQuestionGradeVG;
+    private List<Question> activeQuestionPoints;
     private List<Question> activeQuestionType;
 
     //---testkod---
@@ -73,7 +73,7 @@ public class ReadTest {
         activeQuestionId = entitymanager.createNamedQuery("FindQuestionId", Question.class).setParameter("tId", tempTestId).getResultList();
         //activeQuestionGradeG = entitymanager.createNamedQuery("FindQuestionGradeG", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
         activeQuestionType = entitymanager.createNamedQuery("FindQuestionType", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
-
+        activeQuestionPoints = entitymanager.createNamedQuery("FindAllPoints", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
         getGrade(questionCount);
 
         //Gets the amount of questions in this test for the next button
@@ -108,6 +108,8 @@ public class ReadTest {
         getGrade(questionCount);
 
         activeAlternativeStatus.clear();
+
+        activeQuestionPoints = entitymanager.createNamedQuery("FindAllPoints", Question.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
 
         activeAlternativeText = entitymanager.createNamedQuery("FindAlternativeText", Alternative.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
         activeAlternativeId = entitymanager.createNamedQuery("FindAlternativeId", Alternative.class).setParameter("qId", activeQuestionId.get(questionCount)).getResultList();
@@ -171,8 +173,8 @@ public class ReadTest {
         return activeQuestionGradeG;
     }
 
-    public List<Question> getActiveQuestionGradeVG() {
-        return activeQuestionGradeVG;
+    public List<Question> getActiveQuestionPoints() {
+        return activeQuestionPoints;
     }
 
     public List<Question> getActiveQuestionType() {
@@ -194,7 +196,7 @@ public class ReadTest {
     //using this main for console testing\\
     public static void main(String[] args) {
 
-        ReadTest readTest = new ReadTest(4);
+        ReadTest readTest = new ReadTest();
         readTest.getActiveTest();
 
         System.out.println(readTest.testName);
