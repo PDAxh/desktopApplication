@@ -23,6 +23,7 @@ public class ReadUser {
     List<User> studentList;
     List<User> teacherList;
     List<User> adminList;
+    List<User> userLoggedIn;
     private int userId;
 
     public ReadUser(){}
@@ -146,6 +147,18 @@ public class ReadUser {
         ReadUser readUser = new ReadUser();
 
         readUser.readOnlyAdmin();
+    }
+
+    public void setLoggedInUser(int userid){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+
+        userLoggedIn = entityManager.createNamedQuery("FindLoggedInUser", User.class).setParameter("uId", userid).getResultList();
+    }
+
+    public List<User> getLoggedInUser() {
+        return userLoggedIn;
     }
 
     public int getUserId() {
