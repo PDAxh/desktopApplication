@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.testverktyg.eclipselink.view.admin.AdminController">
+    <padding><Insets top="30" left="80" right="120" bottom="30"/> </padding>
+
+    <top>
+        <HBox spacing="15">
+            <padding><Insets  bottom="30"/> </padding>
+            <Button text="Tilldela" onAction="#getSelectedTestToAssignClass"/>
+            <ComboBox fx:id="selectClassToAssignTestComboBox" promptText="Välj klass"/>
+            <Button text="Ta bort valt prov" onAction="#getSelectTestToDelete"/>
+        </HBox>
+    </top>
+
+    <left>
+        <ScrollPane  styleClass="edge-to-edge">
+            <VBox fx:id="showAdminTestVbox" spacing="20" >
+                <padding><Insets right="120"/> </padding>
+            </VBox>
+        </ScrollPane>
+    </left>
+
+</BorderPane>

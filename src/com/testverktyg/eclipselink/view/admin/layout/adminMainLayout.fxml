@@ -50,7 +50,7 @@
                     <MenuItem onAction="#removeClass" text="Ta bort klass" />
                 </Menu>
                 <Menu text="Prov">
-                    <MenuItem text="Publicera prov" />
+                    <MenuItem text="Publicera prov" onAction="#showTestsToAdmin"/>
                 </Menu>
                 <Menu text="Hjälp">
                     <MenuItem text="Hjälp" onAction="#getHelpMenueForAdmin"/>

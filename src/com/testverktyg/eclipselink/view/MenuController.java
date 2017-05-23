@@ -3,6 +3,7 @@ package com.testverktyg.eclipselink.view;
 import com.testverktyg.eclipselink.service.user.UpdateUser;
 import com.testverktyg.eclipselink.view.admin.AdminController;
 import com.testverktyg.eclipselink.view.main.MainController;
+import com.testverktyg.eclipselink.view.student.StudentController;
 import com.testverktyg.eclipselink.view.teacher.TeacherController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -80,6 +81,16 @@ public class MenuController {
         GridPane gridPane = FXMLLoader.load(getClass().getResource("admin/layout/removeClass.fxml"));
         borderPane.setCenter(gridPane);
     }
+
+    @FXML
+    private void showTestsToAdmin() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("admin/layout/showTests.fxml"));
+        BorderPane borderPane = loader.load();
+        this.borderPane.setCenter(borderPane);
+        AdminController adminController = loader.getController();
+        adminController.getAllTestsForAdminList();
+    }
+
     @FXML
     private void createNewTest() throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("teacher/layout/testTestLayout.fxml"));
@@ -88,6 +99,17 @@ public class MenuController {
         TeacherController teacherController = loader.getController();
         teacherController.setUserId(getUserId());
     }
+
+    @FXML
+    private void showTestsToStudentToDo() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("student/layout/showStudentTests.fxml"));
+        BorderPane borderPane = loader.load();
+        this.borderPane.setCenter(borderPane);
+        StudentController studentController= loader.getController();
+        studentController.setUserId(getUserId());
+        studentController.getStudentTests();
+    }
+
     @FXML
     private void showTestToStudent() throws IOException{
         BorderPane bp = FXMLLoader.load(getClass().getResource("student/layout/showTestToStudentRoot.fxml"));

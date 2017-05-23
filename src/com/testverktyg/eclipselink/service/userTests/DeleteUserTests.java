@@ -13,7 +13,7 @@ public class DeleteUserTests {
 
     public DeleteUserTests(){}
 
-    public void deleteUserFromUserTest(int testId, int userId){
+   /* public void deleteUserFromUserTest(int testId, int userId){
 
             EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
             EntityManager entitymanager = emfactory.createEntityManager( );
@@ -26,5 +26,19 @@ public class DeleteUserTests {
             entitymanager.getTransaction( ).commit( );
             entitymanager.close();
             emfactory.close();
+    }*/
+
+    public void deleteTestFromUserTest(int testId){
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
+        EntityManager entitymanager = emfactory.createEntityManager( );
+
+        entitymanager.getTransaction( ).begin( );
+        entitymanager.createNamedQuery("deleteTestFromUserTests", UserTests.class)
+                .setParameter("testId", testId)
+                .executeUpdate();
+
+        entitymanager.getTransaction( ).commit( );
+        entitymanager.close();
+        emfactory.close();
     }
 }

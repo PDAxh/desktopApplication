@@ -1,11 +1,21 @@
 package com.testverktyg.eclipselink.view.student;
+import com.testverktyg.eclipselink.entity.Test;
+import com.testverktyg.eclipselink.entity.UserTests;
 import com.testverktyg.eclipselink.service.Test.ReadTest;
 import com.testverktyg.eclipselink.service.studentAnswer.CreateStudentAnswer;
+import com.testverktyg.eclipselink.service.userTests.ReadUserTests;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleListProperty;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -189,5 +199,89 @@ public class StudentController {
         int currentQuestionId = newTest.getActiveQuestionId().get(activeQuestion).getQuestionId();
         csa.createNewStudentAnswer(activeTest, currentQuestionId, selectedAlternativeId, 3);
     }
+
+    //--Testkod-Jonas---
+
+    @FXML private VBox showStudentTestVbox;
+    @FXML private Button doSelectedTestButton;
+    @FXML private Button showResultButton;
+    private RadioButton setSelectTestToDo[];
+    private int userId;
+
+    private VBox getShowStudentTestVbox() {
+        return showStudentTestVbox;
+    }
+
+    private void setShowStudentTestVbox(VBox showStudentTestVbox) {
+        this.showStudentTestVbox = showStudentTestVbox;
+    }
+
+    private Button getDoSelectedTestButton() {
+        return doSelectedTestButton;
+    }
+
+    private Button getShowResultButton() {
+        return showResultButton;
+    }
+
+    private RadioButton[] getSetSelectTestToDo() {
+        return setSelectTestToDo;
+    }
+
+    private void setSetSelectTestToDo(RadioButton[] setSelectTestToDo) {
+        this.setSelectTestToDo = setSelectTestToDo;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void getStudentTests(){
+        getShowStudentTestVbox().getChildren().clear();
+        ReadTest readTest = new ReadTest();
+        ReadUserTests readUserTests = new ReadUserTests(getUserId());
+        ToggleGroup toggleGroup = new ToggleGroup();
+        setSetSelectTestToDo(new RadioButton[readUserTests.getUserTestsList().size()]);
+        int counter = 0;
+        for(UserTests userTests: readUserTests.getUserTestsList()){
+
+            readTest.getTest(userTests.getTestId());
+            for(Test test : readTest.getTestList()){
+                HBox hBoxLeft = new HBox();
+                HBox hBoxRight = new HBox();
+                BorderPane borderPane = new BorderPane();
+                hBoxLeft.setSpacing(50.0);
+                getSetSelectTestToDo()[counter] = new RadioButton();
+                getSetSelectTestToDo()[counter].setToggleGroup(toggleGroup);
+                getSetSelectTestToDo()[counter].setId(String.valueOf(test.getTestId()));
+                hBoxLeft.getChildren().addAll(new Label("Prov: " + test.getTestName()), new Label(" Beskrivning: " + test.getTestDescription()),
+                        new Label(" Datum: " + test.getLastDate()), new Label(" Tid: " + String.valueOf(test.getTimeForTestMinutes())));
+
+                LocalDate localDate = LocalDate.now();
+                String date = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(localDate);
+                if(test.getLastDate().equals(date)){
+                    hBoxRight.getChildren().addAll( new Label("Välj:"), getSetSelectTestToDo()[counter]);
+                }
+
+                borderPane.setStyle("-fx-border-color: black;");
+                borderPane.setPadding(new Insets(10));
+                borderPane.setLeft(hBoxLeft);
+                borderPane.setRight(hBoxRight);
+                getShowStudentTestVbox().getChildren().add(borderPane);
+                counter++;
+            }
+        }
+    }
+
+    @FXML
+    private void getSelectedTestToDo(){
+
+    }
+
+    //--------
 }
 

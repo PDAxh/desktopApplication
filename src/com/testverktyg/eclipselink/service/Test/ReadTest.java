@@ -239,5 +239,23 @@ public class ReadTest {
         this.testList = testList;
     }
 
+    public void getAllTestsForAdmin(){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        setGetAllTestsForAdminList(entityManager.createNamedQuery("getAllTest", Test.class).getResultList());
+        entityManager.close();
+        entityManagerFactory.close();
+    }
+
+    private List<Test> getAllTestsForAdminList;
+
+    public List<Test> getGetAllTestsForAdminList() {
+        return getAllTestsForAdminList;
+    }
+
+    private void setGetAllTestsForAdminList(List<Test> getAllTestsForAdminList) {
+        this.getAllTestsForAdminList = getAllTestsForAdminList;
+    }
+
     //---TESTKOD-----
 }

@@ -561,6 +561,7 @@ public class TeacherController {
         setReadTest(new ReadTest());
         flowPane.setVgap(10);
         flowPane.setHgap(10);
+        scrollPane.setStyle("-fx-background-color:transparent;");
 
         for(int i = 0; i <  getSelectTestToPublishOrEdit().length; i++){
             if(getSelectTestToPublishOrEdit()[i].isSelected()){
@@ -788,51 +789,51 @@ public class TeacherController {
         this.hodlQuestionIdForNewAlternatives = hodlQuestionIdForNewAlternatives;
     }
 
-    public TextField getUpdateTestnameTextField() {
+    private TextField getUpdateTestnameTextField() {
         return updateTestnameTextField;
     }
 
-    public void setUpdateTestnameTextField(TextField updateTestnameTextField) {
+    private void setUpdateTestnameTextField(TextField updateTestnameTextField) {
         this.updateTestnameTextField = updateTestnameTextField;
     }
 
-    public TextArea getUpdateDescriptionTextArea() {
+    private TextArea getUpdateDescriptionTextArea() {
         return updateDescriptionTextArea;
     }
 
-    public void setUpdateDescriptionTextArea(TextArea updateDescriptionTextArea) {
+    private void setUpdateDescriptionTextArea(TextArea updateDescriptionTextArea) {
         this.updateDescriptionTextArea = updateDescriptionTextArea;
     }
 
-    public Spinner getUpdateTestTimeInMinutesSpinner() {
+    private Spinner getUpdateTestTimeInMinutesSpinner() {
         return updateTestTimeInMinutesSpinner;
     }
 
-    public void setUpdateTestTimeInMinutesSpinner(Spinner updateTestTimeInMinutesSpinner) {
+    private void setUpdateTestTimeInMinutesSpinner(Spinner updateTestTimeInMinutesSpinner) {
         this.updateTestTimeInMinutesSpinner = updateTestTimeInMinutesSpinner;
     }
 
-    public DatePicker getUpdateDateForTestDatePIcker() {
+    private DatePicker getUpdateDateForTestDatePIcker() {
         return updateDateForTestDatePIcker;
     }
 
-    public void setUpdateDateForTestDatePIcker(DatePicker updateDateForTestDatePIcker) {
+    private void setUpdateDateForTestDatePIcker(DatePicker updateDateForTestDatePIcker) {
         this.updateDateForTestDatePIcker = updateDateForTestDatePIcker;
     }
 
-    public CheckBox getUpdateSelfCorrectCheckBox() {
+    private CheckBox getUpdateSelfCorrectCheckBox() {
         return updateSelfCorrectCheckBox;
     }
 
-    public void setUpdateSelfCorrectCheckBox(CheckBox updateSelfCorrectCheckBox) {
+    private void setUpdateSelfCorrectCheckBox(CheckBox updateSelfCorrectCheckBox) {
         this.updateSelfCorrectCheckBox = updateSelfCorrectCheckBox;
     }
 
-    public CheckBox getUpdateShowResultToStudentCheckBox() {
+    private CheckBox getUpdateShowResultToStudentCheckBox() {
         return updateShowResultToStudentCheckBox;
     }
 
-    public void setUpdateShowResultToStudentCheckBox(CheckBox updateShowResultToStudentCheckBox) {
+    private void setUpdateShowResultToStudentCheckBox(CheckBox updateShowResultToStudentCheckBox) {
         this.updateShowResultToStudentCheckBox = updateShowResultToStudentCheckBox;
     }
 
@@ -901,11 +902,7 @@ public class TeacherController {
                                         updateTest.addNewAlternative(getHodlQuestionIdForNewAlternatives(),getUpdateQuestionAlternativeTextField()[n].getText(), getUpdateQuestionAlternativeCheckbox()[n].isSelected());
                                     }
                                 }*/
-
-
                             }
-
-
 
                             getSelectedTestToEdit();
                         }
@@ -925,8 +922,6 @@ public class TeacherController {
                         }
                     });
 
-
-
                     message.showAndWait().ifPresent(response -> {
                         if(response == saveTest){
                             UpdateTest updateTest = new UpdateTest();
@@ -935,7 +930,6 @@ public class TeacherController {
                                     getUpdateSelfCorrectCheckBox().isSelected(), getUpdateShowResultToStudentCheckBox().isSelected());
                             getSelectedTestToEdit();
                         }
-
                     });
                 }
             }
@@ -1088,13 +1082,10 @@ public class TeacherController {
                 DeleteTest deleteTest = new DeleteTest();
                 DeleteUserTests deleteUserTests = new DeleteUserTests();
                 deleteTest.deleteTest(Integer.parseInt(getSelectTestToPublishOrEdit()[i].getId()));
-                deleteUserTests.deleteUserFromUserTest(Integer.parseInt(getSelectTestToPublishOrEdit()[i].getId()), getUserId());
+                deleteUserTests.deleteTestFromUserTest(Integer.parseInt(getSelectTestToPublishOrEdit()[i].getId()));
                 getTeacherTest();
                 getShowTeacherTestBorderPane().setCenter(null);
             }
         }
     }
-
-
-
 }
