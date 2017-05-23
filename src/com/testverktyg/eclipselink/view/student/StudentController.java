@@ -1,19 +1,11 @@
 package com.testverktyg.eclipselink.view.student;
-
 import com.testverktyg.eclipselink.service.Test.ReadTest;
-import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import com.testverktyg.eclipselink.service.studentAnswer.CreateStudentAnswer;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
-
-import java.io.IOException;
-import java.time.Duration;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -22,13 +14,9 @@ import java.util.concurrent.Executors;
  */
 public class StudentController {
     @FXML
-    private BorderPane roo;
-    @FXML
     private GridPane alternativePane;
     @FXML
     private GridPane contentPane;
-    @FXML
-    private GridPane testList;
     @FXML
     private Label showToStudentTestNameLabel;
     @FXML
@@ -50,43 +38,43 @@ public class StudentController {
     @FXML
     private Button showToUserNextButton;
     @FXML
-    private Button getTestButton;
-    @FXML private
-    Label showToStudentQuestionsLeft;
-    @FXML private
-    Label showToStudentQuestionsLeftText;
-    @FXML private
-    Label showToStudentGrade;
-    @FXML private
-    Label showToStudentGradeText;
-    @FXML private
-    Label questionPointsLabel;
-    @FXML private
-    Label questionPointsTextLabel;
-    @FXML private
-    Label timerLabel;
-    @FXML private
-    Label timeTextLabel;
+    private Label showToStudentQuestionsLeft;
+    @FXML
+    private Label showToStudentQuestionsLeftText;
+    @FXML
+    private Label showToStudentGrade;
+    @FXML
+    private Label showToStudentGradeText;
+    @FXML
+    private Label questionPointsLabel;
+    @FXML
+    private Label questionPointsTextLabel;
+    @FXML
+    private Label timerLabel;
+    @FXML
+    private Label timeTextLabel;
+    private int activeTest = 6;
+    private int maxQuestions = 0;
+    private int activeQuestion = 0;
+    private int activeQuestionsForDB = 0;
+    private ReadTest newTest = new ReadTest(activeTest);
+    CreateStudentAnswer csa = new CreateStudentAnswer();
+    private List<CheckBox> alternativeCheckBoxList;
+    private List<RadioButton> alternativeRadioButtonList;
 
-    int maxQuestions=0;
-    int activeQuestion=1;
-    int activeQuestionsForDB=0;
-    String questionGrade="";
-    ReadTest newTest = new ReadTest(1);
-
+    //Loads test information for test info scene
     @FXML
     private void getTest() {
         newTest.getActiveTest();
-        maxQuestions=newTest.getAmountOfQuestions();
+        maxQuestions = newTest.getAmountOfQuestions();
         showToStudentTestNameLabel.setText(newTest.getTestName());
         showToStudentTextLabel.setText(newTest.getTestDescription());
         showToStudentTimeLabel.setText(String.valueOf(newTest.getTestTimeInMinutes()));
     }
 
+    //Setup test scene and show first question
     @FXML
     private void startTest() {
-        newTest.getActiveTest();
-        System.out.println("Test started");
         contentPane.getChildren().removeAll(showToUserStartTestButton, showToStudentTimeTextLabel, showToStudentTimeLabel, showToStudentTeacherTextLabel, showToStudentTeacherLabel, showToStudentClassTextLabel, showToStudentClassLabel);
         showToStudentQuestionsLeftText.setVisible(true);
         showToStudentQuestionsLeft.setVisible(true);
@@ -96,29 +84,23 @@ public class StudentController {
         timerLabel.setVisible(true);
         questionPointsTextLabel.setVisible(true);
         questionPointsLabel.setVisible(true);
-
-        showToStudentQuestionsLeft.setText(activeQuestion+"/"+newTest.getAmountOfQuestions()+"    ");
-        showToStudentGrade.setText(newTest.getGradeOnActiveQuestion());
-        questionPointsLabel.setText("");
-        this.printAlternatives();
         showToUserNextButton.setVisible(true);
-        showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
-        questionPointsLabel.setText(String.valueOf(newTest.getActiveQuestionPoints().get(0)+"   "));
+
+        getNewQuestion();
 
         Timer timer = new Timer();
-
         Executor exec = Executors.newCachedThreadPool(runnable -> {
             Thread t = new Thread(runnable);
             t.setDaemon(true);
-            return t ;
+            return t;
         });
-        exec.execute(timer::run);
+        exec.execute(timer);
     }
 
-    public class Timer implements Runnable{
-
-        int testid =0;
-        int testTime =30;
+    //Test timer
+    public class Timer implements Runnable {
+        int testid = 0;
+        int testTime = 30;
         int seconds = testTime * 60;
 
         @Override
@@ -130,66 +112,94 @@ public class StudentController {
                     seconds--;
                     Thread.sleep(1000);
 
-                } catch (InterruptedException e) {
+                } catch (InterruptedException ignored) {
                 }
             }
         }
     }
 
+    //Loads next question
+    @FXML
+    private void getNewQuestion() {
+        newTest.getActiveTest();
+        newTest.getNextActiveQuestion();
+        showToStudentQuestionsLeft.setText(activeQuestion + "/" + newTest.getAmountOfQuestions() + "    ");
+        showToStudentGrade.setText(newTest.getGradeOnActiveQuestion());
+        questionPointsLabel.setText(String.valueOf(newTest.getActiveQuestionPoints().get(0) + "   "));
+        showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
+        showToStudentTextLabel.setText("");
+        alternativePane.getChildren().clear();
+
+        activeQuestion++;
+        activeQuestionsForDB++;
+
+        if (activeQuestion == maxQuestions) {
+            showToUserNextButton.onActionProperty();
+            showToUserNextButton.setOnAction(event -> {
+            });
+            showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
+            this.printAlternatives();
+        } else {
+            showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
+            this.printAlternatives();
+        }
+    }
+
+    //Prints question alternatives
     @FXML
     private void printAlternatives() {
         newTest.getActiveTest();
         showToStudentTestNameLabel.setText(newTest.getTestName());
         String typeOfQuestion = newTest.getActiveQuestionType().toString();
+        //alternativeCheckBoxList.clear();
+        //alternativeRadioButtonList.clear();
+
         ToggleGroup toggleGroup = new ToggleGroup();
 
-            if (typeOfQuestion.equals("[Flervals]")) {
-                for (int i = 0; i < newTest.getActiveAlternativeId().size(); i++) {
-                    CheckBox checkBox = new CheckBox();
-                    checkBox.setId(String.valueOf(i));
-                    Label alternativeText = new Label();
-                    alternativeText.setText(String.valueOf(newTest.getActiveAlternativeText().get(i)));
-                    alternativePane.add(checkBox, 0, i);
-                    alternativePane.add(alternativeText, 1, i);
-                }
-            }else {
-                for (int y = 0; y < newTest.getActiveAlternativeId().size(); y++) {
-                    RadioButton radioButton = new RadioButton();
-                    radioButton.setId(String.valueOf(y));
-                    radioButton.setToggleGroup(toggleGroup);
-                    Label alternativeText = new Label();
-                    alternativeText.setText(String.valueOf(newTest.getActiveAlternativeText().get(y)));
-                    alternativePane.add(radioButton, 0, y);
-                    alternativePane.add(alternativeText, 1, y);
-                }
+        if (typeOfQuestion.equals("[Flervals]")) {
+            for (int i = 0; i < newTest.getActiveAlternativeId().size(); i++) {
+                CheckBox checkBox = new CheckBox();
+                checkBox.setId(String.valueOf(i));
+                Label alternativeText = new Label();
+                alternativeText.setText(String.valueOf(newTest.getActiveAlternativeText().get(i)));
+                alternativePane.add(checkBox, 0, i);
+                alternativePane.add(alternativeText, 1, i);
+                alternativeCheckBoxList.add(checkBox);
             }
-    }
-    @FXML
-    private void nextQuestion() {
-        newTest.getActiveTest();
-        activeQuestion++;
-        activeQuestionsForDB++;
-        newTest.getNextActiveQuestion();
-        showToStudentTextLabel.setText("");
-        alternativePane.getChildren().clear();
-        showToStudentQuestionsLeft.setText(activeQuestion+"/"+newTest.getAmountOfQuestions()+"    ");
-        showToStudentGrade.setText(newTest.getGradeOnActiveQuestion());
-        questionPointsLabel.setText(String.valueOf(newTest.getActiveQuestionPoints().get(0)+"   "));
-        if(activeQuestion==maxQuestions){
-            showToUserNextButton.onActionProperty();
-            showToUserNextButton.setOnAction(event -> {
-
-            });
-            showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
-            this.printAlternatives();
-        }else{
-            showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
-            this.printAlternatives();
+        } else {
+            for (int y = 0; y < newTest.getActiveAlternativeId().size(); y++) {
+                RadioButton radioButton = new RadioButton();
+                radioButton.setId(String.valueOf(y));
+                radioButton.setToggleGroup(toggleGroup);
+                Label alternativeText = new Label();
+                alternativeText.setText(String.valueOf(newTest.getActiveAlternativeText().get(y)));
+                alternativePane.add(radioButton, 0, y);
+                alternativePane.add(alternativeText, 1, y);
+                alternativeRadioButtonList.add(radioButton);
+            }
         }
     }
-    @FXML
-    private void timer(){
 
+    @FXML
+    private void addStudentAnswer() {
+        if (newTest.isSelfCorrecting()) {
+            if (newTest.getActiveQuestionType().toString().equals("Flervals")) {
+                for (int i = 0; i < alternativeCheckBoxList.size(); i++) {
+                    if (alternativeCheckBoxList.get(i).isSelected()) {
+                        int selectedAlternative = Integer.parseInt(alternativeCheckBoxList.get(i).getId());
+                        //csa.createNewStudentAnswer(activeTest, );
+                    }
+
+                }
+            } else {
+                for (int i = 0; i < alternativeRadioButtonList.size(); i++) {
+                    if (alternativeRadioButtonList.get(i).isSelected()) {
+                        //csa.createNewStudentAnswer();
+                    }
+                }
+
+            }
+        }
     }
 }
 

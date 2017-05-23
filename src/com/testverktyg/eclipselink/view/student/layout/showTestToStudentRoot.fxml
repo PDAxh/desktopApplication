@@ -63,7 +63,7 @@
 
             <Button fx:id="showToUserStartTestButton" onAction="#startTest" text="Starta" GridPane.columnIndex="0" GridPane.rowIndex="4" />
             <Button fx:id="getTestButton" onAction="#getTest" text="GetTest" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-            <Button fx:id="showToUserNextButton" onAction="#nextQuestion" text="Nästa" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <Button fx:id="showToUserNextButton" onAction="#getNewQuestion" text="Nästa" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="4" />
         </children>
 
     </GridPane>
