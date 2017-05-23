@@ -56,6 +56,9 @@ public class MainController {
     }
 
     private void setNewUserLayout(String layout, int userId) throws IOException{
+        ReadUser ru = new ReadUser();
+        ru.setLoggedInUser(userId);
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource(layout));
         BorderPane borderPane = loader.load();
         Scene scene = new Scene(borderPane);
@@ -65,6 +68,8 @@ public class MainController {
         menuController.setUserId(userId);
         setUsernameTextField("");
         setPasswordTextField("");
+        menuController.activeLoggedInUser(ru.getLoggedInUser().get(0).getFirstname());
+        System.out.println(ru.getLoggedInUser().get(0).getFirstname());
     }
 
     @FXML

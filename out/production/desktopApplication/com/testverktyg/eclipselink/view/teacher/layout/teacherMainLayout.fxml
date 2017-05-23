@@ -28,7 +28,7 @@
                     <MenuItem text="Om oss" onAction="#getAboutUs"/>
                 </Menu>
             </MenuBar>
-            <Label text="Teacher (Lärare)" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+            <Label fx:id="loggedInUser" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
                    style="-fx-font-weight: bold; -fx-text-fill: orangered;"/>
         </AnchorPane>
     </top>

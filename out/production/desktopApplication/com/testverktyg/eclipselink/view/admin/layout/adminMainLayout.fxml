@@ -57,7 +57,7 @@
                     <MenuItem text="Om oss" onAction="#getAboutUs"/>
                 </Menu>
             </MenuBar>
-            <Label style="-fx-font-weight: bold; -fx-text-fill: orangered;" text="Admin (Administratör)" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+            <Label fx:id="loggedInUser" style="-fx-font-weight: bold; -fx-text-fill: orangered;" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
         </AnchorPane>
     </top>
 
