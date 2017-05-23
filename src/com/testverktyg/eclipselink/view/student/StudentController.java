@@ -1,11 +1,21 @@
 package com.testverktyg.eclipselink.view.student;
 
 import com.testverktyg.eclipselink.service.Test.ReadTest;
+import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+
+import java.io.IOException;
+import java.time.Duration;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 /**
  * Created by Andreas.
@@ -49,12 +59,16 @@ public class StudentController {
     Label showToStudentGrade;
     @FXML private
     Label showToStudentGradeText;
+    @FXML private
+    Label questionPointsLabel;
+    @FXML private
+    Label timerLabel;
 
     int maxQuestions=0;
     int activeQuestion=1;
     int activeQuestionsForDB=0;
     String questionGrade="";
-    ReadTest newTest = new ReadTest(5);
+    ReadTest newTest = new ReadTest(2);
 
     @FXML
     private void getTest() {
@@ -76,9 +90,41 @@ public class StudentController {
         showToStudentGrade.setVisible(true);
         showToStudentQuestionsLeft.setText(activeQuestion+"/"+newTest.getAmountOfQuestions()+"    ");
         showToStudentGrade.setText(newTest.getGradeOnActiveQuestion());
+        questionPointsLabel.setText("");
         this.printAlternatives();
         showToUserNextButton.setVisible(true);
         showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
+
+        Timer timer = new Timer();
+
+        Executor exec = Executors.newCachedThreadPool(runnable -> {
+            Thread t = new Thread(runnable);
+            t.setDaemon(true);
+            return t ;
+        });
+        exec.execute(timer::run);
+    }
+
+    public class Timer implements Runnable{
+
+        int testid =0;
+        int testTime =30;
+        int seconds = testTime * 60;
+
+        @Override
+        public void run() {
+
+            while (seconds > 0) {
+                Platform.runLater(() -> timerLabel.setText(seconds / 3600 + ":" + ((seconds / 60) % 60) + ":" + (seconds % 60)));
+                try {
+                    seconds--;
+                    Thread.sleep(1000);
+
+                } catch (InterruptedException e) {
+                }
+
+            }
+        }
     }
 
     @FXML
@@ -120,13 +166,20 @@ public class StudentController {
         showToStudentQuestionsLeft.setText(activeQuestion+"/"+newTest.getAmountOfQuestions()+"    ");
         showToStudentGrade.setText(newTest.getGradeOnActiveQuestion());
         if(activeQuestion==maxQuestions){
-            showToUserNextButton.setDisable(true);
+            showToUserNextButton.onActionProperty();
+            showToUserNextButton.setOnAction(event -> {
+
+            });
             showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
             this.printAlternatives();
         }else{
             showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
             this.printAlternatives();
         }
+    }
+    @FXML
+    private void timer(){
+
     }
 }
 

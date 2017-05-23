@@ -16,17 +16,8 @@ public class TimeCounter {
 
     public void TimeCounter() throws Exception {
 
-
-
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
-        EntityManager entitymanager = emfactory.createEntityManager();
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("enter a test´s id to check the given time");
-        int testid = scanner.nextInt();
-        Test test = entitymanager.find(Test.class, testid);
-        int testTime = test.getTimeForTestMinutes();
-
+        int testid =0;
+        int testTime =30;
         int seconds = testTime * 60;
         while (seconds>0){
             System.out.println(seconds/3600 +":" +((seconds/60)%60) + ":" + (seconds%60));
@@ -36,7 +27,6 @@ public class TimeCounter {
 
             }
             catch (InterruptedException e) {
-
             }
         }
     }

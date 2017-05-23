@@ -29,12 +29,18 @@
             <Label fx:id="showToStudentClassTextLabel" text="Klass:" GridPane.columnIndex="4" GridPane.rowIndex="3" />
             <Label fx:id="showToStudentClassLabel" prefWidth="50" style="-fx-font-weight: bold;" text="JAVA2" GridPane.columnIndex="5" GridPane.rowIndex="3" />
 
+
             <GridPane fx:id="questionInfoPane" GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.rowIndex="1">
                 <children>
                     <Label fx:id="showToStudentQuestionsLeftText" text="Fråga: " visible="false" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                     <Label fx:id="showToStudentQuestionsLeft" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                     <Label fx:id="showToStudentGradeText" text="Betyg: " visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                     <Label fx:id="showToStudentGrade" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                    <Label fx:id="questionPointsTextLabel" text="     Poäng: " GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+                    <Label fx:id="questionPointsLabel" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+                    <Label fx:id="timeTextLabel" text="Tid: " GridPane.columnIndex="6" GridPane.rowIndex="1"/>
+                    <Label fx:id="timerLabel" text="3:00" GridPane.columnIndex="7" GridPane.rowIndex="1"
+                           style="-fx-font-weight: bold; -fx-text-fill: orangered;"/>
                 </children>
                <columnConstraints>
                   <ColumnConstraints />
@@ -59,30 +65,7 @@
             <Button fx:id="getTestButton" onAction="#getTest" text="GetTest" GridPane.columnIndex="0" GridPane.rowIndex="7" />
             <Button fx:id="showToUserNextButton" onAction="#nextQuestion" text="Nästa" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="4" />
         </children>
-         <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
-
 
     </GridPane>
 </center>
-    <!--<center>
-        <fx:include source="showTestToStudentLanding.fxml"/>
-    </center>-->
-
 </BorderPane>
