@@ -2,6 +2,7 @@ package com.testverktyg.eclipselink.view.student;
 import com.testverktyg.eclipselink.service.Test.ReadTest;
 import com.testverktyg.eclipselink.service.studentAnswer.CreateStudentAnswer;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleListProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -13,54 +14,38 @@ import java.util.concurrent.Executors;
  * Created by Andreas.
  */
 public class StudentController {
-    @FXML
-    private GridPane alternativePane;
-    @FXML
-    private GridPane contentPane;
-    @FXML
-    private Label showToStudentTestNameLabel;
-    @FXML
-    private Label showToStudentTextLabel;
-    @FXML
-    private Label showToStudentTimeTextLabel;
-    @FXML
-    private Label showToStudentTimeLabel;
-    @FXML
-    private Label showToStudentTeacherTextLabel;
-    @FXML
-    private Label showToStudentTeacherLabel;
-    @FXML
-    private Label showToStudentClassTextLabel;
-    @FXML
-    private Label showToStudentClassLabel;
-    @FXML
-    private Button showToUserStartTestButton;
-    @FXML
-    private Button showToUserNextButton;
-    @FXML
-    private Label showToStudentQuestionsLeft;
-    @FXML
-    private Label showToStudentQuestionsLeftText;
-    @FXML
-    private Label showToStudentGrade;
-    @FXML
-    private Label showToStudentGradeText;
-    @FXML
-    private Label questionPointsLabel;
-    @FXML
-    private Label questionPointsTextLabel;
-    @FXML
-    private Label timerLabel;
-    @FXML
-    private Label timeTextLabel;
+    @FXML private GridPane alternativePane;
+    @FXML private GridPane contentPane;
+    @FXML private Label showToStudentTestNameLabel;
+    @FXML private Label showToStudentTextLabel;
+    @FXML private Label showToStudentTimeTextLabel;
+    @FXML private Label showToStudentTimeLabel;
+    @FXML private Label showToStudentTeacherTextLabel;
+    @FXML private Label showToStudentTeacherLabel;
+    @FXML private Label showToStudentClassTextLabel;
+    @FXML private Label showToStudentClassLabel;
+    @FXML private Button showToUserStartTestButton;
+    @FXML private Button showToUserNextButton;
+    @FXML private Label showToStudentQuestionsLeft;
+    @FXML private Label showToStudentQuestionsLeftText;
+    @FXML private Label showToStudentGrade;
+    @FXML private Label showToStudentGradeText;
+    @FXML private Label questionPointsLabel;
+    @FXML private Label questionPointsTextLabel;
+    @FXML private Label timerLabel;
+    @FXML private Label timeTextLabel;
     private int activeTest = 6;
     private int maxQuestions = 0;
     private int activeQuestion = 0;
     private int activeQuestionsForDB = 0;
     private ReadTest newTest = new ReadTest(activeTest);
-    CreateStudentAnswer csa = new CreateStudentAnswer();
-    private List<CheckBox> alternativeCheckBoxList;
-    private List<RadioButton> alternativeRadioButtonList;
+    private CreateStudentAnswer csa = new CreateStudentAnswer();
+
+
+    @FXML
+    private SimpleListProperty<CheckBox> alternativeCheckBoxList = new SimpleListProperty<>(this, "alternativeCheckBoxList");
+    @FXML
+    private SimpleListProperty<RadioButton> alternativeRadioButtonList = new SimpleListProperty<>(this, "alternativeRadioButtonList");
 
     //Loads test information for test info scene
     @FXML
@@ -85,7 +70,6 @@ public class StudentController {
         questionPointsTextLabel.setVisible(true);
         questionPointsLabel.setVisible(true);
         showToUserNextButton.setVisible(true);
-
         getNewQuestion();
 
         Timer timer = new Timer();
@@ -105,7 +89,6 @@ public class StudentController {
 
         @Override
         public void run() {
-
             while (seconds > 0) {
                 Platform.runLater(() -> timerLabel.setText(seconds / 3600 + ":" + ((seconds / 60) % 60) + ":" + (seconds % 60)));
                 try {
@@ -130,9 +113,6 @@ public class StudentController {
         showToStudentTextLabel.setText("");
         alternativePane.getChildren().clear();
 
-        activeQuestion++;
-        activeQuestionsForDB++;
-
         if (activeQuestion == maxQuestions) {
             showToUserNextButton.onActionProperty();
             showToUserNextButton.setOnAction(event -> {
@@ -143,6 +123,8 @@ public class StudentController {
             showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
             this.printAlternatives();
         }
+        activeQuestion++;
+        activeQuestionsForDB++;
     }
 
     //Prints question alternatives
@@ -151,12 +133,13 @@ public class StudentController {
         newTest.getActiveTest();
         showToStudentTestNameLabel.setText(newTest.getTestName());
         String typeOfQuestion = newTest.getActiveQuestionType().toString();
-        //alternativeCheckBoxList.clear();
-        //alternativeRadioButtonList.clear();
+        alternativeCheckBoxList.clear();
+        alternativeRadioButtonList.clear();
+
 
         ToggleGroup toggleGroup = new ToggleGroup();
 
-        if (typeOfQuestion.equals("[Flervals]")) {
+        if (typeOfQuestion.equals("Flervals")) {
             for (int i = 0; i < newTest.getActiveAlternativeId().size(); i++) {
                 CheckBox checkBox = new CheckBox();
                 checkBox.setId(String.valueOf(i));
@@ -184,22 +167,27 @@ public class StudentController {
     private void addStudentAnswer() {
         if (newTest.isSelfCorrecting()) {
             if (newTest.getActiveQuestionType().toString().equals("Flervals")) {
-                for (int i = 0; i < alternativeCheckBoxList.size(); i++) {
-                    if (alternativeCheckBoxList.get(i).isSelected()) {
-                        int selectedAlternative = Integer.parseInt(alternativeCheckBoxList.get(i).getId());
-                        //csa.createNewStudentAnswer(activeTest, );
-                    }
-
-                }
-            } else {
-                for (int i = 0; i < alternativeRadioButtonList.size(); i++) {
-                    if (alternativeRadioButtonList.get(i).isSelected()) {
-                        //csa.createNewStudentAnswer();
+                for (int i = 0; i < alternativeCheckBoxList.get().size(); i++) {
+                    if (alternativeCheckBoxList.get().get(i).isSelected()) {
+                        int selectedAlternative = Integer.parseInt(alternativeCheckBoxList.get().get(i).getId());
+                        createAnswer(selectedAlternative);
                     }
                 }
-
+            }else {
+                for (int i = 0; i < alternativeRadioButtonList.get().size(); i++) {
+                    if (alternativeRadioButtonList.get().get(i).isSelected()) {
+                        int selectedAlternative = Integer.parseInt(alternativeRadioButtonList.get().get(i).getId());
+                        createAnswer(selectedAlternative);
+                    }
+                }
             }
         }
+    }
+
+    private void createAnswer(int selectedAlternative) {
+        int selectedAlternativeId = newTest.getActiveAlternativeId().get(selectedAlternative).getAlternativeId();
+        int currentQuestionId = newTest.getActiveQuestionId().get(activeQuestion).getQuestionId();
+        csa.createNewStudentAnswer(activeTest, currentQuestionId, selectedAlternativeId, 3);
     }
 }
 

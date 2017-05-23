@@ -14,7 +14,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.Label?>
-<GridPane fx:id="editUserPane" alignment="TOP_CENTER" hgap="10" vgap="5" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testverktyg.eclipselink.view.admin.AdminController">
+<GridPane fx:id="editUserPane"
+          alignment="TOP_CENTER"
+          hgap="10"
+          vgap="5"
+          xmlns="http://javafx.com/javafx/8.0.112"
+          xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.testverktyg.eclipselink.view.admin.AdminController">
     <padding><Insets top="20" /> </padding>
 
     <children>
@@ -61,10 +67,10 @@
                 </TableColumn>
             </columns>
         </TableView>
-        <HBox GridPane.columnIndex="0" GridPane.rowIndex="2">
-            <Label fx:id="messagebutton"/>
-            <Button text="Redigera" onAction="#editSelectedUser"/>
-            <Button text="Ta bort" onAction="#deleteSelectedUser"/>
-        </HBox>
+            <HBox GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <Label fx:id="messagebutton"/>
+                <Button text="Redigera" onAction="#editSelectedUser"/>
+                <Button text="Ta bort" onAction="#deleteSelectedUser"/>
+            </HBox>
         </children>
 </GridPane>
