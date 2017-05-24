@@ -2,11 +2,10 @@ package com.testverktyg.eclipselink.view.student;
 import com.testverktyg.eclipselink.service.Test.ReadTest;
 import com.testverktyg.eclipselink.service.studentAnswer.CreateStudentAnswer;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleListProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -41,11 +40,13 @@ public class StudentController {
     private ReadTest newTest = new ReadTest(activeTest);
     private CreateStudentAnswer csa = new CreateStudentAnswer();
 
+    @FXML private ArrayList<CheckBox> checkBoxArray;
+    @FXML private ArrayList<RadioButton> radioButtonArray;
 
-    @FXML
+    /*@FXML
     private SimpleListProperty<CheckBox> alternativeCheckBoxList = new SimpleListProperty<>(this, "alternativeCheckBoxList");
     @FXML
-    private SimpleListProperty<RadioButton> alternativeRadioButtonList = new SimpleListProperty<>(this, "alternativeRadioButtonList");
+    private SimpleListProperty<RadioButton> alternativeRadioButtonList = new SimpleListProperty<>(this, "alternativeRadioButtonList");*/
 
     //Loads test information for test info scene
     @FXML
@@ -94,7 +95,6 @@ public class StudentController {
                 try {
                     seconds--;
                     Thread.sleep(1000);
-
                 } catch (InterruptedException ignored) {
                 }
             }
@@ -112,7 +112,8 @@ public class StudentController {
         showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
         showToStudentTextLabel.setText("");
         alternativePane.getChildren().clear();
-
+        //checkBoxArray.clear();
+        //radioButtonArray.clear();
         if (activeQuestion == maxQuestions) {
             showToUserNextButton.onActionProperty();
             showToUserNextButton.setOnAction(event -> {
@@ -133,36 +134,32 @@ public class StudentController {
         newTest.getActiveTest();
         showToStudentTestNameLabel.setText(newTest.getTestName());
         String typeOfQuestion = newTest.getActiveQuestionType().toString();
-        alternativeCheckBoxList.clear();
-        alternativeRadioButtonList.clear();
-
-
-        ToggleGroup toggleGroup = new ToggleGroup();
-
         if (typeOfQuestion.equals("Flervals")) {
             for (int i = 0; i < newTest.getActiveAlternativeId().size(); i++) {
                 CheckBox checkBox = new CheckBox();
                 checkBox.setId(String.valueOf(i));
+                checkBox.setUserData(newTest.getActiveAlternativeId().get(i).getAlternativeId());
                 Label alternativeText = new Label();
                 alternativeText.setText(String.valueOf(newTest.getActiveAlternativeText().get(i)));
                 alternativePane.add(checkBox, 0, i);
                 alternativePane.add(alternativeText, 1, i);
-                alternativeCheckBoxList.add(checkBox);
+                checkBoxArray.add(checkBox);
             }
         } else {
             for (int y = 0; y < newTest.getActiveAlternativeId().size(); y++) {
                 RadioButton radioButton = new RadioButton();
+                ToggleGroup toggleGroup = new ToggleGroup();
                 radioButton.setId(String.valueOf(y));
                 radioButton.setToggleGroup(toggleGroup);
                 Label alternativeText = new Label();
                 alternativeText.setText(String.valueOf(newTest.getActiveAlternativeText().get(y)));
                 alternativePane.add(radioButton, 0, y);
                 alternativePane.add(alternativeText, 1, y);
-                alternativeRadioButtonList.add(radioButton);
+                radioButtonArray.add(radioButton);
             }
         }
     }
-
+/*
     @FXML
     private void addStudentAnswer() {
         if (newTest.isSelfCorrecting()) {
@@ -183,7 +180,7 @@ public class StudentController {
             }
         }
     }
-
+*/
     private void createAnswer(int selectedAlternative) {
         int selectedAlternativeId = newTest.getActiveAlternativeId().get(selectedAlternative).getAlternativeId();
         int currentQuestionId = newTest.getActiveQuestionId().get(activeQuestion).getQuestionId();
