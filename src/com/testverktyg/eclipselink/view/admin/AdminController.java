@@ -20,11 +20,10 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+
+import javax.persistence.criteria.CriteriaBuilder;
 
 /**
  * Created by Andreas
@@ -634,4 +633,60 @@ public class AdminController {
             }
         }
     }
+
+    //Result
+
+    @FXML private BorderPane showResultToAdminAndTeacherBorderPane;
+    @FXML private VBox showResultTestVbox;
+
+    private BorderPane getShowResultToAdminAndTeacherBorderPane() {
+        return showResultToAdminAndTeacherBorderPane;
+    }
+
+    private VBox getShowResultTestVbox() {
+        return showResultTestVbox;
+    }
+
+    public void getTestsToShowResults(){
+        int counter = 0;
+        getShowResultTestVbox().getChildren().clear();
+        ReadTest readTest = new ReadTest();
+        readTest.getAllTestsForAdmin();
+        ToggleGroup toggleGroup = new ToggleGroup();
+        setSelectTestToAssignToClass(new RadioButton[readTest.getGetAllTestsForAdminList().size()]);
+
+        for(Test test : readTest.getGetAllTestsForAdminList()){
+            HBox hBoxLeft = new HBox();
+            HBox hBoxRight = new HBox();
+            BorderPane borderPane = new BorderPane();
+            hBoxLeft.setSpacing(50.0);
+            getSelectTestToAssignToClass()[counter] = new RadioButton();
+            getSelectTestToAssignToClass()[counter].setToggleGroup(toggleGroup);
+            //getSelectTestToAssignToClass()[counter].setId(String.valueOf(test.getTestId()));
+            getSelectTestToAssignToClass()[counter].setUserData(String.valueOf(test.getTestId()));
+            hBoxLeft.getChildren().addAll(new Label("Prov: " + test.getTestName()), new Label(" Beskrivning: " + test.getTestDescription()),
+                    new Label(" Datum: " + test.getLastDate()), new Label(" Tid: " + String.valueOf(test.getTimeForTestMinutes())));
+            hBoxRight.getChildren().addAll( new Label("Välj:"),  getSelectTestToAssignToClass()[counter]);
+            borderPane.setStyle("-fx-border-color: black;");
+            borderPane.setPadding(new Insets(10));
+            borderPane.setLeft(hBoxLeft);
+            borderPane.setRight(hBoxRight);
+            getShowResultTestVbox().getChildren().add(borderPane);
+            counter++;
+        }
+
+        toggleGroup.selectedToggleProperty().addListener(event ->{
+            if(toggleGroup.getSelectedToggle().isSelected()){
+                for(Test test : readTest.getGetAllTestsForAdminList()){
+                    if(test.getTestId() == Integer.parseInt(toggleGroup.getSelectedToggle().getUserData().toString())){
+                        VBox vBox = new VBox();
+                        vBox.getChildren().add(new Label("Prov: " + test.getTestName()));
+                        getShowResultToAdminAndTeacherBorderPane().setCenter(vBox);
+                    }
+                }
+
+            }
+        });
+    }
+
 }

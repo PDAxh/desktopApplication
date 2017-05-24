@@ -1090,16 +1090,23 @@ public class TeacherController {
 
     @FXML
     private void getSelectToDelete(){
-        for(int i = 0; i <  getSelectTestToPublishOrEdit().length; i++) {
-            if (getSelectTestToPublishOrEdit()[i].isSelected()) {
-                DeleteTest deleteTest = new DeleteTest();
-                DeleteUserTests deleteUserTests = new DeleteUserTests();
-                deleteTest.deleteTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
-                //deleteTest.deleteTest(Integer.parseInt(getSelectTestToPublishOrEdit()[i].getId()));
-                deleteUserTests.deleteTestFromUserTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
-                getTeacherTest();
-                getShowTeacherTestBorderPane().setCenter(null);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Ta bort prov");
+        alert.setHeaderText("Borttagning av prov!");
+        alert.setContentText("Är du säker på att du vill ta bort provet?");
+        alert.showAndWait().ifPresent(response ->{
+            if (response == ButtonType.OK) {
+                for(int i = 0; i <  getSelectTestToPublishOrEdit().length; i++) {
+                    if (getSelectTestToPublishOrEdit()[i].isSelected()) {
+                        DeleteTest deleteTest = new DeleteTest();
+                        DeleteUserTests deleteUserTests = new DeleteUserTests();
+                        deleteTest.deleteTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
+                        deleteUserTests.deleteTestFromUserTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
+                        getTeacherTest();
+                        getShowTeacherTestBorderPane().setCenter(null);
+                    }
+                }
             }
-        }
+        });
     }
 }

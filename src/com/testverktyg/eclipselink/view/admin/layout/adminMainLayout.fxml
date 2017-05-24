@@ -53,6 +53,7 @@
                 </Menu>
                 <Menu text="Prov">
                     <MenuItem text="Publicera prov" onAction="#showTestsToAdmin"/>
+                    <MenuItem text="Resultat" onAction="#getResults"/>
                 </Menu>
                 <Menu text="Hjälp">
                     <MenuItem text="Hjälp" onAction="#getHelpMenueForAdmin"/>

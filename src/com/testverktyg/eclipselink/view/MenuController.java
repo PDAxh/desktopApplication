@@ -161,6 +161,14 @@ public class MenuController {
         borderPane.setCenter(bP);
     }
 
+    @FXML
+    private void getResults() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("main/layout/resultsForAdminAndTeacherLayout.fxml"));
+        BorderPane borderPane = loader.load();
+        this.borderPane.setCenter(borderPane);
+        AdminController adminController = loader.getController();
+        adminController.getTestsToShowResults();
+    }
 
     @FXML
     private void updateAccount(){
