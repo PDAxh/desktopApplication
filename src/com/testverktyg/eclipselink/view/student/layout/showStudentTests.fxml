@@ -9,14 +9,15 @@
 <?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.testverktyg.eclipselink.view.student.StudentController">
+            fx:controller="com.testverktyg.eclipselink.view.student.StudentController"
+            fx:id="showStudentTestsBorderPane">
     <padding><Insets top="30" left="80" right="120" bottom="30"/> </padding>
 
     <top>
         <HBox spacing="15">
             <padding><Insets  bottom="30"/> </padding>
-            <Button fx:id="doSelectedTestButton" text="Gör valt test" onAction="#getSelectedTestToDo" disable="false"/>
-            <Button fx:id="showResultButton" text="Visa resultat" disable="false"/>
+            <Button fx:id="doSelectedTestButton" text="Gör valt test" onAction="#getSelectedTestToDo" disable="true"/>
+            <Button fx:id="showResultButton" text="Visa resultat" disable="true"/>
         </HBox>
     </top>
 

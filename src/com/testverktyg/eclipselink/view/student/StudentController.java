@@ -3,6 +3,7 @@ import com.testverktyg.eclipselink.entity.Test;
 import com.testverktyg.eclipselink.entity.UserTests;
 import com.testverktyg.eclipselink.service.Test.ReadTest;
 import com.testverktyg.eclipselink.service.studentAnswer.CreateStudentAnswer;
+import com.testverktyg.eclipselink.service.studentAnswer.ReadStudentAnswer;
 import com.testverktyg.eclipselink.service.userTests.ReadUserTests;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleListProperty;
@@ -202,6 +203,7 @@ public class StudentController {
 
     //--Testkod-Jonas---
 
+    @FXML private BorderPane showStudentTestsBorderPane;
     @FXML private VBox showStudentTestVbox;
     @FXML private Button doSelectedTestButton;
     @FXML private Button showResultButton;
@@ -240,6 +242,10 @@ public class StudentController {
         this.userId = userId;
     }
 
+    private BorderPane getShowStudentTestsBorderPane() {
+        return showStudentTestsBorderPane;
+    }
+
     public void getStudentTests(){
         getShowStudentTestVbox().getChildren().clear();
         ReadTest readTest = new ReadTest();
@@ -258,14 +264,11 @@ public class StudentController {
                 getSetSelectTestToDo()[counter] = new RadioButton();
                 getSetSelectTestToDo()[counter].setToggleGroup(toggleGroup);
                 getSetSelectTestToDo()[counter].setId(String.valueOf(test.getTestId()));
+                getSetSelectTestToDo()[counter].setUserData(String.valueOf(test.getTestId()));
                 hBoxLeft.getChildren().addAll(new Label("Prov: " + test.getTestName()), new Label(" Beskrivning: " + test.getTestDescription()),
                         new Label(" Datum: " + test.getLastDate()), new Label(" Tid: " + String.valueOf(test.getTimeForTestMinutes())));
+                hBoxRight.getChildren().addAll( new Label("Välj:"), getSetSelectTestToDo()[counter]);
 
-                LocalDate localDate = LocalDate.now();
-                String date = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(localDate);
-                if(test.getLastDate().equals(date)){
-                    hBoxRight.getChildren().addAll( new Label("Välj:"), getSetSelectTestToDo()[counter]);
-                }
 
                 borderPane.setStyle("-fx-border-color: black;");
                 borderPane.setPadding(new Insets(10));
@@ -275,6 +278,30 @@ public class StudentController {
                 counter++;
             }
         }
+
+        toggleGroup.selectedToggleProperty().addListener(event ->{
+            if(toggleGroup.getSelectedToggle().isSelected()){
+                int testId = Integer.parseInt(toggleGroup.getSelectedToggle().getUserData().toString());
+                ReadStudentAnswer readStudentAnswer = new ReadStudentAnswer();
+                readStudentAnswer.getStudentAnswer(getUserId(), testId);
+                getDoSelectedTestButton().setDisable(true);
+                getShowResultButton().setDisable(true);
+
+                for(Test test : readTest.getTestList()){
+                    LocalDate localDate = LocalDate.now();
+                    String date = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(localDate);
+                    if((test.getTestId() == testId) && (test.getLastDate().equals(date))){
+                        getDoSelectedTestButton().setDisable(false);
+                        getShowResultButton().setDisable(true);
+                    }
+                    else if(!readStudentAnswer.getStudentAnswersList().isEmpty()){
+                        getDoSelectedTestButton().setDisable(true);
+                        getShowResultButton().setDisable(false);
+                    }
+                }
+            }
+
+        });
     }
 
     @FXML

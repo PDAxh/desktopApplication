@@ -13,9 +13,7 @@
     <top>
         <HBox spacing="15">
             <padding><Insets  bottom="30"/> </padding>
-            <Button text="Välja" onAction="#getSelectedTestToEdit"/>
-            <Button text="Ändra" onAction="#getSelectToEditButton"/>
-            <Button text="Ta bort" onAction="#getSelectToDelete"/>
+            <Button text="Ta bort valt test" onAction="#getSelectToDelete"/>
         </HBox>
     </top>
 

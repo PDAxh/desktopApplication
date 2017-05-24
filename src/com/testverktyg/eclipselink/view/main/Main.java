@@ -28,8 +28,8 @@ public class Main extends Application {
         mainController.setStage(primaryStage);
         primaryStage.show();
 
-        //loginUser user = new loginUser("admin","admin", "admin");
-        //loginUser student = new loginUser("student", "student", "student");
-        //loginUser teacher = new loginUser("teacher", "teacher", "teacher");
+        /*loginUser user = new loginUser("admin","admin", "admin");
+        loginUser student = new loginUser("student", "student", "student");
+        loginUser teacher = new loginUser("teacher", "teacher", "teacher");*/
     }
 }
