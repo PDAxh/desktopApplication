@@ -1,20 +1,29 @@
 package com.testverktyg.eclipselink.view.admin;
 
 
+import com.testverktyg.eclipselink.entity.Test;
 import com.testverktyg.eclipselink.service.Class.CreateClass;
 import com.testverktyg.eclipselink.service.Class.DeleteClass;
 import com.testverktyg.eclipselink.service.Class.ReadClass;
+import com.testverktyg.eclipselink.service.Test.DeleteTest;
+import com.testverktyg.eclipselink.service.Test.ReadTest;
 import com.testverktyg.eclipselink.service.user.CreateUser;
 import com.testverktyg.eclipselink.service.user.DeleteUser;
 import com.testverktyg.eclipselink.service.user.ReadUser;
 import com.testverktyg.eclipselink.service.user.UpdateUser;
+import com.testverktyg.eclipselink.service.userTests.CreateUserTests;
+import com.testverktyg.eclipselink.service.userTests.DeleteUserTests;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 /**
@@ -346,6 +355,7 @@ public class AdminController {
         updateUserButton.setOnAction(event -> {
             if (newPasswordField.getText().equals(verifyPasswordField.getText())) {
                 UpdateUser uu = new UpdateUser();
+                uu.setUserId(selectedID);
                 uu.setNewfirstname(fnameField.getText());
                 uu.setNewLastname(lnameField.getText());
                 uu.setNewEmail(emailField.getText());
@@ -514,6 +524,114 @@ public class AdminController {
 
         public void setType(String type) {
             this.type = type;
+        }
+    }
+
+    //List test
+
+    @FXML private VBox showAdminTestVbox;
+    @FXML private ComboBox<String> selectClassToAssignTestComboBox;
+    private RadioButton selectTestToAssignToClass[];
+
+    private VBox getShowAdminTestVbox() {
+        return showAdminTestVbox;
+    }
+
+    private RadioButton[] getSelectTestToAssignToClass() {
+        return selectTestToAssignToClass;
+    }
+
+    private void setSelectTestToAssignToClass(RadioButton[] selectTestToAssignToClass) {
+        this.selectTestToAssignToClass = selectTestToAssignToClass;
+    }
+
+    private ComboBox<String> getSelectClassToAssignTestComboBox() {
+        return selectClassToAssignTestComboBox;
+    }
+
+    public void getAllTestsForAdminList(){
+        int counter = 0;
+        getShowAdminTestVbox().getChildren().clear();
+        ReadTest readTest = new ReadTest();
+        ReadClass readClass = new ReadClass();
+        readTest.getAllTestsForAdmin();
+        readClass.readAllClasses();
+        ToggleGroup toggleGroup = new ToggleGroup();
+        setSelectTestToAssignToClass(new RadioButton[readTest.getGetAllTestsForAdminList().size()]);
+
+        for (int i = 0; i < readClass.getClassNameList().size(); i++){
+            getSelectClassToAssignTestComboBox().getItems().add(String.valueOf(readClass.getClassNameList().get(i)));
+        }
+
+        for(Test test : readTest.getGetAllTestsForAdminList()){
+            HBox hBoxLeft = new HBox();
+            HBox hBoxRight = new HBox();
+            BorderPane borderPane = new BorderPane();
+            hBoxLeft.setSpacing(50.0);
+            getSelectTestToAssignToClass()[counter] = new RadioButton();
+            getSelectTestToAssignToClass()[counter].setToggleGroup(toggleGroup);
+            getSelectTestToAssignToClass()[counter].setId(String.valueOf(test.getTestId()));
+            hBoxLeft.getChildren().addAll(new Label("Prov: " + test.getTestName()), new Label(" Beskrivning: " + test.getTestDescription()),
+                    new Label(" Datum: " + test.getLastDate()), new Label(" Tid: " + String.valueOf(test.getTimeForTestMinutes())));
+            hBoxRight.getChildren().addAll( new Label("Välj:"),  getSelectTestToAssignToClass()[counter]);
+            borderPane.setStyle("-fx-border-color: black;");
+            borderPane.setPadding(new Insets(10));
+            borderPane.setLeft(hBoxLeft);
+            borderPane.setRight(hBoxRight);
+            getShowAdminTestVbox().getChildren().add(borderPane);
+            counter++;
+        }
+    }
+
+    @FXML
+    private void getSelectedTestToAssignClass(){
+        for(int i = 0; i < getSelectTestToAssignToClass().length; i++){
+            if(getSelectTestToAssignToClass()[i].isSelected()){
+
+                if(getSelectClassToAssignTestComboBox().getValue() == null){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Välj klass");
+                    alert.setHeaderText("Du måste välja en klass för att kunna tilldela ett prov.");
+                    alert.showAndWait();
+                }
+                else{
+                    ReadUser readUser = new ReadUser();
+                    readUser.getUserIdByClass(getSelectClassToAssignTestComboBox().getValue());
+
+                    for(com.testverktyg.eclipselink.entity.User user : readUser.getUserIdByClassList()){
+                        CreateUserTests createUserTests = new CreateUserTests();
+                        createUserTests.setUserId(user.getUserId());
+                        createUserTests.setTestId( Integer.parseInt(getSelectTestToAssignToClass()[i].getId()));
+                        createUserTests.commitTestToUser();
+                    }
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Tilldelat");
+                    alert.setHeaderText("Valt prov är nu tilldelat till klassen " + getSelectClassToAssignTestComboBox().getValue());
+                    alert.showAndWait();
+
+                    getSelectClassToAssignTestComboBox().setValue("Välj klass");
+                    getSelectTestToAssignToClass()[i].setSelected(false);
+                }
+            }
+        }
+    }
+
+    @FXML
+    private void getSelectTestToDelete(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Ta bort prov");
+        alert.setHeaderText("Du när nu på väg att ta bort ett prov!");
+        alert.setContentText("Är du säker på att du vill ta bort provet?");
+        alert.showAndWait();
+        for(int i = 0; i <  getSelectTestToAssignToClass().length; i++) {
+            if (getSelectTestToAssignToClass()[i].isSelected()) {
+                DeleteTest deleteTest = new DeleteTest();
+                DeleteUserTests deleteUserTests = new DeleteUserTests();
+                deleteTest.deleteTest(Integer.parseInt(getSelectTestToAssignToClass()[i].getId()));
+                deleteUserTests.deleteTestFromUserTest(Integer.parseInt(getSelectTestToAssignToClass()[i].getId()));
+                getAllTestsForAdminList();
+            }
         }
     }
 }

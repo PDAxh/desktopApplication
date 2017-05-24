@@ -36,7 +36,20 @@ public class UpdateUser {
         user.setEmail(newEmail);
         user.setPassword(newPassword);
         user.setKlass(newKlass);
-        user.setTypeOfUser(newTypeOfUser);
+
+        entitymanager.getTransaction().commit();
+        entitymanager.close();
+        emfactory.close();
+    }
+
+    public void UpdateOnlyPassword(){
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+        EntityManager entitymanager = emfactory.createEntityManager();
+        entitymanager.getTransaction().begin();
+
+        User user = entitymanager.find(User.class, userId);
+
+        user.setPassword(newPassword);
 
         entitymanager.getTransaction().commit();
         entitymanager.close();

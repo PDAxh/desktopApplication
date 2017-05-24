@@ -8,7 +8,8 @@ import java.util.List;
 @Entity
 //------------TestKod----------------------------------
 @NamedQueries({
-        @NamedQuery(query = "SELECT e FROM Test e WHERE e.testId = :testId", name="getTest")
+        @NamedQuery(query = "SELECT e FROM Test e WHERE e.testId = :testId", name="getTest"),
+        @NamedQuery(query = "SELECT e FROM Test e", name="getAllTest")
 })
 
 //-----------------------------------------------------

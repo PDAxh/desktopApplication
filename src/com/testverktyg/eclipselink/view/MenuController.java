@@ -3,6 +3,7 @@ package com.testverktyg.eclipselink.view;
 import com.testverktyg.eclipselink.service.user.UpdateUser;
 import com.testverktyg.eclipselink.view.admin.AdminController;
 import com.testverktyg.eclipselink.view.main.MainController;
+import com.testverktyg.eclipselink.view.student.StudentController;
 import com.testverktyg.eclipselink.view.teacher.TeacherController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,9 +35,7 @@ public class MenuController {
     @FXML
     private Label loggedInUser;
 
-
-    private ObservableList<AdminController.User> data = FXCollections.observableArrayList();
-    int selectedID;
+    int activeLoggedInUserId;
 
     private Stage stage;
     @FXML private BorderPane borderPane;
@@ -80,6 +79,16 @@ public class MenuController {
         GridPane gridPane = FXMLLoader.load(getClass().getResource("admin/layout/removeClass.fxml"));
         borderPane.setCenter(gridPane);
     }
+
+    @FXML
+    private void showTestsToAdmin() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("admin/layout/showTests.fxml"));
+        BorderPane borderPane = loader.load();
+        this.borderPane.setCenter(borderPane);
+        AdminController adminController = loader.getController();
+        adminController.getAllTestsForAdminList();
+    }
+
     @FXML
     private void createNewTest() throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("teacher/layout/testTestLayout.fxml"));
@@ -88,6 +97,17 @@ public class MenuController {
         TeacherController teacherController = loader.getController();
         teacherController.setUserId(getUserId());
     }
+
+    @FXML
+    private void showTestsToStudentToDo() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("student/layout/showStudentTests.fxml"));
+        BorderPane borderPane = loader.load();
+        this.borderPane.setCenter(borderPane);
+        StudentController studentController= loader.getController();
+        studentController.setUserId(getUserId());
+        studentController.getStudentTests();
+    }
+
     @FXML
     private void showTestToStudent() throws IOException{
         BorderPane bp = FXMLLoader.load(getClass().getResource("student/layout/showTestToStudentRoot.fxml"));
@@ -145,65 +165,53 @@ public class MenuController {
     @FXML
     private void updateAccount(){
 
-        //int selectedUserIndex = 2;
-        //selectedID = data.get(selectedUserIndex).getID();
+        editUserPane.getChildren().clear();
 
-        Label fnameLabel = new Label();
-        Label lnameLabel = new Label();
-        Label emailLabel = new Label();
+        //Label emailLabel = new Label();
         Label newPasswordLabel = new Label();
         Label verifyPasswordLabel = new Label();
-        TextField fnameField = new TextField();
-        TextField lnameField = new TextField();
-        TextField emailField = new TextField();
+        //TextField emailField = new TextField();
         TextField newPasswordField = new TextField();
         TextField verifyPasswordField = new TextField();
         Label updateUserMessageLabel = new Label();
         Button updateUserButton = new Button();
 
-        fnameLabel.setText("Förnamn:");
-        lnameLabel.setText("Efternamn");
-        emailLabel.setText("Email:");
+        //emailLabel.setText("Email:");
         newPasswordLabel.setText("Nytt lösenord");
         verifyPasswordLabel.setText("Repetera lösenord");
         updateUserButton.setText("Uppdatera");
         updateUserButton.setOnAction(event -> {
-            if (newPasswordField.getText().equals(verifyPasswordField.getText())) {
+            if (newPasswordField.getText().isEmpty()){
+                updateUserMessageLabel.setText("Minst ett av fälten saknar innehåll");
+            }else if (!newPasswordField.getText().equals(verifyPasswordField.getText())){
+                updateUserMessageLabel.setText("Lösenorden stämmer inte överrens");
+            }else if (newPasswordField.getText().equals(verifyPasswordField.getText())) {
                 UpdateUser uu = new UpdateUser();
-                uu.setNewfirstname(fnameField.getText());
-                uu.setNewLastname(lnameField.getText());
-                uu.setNewEmail(emailField.getText());
+                uu.setUserId(activeLoggedInUserId);
+                System.out.println(uu.getUserId());
+                //uu.setNewEmail(emailField.getText());
                 uu.setNewPassword(newPasswordField.getText());
-                uu.UpdateUser();
-                updateUserMessageLabel.setText("Användaren har ändrats");
-            } else {
-                updateUserMessageLabel.setText("Lösenord stämmer inte överens");
+                uu.UpdateOnlyPassword();
+                updateUserMessageLabel.setText("Lösenordet har ändrats");
+                verifyPasswordField.clear();
+                newPasswordField.clear();
             }
         });
 
-       /* editUserPane.add(fnameLabel, 0, 0);
-        editUserPane.add(fnameField, 0, 1);
-        editUserPane.add(lnameLabel, 0, 2);
-        editUserPane.add(lnameField, 0, 3);
-        editUserPane.add(emailLabel, 0, 4);
-        editUserPane.add(emailField, 0, 5);
-        editUserPane.add(newPasswordLabel, 0, 6);
-        editUserPane.add(newPasswordField, 0, 7);
-        editUserPane.add(verifyPasswordLabel, 0, 8);
-        editUserPane.add(verifyPasswordField, 0, 9);
-        editUserPane.add(updateUserMessageLabel, 0, 10);
-        editUserPane.add(updateUserButton, 0, 11);
-
-        */
-
-        //fnameField.setText(data.get(selectedUserIndex).fname);
-        //lnameField.setText(data.get(selectedUserIndex).lname);
-        //emailField.setText(data.get(selectedUserIndex).email);
+        //editUserPane.add(emailLabel, 0, 4);
+        //editUserPane.add(emailField, 0, 5);
+        editUserPane.add(newPasswordLabel, 0, 1);
+        editUserPane.add(newPasswordField, 0, 2);
+        editUserPane.add(verifyPasswordLabel, 0, 3);
+        editUserPane.add(verifyPasswordField, 0, 4);
+        editUserPane.add(updateUserButton, 0, 5);
+        editUserPane.add(updateUserMessageLabel, 0, 6);
 
     }
 
     @FXML
-    public void activeLoggedInUser(String nameOnActiveUser){
+    public void activeLoggedInUser(String nameOnActiveUser, int loggedInUserId){
+        activeLoggedInUserId = loggedInUserId;
         loggedInUser.setText("Inloggad som: " + nameOnActiveUser);
     }
 

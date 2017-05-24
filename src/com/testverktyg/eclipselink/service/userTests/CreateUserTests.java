@@ -1,7 +1,6 @@
 package com.testverktyg.eclipselink.service.userTests;
 
 import com.testverktyg.eclipselink.entity.UserTests;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

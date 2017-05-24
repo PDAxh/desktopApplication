@@ -1,7 +1,6 @@
 package com.testverktyg.eclipselink.service.Class;
 
 import com.testverktyg.eclipselink.entity.Class;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -11,7 +10,7 @@ import java.util.List;
 
 public class ReadClass {
 
-    List<Class> classNameList;
+    private List<Class> classNameList;
 
     //reads all the classes from the database
     public void readAllClasses(){
@@ -20,18 +19,24 @@ public class ReadClass {
         EntityManager entitymanager = emfactory.createEntityManager();
         entitymanager.getTransaction().begin();
 
-        classNameList = entitymanager.createNamedQuery("FindAllClassNames", Class.class).getResultList();
+       setClassNameList(entitymanager.createNamedQuery("FindAllClassNames", Class.class).getResultList());
 
+        entitymanager.getTransaction().commit();
+        entitymanager.close();
+        emfactory.close();
     }
-
-    public void readOneClass(){}
-
 
     public List<Class> getClassNameList() {
         return classNameList;
     }
 
-    public static void main(String[] args) {
+    private void setClassNameList(List<Class> classNameList) {
+        this.classNameList = classNameList;
+    }
+
+
+    // public void readOneClass(){}
+    /*    public static void main(String[] args) {
         ReadClass readClass = new ReadClass();
 
         readClass.readAllClasses();
@@ -39,5 +44,5 @@ public class ReadClass {
         for (int i = 0; i < readClass.classNameList.size(); i++){
             System.out.println(readClass.classNameList.get(i));
         }
-    }
+    }*/
 }

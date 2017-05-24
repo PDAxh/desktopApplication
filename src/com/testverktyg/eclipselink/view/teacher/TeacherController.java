@@ -1,5 +1,6 @@
 package com.testverktyg.eclipselink.view.teacher;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import com.testverktyg.eclipselink.entity.Test;
 import com.testverktyg.eclipselink.entity.UserTests;
 import com.testverktyg.eclipselink.service.Test.CreateTest;
@@ -522,11 +523,21 @@ public class TeacherController {
 
     //----Show-Tests------------
 
+    private ToggleGroup getTeacherTestToggleGroup;
+
+    private ToggleGroup getGetTeacherTestToggleGroup() {
+        return getTeacherTestToggleGroup;
+    }
+
+    private void setGetTeacherTestToggleGroup(ToggleGroup getTeacherTestToggleGroup) {
+        this.getTeacherTestToggleGroup = getTeacherTestToggleGroup;
+    }
+
     public void getTeacherTest(){
         getShowTeacherTestVbox().getChildren().clear();
         ReadTest readTest = new ReadTest();
         ReadUserTests readUserTests = new ReadUserTests(getUserId());
-        ToggleGroup toggleGroup = new ToggleGroup();
+        setGetTeacherTestToggleGroup(new ToggleGroup());
         setSelectTestToPublishOrEdit(new RadioButton[readUserTests.getUserTestsList().size()]);
         int counter = 0;
         for(UserTests userTests: readUserTests.getUserTestsList()){
@@ -538,8 +549,8 @@ public class TeacherController {
                 BorderPane borderPane = new BorderPane();
                 hBoxLeft.setSpacing(50.0);
                 getSelectTestToPublishOrEdit()[counter] = new RadioButton();
-                getSelectTestToPublishOrEdit()[counter].setToggleGroup(toggleGroup);
-                getSelectTestToPublishOrEdit()[counter].setId(String.valueOf(test.getTestId()));
+                getSelectTestToPublishOrEdit()[counter].setToggleGroup(getGetTeacherTestToggleGroup());
+                getSelectTestToPublishOrEdit()[counter].setUserData(String.valueOf(test.getTestId()));
                 hBoxLeft.getChildren().addAll(new Label("Prov: " + test.getTestName()), new Label(" Beskrivning: " + test.getTestDescription()),
                         new Label(" Datum: " + test.getLastDate()), new Label(" Tid: " + String.valueOf(test.getTimeForTestMinutes())));
                 hBoxRight.getChildren().addAll( new Label("Välj:"), getSelectTestToPublishOrEdit()[counter]);
@@ -551,9 +562,13 @@ public class TeacherController {
                 counter++;
             }
         }
+        getGetTeacherTestToggleGroup().selectedToggleProperty().addListener(event ->{
+            if(getGetTeacherTestToggleGroup().getSelectedToggle().isSelected()){
+                getSelectedTestToEdit();
+            }
+        });
     }
 
-    @FXML
     private void getSelectedTestToEdit(){
         ScrollPane scrollPane = new ScrollPane();
         ToggleGroup toggleGroup = new ToggleGroup();
@@ -561,11 +576,9 @@ public class TeacherController {
         setReadTest(new ReadTest());
         flowPane.setVgap(10);
         flowPane.setHgap(10);
+        scrollPane.setStyle("-fx-background-color:transparent;");
 
-        for(int i = 0; i <  getSelectTestToPublishOrEdit().length; i++){
-            if(getSelectTestToPublishOrEdit()[i].isSelected()){
-                int id = Integer.parseInt(getSelectTestToPublishOrEdit()[i].getId());
-                getReadTest().getTest(id);
+                getReadTest().getTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
                 setSelectToEdit(new RadioButton[(getReadTest().getTestList().get(0).getQuestionList().size() + 1)]);
 
                 for(int j = 0; j < getReadTest().getTestList().size(); j++){
@@ -619,8 +632,11 @@ public class TeacherController {
                         flowPane.getChildren().add(vBox1);
                     }
                 }
-           }
-        }
+        toggleGroup.selectedToggleProperty().addListener(event ->{
+            if(toggleGroup.getSelectedToggle().isSelected()){
+                getSelectToEditButton();
+            }
+        });
         scrollPane.setContent(flowPane);
         scrollPane.setFitToWidth(true);
         getShowTeacherTestBorderPane().setCenter(scrollPane);
@@ -788,58 +804,57 @@ public class TeacherController {
         this.hodlQuestionIdForNewAlternatives = hodlQuestionIdForNewAlternatives;
     }
 
-    public TextField getUpdateTestnameTextField() {
+    private TextField getUpdateTestnameTextField() {
         return updateTestnameTextField;
     }
 
-    public void setUpdateTestnameTextField(TextField updateTestnameTextField) {
+    private void setUpdateTestnameTextField(TextField updateTestnameTextField) {
         this.updateTestnameTextField = updateTestnameTextField;
     }
 
-    public TextArea getUpdateDescriptionTextArea() {
+    private TextArea getUpdateDescriptionTextArea() {
         return updateDescriptionTextArea;
     }
 
-    public void setUpdateDescriptionTextArea(TextArea updateDescriptionTextArea) {
+    private void setUpdateDescriptionTextArea(TextArea updateDescriptionTextArea) {
         this.updateDescriptionTextArea = updateDescriptionTextArea;
     }
 
-    public Spinner getUpdateTestTimeInMinutesSpinner() {
+    private Spinner getUpdateTestTimeInMinutesSpinner() {
         return updateTestTimeInMinutesSpinner;
     }
 
-    public void setUpdateTestTimeInMinutesSpinner(Spinner updateTestTimeInMinutesSpinner) {
+    private void setUpdateTestTimeInMinutesSpinner(Spinner updateTestTimeInMinutesSpinner) {
         this.updateTestTimeInMinutesSpinner = updateTestTimeInMinutesSpinner;
     }
 
-    public DatePicker getUpdateDateForTestDatePIcker() {
+    private DatePicker getUpdateDateForTestDatePIcker() {
         return updateDateForTestDatePIcker;
     }
 
-    public void setUpdateDateForTestDatePIcker(DatePicker updateDateForTestDatePIcker) {
+    private void setUpdateDateForTestDatePIcker(DatePicker updateDateForTestDatePIcker) {
         this.updateDateForTestDatePIcker = updateDateForTestDatePIcker;
     }
 
-    public CheckBox getUpdateSelfCorrectCheckBox() {
+    private CheckBox getUpdateSelfCorrectCheckBox() {
         return updateSelfCorrectCheckBox;
     }
 
-    public void setUpdateSelfCorrectCheckBox(CheckBox updateSelfCorrectCheckBox) {
+    private void setUpdateSelfCorrectCheckBox(CheckBox updateSelfCorrectCheckBox) {
         this.updateSelfCorrectCheckBox = updateSelfCorrectCheckBox;
     }
 
-    public CheckBox getUpdateShowResultToStudentCheckBox() {
+    private CheckBox getUpdateShowResultToStudentCheckBox() {
         return updateShowResultToStudentCheckBox;
     }
 
-    public void setUpdateShowResultToStudentCheckBox(CheckBox updateShowResultToStudentCheckBox) {
+    private void setUpdateShowResultToStudentCheckBox(CheckBox updateShowResultToStudentCheckBox) {
         this.updateShowResultToStudentCheckBox = updateShowResultToStudentCheckBox;
     }
 
-    @FXML
-    private void getSelectToEditButton() throws IOException{
+    private void getSelectToEditButton(){
         for(int i = 0; i < getSelectToEdit().length; i++){
-            if(getSelectToEdit()[i].isSelected()){
+                if(getSelectToEdit()[i].isSelected()){
 
                 int id = Integer.parseInt(getSelectToEdit()[i].getId());
                 Dialog<ButtonType> message = new Dialog<>();
@@ -901,12 +916,7 @@ public class TeacherController {
                                         updateTest.addNewAlternative(getHodlQuestionIdForNewAlternatives(),getUpdateQuestionAlternativeTextField()[n].getText(), getUpdateQuestionAlternativeCheckbox()[n].isSelected());
                                     }
                                 }*/
-
-
                             }
-
-
-
                             getSelectedTestToEdit();
                         }
                     });
@@ -925,8 +935,6 @@ public class TeacherController {
                         }
                     });
 
-
-
                     message.showAndWait().ifPresent(response -> {
                         if(response == saveTest){
                             UpdateTest updateTest = new UpdateTest();
@@ -935,7 +943,6 @@ public class TeacherController {
                                     getUpdateSelfCorrectCheckBox().isSelected(), getUpdateShowResultToStudentCheckBox().isSelected());
                             getSelectedTestToEdit();
                         }
-
                     });
                 }
             }
@@ -1087,14 +1094,12 @@ public class TeacherController {
             if (getSelectTestToPublishOrEdit()[i].isSelected()) {
                 DeleteTest deleteTest = new DeleteTest();
                 DeleteUserTests deleteUserTests = new DeleteUserTests();
-                deleteTest.deleteTest(Integer.parseInt(getSelectTestToPublishOrEdit()[i].getId()));
-                deleteUserTests.deleteUserFromUserTest(Integer.parseInt(getSelectTestToPublishOrEdit()[i].getId()), getUserId());
+                deleteTest.deleteTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
+                //deleteTest.deleteTest(Integer.parseInt(getSelectTestToPublishOrEdit()[i].getId()));
+                deleteUserTests.deleteTestFromUserTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
                 getTeacherTest();
                 getShowTeacherTestBorderPane().setCenter(null);
             }
         }
     }
-
-
-
 }

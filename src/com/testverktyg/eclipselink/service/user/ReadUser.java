@@ -19,11 +19,11 @@ public class ReadUser {
     private String password;
     private String group;
     private boolean loginStatus;
-    List<User> studentListFromSpecificClass;
-    List<User> studentList;
-    List<User> teacherList;
-    List<User> adminList;
-    List<User> userLoggedIn;
+    private List<User> studentListFromSpecificClass;
+    private List<User> studentList;
+    private List<User> teacherList;
+    private List<User> adminList;
+    private List<User> userLoggedIn;
     private int userId;
 
     public ReadUser(){}
@@ -168,4 +168,29 @@ public class ReadUser {
     private void setUserId(int userId) {
         this.userId = userId;
     }
+
+    //--TestKod-Jonas--
+    private List<User> userIdByClassList;
+
+    public void getUserIdByClass(String klass){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        setUserIdByClassList(entityManager.createNamedQuery("findUserIdByClass", User.class)
+                .setParameter("klass", klass)
+                .getResultList());
+
+        entityManager.close();
+        entityManagerFactory.close();
+    }
+
+    public List<User> getUserIdByClassList() {
+        return userIdByClassList;
+    }
+
+    private void setUserIdByClassList(List<User> userIdByClassList) {
+        this.userIdByClassList = userIdByClassList;
+    }
+
+    //------
 }
