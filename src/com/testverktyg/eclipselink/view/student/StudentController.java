@@ -1,23 +1,11 @@
 package com.testverktyg.eclipselink.view.student;
-import com.testverktyg.eclipselink.entity.Test;
-import com.testverktyg.eclipselink.entity.UserTests;
 import com.testverktyg.eclipselink.service.Test.ReadTest;
 import com.testverktyg.eclipselink.service.studentAnswer.CreateStudentAnswer;
-import com.testverktyg.eclipselink.service.studentAnswer.ReadStudentAnswer;
-import com.testverktyg.eclipselink.service.userTests.ReadUserTests;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleListProperty;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -52,11 +40,13 @@ public class StudentController {
     private ReadTest newTest = new ReadTest(activeTest);
     private CreateStudentAnswer csa = new CreateStudentAnswer();
 
+    @FXML private ArrayList<CheckBox> checkBoxArray;
+    @FXML private ArrayList<RadioButton> radioButtonArray;
 
-    @FXML
+    /*@FXML
     private SimpleListProperty<CheckBox> alternativeCheckBoxList = new SimpleListProperty<>(this, "alternativeCheckBoxList");
     @FXML
-    private SimpleListProperty<RadioButton> alternativeRadioButtonList = new SimpleListProperty<>(this, "alternativeRadioButtonList");
+    private SimpleListProperty<RadioButton> alternativeRadioButtonList = new SimpleListProperty<>(this, "alternativeRadioButtonList");*/
 
     //Loads test information for test info scene
     @FXML
@@ -105,7 +95,6 @@ public class StudentController {
                 try {
                     seconds--;
                     Thread.sleep(1000);
-
                 } catch (InterruptedException ignored) {
                 }
             }
@@ -123,7 +112,8 @@ public class StudentController {
         showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
         showToStudentTextLabel.setText("");
         alternativePane.getChildren().clear();
-
+        //checkBoxArray.clear();
+        //radioButtonArray.clear();
         if (activeQuestion == maxQuestions) {
             showToUserNextButton.onActionProperty();
             showToUserNextButton.setOnAction(event -> {
@@ -144,36 +134,32 @@ public class StudentController {
         newTest.getActiveTest();
         showToStudentTestNameLabel.setText(newTest.getTestName());
         String typeOfQuestion = newTest.getActiveQuestionType().toString();
-        alternativeCheckBoxList.clear();
-        alternativeRadioButtonList.clear();
-
-
-        ToggleGroup toggleGroup = new ToggleGroup();
-
         if (typeOfQuestion.equals("Flervals")) {
             for (int i = 0; i < newTest.getActiveAlternativeId().size(); i++) {
                 CheckBox checkBox = new CheckBox();
                 checkBox.setId(String.valueOf(i));
+                checkBox.setUserData(newTest.getActiveAlternativeId().get(i).getAlternativeId());
                 Label alternativeText = new Label();
                 alternativeText.setText(String.valueOf(newTest.getActiveAlternativeText().get(i)));
                 alternativePane.add(checkBox, 0, i);
                 alternativePane.add(alternativeText, 1, i);
-                alternativeCheckBoxList.add(checkBox);
+                checkBoxArray.add(checkBox);
             }
         } else {
             for (int y = 0; y < newTest.getActiveAlternativeId().size(); y++) {
                 RadioButton radioButton = new RadioButton();
+                ToggleGroup toggleGroup = new ToggleGroup();
                 radioButton.setId(String.valueOf(y));
                 radioButton.setToggleGroup(toggleGroup);
                 Label alternativeText = new Label();
                 alternativeText.setText(String.valueOf(newTest.getActiveAlternativeText().get(y)));
                 alternativePane.add(radioButton, 0, y);
                 alternativePane.add(alternativeText, 1, y);
-                alternativeRadioButtonList.add(radioButton);
+                radioButtonArray.add(radioButton);
             }
         }
     }
-
+/*
     @FXML
     private void addStudentAnswer() {
         if (newTest.isSelfCorrecting()) {
@@ -194,121 +180,11 @@ public class StudentController {
             }
         }
     }
-
+*/
     private void createAnswer(int selectedAlternative) {
         int selectedAlternativeId = newTest.getActiveAlternativeId().get(selectedAlternative).getAlternativeId();
         int currentQuestionId = newTest.getActiveQuestionId().get(activeQuestion).getQuestionId();
         csa.createNewStudentAnswer(activeTest, currentQuestionId, selectedAlternativeId, 3);
     }
-
-    //--Testkod-Jonas---
-
-    @FXML private BorderPane showStudentTestsBorderPane;
-    @FXML private VBox showStudentTestVbox;
-    @FXML private Button doSelectedTestButton;
-    @FXML private Button showResultButton;
-    private RadioButton setSelectTestToDo[];
-    private int userId;
-
-    private VBox getShowStudentTestVbox() {
-        return showStudentTestVbox;
-    }
-
-    private void setShowStudentTestVbox(VBox showStudentTestVbox) {
-        this.showStudentTestVbox = showStudentTestVbox;
-    }
-
-    private Button getDoSelectedTestButton() {
-        return doSelectedTestButton;
-    }
-
-    private Button getShowResultButton() {
-        return showResultButton;
-    }
-
-    private RadioButton[] getSetSelectTestToDo() {
-        return setSelectTestToDo;
-    }
-
-    private void setSetSelectTestToDo(RadioButton[] setSelectTestToDo) {
-        this.setSelectTestToDo = setSelectTestToDo;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    private BorderPane getShowStudentTestsBorderPane() {
-        return showStudentTestsBorderPane;
-    }
-
-    public void getStudentTests(){
-        getShowStudentTestVbox().getChildren().clear();
-        ReadTest readTest = new ReadTest();
-        ReadUserTests readUserTests = new ReadUserTests(getUserId());
-        ToggleGroup toggleGroup = new ToggleGroup();
-        setSetSelectTestToDo(new RadioButton[readUserTests.getUserTestsList().size()]);
-        int counter = 0;
-        for(UserTests userTests: readUserTests.getUserTestsList()){
-
-            readTest.getTest(userTests.getTestId());
-            for(Test test : readTest.getTestList()){
-                HBox hBoxLeft = new HBox();
-                HBox hBoxRight = new HBox();
-                BorderPane borderPane = new BorderPane();
-                hBoxLeft.setSpacing(50.0);
-                getSetSelectTestToDo()[counter] = new RadioButton();
-                getSetSelectTestToDo()[counter].setToggleGroup(toggleGroup);
-                getSetSelectTestToDo()[counter].setId(String.valueOf(test.getTestId()));
-                getSetSelectTestToDo()[counter].setUserData(String.valueOf(test.getTestId()));
-                hBoxLeft.getChildren().addAll(new Label("Prov: " + test.getTestName()), new Label(" Beskrivning: " + test.getTestDescription()),
-                        new Label(" Datum: " + test.getLastDate()), new Label(" Tid: " + String.valueOf(test.getTimeForTestMinutes())));
-                hBoxRight.getChildren().addAll( new Label("Välj:"), getSetSelectTestToDo()[counter]);
-
-
-                borderPane.setStyle("-fx-border-color: black;");
-                borderPane.setPadding(new Insets(10));
-                borderPane.setLeft(hBoxLeft);
-                borderPane.setRight(hBoxRight);
-                getShowStudentTestVbox().getChildren().add(borderPane);
-                counter++;
-            }
-        }
-
-        toggleGroup.selectedToggleProperty().addListener(event ->{
-            if(toggleGroup.getSelectedToggle().isSelected()){
-                int testId = Integer.parseInt(toggleGroup.getSelectedToggle().getUserData().toString());
-                ReadStudentAnswer readStudentAnswer = new ReadStudentAnswer();
-                readStudentAnswer.getStudentAnswer(getUserId(), testId);
-                getDoSelectedTestButton().setDisable(true);
-                getShowResultButton().setDisable(true);
-
-                for(Test test : readTest.getTestList()){
-                    LocalDate localDate = LocalDate.now();
-                    String date = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(localDate);
-                    if((test.getTestId() == testId) && (test.getLastDate().equals(date))){
-                        getDoSelectedTestButton().setDisable(false);
-                        getShowResultButton().setDisable(true);
-                    }
-                    else if(!readStudentAnswer.getStudentAnswersList().isEmpty()){
-                        getDoSelectedTestButton().setDisable(true);
-                        getShowResultButton().setDisable(false);
-                    }
-                }
-            }
-
-        });
-    }
-
-    @FXML
-    private void getSelectedTestToDo(){
-
-    }
-
-    //--------
 }
 
