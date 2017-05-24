@@ -355,6 +355,7 @@ public class AdminController {
         updateUserButton.setOnAction(event -> {
             if (newPasswordField.getText().equals(verifyPasswordField.getText())) {
                 UpdateUser uu = new UpdateUser();
+                uu.setUserId(selectedID);
                 uu.setNewfirstname(fnameField.getText());
                 uu.setNewLastname(lnameField.getText());
                 uu.setNewEmail(emailField.getText());

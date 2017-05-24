@@ -6,6 +6,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.testverktyg.eclipselink.view.MenuController"
@@ -28,13 +29,16 @@
                     <MenuItem text="Om oss" onAction="#getAboutUs"/>
                 </Menu>
             </MenuBar>
-            <Label fx:id="loggedInUser" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+            <Label fx:id="loggedInUser" onMouseClicked="#updateAccount" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
                    style="-fx-font-weight: bold; -fx-text-fill: orangered;"/>
         </AnchorPane>
     </top>
 
     <center>
-        <Text text="you, Teacher!" />
+        <GridPane fx:id="editUserPane" alignment="TOP_CENTER" hgap="10" vgap="5">
+            <padding><Insets top="100"/></padding>
+            <Text text="you, Teacher!"/>
+        </GridPane>
     </center>
 
     <left>

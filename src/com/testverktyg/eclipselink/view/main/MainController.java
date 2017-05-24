@@ -68,7 +68,7 @@ public class MainController {
         menuController.setUserId(userId);
         setUsernameTextField("");
         setPasswordTextField("");
-        menuController.activeLoggedInUser(ru.getLoggedInUser().get(0).getFirstname());
+        menuController.activeLoggedInUser(ru.getLoggedInUser().get(0).getFirstname() + " " + ru.getLoggedInUser().get(0).getLastname(), userId);
         System.out.println(ru.getLoggedInUser().get(0).getFirstname());
     }
 

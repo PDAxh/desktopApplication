@@ -11,6 +11,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
 <BorderPane fx:id="borderPane" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testverktyg.eclipselink.view.MenuController">
 
     <top>
@@ -57,7 +59,7 @@
                     <MenuItem text="Om oss" onAction="#getAboutUs"/>
                 </Menu>
             </MenuBar>
-            <Label fx:id="loggedInUser" style="-fx-font-weight: bold; -fx-text-fill: orangered;" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+            <Label fx:id="loggedInUser" onMouseClicked="#updateAccount" style="-fx-font-weight: bold; -fx-text-fill: orangered;" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
         </AnchorPane>
     </top>
 
@@ -70,6 +72,9 @@
     </left>
 
     <center>
-        <Text text="you, Admin!" />
+        <GridPane fx:id="editUserPane" alignment="TOP_CENTER" hgap="10" vgap="5">
+            <padding><Insets top="100"/></padding>
+            <Text text="you, Admin!"/>
+        </GridPane>
     </center>
 </BorderPane>
