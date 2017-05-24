@@ -1094,8 +1094,9 @@ public class TeacherController {
             if (getSelectTestToPublishOrEdit()[i].isSelected()) {
                 DeleteTest deleteTest = new DeleteTest();
                 DeleteUserTests deleteUserTests = new DeleteUserTests();
-                deleteTest.deleteTest(Integer.parseInt(getSelectTestToPublishOrEdit()[i].getId()));
-                deleteUserTests.deleteTestFromUserTest(Integer.parseInt(getSelectTestToPublishOrEdit()[i].getId()));
+                deleteTest.deleteTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
+                //deleteTest.deleteTest(Integer.parseInt(getSelectTestToPublishOrEdit()[i].getId()));
+                deleteUserTests.deleteTestFromUserTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
                 getTeacherTest();
                 getShowTeacherTestBorderPane().setCenter(null);
             }
