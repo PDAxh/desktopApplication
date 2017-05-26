@@ -44,7 +44,7 @@ public class StudentController {
     @FXML private Label timeTextLabel;
     private int activeTest = 7;
     private int maxQuestions = 0;
-    private int activeQuestion = 0;
+    private int activeQuestion = 1;
     private int activeQuestionsForDB = 0;
     private ReadTest newTest = new ReadTest(activeTest);
     private CreateStudentAnswer csa = new CreateStudentAnswer();
@@ -114,24 +114,28 @@ public class StudentController {
     //Loads next question
     @FXML
     private void getNewQuestion() {
-        newTest.getActiveTest();
-        newTest.getNextActiveQuestion();
-        showToStudentQuestionsLeft.setText(activeQuestion + "/" + newTest.getAmountOfQuestions() + "    ");
-        showToStudentGrade.setText(newTest.getGradeOnActiveQuestion());
-        questionPointsLabel.setText(String.valueOf(newTest.getActiveQuestionPoints().get(0) + "   "));
-        showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
-        showToStudentTextLabel.setText("");
-        alternativePane.getChildren().clear();
-        if (activeQuestion == maxQuestions) {
-            showToUserNextButton.onActionProperty();
-            showToUserNextButton.setOnAction(event -> {
-            });
-            showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
-            this.printAlternatives();
-        } else {
-            showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
-            this.printAlternatives();
+        if (newTest.getQuestionCount() == 0){
+            newTest.getActiveTest();
+        }else {
+            newTest.getNextActiveQuestion();
         }
+            showToStudentQuestionsLeft.setText(activeQuestion + "/" + newTest.getAmountOfQuestions() + "    ");
+            showToStudentGrade.setText(newTest.getGradeOnActiveQuestion());
+            questionPointsLabel.setText(String.valueOf(newTest.getActiveQuestionPoints().get(0) + "   "));
+            showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
+            showToStudentTextLabel.setText("");
+            alternativePane.getChildren().clear();
+            if (activeQuestion == maxQuestions) {
+                showToUserNextButton.onActionProperty();
+                showToUserNextButton.setOnAction(event -> {
+                });
+                showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
+                this.printAlternatives();
+                showToUserNextButton.setDisable(true);
+            } else {
+                showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
+                this.printAlternatives();
+            }
             activeQuestion++;
             activeQuestionsForDB++;
     }
