@@ -22,6 +22,7 @@
                 </Menu>
                 <Menu text="Prov">
                     <MenuItem text="Visa prov" onAction="#showTestToStudent"/>
+                    <MenuItem text="Visa prov att göra" onAction="#showTestsToStudentToDo"/>
                 </Menu>
                 <Menu text="Hjälp">
                     <MenuItem text="Hjälp" onAction="#getHelpMenueForStudent"/>

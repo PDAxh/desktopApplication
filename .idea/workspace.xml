@@ -18,7 +18,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="391">
               <caret line="30" column="67" lean-forward="false" selection-start-line="30" selection-start-column="67" selection-end-line="30" selection-end-column="67" />
-              <folding />
+              <folding>
+                <marker date="1495637156495" expanded="true" signature="946:1159" ph="//..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -26,10 +28,11 @@
       <file leaf-file-name="StudentController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1831">
-              <caret line="132" column="38" lean-forward="true" selection-start-line="132" selection-start-column="38" selection-end-line="132" selection-end-column="38" />
+            <state relative-caret-position="240">
+              <caret line="142" column="25" lean-forward="true" selection-start-line="142" selection-start-column="25" selection-end-line="142" selection-end-column="25" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#setAlternativeRadioButtons#0;class#StudentController#0" expanded="false" />
+                <element signature="method#setAlternativeCheckBox#0;class#StudentController#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -40,16 +43,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1054">
               <caret line="73" column="20" lean-forward="false" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TeacherController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/teacher/TeacherController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="61" column="32" lean-forward="false" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -84,8 +77,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1071">
-              <caret line="63" column="20" lean-forward="false" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
+            <state relative-caret-position="561">
+              <caret line="54" column="23" lean-forward="true" selection-start-line="54" selection-start-column="23" selection-end-line="54" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -94,18 +87,8 @@
       <file leaf-file-name="ReadTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/Test/ReadTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1666">
-              <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="persistence.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/META-INF/persistence.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="69" lean-forward="false" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
+            <state relative-caret-position="-1295">
+              <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -114,11 +97,10 @@
       <file leaf-file-name="MenuController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/MenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1190">
-              <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+            <state relative-caret-position="289">
+              <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1495553216449" expanded="true" signature="7215:7223" ph="{...}" />
+                <marker date="1495637156492" expanded="true" signature="7713:7721" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -161,8 +143,10 @@
       <find>sort</find>
       <find>createstudent</find>
       <find>toggle</find>
-      <find>alternativel</find>
       <find>selectTo</find>
+      <find>checkbox</find>
+      <find>alternativel</find>
+      <find>activeQuestion</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -212,10 +196,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1873" />
-    <option name="height" value="1096" />
+    <option name="x" value="-10" />
+    <option name="y" value="3" />
+    <option name="width" value="1253" />
+    <option name="height" value="1070" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -1119,7 +1103,7 @@
       <workItem from="1494233962343" duration="13877000" />
       <workItem from="1494846042532" duration="47063000" />
       <workItem from="1495539804231" duration="11470000" />
-      <workItem from="1495561603719" duration="6605000" />
+      <workItem from="1495561603719" duration="13648000" />
     </task>
     <task id="LOCAL-00001" summary="Created new service Class.">
       <created>1493989621171</created>
@@ -1139,10 +1123,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84538000" />
+    <option name="totallyTimeSpent" value="91581000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1873" height="1096" extended-state="6" />
+    <frame x="-10" y="3" width="1253" height="1070" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1156,18 +1140,18 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997923" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32870865" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.337487" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3564568" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16050744" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24392289" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1191,7 +1175,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="11" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1309,17 +1293,6 @@
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/teacher/layout/createNewQuestion.fxml" />
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/teacher/layout/createNewTest.fxml" />
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/teacher/layout/createNewTestRoot.fxml" />
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/showTestToStudentLanding.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="28" lean-forward="false" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/teacher/layout/testTestLayout.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
@@ -1421,6 +1394,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="50">
           <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1501,17 +1477,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="30" column="67" lean-forward="false" selection-start-line="30" selection-start-column="67" selection-end-line="30" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/MenuController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1495553216449" expanded="true" signature="7215:7223" ph="{...}" />
+            <marker date="1495637156495" expanded="true" signature="946:1159" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -1523,18 +1490,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/Test/ReadTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1666">
-          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/admin/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
           <caret line="308" column="27" lean-forward="false" selection-start-line="308" selection-start-column="27" selection-end-line="308" selection-end-column="27" />
+          <folding>
+            <element signature="e#14769#14770#0" expanded="false" />
+            <element signature="e#14877#14878#0" expanded="false" />
+            <element signature="e#15420#15421#0" expanded="false" />
+            <element signature="e#15950#15951#0" expanded="false" />
+            <element signature="e#17594#17595#0" expanded="false" />
+            <element signature="e#17634#17635#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1556,14 +1523,176 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/showTestToStudentLanding.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="28" lean-forward="false" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/layout/showTestToStudentRoot.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="63" column="20" lean-forward="false" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
+        <state relative-caret-position="561">
+          <caret line="54" column="23" lean-forward="true" selection-start-line="54" selection-start-column="23" selection-end-line="54" selection-end-column="23" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/teacher/TeacherController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="62" column="32" lean-forward="false" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="32" />
+          <folding>
+            <element signature="e#11153#11154#0" expanded="true" />
+            <element signature="e#11224#11225#0" expanded="true" />
+            <element signature="e#11314#11315#0" expanded="true" />
+            <element signature="e#11365#11366#0" expanded="true" />
+            <element signature="e#19258#19259#0" expanded="true" />
+            <element signature="e#19296#19297#0" expanded="true" />
+            <element signature="e#19364#19365#0" expanded="true" />
+            <element signature="e#19418#19419#0" expanded="true" />
+            <element signature="e#19477#19478#0" expanded="true" />
+            <element signature="e#19520#19521#0" expanded="true" />
+            <element signature="e#19578#19579#0" expanded="true" />
+            <element signature="e#19616#19617#0" expanded="true" />
+            <element signature="e#19654#19655#0" expanded="true" />
+            <element signature="e#19690#19691#0" expanded="true" />
+            <element signature="e#19746#19747#0" expanded="true" />
+            <element signature="e#19796#19797#0" expanded="true" />
+            <element signature="e#19837#19838#0" expanded="true" />
+            <element signature="e#19872#19873#0" expanded="true" />
+            <element signature="e#20048#20049#0" expanded="true" />
+            <element signature="e#20079#20080#0" expanded="true" />
+            <element signature="e#20130#20131#0" expanded="true" />
+            <element signature="e#20172#20173#0" expanded="true" />
+            <element signature="e#20366#20367#0" expanded="true" />
+            <element signature="e#20411#20412#0" expanded="true" />
+            <element signature="e#20614#20615#0" expanded="true" />
+            <element signature="e#20662#20663#0" expanded="true" />
+            <element signature="e#20703#20704#0" expanded="true" />
+            <element signature="e#20737#20738#0" expanded="true" />
+            <element signature="e#20787#20788#0" expanded="true" />
+            <element signature="e#20830#20831#0" expanded="true" />
+            <element signature="e#20881#20882#0" expanded="true" />
+            <element signature="e#20917#20918#0" expanded="true" />
+            <element signature="e#20981#20982#0" expanded="true" />
+            <element signature="e#21044#21045#0" expanded="true" />
+            <element signature="e#21083#21084#0" expanded="true" />
+            <element signature="e#21128#21129#0" expanded="true" />
+            <element signature="e#21184#21185#0" expanded="true" />
+            <element signature="e#21239#21240#0" expanded="true" />
+            <element signature="e#21281#21282#0" expanded="true" />
+            <element signature="e#21314#21315#0" expanded="true" />
+            <element signature="e#21371#21372#0" expanded="true" />
+            <element signature="e#21415#21416#0" expanded="true" />
+            <element signature="e#21451#21452#0" expanded="true" />
+            <element signature="e#21481#21482#0" expanded="true" />
+            <element signature="e#21529#21530#0" expanded="true" />
+            <element signature="e#21567#21568#0" expanded="true" />
+            <element signature="e#21613#21614#0" expanded="true" />
+            <element signature="e#21652#21653#0" expanded="true" />
+            <element signature="e#21690#21691#0" expanded="true" />
+            <element signature="e#21722#21723#0" expanded="true" />
+            <element signature="e#21764#21765#0" expanded="true" />
+            <element signature="e#21797#21798#0" expanded="true" />
+            <element signature="e#21845#21846#0" expanded="true" />
+            <element signature="e#21888#21889#0" expanded="true" />
+            <element signature="e#21936#21937#0" expanded="true" />
+            <element signature="e#21979#21980#0" expanded="true" />
+            <element signature="e#22024#22025#0" expanded="true" />
+            <element signature="e#22064#22065#0" expanded="true" />
+            <element signature="e#22109#22110#0" expanded="true" />
+            <element signature="e#22144#22145#0" expanded="true" />
+            <element signature="e#22190#22191#0" expanded="true" />
+            <element signature="e#22226#22227#0" expanded="true" />
+            <element signature="e#22370#22371#0" expanded="true" />
+            <element signature="e#22418#22419#0" expanded="true" />
+            <element signature="e#29252#29253#0" expanded="true" />
+            <element signature="e#29294#29295#0" expanded="true" />
+            <element signature="e#29325#29326#0" expanded="true" />
+            <element signature="e#29354#29355#0" expanded="true" />
+            <element signature="e#29395#29396#0" expanded="true" />
+            <element signature="e#29431#29432#0" expanded="true" />
+            <element signature="e#29491#29492#0" expanded="true" />
+            <element signature="e#29539#29540#0" expanded="true" />
+            <element signature="e#29760#29761#0" expanded="true" />
+            <element signature="e#29808#29809#0" expanded="true" />
+            <element signature="e#29855#29856#0" expanded="true" />
+            <element signature="e#29890#29891#0" expanded="true" />
+            <element signature="e#29954#29955#0" expanded="true" />
+            <element signature="e#30002#30003#0" expanded="true" />
+            <element signature="e#30040#30041#0" expanded="true" />
+            <element signature="e#30071#30072#0" expanded="true" />
+            <element signature="e#30122#30123#0" expanded="true" />
+            <element signature="e#30162#30163#0" expanded="true" />
+            <element signature="e#30220#30221#0" expanded="true" />
+            <element signature="e#30270#30271#0" expanded="true" />
+            <element signature="e#30483#30484#0" expanded="true" />
+            <element signature="e#30518#30519#0" expanded="true" />
+            <element signature="e#30580#30581#0" expanded="true" />
+            <element signature="e#30628#30629#0" expanded="true" />
+            <element signature="e#30674#30675#0" expanded="true" />
+            <element signature="e#30710#30711#0" expanded="true" />
+            <element signature="e#30774#30775#0" expanded="true" />
+            <element signature="e#30824#30825#0" expanded="true" />
+            <element signature="e#30865#30866#0" expanded="true" />
+            <element signature="e#30900#30901#0" expanded="true" />
+            <element signature="e#30958#30959#0" expanded="true" />
+            <element signature="e#31006#31007#0" expanded="true" />
+            <element signature="e#31064#31065#0" expanded="true" />
+            <element signature="e#31107#31108#0" expanded="true" />
+            <element signature="e#31316#31317#0" expanded="true" />
+            <element signature="e#31357#31358#0" expanded="true" />
+            <element signature="e#31422#31423#0" expanded="true" />
+            <element signature="e#31471#31472#0" expanded="true" />
+            <element signature="e#31712#31713#0" expanded="true" />
+            <element signature="e#31759#31760#0" expanded="true" />
+            <element signature="e#31826#31827#0" expanded="true" />
+            <element signature="e#31884#31885#0" expanded="true" />
+            <element signature="e#32152#32153#0" expanded="true" />
+            <element signature="e#32209#32210#0" expanded="true" />
+            <element signature="e#32478#32479#0" expanded="true" />
+            <element signature="e#32537#32538#0" expanded="true" />
+            <element signature="e#32810#32811#0" expanded="true" />
+            <element signature="e#32866#32867#0" expanded="true" />
+            <element signature="e#33549#33550#0" expanded="true" />
+            <element signature="e#33597#33598#0" expanded="true" />
+            <element signature="e#33798#33799#0" expanded="true" />
+            <element signature="e#33838#33839#0" expanded="true" />
+            <element signature="e#33904#33905#0" expanded="true" />
+            <element signature="e#33962#33963#0" expanded="true" />
+            <element signature="e#34019#34020#0" expanded="true" />
+            <element signature="e#34074#34075#0" expanded="true" />
+            <element signature="e#34310#34311#0" expanded="true" />
+            <element signature="e#34356#34357#0" expanded="true" />
+            <element signature="e#34563#34564#0" expanded="true" />
+            <element signature="e#34611#34612#0" expanded="true" />
+            <element signature="e#34829#34830#0" expanded="true" />
+            <element signature="e#34882#34883#0" expanded="true" />
+            <element signature="e#35119#35120#0" expanded="true" />
+            <element signature="e#35169#35170#0" expanded="true" />
+            <element signature="e#35393#35394#0" expanded="true" />
+            <element signature="e#35441#35442#0" expanded="true" />
+            <element signature="e#35663#35664#0" expanded="true" />
+            <element signature="e#35719#35720#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/MenuController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+          <folding>
+            <marker date="1495637156492" expanded="true" signature="7713:7721" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1575,10 +1704,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/teacher/TeacherController.java">
+    <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/service/Test/ReadTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="61" column="32" lean-forward="false" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="32" />
+        <state relative-caret-position="-1295">
+          <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1593,10 +1722,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/testverktyg/eclipselink/view/student/StudentController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1831">
-          <caret line="132" column="38" lean-forward="true" selection-start-line="132" selection-start-column="38" selection-end-line="132" selection-end-column="38" />
+        <state relative-caret-position="240">
+          <caret line="142" column="25" lean-forward="true" selection-start-line="142" selection-start-column="25" selection-end-line="142" selection-end-column="25" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#setAlternativeRadioButtons#0;class#StudentController#0" expanded="false" />
+            <element signature="method#setAlternativeCheckBox#0;class#StudentController#0" expanded="false" />
           </folding>
         </state>
       </provider>
