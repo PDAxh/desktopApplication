@@ -226,7 +226,7 @@ public class StudentController {
             if(toggleGroup.getSelectedToggle().isSelected()){
                 int testId = Integer.parseInt(toggleGroup.getSelectedToggle().getUserData().toString());
                 ReadStudentAnswer readStudentAnswer = new ReadStudentAnswer();
-                readStudentAnswer.getStudentAnswer(getUserId(), testId);
+                readStudentAnswer.getStudentAnswerFromSpecificStudent(getUserId(), testId);
                 getDoSelectedTestButton().setDisable(true);
                 getShowResultButton().setDisable(true);
 
