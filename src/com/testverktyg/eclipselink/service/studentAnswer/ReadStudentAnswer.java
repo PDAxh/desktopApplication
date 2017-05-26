@@ -16,7 +16,13 @@ import java.util.List;
 public class ReadStudentAnswer {
 
     List<Alternative> correctAnswersList;
-    List<StudentAnswer> studentAnswersList;
+    List<StudentAnswer> oneStudentAnswersList;
+    List<StudentAnswer> allStudentAnswersList;
+
+    int maxPointsG;
+    int maxPointsVG;
+    int studPointsG;
+    int studPointsVG;
 
     int questionCount;
 
@@ -31,10 +37,10 @@ public class ReadStudentAnswer {
         EntityManager entitymanager = emfactory.createEntityManager();
         entitymanager.getTransaction().begin();
 
-        int maxPointsG=0;
-        int maxPointsVG=0;
-        int studPointsG=0;
-        int studPointsVG=0;
+        maxPointsG=0;
+        maxPointsVG=0;
+        studPointsG=0;
+        studPointsVG=0;
         for (int i=0;i<rt.getTestList().get(0).getQuestionList().size();i++) {
             int correctAnswerCounter=0;
             int studentAnswerCounter=0;
@@ -63,27 +69,67 @@ public class ReadStudentAnswer {
             }
         }
         System.out.println("Maxpoäng G: " + maxPointsG);
-        System.out.println("Maxpoäng CG: " + maxPointsVG);
+        System.out.println("Maxpoäng VG: " + maxPointsVG);
         System.out.println("Student G: " + studPointsG);
         System.out.println("Student VG: " + studPointsVG);
 
+        entitymanager.getTransaction().commit();
+        entitymanager.close();
+        emfactory.close();
+
     }
 
-    public void getStudentAnswer(int sId, int tId) {
+    public void getStudentAnswerFromSpecificStudent(int sId, int tId) {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
         EntityManager entitymanager = emfactory.createEntityManager();
         entitymanager.getTransaction().begin();
 
-        studentAnswersList = entitymanager.createNamedQuery("getStudentAnswer", StudentAnswer.class).setParameter("sId", sId).setParameter("tId", tId).getResultList();
+        oneStudentAnswersList = entitymanager.createNamedQuery("getStudentAnswer", StudentAnswer.class).setParameter("sId", sId).setParameter("tId", tId).getResultList();
+
+        entitymanager.getTransaction().commit();
+        entitymanager.close();
+        emfactory.close();
+    }
+
+    public void getAllStudentAnswers(int testId){
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+        EntityManager entitymanager = emfactory.createEntityManager();
+        entitymanager.getTransaction().begin();
+
+        allStudentAnswersList = entitymanager.createNamedQuery("getAllStudentsAnswers", StudentAnswer.class).setParameter("tId", testId).getResultList();
+
+        entitymanager.getTransaction().commit();
+        entitymanager.close();
+        emfactory.close();
     }
 
     public List<StudentAnswer> getStudentAnswersList() {
-        return studentAnswersList;
+        return oneStudentAnswersList;
+    }
+
+    public List<StudentAnswer> getAllStudentAnswersList() {
+        return allStudentAnswersList;
+    }
+
+    public int getStudPointsG() {
+        return studPointsG;
+    }
+
+    public int getStudPointsVG() {
+        return studPointsVG;
+    }
+
+    public int getMaxPointsG() {
+        return maxPointsG;
+    }
+
+    public int getMaxPointsVG() {
+        return maxPointsVG;
     }
 
     public static void main(String[] args) {
         ReadStudentAnswer rsa = new ReadStudentAnswer();
-        rsa.getStudentAnswer(2,1);
+        rsa.getStudentAnswerFromSpecificStudent(2,1);
         rsa.getCorrectAnswers(1);
 
     }

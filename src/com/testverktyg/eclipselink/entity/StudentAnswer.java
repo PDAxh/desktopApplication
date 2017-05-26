@@ -7,7 +7,8 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name="getStudentAnswer", query = "select s from StudentAnswer s where s.studentId = :sId and s.testId = :tId")
+        @NamedQuery(name="getStudentAnswer", query = "select s from StudentAnswer s where s.studentId = :sId and s.testId = :tId"),
+        @NamedQuery(name="getAllStudentsAnswers", query = "select s from StudentAnswer s where s.testId = :tId")
 })
 public class StudentAnswer {
     @Id
