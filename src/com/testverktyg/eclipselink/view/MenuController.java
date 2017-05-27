@@ -5,8 +5,6 @@ import com.testverktyg.eclipselink.view.admin.AdminController;
 import com.testverktyg.eclipselink.view.main.MainController;
 import com.testverktyg.eclipselink.view.student.StudentController;
 import com.testverktyg.eclipselink.view.teacher.TeacherController;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,9 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 /**
@@ -35,7 +31,7 @@ public class MenuController {
     @FXML
     private Label loggedInUser;
 
-    int activeLoggedInUserId;
+    private int activeLoggedInUserId;
 
     private Stage stage;
     @FXML private BorderPane borderPane;

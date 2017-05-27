@@ -1013,6 +1013,8 @@ public class TeacherController {
                 setUpdateNumberOfAlternatives(new ComboBox<>(getNumberOfAlternatviesList()));
                 getUpdateNumberOfAlternatives().setValue(getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().size());
                 setUpdateQuestionAlternativeBorderPane(new BorderPane());
+                getUpdateTypeOfQuestion().setDisable(true);
+                getUpdateNumberOfAlternatives().setDisable(true);
 
                 gridPane.add(new Label("Namn: "), 0, 0);
                 gridPane.add(getUpdateQuestionNameTextField(), 1, 0, 4, 1);

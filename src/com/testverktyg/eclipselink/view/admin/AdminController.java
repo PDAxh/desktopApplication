@@ -7,6 +7,7 @@ import com.testverktyg.eclipselink.service.Class.DeleteClass;
 import com.testverktyg.eclipselink.service.Class.ReadClass;
 import com.testverktyg.eclipselink.service.Test.DeleteTest;
 import com.testverktyg.eclipselink.service.Test.ReadTest;
+import com.testverktyg.eclipselink.service.studentAnswer.ReadStudentAnswer;
 import com.testverktyg.eclipselink.service.user.CreateUser;
 import com.testverktyg.eclipselink.service.user.DeleteUser;
 import com.testverktyg.eclipselink.service.user.ReadUser;
@@ -677,14 +678,41 @@ public class AdminController {
 
         toggleGroup.selectedToggleProperty().addListener(event ->{
             if(toggleGroup.getSelectedToggle().isSelected()){
-                for(Test test : readTest.getGetAllTestsForAdminList()){
-                    if(test.getTestId() == Integer.parseInt(toggleGroup.getSelectedToggle().getUserData().toString())){
+                for(int j = 0; j < readTest.getGetAllTestsForAdminList().size(); j++){
+                    if(readTest.getGetAllTestsForAdminList().get(j).getTestId() == Integer.parseInt(toggleGroup.getSelectedToggle().getUserData().toString())) {
+                        ReadUser readUser = new ReadUser();
+                        ReadStudentAnswer readStudentAnswer = new ReadStudentAnswer();
+                        //  readStudentAnswer.getAllClassesForOneTest(readTest.getTestList().get(j).getTestId());
+                        // readUser.getUserIdByClass(readTest.);
+                        int totalGradeGQuestions = 0;
+                        int totalGradeVgQuestions = 0;
+                        int totalTestPoints = 0;
+
+                        for (int i = 0; i < readTest.getGetAllTestsForAdminList().get(j).getQuestionList().size(); i++) {
+                            if (readTest.getGetAllTestsForAdminList().get(j).getQuestionList().get(i).isGradeG()) {
+                                totalGradeGQuestions++;
+                            } else if (readTest.getGetAllTestsForAdminList().get(j).getQuestionList().get(i).isGradeVG()) {
+                                totalGradeVgQuestions++;
+                            }
+                            totalTestPoints += (readTest.getGetAllTestsForAdminList().get(j).getQuestionList().get(i).getPoints());
+                        }
+
+                        //    for(int k = 0; k < readStudentAnswer.getAllClassesForOneTestList().size(); k++){
+
+                        //    }
+
+
                         VBox vBox = new VBox();
-                        vBox.getChildren().add(new Label("Prov: " + test.getTestName()));
+                        vBox.getChildren().add(new Label("Prov: " + (readTest.getGetAllTestsForAdminList().get(j).getTestName())));
+                        vBox.getChildren().add(new Label("Antal Godkänt frågor: " + totalGradeGQuestions));
+                        vBox.getChildren().add(new Label("Antal Väl Godkänt frågor: " + totalGradeVgQuestions));
+                        vBox.getChildren().add(new Label("Tid: " + (readTest.getGetAllTestsForAdminList().get(j).getTimeForTestMinutes())));
+                        vBox.getChildren().add(new Label("Max poäng: " + totalTestPoints));
+                        vBox.getChildren().add(new Label("Max antal elever: "));
+                        //  vBox.getChildren().add(new Label());
                         getShowResultToAdminAndTeacherBorderPane().setCenter(vBox);
                     }
                 }
-
             }
         });
     }
