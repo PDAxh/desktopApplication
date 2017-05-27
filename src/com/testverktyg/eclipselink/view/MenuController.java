@@ -117,7 +117,7 @@ public class MenuController {
         this.borderPane.setCenter(borderPane);
         TeacherController teacherController = loader.getController();
         teacherController.setUserId(getUserId());
-        teacherController.getTeacherTest();
+        teacherController.getTeacherTestToEdit();
     }
 
     @FXML
@@ -158,12 +158,22 @@ public class MenuController {
     }
 
     @FXML
-    private void getResults() throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("main/layout/resultsForAdminAndTeacherLayout.fxml"));
+    private void getResultsAdmin() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("admin/layout/resultAdminLayout.fxml"));
         BorderPane borderPane = loader.load();
         this.borderPane.setCenter(borderPane);
         AdminController adminController = loader.getController();
         adminController.getTestsToShowResults();
+    }
+
+    @FXML
+    private void getResultsTeacher() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("teacher/layout/resultTeacherLayout.fxml"));
+        BorderPane borderPane = loader.load();
+        this.borderPane.setCenter(borderPane);
+        TeacherController teacherController = loader.getController();
+        teacherController.setUserId(getUserId());
+        teacherController.getTeacherTestToShowResult();
     }
 
     @FXML

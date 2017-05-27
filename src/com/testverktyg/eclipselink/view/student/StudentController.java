@@ -42,7 +42,7 @@ public class StudentController {
     @FXML private Label questionPointsTextLabel;
     @FXML private Label timerLabel;
     @FXML private Label timeTextLabel;
-    private int activeTest = 7;
+    private int activeTest = 3;
     private int maxQuestions = 0;
     private int activeQuestion = 1;
     private int activeQuestionsForDB = 0;

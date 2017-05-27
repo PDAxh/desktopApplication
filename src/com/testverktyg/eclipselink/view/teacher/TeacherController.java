@@ -10,6 +10,7 @@ import com.testverktyg.eclipselink.service.Test.UpdateTest;
 import com.testverktyg.eclipselink.service.userTests.CreateUserTests;
 import com.testverktyg.eclipselink.service.userTests.DeleteUserTests;
 import com.testverktyg.eclipselink.service.userTests.ReadUserTests;
+import com.testverktyg.eclipselink.view.main.layout.StatisticForAdminAndTeacher;
 import com.testverktyg.eclipselink.view.teacher.createTest.NewAlternativ;
 import com.testverktyg.eclipselink.view.teacher.createTest.NewQuestion;
 import com.testverktyg.eclipselink.view.teacher.createTest.NewTest;
@@ -533,7 +534,7 @@ public class TeacherController {
         this.getTeacherTestToggleGroup = getTeacherTestToggleGroup;
     }
 
-    public void getTeacherTest(){
+    private void getTeacherTest(){
         getShowTeacherTestVbox().getChildren().clear();
         ReadTest readTest = new ReadTest();
         ReadUserTests readUserTests = new ReadUserTests(getUserId());
@@ -562,9 +563,35 @@ public class TeacherController {
                 counter++;
             }
         }
+    }
+
+    public void getTeacherTestToEdit(){
+        getTeacherTest();
+        toggleGroupActionGetSelectetTestToEdit();
+    }
+
+    public void getTeacherTestToShowResult(){
+        getTeacherTest();
+        toggleGroupActionGetSelectedTestToShowResult();
+    }
+
+    private void toggleGroupActionGetSelectetTestToEdit(){
         getGetTeacherTestToggleGroup().selectedToggleProperty().addListener(event ->{
             if(getGetTeacherTestToggleGroup().getSelectedToggle().isSelected()){
                 getSelectedTestToEdit();
+            }
+        });
+    }
+
+    private void toggleGroupActionGetSelectedTestToShowResult(){
+        getGetTeacherTestToggleGroup().selectedToggleProperty().addListener(event ->{
+            if(getGetTeacherTestToggleGroup().getSelectedToggle().isSelected()){
+                ScrollPane scrollPane = new ScrollPane();
+                scrollPane.setStyle("-fx-background-color:transparent;");
+                StatisticForAdminAndTeacher statisticForAdminAndTeacher = new StatisticForAdminAndTeacher();
+                statisticForAdminAndTeacher.setTestId(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
+                scrollPane.setContent(statisticForAdminAndTeacher.getTestResultLayout());
+                getShowTeacherTestBorderPane().setCenter(scrollPane);
             }
         });
     }
@@ -578,64 +605,64 @@ public class TeacherController {
         flowPane.setHgap(10);
         scrollPane.setStyle("-fx-background-color:transparent;");
 
-                getReadTest().getTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
-                setSelectToEdit(new RadioButton[(getReadTest().getTestList().get(0).getQuestionList().size() + 1)]);
+            getReadTest().getTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
+            setSelectToEdit(new RadioButton[(getReadTest().getTestList().get(0).getQuestionList().size() + 1)]);
 
-                for(int j = 0; j < getReadTest().getTestList().size(); j++){
-                    getSelectToEdit()[j] = new RadioButton();
-                    getSelectToEdit()[j].setToggleGroup(toggleGroup);
-                    getSelectToEdit()[j].setId(String.valueOf(getReadTest().getTestList().get(j).getTestId()));
-                    getSelectToEdit()[j].setText("Välj test ");
-                    VBox vBox = new VBox();
-                    vBox.setStyle("-fx-border-color: black;");
-                    vBox.setPadding(new Insets(10));
-                    vBox.setSpacing(5);
-                    vBox.getChildren().add(new Label("Test: " + getReadTest().getTestList().get(j).getTestName()));
-                    vBox.getChildren().add(new Label("Beskrivning: " + getReadTest().getTestList().get(j).getTestDescription()));
-                    vBox.getChildren().add(new Label("Datum: " + getReadTest().getTestList().get(j).getLastDate()));
-                    vBox.getChildren().add(new Label("Tid:" + String.valueOf(getReadTest().getTestList().get(j).getTimeForTestMinutes())));
-                    vBox.getChildren().add(getSelectToEdit()[j]);
-                    flowPane.getChildren().add(vBox);
+            for(int j = 0; j < getReadTest().getTestList().size(); j++){
+                getSelectToEdit()[j] = new RadioButton();
+                getSelectToEdit()[j].setToggleGroup(toggleGroup);
+                getSelectToEdit()[j].setId(String.valueOf(getReadTest().getTestList().get(j).getTestId()));
+                getSelectToEdit()[j].setText("Välj test ");
+                VBox vBox = new VBox();
+                vBox.setStyle("-fx-border-color: black;");
+                vBox.setPadding(new Insets(10));
+                vBox.setSpacing(5);
+                vBox.getChildren().add(new Label("Test: " + getReadTest().getTestList().get(j).getTestName()));
+                vBox.getChildren().add(new Label("Beskrivning: " + getReadTest().getTestList().get(j).getTestDescription()));
+                vBox.getChildren().add(new Label("Datum: " + getReadTest().getTestList().get(j).getLastDate()));
+                vBox.getChildren().add(new Label("Tid:" + String.valueOf(getReadTest().getTestList().get(j).getTimeForTestMinutes())));
+                vBox.getChildren().add(getSelectToEdit()[j]);
+                flowPane.getChildren().add(vBox);
 
-                    for(int k = 0; k < getReadTest().getTestList().get(j).getQuestionList().size(); k++){
-                        getSelectToEdit()[(k+1)] = new RadioButton();
-                        getSelectToEdit()[(k+1)].setToggleGroup(toggleGroup);
-                        getSelectToEdit()[(k+1)].setId(String.valueOf(getReadTest().getTestList().get(j).getQuestionList().get(k).getQuestionId()));
-                        getSelectToEdit()[(k+1)].setText("Välj fråga ");
-                        VBox vBox1 = new VBox();
-                        vBox1.setStyle("-fx-border-color: black;");
-                        vBox1.setPadding(new Insets(10));
-                        vBox1.setSpacing(5);
+                for(int k = 0; k < getReadTest().getTestList().get(j).getQuestionList().size(); k++){
+                    getSelectToEdit()[(k+1)] = new RadioButton();
+                    getSelectToEdit()[(k+1)].setToggleGroup(toggleGroup);
+                    getSelectToEdit()[(k+1)].setId(String.valueOf(getReadTest().getTestList().get(j).getQuestionList().get(k).getQuestionId()));
+                    getSelectToEdit()[(k+1)].setText("Välj fråga ");
+                    VBox vBox1 = new VBox();
+                    vBox1.setStyle("-fx-border-color: black;");
+                    vBox1.setPadding(new Insets(10));
+                    vBox1.setSpacing(5);
 
-                        String grade = "";
+                    String grade = "";
 
-                        if( getReadTest().getTestList().get(j).getQuestionList().get(k).isGradeG()){
-                            grade = "G";
+                    if( getReadTest().getTestList().get(j).getQuestionList().get(k).isGradeG()){
+                        grade = "G";
+                    }
+                    else if(getReadTest().getTestList().get(j).getQuestionList().get(k).isGradeVG()){
+                        grade="VG";
+                    }
+
+                    vBox1.getChildren().add(new Label("Fråga " + (k+1) ));
+                    vBox1.getChildren().add(new Label("Namn: " + getReadTest().getTestList().get(j).getQuestionList().get(k).getQuestionText()));
+                    vBox1.getChildren().add(new Label("Typ av fråga: " + getReadTest().getTestList().get(j).getQuestionList().get(k).getTypeOfQuestion()));
+                    vBox1.getChildren().add(new Label("Betyg: " + grade));
+                    vBox1.getChildren().add(new Label("Poäng: " + getReadTest().getTestList().get(j).getQuestionList().get(k).getPoints()));
+
+                        for(int m = 0; m < getReadTest().getTestList().get(j).getQuestionList().get(k).getAlternativeList().size(); m++){
+                            vBox1.getChildren().add(new Label("Alternativ " + (m+1) + " : "
+                                    + getReadTest().getTestList().get(j).getQuestionList().get(k).getAlternativeList().get(m).getAlternativeText() +
+                                    " Rätt svar: " + getReadTest().getTestList().get(j).getQuestionList().get(k).getAlternativeList().get(m).isAlternativeStatus()));
                         }
-                        else if(getReadTest().getTestList().get(j).getQuestionList().get(k).isGradeVG()){
-                            grade="VG";
-                        }
 
-                        vBox1.getChildren().add(new Label("Fråga " + (k+1) ));
-                        vBox1.getChildren().add(new Label("Namn: " + getReadTest().getTestList().get(j).getQuestionList().get(k).getQuestionText()));
-                        vBox1.getChildren().add(new Label("Typ av fråga: " + getReadTest().getTestList().get(j).getQuestionList().get(k).getTypeOfQuestion()));
-                        vBox1.getChildren().add(new Label("Betyg: " + grade));
-                        vBox1.getChildren().add(new Label("Poäng: " + getReadTest().getTestList().get(j).getQuestionList().get(k).getPoints()));
-
-                            for(int m = 0; m < getReadTest().getTestList().get(j).getQuestionList().get(k).getAlternativeList().size(); m++){
-                                vBox1.getChildren().add(new Label("Alternativ " + (m+1) + " : "
-                                        + getReadTest().getTestList().get(j).getQuestionList().get(k).getAlternativeList().get(m).getAlternativeText() +
-                                        " Rätt svar: " + getReadTest().getTestList().get(j).getQuestionList().get(k).getAlternativeList().get(m).isAlternativeStatus()));
-                            }
-
-                        vBox1.getChildren().addAll( getSelectToEdit()[(k+1)]);
-                        flowPane.getChildren().add(vBox1);
+                    vBox1.getChildren().addAll( getSelectToEdit()[(k+1)]);
+                    flowPane.getChildren().add(vBox1);
                     }
                 }
-        toggleGroup.selectedToggleProperty().addListener(event ->{
-            if(toggleGroup.getSelectedToggle().isSelected()){
-                getSelectToEditButton();
-            }
+            toggleGroup.selectedToggleProperty().addListener(event ->{
+                if(toggleGroup.getSelectedToggle().isSelected()){
+                    getSelectToEditButton();
+                }
         });
         scrollPane.setContent(flowPane);
         scrollPane.setFitToWidth(true);

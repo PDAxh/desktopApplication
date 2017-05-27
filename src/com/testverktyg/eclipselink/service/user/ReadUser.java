@@ -192,5 +192,27 @@ public class ReadUser {
         this.userIdByClassList = userIdByClassList;
     }
 
+    public void getFindClassWithUserId(int userId){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        setFindClassWithUserIdList(entityManager.createNamedQuery("findClassWithUserId", User.class)
+                .setParameter("userId", userId)
+                .getResultList());
+
+        entityManager.close();
+        entityManagerFactory.close();
+    }
+
+    private List<User> findClassWithUserIdList;
+
+    public List<User> getFindClassWithUserIdList() {
+        return findClassWithUserIdList;
+    }
+
+    private void setFindClassWithUserIdList(List<User> findClassWithUserIdList) {
+        this.findClassWithUserIdList = findClassWithUserIdList;
+    }
+
     //------
 }

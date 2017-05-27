@@ -15,16 +15,14 @@ import java.util.List;
  */
 public class ReadStudentAnswer {
 
-    List<Alternative> correctAnswersList;
-    List<StudentAnswer> oneStudentAnswersList;
-    List<StudentAnswer> allStudentAnswersList;
-
-    int maxPointsG;
-    int maxPointsVG;
-    int studPointsG;
-    int studPointsVG;
-
-    int questionCount;
+    private List<Alternative> correctAnswersList;
+    private List<StudentAnswer> oneStudentAnswersList;
+    private List<StudentAnswer> allStudentAnswersList;
+    private int maxPointsG;
+    private int maxPointsVG;
+    private int studPointsG;
+    private int studPointsVG;
+    private int questionCount;
 
     public void getCorrectAnswers(int testId){
         ReadTest rt = new ReadTest(testId);

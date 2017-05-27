@@ -14,6 +14,8 @@ import com.testverktyg.eclipselink.service.user.ReadUser;
 import com.testverktyg.eclipselink.service.user.UpdateUser;
 import com.testverktyg.eclipselink.service.userTests.CreateUserTests;
 import com.testverktyg.eclipselink.service.userTests.DeleteUserTests;
+import com.testverktyg.eclipselink.service.userTests.ReadUserTests;
+import com.testverktyg.eclipselink.view.main.layout.StatisticForAdminAndTeacher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -25,6 +27,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Andreas
@@ -637,11 +641,11 @@ public class AdminController {
 
     //Result
 
-    @FXML private BorderPane showResultToAdminAndTeacherBorderPane;
+    @FXML private BorderPane showResultToAdminBorderPane;
     @FXML private VBox showResultTestVbox;
 
-    private BorderPane getShowResultToAdminAndTeacherBorderPane() {
-        return showResultToAdminAndTeacherBorderPane;
+    private BorderPane getShowResultToAdminBorderPane() {
+        return showResultToAdminBorderPane;
     }
 
     private VBox getShowResultTestVbox() {
@@ -663,7 +667,6 @@ public class AdminController {
             hBoxLeft.setSpacing(50.0);
             getSelectTestToAssignToClass()[counter] = new RadioButton();
             getSelectTestToAssignToClass()[counter].setToggleGroup(toggleGroup);
-            //getSelectTestToAssignToClass()[counter].setId(String.valueOf(test.getTestId()));
             getSelectTestToAssignToClass()[counter].setUserData(String.valueOf(test.getTestId()));
             hBoxLeft.getChildren().addAll(new Label("Prov: " + test.getTestName()), new Label(" Beskrivning: " + test.getTestDescription()),
                     new Label(" Datum: " + test.getLastDate()), new Label(" Tid: " + String.valueOf(test.getTimeForTestMinutes())));
@@ -678,43 +681,10 @@ public class AdminController {
 
         toggleGroup.selectedToggleProperty().addListener(event ->{
             if(toggleGroup.getSelectedToggle().isSelected()){
-                for(int j = 0; j < readTest.getGetAllTestsForAdminList().size(); j++){
-                    if(readTest.getGetAllTestsForAdminList().get(j).getTestId() == Integer.parseInt(toggleGroup.getSelectedToggle().getUserData().toString())) {
-                        ReadUser readUser = new ReadUser();
-                        ReadStudentAnswer readStudentAnswer = new ReadStudentAnswer();
-                        //  readStudentAnswer.getAllClassesForOneTest(readTest.getTestList().get(j).getTestId());
-                        // readUser.getUserIdByClass(readTest.);
-                        int totalGradeGQuestions = 0;
-                        int totalGradeVgQuestions = 0;
-                        int totalTestPoints = 0;
-
-                        for (int i = 0; i < readTest.getGetAllTestsForAdminList().get(j).getQuestionList().size(); i++) {
-                            if (readTest.getGetAllTestsForAdminList().get(j).getQuestionList().get(i).isGradeG()) {
-                                totalGradeGQuestions++;
-                            } else if (readTest.getGetAllTestsForAdminList().get(j).getQuestionList().get(i).isGradeVG()) {
-                                totalGradeVgQuestions++;
-                            }
-                            totalTestPoints += (readTest.getGetAllTestsForAdminList().get(j).getQuestionList().get(i).getPoints());
-                        }
-
-                        //    for(int k = 0; k < readStudentAnswer.getAllClassesForOneTestList().size(); k++){
-
-                        //    }
-
-
-                        VBox vBox = new VBox();
-                        vBox.getChildren().add(new Label("Prov: " + (readTest.getGetAllTestsForAdminList().get(j).getTestName())));
-                        vBox.getChildren().add(new Label("Antal Godkänt frågor: " + totalGradeGQuestions));
-                        vBox.getChildren().add(new Label("Antal Väl Godkänt frågor: " + totalGradeVgQuestions));
-                        vBox.getChildren().add(new Label("Tid: " + (readTest.getGetAllTestsForAdminList().get(j).getTimeForTestMinutes())));
-                        vBox.getChildren().add(new Label("Max poäng: " + totalTestPoints));
-                        vBox.getChildren().add(new Label("Max antal elever: "));
-                        //  vBox.getChildren().add(new Label());
-                        getShowResultToAdminAndTeacherBorderPane().setCenter(vBox);
-                    }
-                }
+                StatisticForAdminAndTeacher statisticForAdminAndTeacher = new StatisticForAdminAndTeacher();
+                statisticForAdminAndTeacher.setTestId(Integer.parseInt(toggleGroup.getSelectedToggle().getUserData().toString()));
+                getShowResultToAdminBorderPane().setCenter(statisticForAdminAndTeacher.getTestResultLayout());
             }
         });
     }
-
 }
