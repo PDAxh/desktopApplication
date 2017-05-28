@@ -96,18 +96,12 @@ public class MenuController {
 
     @FXML
     private void showTestsToStudentToDo() throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("student/layout/showStudentTests.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("student/layout/showTestToStudentRoot.fxml"));
         BorderPane borderPane = loader.load();
         this.borderPane.setCenter(borderPane);
         StudentController studentController= loader.getController();
         studentController.setUserId(getUserId());
         studentController.getStudentTests();
-    }
-
-    @FXML
-    private void showTestToStudent() throws IOException{
-        BorderPane bp = FXMLLoader.load(getClass().getResource("student/layout/showTestToStudentRoot.fxml"));
-        borderPane.setCenter(bp);
     }
 
     @FXML

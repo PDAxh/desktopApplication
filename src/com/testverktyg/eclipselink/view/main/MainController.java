@@ -3,6 +3,7 @@ package com.testverktyg.eclipselink.view.main;
 import com.testverktyg.eclipselink.service.user.ReadUser;
 import com.testverktyg.eclipselink.view.MenuController;
 import com.testverktyg.eclipselink.view.admin.AdminController;
+import com.testverktyg.eclipselink.view.student.StudentController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

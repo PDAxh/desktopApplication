@@ -1,18 +1,20 @@
 package com.testverktyg.eclipselink.view.student;
 import com.testverktyg.eclipselink.entity.Test;
+import com.testverktyg.eclipselink.entity.User;
 import com.testverktyg.eclipselink.entity.UserTests;
 import com.testverktyg.eclipselink.service.Test.ReadTest;
 import com.testverktyg.eclipselink.service.studentAnswer.CreateStudentAnswer;
 import com.testverktyg.eclipselink.service.studentAnswer.ReadStudentAnswer;
+import com.testverktyg.eclipselink.service.user.ReadUser;
 import com.testverktyg.eclipselink.service.userTests.ReadUserTests;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.Executor;
@@ -22,6 +24,8 @@ import java.util.concurrent.Executors;
  * Created by Andreas.
  */
 public class StudentController {
+    @FXML private Button showToUserStartTestButton;
+    @FXML private Button showToUserNextButton;
     @FXML private GridPane alternativePane;
     @FXML private GridPane contentPane;
     @FXML private Label showToStudentTestNameLabel;
@@ -32,8 +36,6 @@ public class StudentController {
     @FXML private Label showToStudentTeacherLabel;
     @FXML private Label showToStudentClassTextLabel;
     @FXML private Label showToStudentClassLabel;
-    @FXML private Button showToUserStartTestButton;
-    @FXML private Button showToUserNextButton;
     @FXML private Label showToStudentQuestionsLeft;
     @FXML private Label showToStudentQuestionsLeftText;
     @FXML private Label showToStudentGrade;
@@ -42,11 +44,11 @@ public class StudentController {
     @FXML private Label questionPointsTextLabel;
     @FXML private Label timerLabel;
     @FXML private Label timeTextLabel;
-    private int activeTest = 3;
+    private int activeTest;
     private int maxQuestions = 0;
     private int activeQuestion = 1;
     private int activeQuestionsForDB = 0;
-    private ReadTest newTest = new ReadTest(activeTest);
+    private ReadTest newTest;// = new ReadTest(activeTest);
     private CreateStudentAnswer csa = new CreateStudentAnswer();
 
     @FXML private BorderPane showStudentTestsBorderPane;
@@ -84,6 +86,7 @@ public class StudentController {
         getNewQuestion();
 
         Timer timer = new Timer();
+        timer.setTestTime(getNewTest().getTestTimeInMinutes());
         Executor exec = Executors.newCachedThreadPool(runnable -> {
             Thread t = new Thread(runnable);
             t.setDaemon(true);
@@ -95,7 +98,7 @@ public class StudentController {
     //Test timer
     public class Timer implements Runnable {
         int testid = 0;
-        int testTime = 30;
+        int testTime;
         int seconds = testTime * 60;
 
         @Override
@@ -108,6 +111,14 @@ public class StudentController {
                 } catch (InterruptedException ignored) {
                 }
             }
+        }
+
+        private int getTestTime() {
+            return testTime;
+        }
+
+        public void setTestTime(int testTime) {
+            this.testTime = testTime;
         }
     }
 
@@ -195,11 +206,14 @@ public class StudentController {
         csa.createNewStudentAnswer(activeTest, currentQuestionId, selectedAlternativeId, 3);
     }
 
+    //----------------------
+    private ToggleGroup studentTestToggleGroup;
+
     public void getStudentTests(){
         getShowStudentTestVbox().getChildren().clear();
         ReadTest readTest = new ReadTest();
         ReadUserTests readUserTests = new ReadUserTests(getUserId());
-        ToggleGroup toggleGroup = new ToggleGroup();
+        setStudentTestToggleGroup(new ToggleGroup());
         setSetSelectTestToDo(new RadioButton[readUserTests.getUserTestsList().size()]);
         int counter = 0;
         for(UserTests userTests: readUserTests.getUserTestsList()){
@@ -210,8 +224,7 @@ public class StudentController {
                 BorderPane borderPane = new BorderPane();
                 hBoxLeft.setSpacing(50.0);
                 getSetSelectTestToDo()[counter] = new RadioButton();
-                getSetSelectTestToDo()[counter].setToggleGroup(toggleGroup);
-                getSetSelectTestToDo()[counter].setId(String.valueOf(test.getTestId()));
+                getSetSelectTestToDo()[counter].setToggleGroup(getStudentTestToggleGroup());
                 getSetSelectTestToDo()[counter].setUserData(String.valueOf(test.getTestId()));
                 hBoxLeft.getChildren().addAll(new Label("Prov: " + test.getTestName()), new Label(" Beskrivning: " + test.getTestDescription()),
                         new Label(" Datum: " + test.getLastDate()), new Label(" Tid: " + String.valueOf(test.getTimeForTestMinutes())));
@@ -226,36 +239,73 @@ public class StudentController {
             }
         }
 
-        toggleGroup.selectedToggleProperty().addListener(event ->{
-            if(toggleGroup.getSelectedToggle().isSelected()){
-                int testId = Integer.parseInt(toggleGroup.getSelectedToggle().getUserData().toString());
+        getStudentTestToggleGroup().selectedToggleProperty().addListener(event ->{
+            if(getStudentTestToggleGroup().getSelectedToggle().isSelected()){
+                int testId = Integer.parseInt(getStudentTestToggleGroup().getSelectedToggle().getUserData().toString());
+                readTest.getTest(testId);
+                LocalDate localDate = LocalDate.now();
+                String date = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(localDate);
                 ReadStudentAnswer readStudentAnswer = new ReadStudentAnswer();
                 readStudentAnswer.getStudentAnswerFromSpecificStudent(getUserId(), testId);
                 getDoSelectedTestButton().setDisable(true);
                 getShowResultButton().setDisable(true);
 
                 for(Test test : readTest.getTestList()){
-                    LocalDate localDate = LocalDate.now();
-                    String date = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(localDate);
                     if((test.getTestId() == testId) && (test.getLastDate().equals(date))){
                         getDoSelectedTestButton().setDisable(false);
                         getShowResultButton().setDisable(true);
+                        break;
                     }
                     else if(!readStudentAnswer.getStudentAnswersList().isEmpty()){
                         getDoSelectedTestButton().setDisable(true);
                         getShowResultButton().setDisable(false);
+                        break;
                     }
                 }
             }
-
         });
     }
-    private VBox getShowStudentTestVbox() {
-        return showStudentTestVbox;
+
+    @FXML
+    private void getSelectedTestToDo() throws IOException{
+        ReadUser readUser = new ReadUser();
+        ReadUserTests readUserTests = new ReadUserTests();
+        readUser.readOnlyTeacher();
+        readUser.getFindClassWithUserId(getUserId());
+        setActiveTest(Integer.parseInt(getStudentTestToggleGroup().getSelectedToggle().getUserData().toString()));
+        readUserTests.findAllUsersForOneTest(getActiveTest());
+        setNewTest(new ReadTest(getActiveTest()));
+        getNewTest().getActiveTest();
+        getShowStudentTestsBorderPane().setLeft(null);
+        getShowStudentTestsBorderPane().setTop(null);
+        getContentPane().setVisible(true);
+
+        getShowToStudentTestNameLabel().setText(getNewTest().getTestName());
+        getShowToStudentTextLabel().setText(getNewTest().getTestDescription());
+        getShowToStudentTimeLabel().setText(String.valueOf(getNewTest().getTestTimeInMinutes()));
+
+        for(User user : readUser.getTeacherList()){
+            for(UserTests userTests: readUserTests.getUserTestListByTestId()){
+                if(user.getUserId() == userTests.getUserId()){
+                    getShowToStudentTeacherLabel().setText(user.getFirstname() + " " + user.getLastname());
+                    break;
+                }
+            }
+        }
+
+        getShowToStudentClassLabel().setText(readUser.getFindClassWithUserIdList().get(0).getKlass());
     }
 
-    private void setShowStudentTestVbox(VBox showStudentTestVbox) {
-        this.showStudentTestVbox = showStudentTestVbox;
+    private ToggleGroup getStudentTestToggleGroup() {
+        return studentTestToggleGroup;
+    }
+
+    private void setStudentTestToggleGroup(ToggleGroup studentTestToggleGroup) {
+        this.studentTestToggleGroup = studentTestToggleGroup;
+    }
+
+    private VBox getShowStudentTestVbox() {
+        return showStudentTestVbox;
     }
 
     private Button getDoSelectedTestButton() {
@@ -300,6 +350,70 @@ public class StudentController {
 
     private void setAlternativeCheckBox(CheckBox[] alternativeCheckBox) {
         this.alternativeCheckBox = alternativeCheckBox;
+    }
+
+    private int getActiveTest() {
+        return activeTest;
+    }
+
+    private void setActiveTest(int activeTest) {
+        this.activeTest = activeTest;
+    }
+
+    private Label getShowToStudentTextLabel() {
+        return showToStudentTextLabel;
+    }
+
+    private void setShowToStudentTextLabel(Label showToStudentTextLabel) {
+        this.showToStudentTextLabel = showToStudentTextLabel;
+    }
+
+    private Label getShowToStudentTestNameLabel() {
+        return showToStudentTestNameLabel;
+    }
+
+    private void setShowToStudentTestNameLabel(Label showToStudentTestNameLabel) {
+        this.showToStudentTestNameLabel = showToStudentTestNameLabel;
+    }
+
+    private GridPane getContentPane() {
+        return contentPane;
+    }
+
+    private void setContentPane(GridPane contentPane) {
+        this.contentPane = contentPane;
+    }
+
+    private ReadTest getNewTest() {
+        return newTest;
+    }
+
+    private void setNewTest(ReadTest newTest) {
+        this.newTest = newTest;
+    }
+
+    private Label getShowToStudentTimeLabel() {
+        return showToStudentTimeLabel;
+    }
+
+    private void setShowToStudentTimeLabel(Label showToStudentTimeLabel) {
+        this.showToStudentTimeLabel = showToStudentTimeLabel;
+    }
+
+    private Label getShowToStudentTeacherLabel() {
+        return showToStudentTeacherLabel;
+    }
+
+    private void setShowToStudentTeacherLabel(Label showToStudentTeacherLabel) {
+        this.showToStudentTeacherLabel = showToStudentTeacherLabel;
+    }
+
+    private Label getShowToStudentClassLabel() {
+        return showToStudentClassLabel;
+    }
+
+    private void setShowToStudentClassLabel(Label showToStudentClassLabel) {
+        this.showToStudentClassLabel = showToStudentClassLabel;
     }
 }
 

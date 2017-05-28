@@ -41,14 +41,10 @@ public class ReadTest {
     private List<Question> activeQuestionGradeG;
     private List<Question> activeQuestionPoints;
     private List<Question> activeQuestionType;
-
-    //---testkod---
-
     private List<Test> testList;
+    private List<Test> getAllTestsForAdminList;
 
     public ReadTest(){}
-
-    //---testkod--
 
     public ReadTest(int testId){
         this.tempTestId = testId;
@@ -66,7 +62,6 @@ public class ReadTest {
         testTimeInMinutes = activeTest.getTimeForTestMinutes();
         seeResult = activeTest.isSeeResultAfter();
         selfCorrecting = activeTest.isSelfCorrecting();
-
 
         //Get the first question information
         activeQuestionText = entitymanager.createNamedQuery("FindQuestionText", Question.class).setParameter("tId", tempTestId).getResultList();
@@ -222,11 +217,18 @@ public class ReadTest {
         }
     }
 
-    //----TESTKOD-----
     public void getTest(int testId){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         setTestList(entityManager.createNamedQuery("getTest", Test.class).setParameter("testId", testId).getResultList());
+        entityManager.close();
+        entityManagerFactory.close();
+    }
+
+    public void getAllTestsForAdmin(){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        setGetAllTestsForAdminList(entityManager.createNamedQuery("getAllTest", Test.class).getResultList());
         entityManager.close();
         entityManagerFactory.close();
     }
@@ -239,16 +241,6 @@ public class ReadTest {
         this.testList = testList;
     }
 
-    public void getAllTestsForAdmin(){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        setGetAllTestsForAdminList(entityManager.createNamedQuery("getAllTest", Test.class).getResultList());
-        entityManager.close();
-        entityManagerFactory.close();
-    }
-
-    private List<Test> getAllTestsForAdminList;
-
     public List<Test> getGetAllTestsForAdminList() {
         return getAllTestsForAdminList;
     }
@@ -256,6 +248,4 @@ public class ReadTest {
     private void setGetAllTestsForAdminList(List<Test> getAllTestsForAdminList) {
         this.getAllTestsForAdminList = getAllTestsForAdminList;
     }
-
-    //---TESTKOD-----
 }
