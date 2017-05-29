@@ -63,17 +63,6 @@
                     <Label fx:id="timeTextLabel" text="Tid: " visible="false" GridPane.columnIndex="6" GridPane.rowIndex="1"/>
                     <Label fx:id="timerLabel" visible="false" text="3:00" GridPane.columnIndex="7" GridPane.rowIndex="1"
                            style="-fx-font-weight: bold; -fx-text-fill: orangered;"/>
-
-                   <columnConstraints>
-                      <ColumnConstraints />
-                      <ColumnConstraints />
-                      <ColumnConstraints />
-                      <ColumnConstraints />
-                   </columnConstraints>
-                   <rowConstraints>
-                      <RowConstraints />
-                      <RowConstraints />
-                   </rowConstraints>
                 </GridPane>
 
                     <GridPane fx:id="alternativePane" GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.rowIndex="3"/>
