@@ -42,7 +42,7 @@ public class StudentController {
     @FXML private Label questionPointsTextLabel;
     @FXML private Label timerLabel;
     @FXML private Label timeTextLabel;
-    private int activeTest = 7;
+    private int activeTest = 3;
     private int maxQuestions = 0;
     private int activeQuestion = 1;
     private int activeQuestionsForDB = 0;
@@ -57,6 +57,7 @@ public class StudentController {
     private int userId;
     private RadioButton alternativeRadioButtons[];
     private CheckBox alternativeCheckBox[];
+    private boolean isFirstQuestion=true;
 
     //Loads test information for test info scene
     @FXML
@@ -111,11 +112,15 @@ public class StudentController {
         }
     }
 
-    //Loads next question
+    //Loads next question student
     @FXML
     private void getNewQuestion() {
-        if (newTest.getQuestionCount() == 0){
+        if (newTest.getQuestionCount()!=0){
+            setStudentAnswer();
+        }
+        if (isFirstQuestion){
             newTest.getActiveTest();
+            isFirstQuestion=false;
         }else {
             newTest.getNextActiveQuestion();
         }
@@ -126,24 +131,28 @@ public class StudentController {
             showToStudentTextLabel.setText("");
             alternativePane.getChildren().clear();
             if (activeQuestion == maxQuestions) {
+                showToUserNextButton.setText("Lämna in prov");
                 showToUserNextButton.onActionProperty();
                 showToUserNextButton.setOnAction(event -> {
+                    handInTest();
                 });
                 showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
-                this.printAlternatives();
-                showToUserNextButton.setDisable(true);
+                printAlternatives();
+                //stud showToUserNextButton.setDisable(true);
             } else {
                 showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
-                this.printAlternatives();
+                printAlternatives();
             }
             activeQuestion++;
             activeQuestionsForDB++;
+        System.out.println("ACTIVE QUESTION IS "+newTest.getQuestionCount());
     }
 
     //Prints question alternatives
     @FXML
     private void printAlternatives() {
         newTest.getActiveTest();
+        System.out.println("ACTIVE QUESTION IS "+newTest.getQuestionCount());
         showToStudentTestNameLabel.setText(newTest.getTestName());
         String typeOfQuestion = newTest.getActiveQuestionType().toString();
         if (typeOfQuestion.equals("Flervals")) {
@@ -167,28 +176,28 @@ public class StudentController {
             }
         }
     }
-/*
+
     @FXML
-    private void addStudentAnswer() {
+    private void setStudentAnswer() {
         if (newTest.isSelfCorrecting()) {
             if (newTest.getActiveQuestionType().toString().equals("Flervals")) {
-                for (int i = 0; i < alternativeCheckBoxList.get().size(); i++) {
-                    if (alternativeCheckBoxList.get().get(i).isSelected()) {
-                        int selectedAlternative = Integer.parseInt(alternativeCheckBoxList.get().get(i).getId());
+                for (int i = 0; i < newTest.getActiveAlternativeId().size(); i++) {
+                    if (getAlternativeCheckBox()[i].isSelected()) {
+                        int selectedAlternative = Integer.parseInt(getAlternativeCheckBox()[i].getId());
                         createAnswer(selectedAlternative);
                     }
                 }
             }else {
-                for (int i = 0; i < alternativeRadioButtonList.get().size(); i++) {
-                    if (alternativeRadioButtonList.get().get(i).isSelected()) {
-                        int selectedAlternative = Integer.parseInt(alternativeRadioButtonList.get().get(i).getId());
+                for (int i = 0; i < newTest.getActiveAlternativeId().size(); i++) {
+                    if (getAlternativeRadioButtons()[i].isSelected()) {
+                        int selectedAlternative = Integer.parseInt(getAlternativeRadioButtons()[i].getId());
                         createAnswer(selectedAlternative);
                     }
                 }
             }
         }
     }
-*/
+
     private void createAnswer(int selectedAlternative) {
         int selectedAlternativeId = newTest.getActiveAlternativeId().get(selectedAlternative).getAlternativeId();
         int currentQuestionId = newTest.getActiveQuestionId().get(activeQuestion).getQuestionId();
@@ -247,9 +256,72 @@ public class StudentController {
                     }
                 }
             }
-
         });
     }
+    @FXML
+    private void handInTest(){
+        ReadStudentAnswer rsa = new ReadStudentAnswer();
+        contentPane.getChildren().clear();
+        contentPane.add(showToStudentTestNameLabel, 0, 0);
+        Label resultLabel = new Label("Provets poäng:");
+        contentPane.add(resultLabel, 0,1);
+
+        HBox firstBox = new HBox();
+        contentPane.add(firstBox, 0,2);
+        Label VGQuestionLabel = new Label("VG Frågor: ");
+        Label VGQuestionResultLabel = new Label();
+        Label GQuestionLabel = new Label("G Frågor: ");
+        Label GQuestionResultLabel = new Label();
+        Label TotalLabel = new Label("Totalt: ");
+        Label TotalResultLabel = new Label();
+        firstBox.getChildren().addAll(
+                VGQuestionLabel,
+                VGQuestionResultLabel,
+                GQuestionLabel,
+                GQuestionResultLabel,
+                TotalLabel,
+                TotalResultLabel);
+
+        HBox secondBox = new HBox();
+        contentPane.add(secondBox, 0,3);
+        Label VGQuestionPointsLabel = new Label("VG Poäng: ");
+        Label VGQuestionPointsResultLabel = new Label();
+        Label GQuestionPointsLabel = new Label("G Poäng: ");
+        Label GQuestionPointsResultLabel = new Label();
+        Label TotalPointsLabel = new Label("Totala Poäng ");
+        Label TotalPointsResultLabel = new Label();
+        secondBox.getChildren().addAll(
+                VGQuestionPointsLabel,
+                VGQuestionPointsResultLabel,
+                GQuestionPointsLabel,
+                GQuestionPointsResultLabel,
+                TotalPointsLabel,
+                TotalPointsResultLabel);
+
+        VBox StudentResultBox = new VBox();
+        contentPane.add(StudentResultBox,0,4);
+        Label StudentPointsLabel = new Label("Ditt resultat:");
+        Label StudentGPointsLabel = new Label("G poäng: ");
+        Label StudentGPointsResultLabel = new Label();
+        Label StudentVGPointsLabel = new Label("VG Poäng: ");
+        Label StudentVGPointsResultLabel = new Label();
+        Label GradeLabel = new Label("Betyg:");
+        Label GradeResultLabel = new Label();
+        Label StudentTotalPointsLabel = new Label("Poäng: ");
+        Label StudentTotalPointsResultLabel = new Label();
+        StudentResultBox.getChildren().addAll(
+                StudentPointsLabel,
+                StudentGPointsLabel,
+                StudentGPointsResultLabel,
+                StudentVGPointsLabel,
+                StudentVGPointsResultLabel,
+                GradeLabel,
+                GradeResultLabel,
+                StudentTotalPointsLabel,
+                StudentTotalPointsResultLabel
+                );
+    }
+
     private VBox getShowStudentTestVbox() {
         return showStudentTestVbox;
     }
