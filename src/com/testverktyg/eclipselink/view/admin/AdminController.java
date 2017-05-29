@@ -1,6 +1,7 @@
 package com.testverktyg.eclipselink.view.admin;
 
 
+import com.itextpdf.text.DocumentException;
 import com.testverktyg.eclipselink.entity.Test;
 import com.testverktyg.eclipselink.service.Class.CreateClass;
 import com.testverktyg.eclipselink.service.Class.DeleteClass;
@@ -27,6 +28,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -640,16 +642,29 @@ public class AdminController {
     }
 
     //Result
-
-    @FXML private BorderPane showResultToAdminBorderPane;
     @FXML private VBox showResultTestVbox;
-
-    private BorderPane getShowResultToAdminBorderPane() {
-        return showResultToAdminBorderPane;
-    }
+    @FXML private VBox showResultAdminVbox;
+    @FXML private Button saveToPdfButton;
+    private StatisticForAdminAndTeacher statisticForAdminAndTeacher;
 
     private VBox getShowResultTestVbox() {
         return showResultTestVbox;
+    }
+
+    private VBox getShowResultAdminVbox() {
+        return showResultAdminVbox;
+    }
+
+    private Button getSaveToPdfButton() {
+        return saveToPdfButton;
+    }
+
+    private StatisticForAdminAndTeacher getStatisticForAdminAndTeacher() {
+        return statisticForAdminAndTeacher;
+    }
+
+    private void setStatisticForAdminAndTeacher(StatisticForAdminAndTeacher statisticForAdminAndTeacher) {
+        this.statisticForAdminAndTeacher = statisticForAdminAndTeacher;
     }
 
     public void getTestsToShowResults(){
@@ -681,10 +696,17 @@ public class AdminController {
 
         toggleGroup.selectedToggleProperty().addListener(event ->{
             if(toggleGroup.getSelectedToggle().isSelected()){
-                StatisticForAdminAndTeacher statisticForAdminAndTeacher = new StatisticForAdminAndTeacher();
-                statisticForAdminAndTeacher.setTestId(Integer.parseInt(toggleGroup.getSelectedToggle().getUserData().toString()));
-                getShowResultToAdminBorderPane().setCenter(statisticForAdminAndTeacher.getTestResultLayout());
+                getShowResultAdminVbox().getChildren().clear();
+                setStatisticForAdminAndTeacher(new StatisticForAdminAndTeacher());
+                getStatisticForAdminAndTeacher().setTestId(Integer.parseInt(toggleGroup.getSelectedToggle().getUserData().toString()));
+                getShowResultAdminVbox().getChildren().add(getStatisticForAdminAndTeacher().getTestResultLayout());
+                getSaveToPdfButton().setVisible(true);
             }
         });
+    }
+
+    @FXML
+    private void getSaveToPdf() throws IOException, DocumentException {
+        getStatisticForAdminAndTeacher().saveStatisticToPdf();
     }
 }

@@ -1,13 +1,17 @@
 package com.testverktyg.eclipselink.view.main.layout;
 
+import com.itextpdf.text.DocumentException;
 import com.testverktyg.eclipselink.entity.Question;
 import com.testverktyg.eclipselink.entity.Test;
+import com.testverktyg.eclipselink.service.Test.CreatePDF;
 import com.testverktyg.eclipselink.service.Test.ReadTest;
 import com.testverktyg.eclipselink.service.studentAnswer.ReadStudentAnswer;
 import com.testverktyg.eclipselink.service.user.ReadUser;
 import com.testverktyg.eclipselink.service.userTests.ReadUserTests;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,8 +67,8 @@ public class StatisticForAdminAndTeacher {
     //gets the amount of students with the grade VG, G and IG
     private void antStudentsOfEveryGrade(){
 
-        int resultGprocent;
-        int resultVGprocent;
+        int resultGprocent = 0;
+        int resultVGprocent = 0;
 
         antVGStudents = 0;
         antGStudents = 0;
@@ -73,8 +77,15 @@ public class StatisticForAdminAndTeacher {
         for (int i = 0; i < userIdList.size(); i++){
             readStudentAnswer.getStudentAnswerFromSpecificStudent(userIdList.get(i), testId);
             readStudentAnswer.getCorrectAnswers(testId);
-            resultGprocent = readStudentAnswer.getStudPointsG() / readStudentAnswer.getMaxPointsG() * 100;
-            resultVGprocent = readStudentAnswer.getStudPointsVG() / readStudentAnswer.getMaxPointsVG() * 100;
+
+            if(readStudentAnswer.getStudPointsG() > 0){
+                resultGprocent = readStudentAnswer.getStudPointsG() / readStudentAnswer.getMaxPointsG() * 100;
+            }
+
+            if(readStudentAnswer.getStudPointsVG() > 0){
+                resultVGprocent = readStudentAnswer.getStudPointsVG() / readStudentAnswer.getMaxPointsVG() * 100;
+            }
+
             setAveragePoints(readStudentAnswer.getStudPointsG() + readStudentAnswer.getStudPointsVG());
 
             if (resultGprocent>= 60 && resultVGprocent >= 60){
@@ -130,19 +141,13 @@ public class StatisticForAdminAndTeacher {
         maxAntStudentsDoneTest();
         antStudentsOfEveryGrade();
 
-        int average = 0;
-
-        if((getAveragePoints() != 0) && (getMaxAntStudentDone() != 0)){
-           average = getAveragePoints() / getMaxAntStudentDone();
-        }
-
         VBox vBox = new VBox();
        // vBox.setStyle("-fx-border-color: black;");
         vBox.getChildren().add(new Label("Prov: " + getTestName()));
         vBox.getChildren().add(new Label("Antal Godkänt frågor: " + getTotalGradeGQuestions()));
         vBox.getChildren().add(new Label("Antal Väl Godkänt frågor: " + getTotalGradeVgQuestions()));
         vBox.getChildren().add(new Label("Tid: " + getTestTimeInMinutes()));
-        vBox.getChildren().add(new Label("Genomsnittpoäng: " + String.valueOf(average)));
+        vBox.getChildren().add(new Label("Genomsnittpoäng: " + String.valueOf(getAveragePointsCalculated())));
         vBox.getChildren().add(new Label("Max poäng: " + getTotalTestPoints()));
         vBox.getChildren().add(new Label("Antal elever som gjort test: " + getMaxAntStudentDone()));
         vBox.getChildren().add(new Label("Max antal elever: " + getMaxTotalStudentForTest()));
@@ -162,6 +167,32 @@ public class StatisticForAdminAndTeacher {
             setTestTimeInMinutes(test.getTimeForTestMinutes());
             setTotalQuestionsAndTotalPointsForQuestion(test.getQuestionList());
         }
+    }
+
+    private int getAveragePointsCalculated(){
+        int average = 0;
+
+        if((getAveragePoints() != 0) && (getMaxAntStudentDone() != 0)){
+            average = getAveragePoints() / getMaxAntStudentDone();
+        }
+        return average;
+    }
+
+    public void saveStatisticToPdf() throws IOException, DocumentException{
+        CreatePDF createPDF = new CreatePDF();
+        createPDF.setTestName(getTestName());
+        createPDF.setTotalGQuestions(getTotalGradeGQuestions());
+        createPDF.setTotalVgQuestions(getTotalGradeVgQuestions());
+        createPDF.setTestTime(getTestTimeInMinutes());
+        createPDF.setAveragePoints(getAveragePointsCalculated());
+        createPDF.setMaxPoints(getTotalTestPoints());
+        createPDF.setMaxStudentsForTest(getMaxTotalStudentForTest());
+        createPDF.setTotalStudentDoneTest(getMaxAntStudentDone());
+        createPDF.setTotalIgStudents(getAntIGStudents());
+        createPDF.setTotalGStudents(getAntGStudents());
+        createPDF.setTotalVgStudents(getAntVGStudents());
+
+        createPDF.createTeacherAndAdminPDF();
     }
 
     private int getTestId() {

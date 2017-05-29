@@ -1,6 +1,6 @@
 package com.testverktyg.eclipselink.view.teacher;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import com.itextpdf.text.DocumentException;
 import com.testverktyg.eclipselink.entity.Test;
 import com.testverktyg.eclipselink.entity.UserTests;
 import com.testverktyg.eclipselink.service.Test.CreateTest;
@@ -30,6 +30,7 @@ import java.io.IOException;
  */
 public class TeacherController {
 
+    @FXML private BorderPane showTeacherTestBorderPane;
     @FXML private BorderPane borderPaneAlternatives;
     @FXML private Button deleteQuestionButton;
     @FXML private Button updateQuestionButton;
@@ -48,35 +49,29 @@ public class TeacherController {
     @FXML private TextField questionName;
     @FXML private TextField testName;
     @FXML private TextArea descriptionInput;
-
+    @FXML private VBox showTeacherTestVbox;
     private int indexQuestion;
+    private int userId;
+    private BorderPane updateQuestionAlternativeBorderPane;
     private CreateTest createTest = new CreateTest();
     private CheckBox rightAnswerCheckbox[];
-    private TextField alternativField[];
-    private RadioButton rightAnswerRadioButton[];
+    private CheckBox updateQuestionAlternativeCheckbox[];
+    private ComboBox<String> updateTypeOfQuestion;
+    private ComboBox<Integer> updateNumberOfAlternatives;
     private NewTest newTest = new NewTest();
-
-    //test
-    private ReadTest readTest;
-    @FXML private VBox showTeacherTestVbox;
-    @FXML private BorderPane showTeacherTestBorderPane;
-    private RadioButton selectTestToPublishOrEdit[];
-    private RadioButton selectToEdit[];
-    private int userId;
-    private TextField updateQuestionNameTextField;
+    private ObservableList<String> typeOfQuestionList = FXCollections.observableArrayList("Flervals", "Alternativ");
+    private ObservableList<Integer> numberOfAlternatviesList = FXCollections.observableArrayList(2,3,4,5);
     private RadioButton updateGradeG;
     private RadioButton updateGradeVG;
-    private Spinner updatePoints;
-    private ComboBox<String> updateTypeOfQuestion;
-    private ObservableList<String> typeOfQuestionList = FXCollections.observableArrayList("Flervals", "Alternativ");
-    private ComboBox<Integer> updateNumberOfAlternatives;
-    private ObservableList<Integer> numberOfAlternatviesList = FXCollections.observableArrayList(2,3,4,5);
-    private BorderPane updateQuestionAlternativeBorderPane;
-    private TextField updateQuestionAlternativeTextField[];
     private RadioButton updateQuestionAlternativeRadioButton[];
-    private CheckBox updateQuestionAlternativeCheckbox[];
-
-    //test
+    private RadioButton rightAnswerRadioButton[];
+    private RadioButton selectTestToPublishOrEdit[];
+    private RadioButton selectToEdit[];
+    private ReadTest readTest;
+    private Spinner updatePoints;
+    private TextField updateQuestionNameTextField;
+    private TextField alternativField[];
+    private TextField updateQuestionAlternativeTextField[];
 
     @FXML
     private void setShowResultToStudent(){
@@ -351,10 +346,7 @@ public class TeacherController {
                             getNewTest().getQuestionObservableList().get(i).getAlternativObservableList().get(j).getRightAnswer());
                 }
 
-                        /*getNewTest().getQuestionObservableList().get(i).getAlternativObservableList().forEach(newAlternativ ->
-                            getCreateTest().createAlternative(newAlternativ.getAlternative(), newAlternativ.getRightAnswer())
-                        );*/
-                        getCreateTest().addAlternativListToQuestion();
+                getCreateTest().addAlternativListToQuestion();
             }
 
         CreateUserTests createUserTests = new CreateUserTests();
@@ -583,17 +575,41 @@ public class TeacherController {
         });
     }
 
+    @FXML private VBox showResultTeacherVbox;
+    @FXML private Button saveToPdfButton;
+    private StatisticForAdminAndTeacher statisticForAdminAndTeacher;
+
+    private VBox getShowResultTeacherVbox() {
+        return showResultTeacherVbox;
+    }
+
+    private Button getSaveToPdfButton() {
+        return saveToPdfButton;
+    }
+
+    private StatisticForAdminAndTeacher getStatisticForAdminAndTeacher() {
+        return statisticForAdminAndTeacher;
+    }
+
+    private void setStatisticForAdminAndTeacher(StatisticForAdminAndTeacher statisticForAdminAndTeacher) {
+        this.statisticForAdminAndTeacher = statisticForAdminAndTeacher;
+    }
+
     private void toggleGroupActionGetSelectedTestToShowResult(){
         getGetTeacherTestToggleGroup().selectedToggleProperty().addListener(event ->{
             if(getGetTeacherTestToggleGroup().getSelectedToggle().isSelected()){
-                ScrollPane scrollPane = new ScrollPane();
-                scrollPane.setStyle("-fx-background-color:transparent;");
-                StatisticForAdminAndTeacher statisticForAdminAndTeacher = new StatisticForAdminAndTeacher();
-                statisticForAdminAndTeacher.setTestId(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
-                scrollPane.setContent(statisticForAdminAndTeacher.getTestResultLayout());
-                getShowTeacherTestBorderPane().setCenter(scrollPane);
+                getShowResultTeacherVbox().getChildren().clear();
+                setStatisticForAdminAndTeacher(new StatisticForAdminAndTeacher());
+                getStatisticForAdminAndTeacher().setTestId(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
+                getShowResultTeacherVbox().getChildren().add(getStatisticForAdminAndTeacher().getTestResultLayout());
+                getSaveToPdfButton().setVisible(true);
             }
         });
+    }
+
+    @FXML
+    private void getSaveToPdf() throws IOException, DocumentException {
+        getStatisticForAdminAndTeacher().saveStatisticToPdf();
     }
 
     private void getSelectedTestToEdit(){
@@ -823,10 +839,6 @@ public class TeacherController {
         this.alternativeIdList = alternativeIdList;
     }
 
-    private int getHodlQuestionIdForNewAlternatives() {
-        return hodlQuestionIdForNewAlternatives;
-    }
-
     private void setHodlQuestionIdForNewAlternatives(int hodlQuestionIdForNewAlternatives) {
         this.hodlQuestionIdForNewAlternatives = hodlQuestionIdForNewAlternatives;
     }
@@ -934,15 +946,6 @@ public class TeacherController {
                                    updateTest.deleteAnAlternative(getAlternativeIdList()[m]);
                                     System.out.println(getAlternativeIdList()[m]);
                                 }
-    /*
-                                for(int n = 0; n < getUpdateNumberOfAlternatives().getValue(); n++){
-
-                                    if(getUpdateTypeOfQuestion().getValue().equals("Alternativ")){
-                                        updateTest.addNewAlternative(getHodlQuestionIdForNewAlternatives(),getUpdateQuestionAlternativeTextField()[n].getText(), getUpdateQuestionAlternativeRadioButton()[n].isSelected());
-                                    }else if(getUpdateTypeOfQuestion().getValue().equals("Flervals")){
-                                        updateTest.addNewAlternative(getHodlQuestionIdForNewAlternatives(),getUpdateQuestionAlternativeTextField()[n].getText(), getUpdateQuestionAlternativeCheckbox()[n].isSelected());
-                                    }
-                                }*/
                             }
                             getSelectedTestToEdit();
                         }

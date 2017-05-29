@@ -18,4 +18,13 @@
         </ScrollPane>
     </left>
 
+    <center>
+        <GridPane>
+            <VBox fx:id="showResultTeacherVbox" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Button fx:id="saveToPdfButton" text="Spara till pdf" onAction="#getSaveToPdf" GridPane.columnIndex="0" GridPane.rowIndex="1" visible="false"/>
+        </GridPane>
+    </center>
+
+
+
 </BorderPane>

@@ -1,134 +1,73 @@
 package com.testverktyg.eclipselink.service.Test;
 
-
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.testverktyg.eclipselink.entity.User;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * Created by Daniel on 2017-05-24.
+ *
  */
 
 public class CreatePDF {
 
-    public static String DEST = "TestPDF";
-    public static String getData = "getData";
-    public int userId;
-    public  String firstname;
-    public  String lastname;
+    private String firstname;
+    private String lastname;
+    private String testName;
+    private int userId;
+    private int totalGQuestions;
+    private int totalVgQuestions;
+    private int testTime;
+    private int averagePoints;
+    private int maxPoints;
+    private int maxStudentsForTest;
+    private int totalStudentDoneTest;
+    private int totalIgStudents;
+    private int totalGStudents;
+    private int totalVgStudents;
 
-
-    public static void main(String[] args) throws DocumentException, IOException
-    {
-        new CreatePDF().createTeacherAndAdminPDF(DEST);
-        new CreatePDF().createStudentPDF(DEST);
-
-    }
-
-    private void createStudentPDF(String dest)throws DocumentException {
-
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
-        EntityManager entitymanager = emfactory.createEntityManager();
-        entitymanager.getTransaction().begin();
-
-        User user = entitymanager.find(User.class, userId);
-
+    private void createStudentPDF()throws DocumentException, IOException {
         Document document = new Document();
-
-        try {
-            PdfWriter.getInstance(document, new FileOutputStream("testStudentpdf.pdf"));
-            System.out.println("testing 1");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        PdfWriter.getInstance(document, new FileOutputStream("testStudentpdf.pdf"));
         document.open();
-        System.out.println("testing 2");
         Font font = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD);
-        Paragraph headline = new Paragraph("Student Test Score", font );
+        Paragraph headline = new Paragraph("Provresultat", font );
         headline.setAlignment(Element.ALIGN_CENTER);
         document.add(headline);
         Paragraph emptySpace = new Paragraph(" ");
         document.add(emptySpace);
         document.add(emptySpace);
-        document.add(new Paragraph(firstname+ " " + lastname));
-        Paragraph klass = new Paragraph("Klass: ");
-        document.add(klass);
-        Paragraph numbGquestion = new Paragraph("Antal Godkänd frågor:");
-        document.add(numbGquestion);
-        Paragraph numbVGquestion = new Paragraph("Antal Väl godkänd frågor:");
-        document.add(numbVGquestion);
-
-
+        document.add(new Paragraph(getFirstname() + " " + getLastname()));
+        document.add(new Paragraph("Klass: "));
+        document.add(new Paragraph("Antal Godkänd frågor:"));
+        document.add(new Paragraph("Antal Väl godkänd frågor:"));
         document.close();
     }
 
-    private void createTeacherAndAdminPDF(String dest) throws DocumentException, IOException{
-
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
-        EntityManager entitymanager = emfactory.createEntityManager();
-        entitymanager.getTransaction().begin();
-
-        User user = entitymanager.find(User.class, 4); // get user who has id 19.
-        firstname = user.getFirstname();
-        lastname = user.getLastname();
-
-
-        System.out.println(firstname + " " + lastname);
-
+    public void createTeacherAndAdminPDF() throws DocumentException, IOException{
         Document document = new Document(PageSize.A4);
-
         PdfWriter.getInstance(document, new FileOutputStream("testpdf.pdf"));
         document.open();
         Font font = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD);
-        Paragraph headline = new Paragraph("Student Test Score", font );
+        Paragraph headline = new Paragraph("Statistik för prov", font );
         headline.setAlignment(Element.ALIGN_CENTER);
         document.add(headline);
         Paragraph emptySpace = new Paragraph(" ");
         document.add(emptySpace);
         document.add(emptySpace);
-        document.add(new Paragraph(firstname+ " " + lastname));
-        Paragraph testName = new Paragraph("Test:");
-        document.add(testName);
-        Paragraph numbGquestion = new Paragraph("Antal Godkänd frågor:");
-        document.add(numbGquestion);
-        Paragraph numbVGquestion = new Paragraph("Antal Väl godkänd frågor:");
-        document.add(numbVGquestion);
-        Paragraph testTime = new Paragraph("Tid:");
-        document.add(testTime);
-        Paragraph averageScore = new Paragraph("Snittresultat:");
-        document.add(averageScore);
-        Paragraph maxScore = new Paragraph("maxpoäng:");
-        document.add(maxScore);
-        Paragraph numbOfStudentsTakenTest = new Paragraph("Antal studenter som gjort test:");
-        document.add(numbOfStudentsTakenTest);
-        Paragraph numbOfFail = new Paragraph("Antal IG:");
-        document.add(numbOfFail);
-        Paragraph numbOfPass = new Paragraph("Antal G:");
-        document.add(numbOfPass);
-        Paragraph numbOfHighPass = new Paragraph("Antal VG:");
-        document.add(numbOfHighPass);
-
-
-
-
+        document.add(new Paragraph("Test: " + getTestName()));
+        document.add(new Paragraph("Antal Godkänd frågor: " + getTotalGQuestions()));
+        document.add(new Paragraph("Antal Väl Godkänd frågor: " + getTotalVgQuestions()));
+        document.add(new Paragraph("Tid:" + getTestTime()));
+        document.add(new Paragraph("Snittresultat: " + getAveragePoints()));
+        document.add(new Paragraph("Maxpoäng: " + getMaxPoints() ));
+        document.add(new Paragraph("Antal studenter som gjort test: " + getTotalStudentDoneTest()));
+        document.add(new Paragraph("Max antal studenter: " + getMaxStudentsForTest()));
+        document.add(new Paragraph("Antal IG: " + getTotalIgStudents()));
+        document.add(new Paragraph("Antal G: " + getTotalGStudents()));
+        document.add(new Paragraph("Antal VG: " + getTotalVgStudents()));
         document.close();
-
     }
-
-    public void CreateStudentPDF(){
-
-
-
-    }
-
-
 
     public int getUserId() {
         return userId;
@@ -138,7 +77,7 @@ public class CreatePDF {
         this.userId = userId;
     }
 
-    public String getFirstname() {
+    private String getFirstname() {
         return firstname;
     }
 
@@ -146,11 +85,99 @@ public class CreatePDF {
         this.firstname = firstname;
     }
 
-    public String getLastname() {
+    private String getLastname() {
         return lastname;
     }
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    private int getTotalGQuestions() {
+        return totalGQuestions;
+    }
+
+    public void setTotalGQuestions(int totalGQuestions) {
+        this.totalGQuestions = totalGQuestions;
+    }
+
+    private int getTotalVgQuestions() {
+        return totalVgQuestions;
+    }
+
+    public void setTotalVgQuestions(int totalVgQuestions) {
+        this.totalVgQuestions = totalVgQuestions;
+    }
+
+    private int getTestTime() {
+        return testTime;
+    }
+
+    public void setTestTime(int testTime) {
+        this.testTime = testTime;
+    }
+
+    private int getAveragePoints() {
+        return averagePoints;
+    }
+
+    public void setAveragePoints(int averagePoints) {
+        this.averagePoints = averagePoints;
+    }
+
+    private int getMaxPoints() {
+        return maxPoints;
+    }
+
+    public void setMaxPoints(int maxPoints) {
+        this.maxPoints = maxPoints;
+    }
+
+    private int getTotalStudentDoneTest() {
+        return totalStudentDoneTest;
+    }
+
+    public void setTotalStudentDoneTest(int totalStudentDoneTest) {
+        this.totalStudentDoneTest = totalStudentDoneTest;
+    }
+
+    private int getTotalIgStudents() {
+        return totalIgStudents;
+    }
+
+    public void setTotalIgStudents(int totalIgStudents) {
+        this.totalIgStudents = totalIgStudents;
+    }
+
+    private int getTotalGStudents() {
+        return totalGStudents;
+    }
+
+    public void setTotalGStudents(int totalGStudents) {
+        this.totalGStudents = totalGStudents;
+    }
+
+    private int getTotalVgStudents() {
+        return totalVgStudents;
+    }
+
+    public void setTotalVgStudents(int totalVgStudents) {
+        this.totalVgStudents = totalVgStudents;
+    }
+
+    private String getTestName() {
+        return testName;
+    }
+
+    public void setTestName(String testName) {
+        this.testName = testName;
+    }
+
+    private int getMaxStudentsForTest() {
+        return maxStudentsForTest;
+    }
+
+    public void setMaxStudentsForTest(int maxStudentsForTest) {
+        this.maxStudentsForTest = maxStudentsForTest;
     }
 }
