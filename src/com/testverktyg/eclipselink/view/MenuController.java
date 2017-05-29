@@ -5,8 +5,6 @@ import com.testverktyg.eclipselink.view.admin.AdminController;
 import com.testverktyg.eclipselink.view.main.MainController;
 import com.testverktyg.eclipselink.view.student.StudentController;
 import com.testverktyg.eclipselink.view.teacher.TeacherController;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,9 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 /**
@@ -35,7 +31,7 @@ public class MenuController {
     @FXML
     private Label loggedInUser;
 
-    int activeLoggedInUserId;
+    private int activeLoggedInUserId;
 
     private Stage stage;
     @FXML private BorderPane borderPane;
@@ -100,18 +96,12 @@ public class MenuController {
 
     @FXML
     private void showTestsToStudentToDo() throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("student/layout/showStudentTests.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("student/layout/showTestToStudentRoot.fxml"));
         BorderPane borderPane = loader.load();
         this.borderPane.setCenter(borderPane);
         StudentController studentController= loader.getController();
         studentController.setUserId(getUserId());
         studentController.getStudentTests();
-    }
-
-    @FXML
-    private void showTestToStudent() throws IOException{
-        BorderPane bp = FXMLLoader.load(getClass().getResource("student/layout/showTestToStudentRoot.fxml"));
-        borderPane.setCenter(bp);
     }
 
     @FXML
@@ -121,7 +111,7 @@ public class MenuController {
         this.borderPane.setCenter(borderPane);
         TeacherController teacherController = loader.getController();
         teacherController.setUserId(getUserId());
-        teacherController.getTeacherTest();
+        teacherController.getTeacherTestToEdit();
     }
 
     @FXML
@@ -162,12 +152,22 @@ public class MenuController {
     }
 
     @FXML
-    private void getResults() throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("main/layout/resultsForAdminAndTeacherLayout.fxml"));
+    private void getResultsAdmin() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("admin/layout/resultAdminLayout.fxml"));
         BorderPane borderPane = loader.load();
         this.borderPane.setCenter(borderPane);
         AdminController adminController = loader.getController();
         adminController.getTestsToShowResults();
+    }
+
+    @FXML
+    private void getResultsTeacher() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("teacher/layout/resultTeacherLayout.fxml"));
+        BorderPane borderPane = loader.load();
+        this.borderPane.setCenter(borderPane);
+        TeacherController teacherController = loader.getController();
+        teacherController.setUserId(getUserId());
+        teacherController.getTeacherTestToShowResult();
     }
 
     @FXML

@@ -143,11 +143,11 @@ public class ReadUser {
         return adminList;
     }
 
-    public static void main(String[] args) {
+ /*   public static void main(String[] args) {
         ReadUser readUser = new ReadUser();
 
         readUser.readOnlyAdmin();
-    }
+    }*/
 
     public void setLoggedInUser(int userid){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
@@ -171,6 +171,7 @@ public class ReadUser {
 
     //--TestKod-Jonas--
     private List<User> userIdByClassList;
+    private List<User> findClassWithUserIdList;
 
     public void getUserIdByClass(String klass){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
@@ -184,12 +185,32 @@ public class ReadUser {
         entityManagerFactory.close();
     }
 
+    public void getFindClassWithUserId(int userId){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        setFindClassWithUserIdList(entityManager.createNamedQuery("findClassWithUserId", User.class)
+                .setParameter("userId", userId)
+                .getResultList());
+
+        entityManager.close();
+        entityManagerFactory.close();
+    }
+
     public List<User> getUserIdByClassList() {
         return userIdByClassList;
     }
 
     private void setUserIdByClassList(List<User> userIdByClassList) {
         this.userIdByClassList = userIdByClassList;
+    }
+
+    public List<User> getFindClassWithUserIdList() {
+        return findClassWithUserIdList;
+    }
+
+    private void setFindClassWithUserIdList(List<User> findClassWithUserIdList) {
+        this.findClassWithUserIdList = findClassWithUserIdList;
     }
 
     //------

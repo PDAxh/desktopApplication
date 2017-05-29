@@ -21,8 +21,7 @@
                     <MenuItem text="Avsluta"  onAction="#getExitProgram"/>
                 </Menu>
                 <Menu text="Prov">
-                    <MenuItem text="Visa prov" onAction="#showTestToStudent"/>
-                    <MenuItem text="Visa prov att göra" onAction="#showTestsToStudentToDo"/>
+                    <MenuItem text="Visa prov" onAction="#showTestsToStudentToDo"/>
                 </Menu>
                 <Menu text="Hjälp">
                     <MenuItem text="Hjälp" onAction="#getHelpMenueForStudent"/>
@@ -37,7 +36,6 @@
     <center>
         <GridPane fx:id="editUserPane" alignment="TOP_CENTER" hgap="10" vgap="5">
             <padding><Insets top="100"/></padding>
-            <Text text="you, Student!"/>
         </GridPane>
     </center>
 

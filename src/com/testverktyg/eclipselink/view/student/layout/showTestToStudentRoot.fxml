@@ -11,27 +11,49 @@
 
 <!-- Created by: Andreas -->
 
-<BorderPane fx:id="roo" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testverktyg.eclipselink.view.student.StudentController">
-<center>
-    <GridPane fx:id="contentPane" alignment="TOP_CENTER" hgap="10" vgap="5" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-        <padding><Insets top="20" /> </padding>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane fx:id="showStudentTestsBorderPane"
+            xmlns="http://javafx.com/javafx/8.0.112"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.testverktyg.eclipselink.view.student.StudentController">
+    <padding><Insets top="30" left="80" right="120" bottom="30"/> </padding>
 
-        <children>
-            <Label fx:id="showToStudentTestNameLabel" style="-fx-font-size: 20px" text="ProvNamn" GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.rowIndex="0" />
-            <Label fx:id="showToStudentTextLabel" prefHeight="119.0" prefWidth="500" text="Det här är en placeholder text som används för att se hur texten wrappar i beskrivningsdelen där man presenterar provet för eleverna. Bla bla bla hopp hej!" wrapText="true" GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.rowIndex="2">
-               <font>
-                  <Font size="15.0" />
-               </font></Label>
-            <Label fx:id="showToStudentTimeTextLabel" text="Tid (i minuter):" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <Label fx:id="showToStudentTimeLabel" prefWidth="50" style="-fx-font-weight: bold;" text="5" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label fx:id="showToStudentTeacherTextLabel" text="Lärare:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label fx:id="showToStudentTeacherLabel" prefWidth="120" style="-fx-font-weight: bold;" text="Jerry Johansson" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Label fx:id="showToStudentClassTextLabel" text="Klass:" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <Label fx:id="showToStudentClassLabel" prefWidth="50" style="-fx-font-weight: bold;" text="JAVA2" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+    <top>
+        <HBox spacing="15">
+            <padding><Insets  bottom="30"/> </padding>
+            <Button fx:id="doSelectedTestButton" text="Gör valt test" onAction="#getSelectedTestToDo" disable="true"/>
+            <Button fx:id="showResultButton" text="Visa resultat" disable="true"/>
+        </HBox>
+    </top>
 
+    <left>
+        <ScrollPane styleClass="edge-to-edge" >
+            <VBox fx:id="showStudentTestVbox" spacing="20" >
+                <padding><Insets right="120"/> </padding>
+            </VBox>
+        </ScrollPane>
+    </left>
 
-            <GridPane fx:id="questionInfoPane" GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.rowIndex="1">
-                <children>
+    <center>
+        <GridPane fx:id="contentPane" alignment="TOP_CENTER" hgap="10" vgap="5" visible="false">
+            <padding><Insets top="20" /> </padding>
+
+                <Label fx:id="showToStudentTestNameLabel" style="-fx-font-size: 20px" GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.rowIndex="0" />
+                <Label fx:id="showToStudentTextLabel" prefHeight="119.0" prefWidth="500" wrapText="true" GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.rowIndex="2">
+                   <font>
+                      <Font size="15.0" />
+                   </font></Label>
+                <Label fx:id="showToStudentTimeTextLabel" text="Tid (i minuter):" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <Label fx:id="showToStudentTimeLabel" prefWidth="50" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Label fx:id="showToStudentTeacherTextLabel" text="Lärare:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <Label fx:id="showToStudentTeacherLabel" prefWidth="120" style="-fx-font-weight: bold;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                <Label fx:id="showToStudentClassTextLabel" text="Klass:" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                <Label fx:id="showToStudentClassLabel" prefWidth="50" style="-fx-font-weight: bold;" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+
+                <GridPane fx:id="questionInfoPane" GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.rowIndex="1">
+
                     <Label fx:id="showToStudentQuestionsLeftText" text="Fråga: " visible="false" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                     <Label fx:id="showToStudentQuestionsLeft" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                     <Label fx:id="showToStudentGradeText" text="Betyg: " visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
@@ -41,31 +63,23 @@
                     <Label fx:id="timeTextLabel" text="Tid: " visible="false" GridPane.columnIndex="6" GridPane.rowIndex="1"/>
                     <Label fx:id="timerLabel" visible="false" text="3:00" GridPane.columnIndex="7" GridPane.rowIndex="1"
                            style="-fx-font-weight: bold; -fx-text-fill: orangered;"/>
-                </children>
-               <columnConstraints>
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints />
-                  <RowConstraints />
-               </rowConstraints>
-            </GridPane>
 
-
-
-                <GridPane fx:id="alternativePane" GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.rowIndex="3">
-                    <children>
-                    </children>
+                   <columnConstraints>
+                      <ColumnConstraints />
+                      <ColumnConstraints />
+                      <ColumnConstraints />
+                      <ColumnConstraints />
+                   </columnConstraints>
+                   <rowConstraints>
+                      <RowConstraints />
+                      <RowConstraints />
+                   </rowConstraints>
                 </GridPane>
 
-            <Button fx:id="showToUserStartTestButton" onAction="#startTest" text="Starta" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-            <Button fx:id="getTestButton" onAction="#getTest" text="GetTest" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-            <Button fx:id="showToUserNextButton" onAction="#getNewQuestion" text="Nästa" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-        </children>
+                    <GridPane fx:id="alternativePane" GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.rowIndex="3"/>
 
-    </GridPane>
-</center>
+                <Button fx:id="showToUserStartTestButton" onAction="#startTest" text="Starta" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <Button fx:id="showToUserNextButton" onAction="#getNewQuestion" text="Nästa" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        </GridPane>
+    </center>
 </BorderPane>

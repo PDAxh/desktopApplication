@@ -7,12 +7,15 @@ import com.testverktyg.eclipselink.service.Class.DeleteClass;
 import com.testverktyg.eclipselink.service.Class.ReadClass;
 import com.testverktyg.eclipselink.service.Test.DeleteTest;
 import com.testverktyg.eclipselink.service.Test.ReadTest;
+import com.testverktyg.eclipselink.service.studentAnswer.ReadStudentAnswer;
 import com.testverktyg.eclipselink.service.user.CreateUser;
 import com.testverktyg.eclipselink.service.user.DeleteUser;
 import com.testverktyg.eclipselink.service.user.ReadUser;
 import com.testverktyg.eclipselink.service.user.UpdateUser;
 import com.testverktyg.eclipselink.service.userTests.CreateUserTests;
 import com.testverktyg.eclipselink.service.userTests.DeleteUserTests;
+import com.testverktyg.eclipselink.service.userTests.ReadUserTests;
+import com.testverktyg.eclipselink.view.main.layout.StatisticForAdminAndTeacher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -24,6 +27,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Andreas
@@ -636,11 +641,11 @@ public class AdminController {
 
     //Result
 
-    @FXML private BorderPane showResultToAdminAndTeacherBorderPane;
+    @FXML private BorderPane showResultToAdminBorderPane;
     @FXML private VBox showResultTestVbox;
 
-    private BorderPane getShowResultToAdminAndTeacherBorderPane() {
-        return showResultToAdminAndTeacherBorderPane;
+    private BorderPane getShowResultToAdminBorderPane() {
+        return showResultToAdminBorderPane;
     }
 
     private VBox getShowResultTestVbox() {
@@ -662,7 +667,6 @@ public class AdminController {
             hBoxLeft.setSpacing(50.0);
             getSelectTestToAssignToClass()[counter] = new RadioButton();
             getSelectTestToAssignToClass()[counter].setToggleGroup(toggleGroup);
-            //getSelectTestToAssignToClass()[counter].setId(String.valueOf(test.getTestId()));
             getSelectTestToAssignToClass()[counter].setUserData(String.valueOf(test.getTestId()));
             hBoxLeft.getChildren().addAll(new Label("Prov: " + test.getTestName()), new Label(" Beskrivning: " + test.getTestDescription()),
                     new Label(" Datum: " + test.getLastDate()), new Label(" Tid: " + String.valueOf(test.getTimeForTestMinutes())));
@@ -677,16 +681,10 @@ public class AdminController {
 
         toggleGroup.selectedToggleProperty().addListener(event ->{
             if(toggleGroup.getSelectedToggle().isSelected()){
-                for(Test test : readTest.getGetAllTestsForAdminList()){
-                    if(test.getTestId() == Integer.parseInt(toggleGroup.getSelectedToggle().getUserData().toString())){
-                        VBox vBox = new VBox();
-                        vBox.getChildren().add(new Label("Prov: " + test.getTestName()));
-                        getShowResultToAdminAndTeacherBorderPane().setCenter(vBox);
-                    }
-                }
-
+                StatisticForAdminAndTeacher statisticForAdminAndTeacher = new StatisticForAdminAndTeacher();
+                statisticForAdminAndTeacher.setTestId(Integer.parseInt(toggleGroup.getSelectedToggle().getUserData().toString()));
+                getShowResultToAdminBorderPane().setCenter(statisticForAdminAndTeacher.getTestResultLayout());
             }
         });
     }
-
 }

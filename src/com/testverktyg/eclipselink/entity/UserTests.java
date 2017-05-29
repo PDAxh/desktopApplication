@@ -11,7 +11,8 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(query = "SELECT e FROM UserTests e WHERE e.userId = :userId", name = "findAllTestForUser"),
         @NamedQuery(query = "DELETE FROM UserTests e WHERE e.testId = :testId AND e.userId = :userId", name="deleteUserTestFromUserTests"),
-        @NamedQuery(query = "DELETE FROM UserTests e WHERE e.testId = :testId", name="deleteTestFromUserTests")
+        @NamedQuery(query = "DELETE FROM UserTests e WHERE e.testId = :testId", name="deleteTestFromUserTests"),
+        @NamedQuery(query = "SELECT e FROM UserTests  e WHERE  e.testId = :testId", name="findAllUsersForOneTest")
 })
 public class UserTests {
 

@@ -19,6 +19,7 @@ public class Test {
     @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "seq" )
     private int testId;
     private String testName;
+    @Column(columnDefinition = "TEXT")
     private String testDescription;
     private boolean selfCorrecting;
     private boolean SeeResultAfter;
