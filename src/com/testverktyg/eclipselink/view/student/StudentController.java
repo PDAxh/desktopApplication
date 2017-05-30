@@ -393,7 +393,8 @@ public class StudentController {
         }
         }else{
             Label thankYouLabel = new Label("Tack för att du deltog\nProvet kommer att rättas av din lärare.");
-            contentPane.getChildren().add(thankYouLabel);
+            contentPane.getChildren().clear();
+            contentPane.add(thankYouLabel, 0,0);
         }
     }
 
