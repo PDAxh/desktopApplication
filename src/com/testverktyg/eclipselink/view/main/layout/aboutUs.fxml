@@ -4,19 +4,22 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Text?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.testverktyg.eclipselink.view.MenuController">
     <top>
         <GridPane vgap="5" hgap="5" alignment="TOP_CENTER">
             <padding><Insets top="150" left="150" right="150"/></padding>
-            <Label GridPane.columnIndex="0" GridPane.rowIndex="0" underline="true"
-                   text="Om oss: "/>
+            <Text GridPane.columnIndex="0" GridPane.rowIndex="0" underline="true"
+                   text="Testverktyget: "/>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="1" maxWidth="1000" wrapText="true"
             text="Testverktyget är ett program som erbjuder skolan möjlighet att skapa sina test,
 tilldela test till specifika elever och klasser, genomföra test och se resultat på de genomförda proven.
-Detta program för det möjligt för skolan att hålla koll på alla elevers prov och resultat på ett och samma ställe direkt
-istället för att skriva in det i systemet efter att provet har genomförts på ett papper."/>
+Detta program gör det möjligt för skolan att hålla koll på alla elevers prov och resultat på ett och samma ställe direkt
+istället för att skriva in det i systemet efter att provet har genomförts på papper."/>
+            <Text GridPane.columnIndex="0" GridPane.rowIndex="3">Version 1.1 || Copyright ©</Text>
+            <Text GridPane.columnIndex="0" GridPane.rowIndex="4">Skapare: Andreas Lindgren, Daniel Axhammar, Jennifer Gisslow och Jonas Johansson</Text>
         </GridPane>
     </top>
 
