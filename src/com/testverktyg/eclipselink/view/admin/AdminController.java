@@ -160,25 +160,13 @@ public class AdminController {
     }
 
     @FXML
-    private void comparePassword() {
-        if (getPassword().getText().equals(getPasswordRepeat().getText())) {
-            passwordMessageLabel.setText("");
-        } else {
-            passwordMessageLabel.setText("Lösenorden stämmer inte överens. Var god försök igen.");
-            getPassword().setText("");
-            getPasswordRepeat().setText("");
-            password.requestFocus();
-        }
-    }
-
-    @FXML
     public void fillClassList() {
         //TEMP METHOD
         fillClasses(classList);
     }
 
     @FXML
-    public void fillClasses(ComboBox cb) {
+    private void fillClasses(ComboBox cb) {
         cb.getItems().clear();
         cb.getItems().add("Välj en klass");
         cb.setValue("Välj en klass");
@@ -321,7 +309,7 @@ public class AdminController {
                 } else {
                 }
             }
-            if (matchFound == true) {
+            if (matchFound) {
                 System.out.println("Match");
                 addClassMessageLabel.setText(className + " finns redan");
                 studentClassName.setText("");
@@ -351,26 +339,22 @@ public class AdminController {
         int selectedUserIndex = userTable.getSelectionModel().getFocusedIndex();
         selectedID = data.get(selectedUserIndex).getID();
         editUserPane.getChildren().clear();
-
+        ReadUser ru = new ReadUser();
+        ru.getFindClassWithUserId(selectedID);
+        String password = ru.getFindClassWithUserIdList().get(0).getPassword();
         fnameLabel.setText("Förnamn:");
         lnameLabel.setText("Efternamn");
         emailLabel.setText("Email:");
-        newPasswordLabel.setText("Nytt lösenord");
-        verifyPasswordLabel.setText("Repetera lösenord");
         updateUserButton.setText("Uppdatera");
         updateUserButton.setOnAction(event -> {
-            if (newPasswordField.getText().equals(verifyPasswordField.getText())) {
                 UpdateUser uu = new UpdateUser();
                 uu.setUserId(selectedID);
                 uu.setNewfirstname(fnameField.getText());
                 uu.setNewLastname(lnameField.getText());
                 uu.setNewEmail(emailField.getText());
-                uu.setNewPassword(newPasswordField.getText());
+                uu.setNewPassword(password);
                 uu.UpdateUser();
                 updateUserMessageLabel.setText("Användaren har ändrats");
-            } else {
-                updateUserMessageLabel.setText("Lösenord stämmer inte överens");
-            }
         });
 
         editUserPane.add(fnameLabel, 0, 0);
@@ -379,12 +363,8 @@ public class AdminController {
         editUserPane.add(lnameField, 0, 3);
         editUserPane.add(emailLabel, 0, 4);
         editUserPane.add(emailField, 0, 5);
-        editUserPane.add(newPasswordLabel, 0, 6);
-        editUserPane.add(newPasswordField, 0, 7);
-        editUserPane.add(verifyPasswordLabel, 0, 8);
-        editUserPane.add(verifyPasswordField, 0, 9);
-        editUserPane.add(updateUserMessageLabel, 0, 10);
-        editUserPane.add(updateUserButton, 0, 11);
+        editUserPane.add(updateUserMessageLabel, 0, 6);
+        editUserPane.add(updateUserButton, 0, 7);
 
         fnameField.setText(data.get(selectedUserIndex).fname);
         lnameField.setText(data.get(selectedUserIndex).lname);

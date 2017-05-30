@@ -311,6 +311,8 @@ public class StudentController {
         int stuVG=rsa.getStudPointsVG();
         int gGrade = (stuG*100)/maxG;
         int vgGrade = (stuVG*100)/maxVG;
+            System.out.println(gGrade);
+            System.out.println(vgGrade);
         VGQuestionPointsResultLabel.setText(String.valueOf(maxVG));
         GQuestionPointsResultLabel.setText(String.valueOf(maxG));
         TotalPointsResultLabel.setText(String.valueOf(maxG+maxVG));
