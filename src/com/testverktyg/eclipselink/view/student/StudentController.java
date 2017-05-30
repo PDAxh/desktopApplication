@@ -19,7 +19,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-
 /**
  * Created by Andreas.
  */
@@ -44,29 +43,33 @@ public class StudentController {
     @FXML private Label questionPointsTextLabel;
     @FXML private Label timerLabel;
     @FXML private Label timeTextLabel;
-    private int activeTest;
-    private int maxQuestions = 0;
-    private int activeQuestion = 1;
-    private int activeQuestionsForDB = 0;
-    private ReadTest newTest;// = new ReadTest(activeTest);
-    private CreateStudentAnswer csa = new CreateStudentAnswer();
-
     @FXML private BorderPane showStudentTestsBorderPane;
     @FXML private VBox showStudentTestVbox;
     @FXML private Button doSelectedTestButton;
     @FXML private Button showResultButton;
+    private ReadTest newTest;
+    private CreateStudentAnswer csa = new CreateStudentAnswer();
     private RadioButton setSelectTestToDo[];
-    private int userId;
     private RadioButton alternativeRadioButtons[];
     private CheckBox alternativeCheckBox[];
-
+    private int activeTest;
+    private int maxQuestions = 0;
+    private int activeQuestion = 1;
+    private int activeQuestionsForDB = 0;
+    private int userId;
     private int seconds;
-    private boolean timeOut = false;
 
     //Setup test scene and show first question
     @FXML
     private void startTest() {
-        contentPane.getChildren().removeAll(showToUserStartTestButton, showToStudentTimeTextLabel, showToStudentTimeLabel, showToStudentTeacherTextLabel, showToStudentTeacherLabel, showToStudentClassTextLabel, showToStudentClassLabel);
+        contentPane.getChildren().removeAll(
+                showToUserStartTestButton,
+                showToStudentTimeTextLabel,
+                showToStudentTimeLabel,
+                showToStudentTeacherTextLabel,
+                showToStudentTeacherLabel,
+                showToStudentClassTextLabel,
+                showToStudentClassLabel);
         showToStudentQuestionsLeftText.setVisible(true);
         showToStudentQuestionsLeft.setVisible(true);
         showToStudentGradeText.setVisible(true);
@@ -88,7 +91,7 @@ public class StudentController {
                 } catch (InterruptedException ignored) {
                 }
             }
-            Platform.runLater(() -> handInTest());
+            Platform.runLater(this::handInTest);
         };
 
         Executor exec = Executors.newCachedThreadPool(runnable1 -> {
@@ -97,7 +100,6 @@ public class StudentController {
             return t;
         });
         exec.execute(runnable);
-
     }
 
     //Loads next question
@@ -109,7 +111,6 @@ public class StudentController {
             createAnswer();
             newTest.getNextActiveQuestion();
         }
-
         showToStudentQuestionsLeft.setText(activeQuestion + "/" + newTest.getAmountOfQuestions() + "    ");
         showToStudentGrade.setText(newTest.getGradeOnActiveQuestion());
         questionPointsLabel.setText(String.valueOf(newTest.getActiveQuestionPoints().get(0) + "   "));
@@ -165,7 +166,6 @@ public class StudentController {
     private void createAnswer() {
         int currentQuestionId = Integer.parseInt(String.valueOf(newTest.getActiveQuestionId().get(newTest.getQuestionCount())));
         int selectedAlternative = 0;
-
         if(getNewTest().getActiveQuestionType().toString().equals("[Flervals]")){
             for(int i = 0; i < getAlternativeCheckBox().length; i++){
                 if(getAlternativeCheckBox()[i].isSelected()){
@@ -181,7 +181,6 @@ public class StudentController {
         }
         csa.createNewStudentAnswer(activeTest, currentQuestionId, selectedAlternative, getUserId());
     }
-
     private ToggleGroup studentTestToggleGroup;
 
     public void getStudentTests(){
@@ -204,7 +203,6 @@ public class StudentController {
                 hBoxLeft.getChildren().addAll(new Label("Prov: " + test.getTestName()), new Label(" Beskrivning: " + test.getTestDescription()),
                         new Label(" Datum: " + test.getLastDate()), new Label(" Tid: " + String.valueOf(test.getTimeForTestMinutes())));
                 hBoxRight.getChildren().addAll( new Label("Välj:"), getSetSelectTestToDo()[counter]);
-
                 borderPane.setStyle("-fx-border-color: black;");
                 borderPane.setPadding(new Insets(10));
                 borderPane.setLeft(hBoxLeft);
@@ -224,7 +222,6 @@ public class StudentController {
                 readStudentAnswer.getStudentAnswerFromSpecificStudent(getUserId(), testId);
                 getDoSelectedTestButton().setDisable(true);
                 getShowResultButton().setDisable(true);
-
                 for(Test test : readTest.getTestList()){
                     if((test.getTestId() == testId) && (test.getLastDate().equals(date))){
                         getDoSelectedTestButton().setDisable(false);
@@ -243,13 +240,14 @@ public class StudentController {
 
     @FXML
     private void handInTest(){
+        if(newTest.isSeeResult()){
         ReadStudentAnswer rsa = new ReadStudentAnswer();
         contentPane.getChildren().clear();
         contentPane.add(showToStudentTestNameLabel, 0, 0);
         Label resultLabel = new Label("Provets poäng:");
         contentPane.add(resultLabel, 0,1);
 
-        HBox firstBox = new HBox();
+        /*HBox firstBox = new HBox();
         contentPane.add(firstBox, 0,2);
         Label VGQuestionLabel = new Label("VG Frågor: ");
         Label VGQuestionResultLabel = new Label();
@@ -263,7 +261,7 @@ public class StudentController {
                 GQuestionLabel,
                 GQuestionResultLabel,
                 TotalLabel,
-                TotalResultLabel);
+                TotalResultLabel);*/
 
         HBox secondBox = new HBox();
         contentPane.add(secondBox, 0,3);
@@ -303,6 +301,35 @@ public class StudentController {
                 StudentTotalPointsLabel,
                 StudentTotalPointsResultLabel
         );
+
+        rsa.getStudentAnswerFromSpecificStudent(getUserId(),activeTest);
+        rsa.getCorrectAnswers(activeTest);
+
+        int maxG=rsa.getMaxPointsG();
+        int maxVG=rsa.getMaxPointsVG();
+        int stuG=rsa.getStudPointsG();
+        int stuVG=rsa.getStudPointsVG();
+        int gGrade = (stuG*100)/maxG;
+        int vgGrade = (stuVG*100)/maxVG;
+        VGQuestionPointsResultLabel.setText(String.valueOf(maxVG));
+        GQuestionPointsResultLabel.setText(String.valueOf(maxG));
+        TotalPointsResultLabel.setText(String.valueOf(maxG+maxVG));
+        StudentGPointsResultLabel.setText(String.valueOf(stuG));
+        StudentVGPointsResultLabel.setText(String.valueOf(stuVG));
+        StudentTotalPointsResultLabel.setText(String.valueOf(stuG+stuVG));
+        if(gGrade>=60){
+            if(vgGrade>=60){
+                GradeResultLabel.setText("VG");
+            }else{
+                GradeResultLabel.setText("G");
+            }
+        }else{
+            GradeResultLabel.setText("IG");
+        }
+        }else{
+            Label thankYouLabel = new Label("Tack för att du deltog\nProvet kommer att rättas av din lärare.");
+            contentPane.getChildren().add(thankYouLabel);
+        }
     }
 
     @FXML
@@ -318,12 +345,10 @@ public class StudentController {
         getShowStudentTestsBorderPane().setLeft(null);
         getShowStudentTestsBorderPane().setTop(null);
         getContentPane().setVisible(true);
-
         getShowToStudentTestNameLabel().setText(getNewTest().getTestName());
         getShowToStudentTextLabel().setText(getNewTest().getTestDescription());
         getShowToStudentTimeLabel().setText(String.valueOf(getNewTest().getTestTimeInMinutes()));
         maxQuestions = newTest.getAmountOfQuestions();
-
         for(User user : readUser.getTeacherList()){
             for(UserTests userTests: readUserTests.getUserTestListByTestId()){
                 if(user.getUserId() == userTests.getUserId()){
