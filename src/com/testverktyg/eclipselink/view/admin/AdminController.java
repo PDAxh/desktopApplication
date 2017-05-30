@@ -351,14 +351,14 @@ public class AdminController {
         emailLabel.setText("Email:");
         updateUserButton.setText("Uppdatera");
         updateUserButton.setOnAction(event -> {
-                UpdateUser uu = new UpdateUser();
-                uu.setUserId(selectedID);
-                uu.setNewfirstname(fnameField.getText());
-                uu.setNewLastname(lnameField.getText());
-                uu.setNewEmail(emailField.getText());
-                uu.setNewPassword(password);
-                uu.UpdateUser();
-                updateUserMessageLabel.setText("Användaren har ändrats");
+            UpdateUser uu = new UpdateUser();
+            uu.setUserId(selectedID);
+            uu.setNewfirstname(fnameField.getText());
+            uu.setNewLastname(lnameField.getText());
+            uu.setNewEmail(emailField.getText());
+            uu.setNewPassword(password);
+            uu.UpdateUser();
+            updateUserMessageLabel.setText("Användaren har ändrats");
         });
 
         editUserPane.add(fnameLabel, 0, 0);
