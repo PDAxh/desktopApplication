@@ -43,7 +43,8 @@
             <Label GridPane.columnIndex="0" GridPane.rowIndex="10" wrapText="true"
                    underline="true" text="Hjälp:"/>
             <Text GridPane.columnIndex="0" GridPane.rowIndex="11" wrappingWidth="300"
-                  text="Underfliken hjälp är den du är inne på för tillfället och innehåller information om de olika delarna i programmet. Detta ska vara en guid för dig om du skulle behöva hjälp inom någon område."/>
+                  text="Underfliken hjälp är den du är inne på för tillfället och innehåller information om de olika delarna i programmet.
+Detta ska vara en guid för dig om du skulle behöva hjälp inom någon område."/>
 
             <Label GridPane.columnIndex="0" GridPane.rowIndex="12" wrapText="true"
                    underline="true" text="Om oss: "/>
@@ -94,13 +95,24 @@ Skulle klassen redan finnas i systemet kommer ett meddelande komma upp."/>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="4" wrapText="true"
                    underline="true" text="Prov: "/>
             <Text GridPane.columnIndex="0" GridPane.rowIndex="5" wrappingWidth="350"
-                  text="Denna flik innehåller underfliken 'publicera prov'."/>
+                  text="Denna flik innehåller underfliken 'publicera prov' och 'resultat'."/>
 
             <Label GridPane.columnIndex="0" GridPane.rowIndex="6" wrapText="true"
                    underline="true" text="Publicera prov: "/>
             <Text GridPane.columnIndex="0" GridPane.rowIndex="7" wrappingWidth="350"
                   text="Under denna flik kommer alla prov som finns i systemet att synas och det är här som man tilldelar proven till de olika klasserna.
-Genom att tilldela proven kommer studenterna som finns i den klassen att få upp proven de kan göra på sin egna sida."/>
+Genom att tilldela proven kommer studenterna som finns i den klassen att få upp proven de kan göra på sin egna sida.
+Det går även att ta bort ett test genom att välja ett prov och trycka på knappen 'ta bort valt prov'."/>
+
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="8" wrapText="true"
+                   underline="true" text="Resultat: "/>
+            <Text GridPane.columnIndex="0" GridPane.rowIndex="9" wrappingWidth="350"
+                  text="Under denna flik komma alla prov att finnas. Du väljer ett prov genom att trycka i radioknappen.
+När detta är gjort kommer statistiken att synas till höger om testen. I statistiken visas provets namn, antalet G frågor,
+antalet VG frågor, tiden man har på sig att genomföra provet på, den genomsnittliga poängen på antalet elever som gjort provet,
+max poäng man kan få på provet, antalet elever som har genomför provet, max antalet elever som kan genomför provet,
+antalet elever som fått IG på provet, antalet elever som fått G på provet och antalet elever som har fått VG på provet.
+Det går även att spara ner resultatet av statistiken i en PDF-fil genom att trycka på knappen spara till pdf."/>
         </GridPane>
     </right>
 

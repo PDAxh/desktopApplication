@@ -14,7 +14,9 @@
             <padding><Insets top="30" left="50" right="50"/> </padding>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="Välkommen till Hjälp!" underline="true"/>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="1" maxWidth="1000" wrapText="true"
-                   text="På denna sidan finns det hjälp inom de olika delarna i programmet. Varje del har sin egna kategori men en beskrivning för hur det fungerar och för att du enklare ska hitta det du behöver hjälp med. Skulle det var någon anledning inte finnas det du behöver ha hjälp med vänligen kontakta oss på hjalp@testverktygnewton.se så hjälper vi dig."/>
+                   text="På denna sidan finns det hjälp inom de olika delarna i programmet. Varje del har sin egna kategori
+men en beskrivning för hur det fungerar och för att du enklare ska hitta det du behöver hjälp med.
+Skulle det var någon anledning inte finnas det du behöver ha hjälp med vänligen kontakta oss på hjalp@testverktygnewton.se så hjälper vi dig."/>
         </GridPane>
     </top>
 
@@ -44,7 +46,8 @@
             <Label GridPane.columnIndex="0" GridPane.rowIndex="8" wrapText="true"
                    underline="true" text="Hjälp:"/>
             <Text GridPane.columnIndex="0" GridPane.rowIndex="9" wrappingWidth="300"
-                  text="Underfliken hjälp är den du är inne på för tillfället och innehåller information om de olika delarna i programmet. Detta ska vara en guid för dig om du skulle behöva hjälp inom någon område."/>
+                  text="Underfliken hjälp är den du är inne på för tillfället och innehåller information om de olika delarna i programmet.
+Detta ska vara en guid för dig om du skulle behöva hjälp inom någon område."/>
 
             <Label GridPane.columnIndex="0" GridPane.rowIndex="10" wrapText="true"
                    underline="true" text="Om oss: "/>
@@ -60,10 +63,10 @@
             <Label GridPane.columnIndex="0" GridPane.rowIndex="0" wrapText="true"
                    underline="true" text="Prov: "/>
             <Text GridPane.columnIndex="0" GridPane.rowIndex="1" wrappingWidth="350"
-                  text="Denna flik innehåller underflikerna 'skapa nytt prov' och 'dina prov'."/>
+                  text="Denna flik innehåller underflikerna 'nytt prov', 'uppdatera test' och 'resultat'."/>
 
             <Label GridPane.columnIndex="0" GridPane.rowIndex="2" wrapText="true"
-                   underline="true" text="Skapa nytt prov: "/>
+                   underline="true" text="Nytt prov: "/>
             <Text GridPane.columnIndex="0" GridPane.rowIndex="3" wrappingWidth="350"
                   text="Här kan du skapa ett nytt prov som eleverna ska utföra. Du börjar med att fylla i namn, beskrivning, tid, datum, självrättande och visa resultat.
 När väl detta är valt kan du börja lägga till frågor.
@@ -81,13 +84,24 @@ Du sparar sedan testet genom att trycka på spara på denna rutan."/>
         <GridPane vgap="5" hgap="5">
             <padding><Insets top="40" left="20" right="50"/></padding>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="4" wrapText="true"
-                   underline="true" text="Dina prov: "/>
+                   underline="true" text="Uppdatera test: "/>
             <Text GridPane.columnIndex="0" GridPane.rowIndex="5" wrappingWidth="350"
-                  text="Här listas alla prov som du har skapat upp efter varandra.
-Du kan välja att se statistik från provet som visar hur många elever som har gjort testet, vad genomsnittspoängen är och hur lång tid det är kvar tills testet går ut.
-Du kan även välja att uppdatera testet, men detta alternativ kommer endast vara möjligt när datumet för testet är utgånget och inga elever kan genomföra testet längre.
-Under 'uppdatera test' kan du välja att uppdatera informationen som redan finns på både testet, frågorna och alternativen.
-Du kan även välja att ta bort en fråga/ett alternativ samt lägga till en fråga/ett alternativ."/>
+                  text="Under denna flik visas alla prov som finns. Genom att trycka i radioknappen 'välj' kommer det
+till höger om testen att dyka upp en ruta med all information som finns på det valda testet.
+Du kan här välja vilken del du vill uppdatera (testinformationen eller frågorna).
+Genom att trycka på välj test eller välj fråga kommer en ny ruta upp med informationen som du kan välja att uppdatera.
+När man ändrat det du vill trycker man på spara.
+Du kan även välja att ta bort testet helt och hållet från programmet genom att välja provet och trycka på knappen 'ta bort valt prov'."/>
+
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="6" wrapText="true"
+                   underline="true" text="Resultat: "/>
+            <Text GridPane.columnIndex="0" GridPane.rowIndex="7" wrappingWidth="350"
+                  text="Under denna flik komma alla prov att finnas. Du väljer ett prov genom att trycka i radioknappen.
+När detta är gjort kommer statistiken att synas till höger om testen. I statistiken visas provets namn, antalet G frågor,
+antalet VG frågor, tiden man har på sig att genomföra provet på, den genomsnittliga poängen på antalet elever som gjort provet,
+max poäng man kan få på provet, antalet elever som har genomför provet, max antalet elever som kan genomför provet,
+antalet elever som fått IG på provet, antalet elever som fått G på provet och antalet elever som har fått VG på provet.
+Det går även att spara ner resultatet av statistiken i en PDF-fil genom att trycka på knappen spara till pdf"/>
         </GridPane>
     </right>
 

@@ -66,10 +66,13 @@
                    underline="true" text="Visa prov: "/>
             <Text GridPane.columnIndex="0" GridPane.rowIndex="3" wrappingWidth="350"
                   text="Här kommer alla prov som du kan och har genomfört upp.
-Varje prov visar namnet, beskrivningen, vilket datum testet går ut, hur lång tid man har på sig att genomföra testet på och hur många poäng man kan få sammanlagt.
-Det finns även till varje prov två knappar, 'genomför prov' och 'se resultat'.
-'Genomför prov' kommer endast gå att trycka på om man inte har genomfört testet tidigare och 'se resultat' kommer endast gå att trycka på om provet redan är genomfört.
-På 'se resultat' kommer du att kunna se hur mycket poäng du har fått på provet, hur många av frågorna du fick rätt på, hur många av de frågorna som var G-frågor och VG-frågor och vilket betyg du fick på provet."/>
+Varje prov visar namnet, beskrivningen, vilket datum testet går att utföra på och hur lång tid man har på sig att genomföra testet på.
+Det finns även till varje prov två knappar, 'gör valt test' och 'visa resultat' och du kommer kunna trycka på någon av dem så fort du klickat i radioknappen 'välj'.
+'Genomför prov' kommer endast gå att trycka på om man inte har genomfört testet tidigare samt om dagens datum stämmer överrens med det datum man kan genomföra testet på och 'se resultat' kommer endast gå att trycka på om provet redan är genomfört och läraren har valt att eleven ska få se sitt resultat efter det är genomfört.
+Ditt resultat kommer att visas till höger om proven och det som resultatet innehåller är hur många poäng du har fått på provet, hur många av frågorna du fick rätt på, hur många av de frågorna som var G-frågor och VG-frågor och vilket betyg du fick på provet.
+När du genomför ditt test kommer följande information att synas: vilken fråga du är på av max antalet frågor på provet, vilket betyg det är på frågan, hur mycket poäng du kan få på frågan,
+tiden du har kvar att genomföra provet på, frågan, alternativen till frågan och en nästaknapp. När du är på sista frågan kommer knappen att bli en 'lämna in testet' knapp istället.
+När du trycker på lämna in testet kommer antingen ditt resultat att komma upp om läraren har valt att du ska få se resultatet ditekt alternativt en text som förklarar att du har lämnat in ditt prov."/>
         </GridPane>
     </center>
 
