@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.testverktyg.eclipselink.view.MenuController">
+            fx:controller="com.testverktyg.eclipselink.view.MenuController" maxWidth="500">
 
     <top>
         <GridPane vgap="5" hgap="5" alignment="TOP_CENTER" >
@@ -81,7 +81,7 @@ Du sparar sedan testet genom att trycka på spara på denna rutan."/>
     </center>
 
     <right>
-        <GridPane vgap="5" hgap="5">
+        <GridPane vgap="5" hgap="5" maxWidth="300" >
             <padding><Insets top="40" left="20" right="50"/></padding>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="4" wrapText="true"
                    underline="true" text="Uppdatera test: "/>

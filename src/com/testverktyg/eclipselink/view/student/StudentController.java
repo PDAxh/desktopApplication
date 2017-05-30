@@ -227,12 +227,12 @@ public class StudentController {
                 getDoSelectedTestButton().setDisable(true);
                 getShowResultButton().setDisable(true);
                 for(Test test : readTest.getTestList()){
-                    if((test.getTestId() == testId) && (test.getLastDate().equals(date))){
+                    if((test.getTestId() == testId) && (test.getLastDate().equals(date))&& (readStudentAnswer.getStudentAnswersList().isEmpty())){
                         getDoSelectedTestButton().setDisable(false);
                         getShowResultButton().setDisable(true);
                         break;
                     }
-                    else if(!readStudentAnswer.getStudentAnswersList().isEmpty()){
+                    else if(!readStudentAnswer.getStudentAnswersList().isEmpty() && (test.isSeeResultAfter())){
                         getDoSelectedTestButton().setDisable(true);
                         getShowResultButton().setDisable(false);
                         break;

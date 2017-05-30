@@ -7,6 +7,7 @@ import com.testverktyg.eclipselink.view.student.StudentController;
 import com.testverktyg.eclipselink.view.teacher.TeacherController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -76,8 +77,11 @@ public class MenuController {
     }
     @FXML
     private void removeClass() throws IOException{
-        GridPane gridPane = FXMLLoader.load(getClass().getResource("admin/layout/removeClass.fxml"));
-        borderPane.setCenter(gridPane);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("admin/layout/removeClass.fxml"));
+        GridPane gridPane = loader.load();
+        this.borderPane.setCenter(gridPane);
+        AdminController adminController = loader.getController();
+        adminController.fillClasses();
     }
 
     @FXML
@@ -176,8 +180,8 @@ public class MenuController {
 
     @FXML
     private void updateAccount(){
-
-        editUserPane.getChildren().clear();
+        GridPane gridPane = new GridPane();
+        gridPane.setAlignment(Pos.CENTER);
 
         //Label emailLabel = new Label();
         Label newPasswordLabel = new Label();
@@ -212,13 +216,14 @@ public class MenuController {
 
         //editUserPane.add(emailLabel, 0, 4);
         //editUserPane.add(emailField, 0, 5);
-        editUserPane.add(newPasswordLabel, 0, 1);
-        editUserPane.add(newPasswordField, 0, 2);
-        editUserPane.add(verifyPasswordLabel, 0, 3);
-        editUserPane.add(verifyPasswordField, 0, 4);
-        editUserPane.add(updateUserButton, 0, 5);
-        editUserPane.add(updateUserMessageLabel, 0, 6);
+        gridPane.add(newPasswordLabel, 0, 1);
+        gridPane.add(newPasswordField, 0, 2);
+        gridPane.add(verifyPasswordLabel, 0, 3);
+        gridPane.add(verifyPasswordField, 0, 4);
+        gridPane.add(updateUserButton, 0, 5);
+        gridPane.add(updateUserMessageLabel, 0, 6);
 
+        this.borderPane.setCenter(gridPane);
     }
 
     @FXML
