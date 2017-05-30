@@ -102,22 +102,20 @@ public class AdminController {
     @FXML
     private GridPane newUserPane;
 
-
     private ObservableList<User> data = FXCollections.observableArrayList();
-    int selectedID;
-
-    Label fnameLabel = new Label();
-    Label lnameLabel = new Label();
-    Label emailLabel = new Label();
-    Label newPasswordLabel = new Label();
-    Label verifyPasswordLabel = new Label();
-    TextField fnameField = new TextField();
-    TextField lnameField = new TextField();
-    TextField emailField = new TextField();
-    TextField newPasswordField = new TextField();
-    TextField verifyPasswordField = new TextField();
-    Label updateUserMessageLabel = new Label();
-    Button updateUserButton = new Button();
+    private int selectedID;
+    private Label fnameLabel = new Label();
+    private Label lnameLabel = new Label();
+    private Label emailLabel = new Label();
+    private Label newPasswordLabel = new Label();
+    private Label verifyPasswordLabel = new Label();
+    private TextField fnameField = new TextField();
+    private TextField lnameField = new TextField();
+    private TextField emailField = new TextField();
+    private TextField newPasswordField = new TextField();
+    private TextField verifyPasswordField = new TextField();
+    private Label updateUserMessageLabel = new Label();
+    private Button updateUserButton = new Button();
 
     public void addSearchListener() {
         FilteredList<User> filteredData = new FilteredList<>(data, p -> true);
@@ -152,29 +150,35 @@ public class AdminController {
         if (getUserType().getValue().equals("student")) {
             getStudentClass().setDisable(false);
             studentClassLabel.setTextFill(Color.web("#000000"));
-            fillClasses(studentClass);
+            ReadClass readClass = new ReadClass();
+            readClass.readAllClasses();
+            getStudentClass().getItems().clear();
+            for (int i = 0; i < readClass.getClassNameList().size(); i++){
+                getStudentClass().getItems().add(String.valueOf(readClass.getClassNameList().get(i)));
+            }
+            //fillClasses(studentClass);
         } else {
             getStudentClass().setDisable(true);
             studentClassLabel.setTextFill(Color.web("#d3d3d3"));
         }
     }
 
-    @FXML
+   /* @FXML
     public void fillClassList() {
         //TEMP METHOD
         fillClasses(classList);
-    }
+    }*/
 
     @FXML
-    private void fillClasses(ComboBox cb) {
-        cb.getItems().clear();
-        cb.getItems().add("Välj en klass");
-        cb.setValue("Välj en klass");
-        ReadClass newReadClass = new ReadClass();
-        newReadClass.readAllClasses();
-        for (int i = 0; i < newReadClass.getClassNameList().size(); i++) {
-            System.out.println(newReadClass.getClassNameList().get(i));
-            cb.getItems().add(String.valueOf(newReadClass.getClassNameList().get(i)));
+    public void fillClasses() {
+        ReadClass readClass = new ReadClass();
+        readClass.readAllClasses();
+        getClassList().getItems().clear();
+        getClassList().setValue("Välj en klass");
+        getClassList().getItems().add("Välj en klass");
+
+        for (int i = 0; i < readClass.getClassNameList().size(); i++){
+            getClassList().getItems().add(String.valueOf(readClass.getClassNameList().get(i)));
         }
     }
 
@@ -242,7 +246,7 @@ public class AdminController {
 
     @FXML
     private void checkClassChoiceToRemove() {
-        if (getClassList().getValue().equals("Välj en klass")) {
+        if(getClassList().getSelectionModel().isSelected(0)){
             removeClassButton.setDisable(true);
         } else {
             removeClassButton.setDisable(false);
@@ -255,7 +259,7 @@ public class AdminController {
         String classToDelete = classList.getValue();
         dc.deleteClass(classToDelete);
         removeClassMessageLabel.setText(classToDelete + " är borttagen");
-        fillClasses(classList);
+        fillClasses();
     }
 
     @FXML
@@ -377,7 +381,7 @@ public class AdminController {
         return userType;
     }
 
-    private ComboBox getStudentClass() {
+    private ComboBox<String> getStudentClass() {
         return studentClass;
     }
 
@@ -415,7 +419,7 @@ public class AdminController {
     }
 
     //Getters for add/remove Class
-    private ComboBox getClassList() {
+    private ComboBox<String> getClassList() {
         return classList;
     }
 
@@ -609,16 +613,19 @@ public class AdminController {
         alert.setTitle("Ta bort prov");
         alert.setHeaderText("Du när nu på väg att ta bort ett prov!");
         alert.setContentText("Är du säker på att du vill ta bort provet?");
-        alert.showAndWait();
-        for(int i = 0; i <  getSelectTestToAssignToClass().length; i++) {
-            if (getSelectTestToAssignToClass()[i].isSelected()) {
-                DeleteTest deleteTest = new DeleteTest();
-                DeleteUserTests deleteUserTests = new DeleteUserTests();
-                deleteTest.deleteTest(Integer.parseInt(getSelectTestToAssignToClass()[i].getId()));
-                deleteUserTests.deleteTestFromUserTest(Integer.parseInt(getSelectTestToAssignToClass()[i].getId()));
-                getAllTestsForAdminList();
+        alert.showAndWait().ifPresent(response ->{
+            if (response == ButtonType.OK) {
+                for (int i = 0; i < getSelectTestToAssignToClass().length; i++) {
+                    if (getSelectTestToAssignToClass()[i].isSelected()) {
+                        DeleteTest deleteTest = new DeleteTest();
+                        DeleteUserTests deleteUserTests = new DeleteUserTests();
+                        deleteTest.deleteTest(Integer.parseInt(getSelectTestToAssignToClass()[i].getId()));
+                        deleteUserTests.deleteTestFromUserTest(Integer.parseInt(getSelectTestToAssignToClass()[i].getId()));
+                        getAllTestsForAdminList();
+                    }
+                }
             }
-        }
+        });
     }
 
     //Result

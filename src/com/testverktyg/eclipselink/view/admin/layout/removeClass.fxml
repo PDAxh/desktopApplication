@@ -22,7 +22,6 @@
                 <String fx:value="Välj en klass" />
             </value>
         </ComboBox>
-        <Button fx:id="fillClassListButton" text="Ladda in" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#fillClassList"/>
         <Label fx:id="removeClassMessageLabel" text="" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
         <Button fx:id="removeClassButton" text="Ta bort" GridPane.columnIndex="0" GridPane.rowIndex="4" disable="true" onAction="#removeSelectedClass"/>
     </children>

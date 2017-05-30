@@ -948,6 +948,8 @@ public class TeacherController {
                                 }
                             }
                             getSelectedTestToEdit();
+                        }else if(response == cancel){
+                            getSelectedTestToEdit();
                         }
                     });
                 }else if(getSelectToEdit()[i].getText().equals("Välj test ")){
@@ -971,6 +973,8 @@ public class TeacherController {
                             updateTest.updateTestInformation(getReadTest().getTestList().get(0).getTestId(), getUpdateTestnameTextField().getText(), getUpdateDescriptionTextArea().getText(),
                                     Integer.parseInt(getUpdateTestTimeInMinutesSpinner().getEditor().getText()), getUpdateDateForTestDatePIcker().getEditor().getText(),
                                     getUpdateSelfCorrectCheckBox().isSelected(), getUpdateShowResultToStudentCheckBox().isSelected());
+                            getSelectedTestToEdit();
+                        }else if(response == cancel){
                             getSelectedTestToEdit();
                         }
                     });
@@ -1134,7 +1138,7 @@ public class TeacherController {
                         DeleteUserTests deleteUserTests = new DeleteUserTests();
                         deleteTest.deleteTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
                         deleteUserTests.deleteTestFromUserTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
-                        getTeacherTest();
+                        getTeacherTestToEdit();
                         getShowTeacherTestBorderPane().setCenter(null);
                     }
                 }
