@@ -174,16 +174,17 @@ public class StudentController {
             for(int i = 0; i < getAlternativeCheckBox().length; i++){
                 if(getAlternativeCheckBox()[i].isSelected()){
                     selectedAlternative = Integer.parseInt(getAlternativeCheckBox()[i].getUserData().toString());
+                    csa.createNewStudentAnswer(activeTest, currentQuestionId, selectedAlternative, getUserId());
                 }
             }
         }else if(getNewTest().getActiveQuestionType().toString().equals("[Alternativ]")){
             for(int i = 0; i < getAlternativeRadioButtons().length; i++){
                 if(getAlternativeRadioButtons()[i].isSelected()){
                     selectedAlternative = Integer.parseInt(getAlternativeRadioButtons()[i].getUserData().toString());
+                    csa.createNewStudentAnswer(activeTest, currentQuestionId, selectedAlternative, getUserId());
                 }
             }
         }
-        csa.createNewStudentAnswer(activeTest, currentQuestionId, selectedAlternative, getUserId());
     }
     private ToggleGroup studentTestToggleGroup;
 
