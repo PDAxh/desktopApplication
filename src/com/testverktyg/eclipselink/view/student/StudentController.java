@@ -13,12 +13,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+
 /**
  * Created by Andreas.
  */
@@ -152,8 +156,8 @@ public class StudentController {
             }
         } else if(typeOfQuestion.equals("[Alternativ]")){
             setAlternativeRadioButtons(new RadioButton[getNewTest().getActiveAlternativeId().size()]);
+            ToggleGroup toggleGroup = new ToggleGroup();
             for (int y = 0; y < getNewTest().getActiveAlternativeId().size(); y++) {
-                ToggleGroup toggleGroup = new ToggleGroup();
                 getAlternativeRadioButtons()[y] = new RadioButton();
                 getAlternativeRadioButtons()[y].setUserData(String.valueOf(getNewTest().getActiveAlternativeId().get(y)));
                 getAlternativeRadioButtons()[y].setToggleGroup(toggleGroup);
@@ -265,42 +269,97 @@ public class StudentController {
 
         HBox secondBox = new HBox();
         contentPane.add(secondBox, 0,3);
+        HBox VGBox = new HBox();
+        HBox GBox = new HBox();
+        HBox TotBox = new HBox();
         Label VGQuestionPointsLabel = new Label("VG Poäng: ");
         Label VGQuestionPointsResultLabel = new Label();
         Label GQuestionPointsLabel = new Label("G Poäng: ");
         Label GQuestionPointsResultLabel = new Label();
         Label TotalPointsLabel = new Label("Totala Poäng ");
         Label TotalPointsResultLabel = new Label();
-        secondBox.getChildren().addAll(
-                VGQuestionPointsLabel,
-                VGQuestionPointsResultLabel,
+            resultLabel.setFont(Font.font("DEFAULT", FontWeight.BOLD, 12));
+            GQuestionPointsLabel.setFont(Font.font("DEFAULT", FontWeight.BOLD, 11));
+            VGQuestionPointsLabel.setFont(Font.font("DEFAULT", FontWeight.BOLD, 11));
+            TotalPointsLabel.setFont(Font.font("DEFAULT", FontWeight.BOLD, 11));
+        GBox.getChildren().addAll(
                 GQuestionPointsLabel,
-                GQuestionPointsResultLabel,
+                GQuestionPointsResultLabel
+        );
+        VGBox.getChildren().addAll(
+                VGQuestionPointsLabel,
+                VGQuestionPointsResultLabel
+        );
+        TotBox.getChildren().addAll(
                 TotalPointsLabel,
-                TotalPointsResultLabel);
+                TotalPointsResultLabel
+        );
+        secondBox.getChildren().addAll(
+                GBox,
+                VGBox,
+                TotBox);
+        secondBox.setSpacing(10);
+        secondBox.setBorder(new Border(new BorderStroke(Color.LIGHTGRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+        secondBox.setPadding(new Insets(10, 10, 10, 10));
 
         VBox StudentResultBox = new VBox();
-        contentPane.add(StudentResultBox,0,4);
+        HBox GpointsBox = new HBox();
+        HBox VGpointsBox = new HBox();
+        HBox gradeBox = new HBox();
         Label StudentPointsLabel = new Label("Ditt resultat:");
+        contentPane.add(StudentPointsLabel,0,4);
+        HBox TotpointsBox = new HBox();
+        contentPane.add(StudentResultBox,0,5);
         Label StudentGPointsLabel = new Label("G poäng: ");
         Label StudentGPointsResultLabel = new Label();
         Label StudentVGPointsLabel = new Label("VG Poäng: ");
         Label StudentVGPointsResultLabel = new Label();
-        Label GradeLabel = new Label("Betyg:");
+        Label GradeLabel = new Label("Betyg: ");
         Label GradeResultLabel = new Label();
         Label StudentTotalPointsLabel = new Label("Poäng: ");
         Label StudentTotalPointsResultLabel = new Label();
-        StudentResultBox.getChildren().addAll(
-                StudentPointsLabel,
+
+        StudentPointsLabel.setFont(Font.font("DEFAULT", FontWeight.BOLD, 12));
+        StudentGPointsLabel.setFont(Font.font("DEFAULT", FontWeight.BOLD, 11));
+        StudentVGPointsLabel.setFont(Font.font("DEFAULT", FontWeight.BOLD, 11));
+        GradeLabel.setFont(Font.font("DEFAULT", FontWeight.BOLD, 11));
+        StudentTotalPointsLabel.setFont(Font.font("DEFAULT", FontWeight.BOLD, 11));
+
+        GpointsBox.getChildren().addAll(
                 StudentGPointsLabel,
-                StudentGPointsResultLabel,
+                StudentGPointsResultLabel
+        );
+        VGpointsBox.getChildren().addAll(
                 StudentVGPointsLabel,
-                StudentVGPointsResultLabel,
+                StudentVGPointsResultLabel
+        );
+        gradeBox.getChildren().addAll(
                 GradeLabel,
-                GradeResultLabel,
+                GradeResultLabel
+        );
+        TotpointsBox.getChildren().addAll(
                 StudentTotalPointsLabel,
                 StudentTotalPointsResultLabel
         );
+        StudentResultBox.getChildren().addAll(
+                GpointsBox,
+                VGpointsBox,
+                gradeBox,
+                TotpointsBox
+        );
+
+        StudentResultBox.setSpacing(10);
+        StudentResultBox.setBorder(new Border(new BorderStroke(Color.LIGHTGRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+        StudentResultBox.setPadding(new Insets(10, 10, 10, 10));
+
+        Button studentPrintResultButton = new Button();
+        studentPrintResultButton.setText("Spara som PDF");
+        contentPane.add(studentPrintResultButton,0,6);
+        studentPrintResultButton.setOnAction(null);
+        studentPrintResultButton.setOnAction(event -> {
+
+        });
+
 
         rsa.getStudentAnswerFromSpecificStudent(getUserId(),activeTest);
         rsa.getCorrectAnswers(activeTest);
@@ -321,11 +380,14 @@ public class StudentController {
         StudentTotalPointsResultLabel.setText(String.valueOf(stuG+stuVG));
         if(gGrade>=60){
             if(vgGrade>=60){
+                GradeResultLabel.setTextFill(Color.GREEN);
                 GradeResultLabel.setText("VG");
             }else{
+                GradeResultLabel.setTextFill(Color.GREEN);
                 GradeResultLabel.setText("G");
             }
         }else{
+            GradeResultLabel.setTextFill(Color.RED);
             GradeResultLabel.setText("IG");
         }
         }else{
