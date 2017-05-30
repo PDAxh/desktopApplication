@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.testverktyg.eclipselink.view.MenuController">
+            fx:controller="com.testverktyg.eclipselink.view.MenuController" maxWidth="500">
 
     <top>
         <GridPane vgap="5" hgap="5" alignment="TOP_CENTER" >
