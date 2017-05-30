@@ -14,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -30,6 +31,9 @@ public class MenuController {
 
     @FXML
     private Label loggedInUser;
+
+    @FXML
+    private Text welcomeUser;
 
     private int activeLoggedInUserId;
 
@@ -221,6 +225,7 @@ public class MenuController {
     public void activeLoggedInUser(String nameOnActiveUser, int loggedInUserId){
         activeLoggedInUserId = loggedInUserId;
         loggedInUser.setText("Inloggad som: " + nameOnActiveUser);
+        welcomeUser.setText("Välkommen " + nameOnActiveUser);
     }
 
 }

@@ -75,7 +75,7 @@
     <center>
         <GridPane fx:id="editUserPane" alignment="TOP_CENTER" hgap="10" vgap="5">
             <padding><Insets top="100"/></padding>
-            <Text text="you, Admin!"/>
+            <Text fx:id="welcomeUser"/>
         </GridPane>
     </center>
 </BorderPane>
