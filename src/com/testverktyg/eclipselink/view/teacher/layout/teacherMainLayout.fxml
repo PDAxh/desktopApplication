@@ -1,52 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.testverktyg.eclipselink.view.MenuController"
-            fx:id="borderPane"
-            prefHeight="600.0" prefWidth="1200.0">
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="borderPane" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testverktyg.eclipselink.view.MenuController">
 
     <top>
-        <AnchorPane xmlns:fx="http://javafx.com/fxml/1" styleClass="menu-bar">
+        <AnchorPane styleClass="menu-bar" xmlns:fx="http://javafx.com/fxml/1">
             <MenuBar AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
                 <Menu text="Arkiv">
-                    <MenuItem text="Logga ut" onAction="#logout"/>
-                    <MenuItem text="Avsluta"  onAction="#getExitProgram"/>
+                    <MenuItem onAction="#logout" text="Logga ut" />
+                    <MenuItem onAction="#getExitProgram" text="Avsluta" />
                 </Menu>
                 <Menu text="Prov">
-                    <MenuItem text="Nytt prov" onAction="#createNewTest"/>
-                    <MenuItem text="Uppdatera test" onAction="#showTests"/>
-                    <MenuItem text="Resultat" onAction="#getResultsTeacher"/>
+                    <MenuItem onAction="#createNewTest" text="Nytt prov" />
+                    <MenuItem onAction="#showTests" text="Uppdatera test" />
+                    <MenuItem onAction="#getResultsTeacher" text="Resultat" />
                 </Menu>
                 <Menu text="Hjälp">
-                    <MenuItem text="Hjälp" onAction="#getHelpMenueForTeacher"/>
-                    <MenuItem text="Om oss" onAction="#getAboutUs"/>
+                    <MenuItem onAction="#getHelpMenueForTeacher" text="Hjälp" />
+                    <MenuItem onAction="#getAboutUs" text="Om oss" />
                 </Menu>
             </MenuBar>
-            <Label fx:id="loggedInUser" onMouseClicked="#updateAccount" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
-                   style="-fx-font-weight: bold; -fx-text-fill: orangered;"/>
+                    <ImageView fx:id="cogIcon" layoutX="1182.0" layoutY="7.0" onMouseClicked="#updateAccount" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="7.0">
+                        <Image url="@../../../../../../path9.png" />
+                    </ImageView>
+                    <Label fx:id="loggedInUser" onMouseClicked="#updateAccount" style="-fx-font-weight: bold; -fx-text-fill: orangered;" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
         </AnchorPane>
     </top>
 
     <center>
         <GridPane fx:id="editUserPane" alignment="TOP_CENTER" hgap="10" vgap="5">
-            <padding><Insets top="100"/></padding>
-            <Text fx:id="welcomeUser"/>
+            <padding><Insets top="100" /></padding>
+            <Text fx:id="welcomeUser" />
         </GridPane>
     </center>
 
     <left>
         <ImageView fx:id="imageView" fitHeight="170.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
-            <image>
-                <Image url="@../../../../../../newtontestverktyg.png" />
-            </image>
+            <Image url="@../../../../../../newtontestverktyg.png" />
         </ImageView>
     </left>
 

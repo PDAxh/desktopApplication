@@ -229,7 +229,7 @@ public class MenuController {
     @FXML
     public void activeLoggedInUser(String nameOnActiveUser, int loggedInUserId){
         activeLoggedInUserId = loggedInUserId;
-        loggedInUser.setText("Inloggad som: " + nameOnActiveUser);
+        loggedInUser.setText("Inloggad som: " + nameOnActiveUser+"       ");
         welcomeUser.setText("Välkommen " + nameOnActiveUser);
     }
 
