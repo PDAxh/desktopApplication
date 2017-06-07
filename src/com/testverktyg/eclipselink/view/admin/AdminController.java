@@ -253,7 +253,7 @@ public class AdminController {
         if (newReadClass.getClassNameList().size() == 0) {
             System.out.println("Class list is empty. 0 expcetion");
             CreateClass addClass = new CreateClass();
-            addClass.CreateClass(className);
+            addClass.CreateNewClass(className);
             addClassMessageLabel.setText("Klass är skapad");
             studentClassName.setText("");
         } else {
@@ -269,7 +269,7 @@ public class AdminController {
                 studentClassName.setText("");
             } else {
                 CreateClass addClass = new CreateClass();
-                addClass.CreateClass(className);
+                addClass.CreateNewClass(className);
                 addClassMessageLabel.setText("Klass är skapad");
                 studentClassName.setText("");
             }
@@ -283,7 +283,7 @@ public class AdminController {
         int selectedID = data.get(selectedUserIndex).getID();
         DeleteUser du = new DeleteUser();
         du.setUserId(selectedID);
-        du.DeleteUser();
+        du.DeleteSelectedUser();
         String userType = String.valueOf(userTypeList.getValue());
         fillUserList(userType);
     }
@@ -310,7 +310,7 @@ public class AdminController {
                 uu.setNewLastname(lnameField.getText());
                 uu.setNewEmail(emailField.getText());
                 uu.setNewPassword(newPasswordField.getText());
-                uu.UpdateUser();
+                uu.UpdateSelectedUser();
                 updateUserMessageLabel.setText("Användaren har ändrats");
             }else{
                 updateUserMessageLabel.setText("Lösenorden stämmer inte överens");
