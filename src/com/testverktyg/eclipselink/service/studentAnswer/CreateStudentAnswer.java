@@ -23,12 +23,5 @@ public class CreateStudentAnswer {
         entitymanager.close();
         emfactory.close();
     }
-
-    public static void main(String[] args) {
-        CreateStudentAnswer csa = new CreateStudentAnswer();
-        csa.createNewStudentAnswer(1,1,1,2);
-        csa.createNewStudentAnswer(1,1,3,2);
-        csa.createNewStudentAnswer(1,2,2,2);
-    }
 }
 

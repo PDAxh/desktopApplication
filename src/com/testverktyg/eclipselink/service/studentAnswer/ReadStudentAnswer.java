@@ -116,11 +116,4 @@ public class ReadStudentAnswer {
     public int getMaxPointsVG() {
         return maxPointsVG;
     }
-
-    public static void main(String[] args) {
-        ReadStudentAnswer rsa = new ReadStudentAnswer();
-        rsa.getStudentAnswerFromSpecificStudent(2,1);
-        rsa.getCorrectAnswers(1);
-
-    }
 }

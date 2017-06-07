@@ -2,10 +2,7 @@ package com.testverktyg.eclipselink.entity;
 
 import javax.persistence.*;
 
-/**
- * Created by Jonas Johansson on 2017-05-02.
- *
- */
+/* Created by Jonas Johansson on 2017-05-02. */
 
  @Entity
  @NamedQueries({
