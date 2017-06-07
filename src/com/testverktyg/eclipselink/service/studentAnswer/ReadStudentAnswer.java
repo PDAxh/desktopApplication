@@ -1,7 +1,5 @@
 package com.testverktyg.eclipselink.service.studentAnswer;
 
-import com.testverktyg.eclipselink.entity.Alternative;
-import com.testverktyg.eclipselink.entity.Question;
 import com.testverktyg.eclipselink.entity.StudentAnswer;
 import com.testverktyg.eclipselink.service.Test.ReadTest;
 
@@ -10,26 +8,20 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-/**
- * Created by Andreas on 2017-05-22.
- */
+/* Created by Andreas on 2017-05-22. */
 public class ReadStudentAnswer {
 
-    private List<Alternative> correctAnswersList;
     private List<StudentAnswer> oneStudentAnswersList;
     private List<StudentAnswer> allStudentAnswersList;
     private int maxPointsG;
     private int maxPointsVG;
     private int studPointsG;
     private int studPointsVG;
-    private int questionCount;
 
     public void getCorrectAnswers(int testId){
         ReadTest rt = new ReadTest(testId);
         rt.getActiveTest();
         rt.getTest(testId);
-        ReadStudentAnswer rs = new ReadStudentAnswer();
-        questionCount = rt.getAmountOfQuestions();
 
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
         EntityManager entitymanager = emfactory.createEntityManager();
@@ -54,13 +46,13 @@ public class ReadStudentAnswer {
             }
             boolean isG = rt.getTestList().get(0).getQuestionList().get(i).isGradeG();
             if(correctAnswerCounter==studentAnswerCounter){
-                if(isG==true){
+                if(isG){
                     studPointsG = studPointsG + rt.getTestList().get(0).getQuestionList().get(i).getPoints();
                 }else{
                     studPointsVG = studPointsVG + rt.getTestList().get(0).getQuestionList().get(i).getPoints();
                 }
             }
-            if(isG==true){
+            if(isG){
                 maxPointsG = maxPointsG + rt.getTestList().get(0).getQuestionList().get(i).getPoints();
             }else{
                 maxPointsVG = maxPointsVG + rt.getTestList().get(0).getQuestionList().get(i).getPoints();

@@ -1,22 +1,12 @@
 package com.testverktyg.eclipselink.service.Test;
 
-import com.testverktyg.eclipselink.entity.Test;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import java.util.Scanner;
-
-
-/**
- * Created by Daniel on 2017-05-18.
- */
+/* Created by Daniel on 2017-05-18. */
 public class TimeCounter {
 
     private int testId;
 
-    public void TimeCounter() throws Exception {
+    private void timeCounter() throws Exception {
 
-        int testid =0;
         int testTime =30;
         int seconds = testTime * 60;
         while (seconds>0){
@@ -27,6 +17,7 @@ public class TimeCounter {
 
             }
             catch (InterruptedException e) {
+                System.out.println("något gick fel med klockan!" + e);
             }
         }
     }
@@ -36,7 +27,7 @@ public class TimeCounter {
 
     TimeCounter timeCounter = new TimeCounter();
         try {
-            timeCounter.TimeCounter();
+            timeCounter.timeCounter();
         } catch (Exception e) {
             e.printStackTrace();
         }

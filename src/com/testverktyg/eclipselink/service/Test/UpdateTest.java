@@ -10,8 +10,6 @@ import javax.persistence.*;
 
 public class UpdateTest {
 
-
-
     //To be able to use several methods after each other without calling the class again
     // EntityManagerFactory and EntityManager needs to be in every method.
 
@@ -71,56 +69,6 @@ public class UpdateTest {
         emfactory.close();
     }
 
-    //Add a new question to chosen test
-    public void addNewQuestion(int testId, String questionText, String questionType, boolean gradeG, boolean gradeVG){
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
-        EntityManager entitymanager = emfactory.createEntityManager( );
-
-        entitymanager.getTransaction( ).begin( );
-        Question question = new Question();
-        question.setTestId(testId);
-        question.setQuestionText(questionText);
-        question.setTypeOfQuestion(questionType);
-        question.setGradeG(gradeG);
-        question.setGradeVG(gradeVG);
-
-        entitymanager.persist(question);
-        entitymanager.getTransaction( ).commit( );
-        entitymanager.close();
-        emfactory.close();
-    }
-
-    //Add a new alternative to a chosen question
-    public void addNewAlternative(int questionId, String alternativeText, boolean alternativeStatus){
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
-        EntityManager entitymanager = emfactory.createEntityManager( );
-
-        entitymanager.getTransaction( ).begin( );
-        Alternative alternative = new Alternative();
-
-        alternative.setQuestionId(questionId);
-        alternative.setAlternativeText(alternativeText);
-        alternative.setAlternativeStatus(alternativeStatus);
-
-        entitymanager.persist(alternative);
-        entitymanager.getTransaction( ).commit( );
-        entitymanager.close();
-        emfactory.close();
-    }
-
-    public void deleteAQuestion(int questionId){
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
-        EntityManager entitymanager = emfactory.createEntityManager( );
-
-        entitymanager.getTransaction( ).begin( );
-        Question question = entitymanager.find(Question.class, questionId);
-        entitymanager.remove(question);
-
-        entitymanager.getTransaction( ).commit( );
-        entitymanager.close();
-        emfactory.close();
-    }
-
     public void deleteAnAlternative(int alternativeId){
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
         EntityManager entitymanager = emfactory.createEntityManager( );
@@ -133,11 +81,4 @@ public class UpdateTest {
         entitymanager.close();
         emfactory.close();
     }
-
-/*
-    //The main for testing the class in console
-    public static void main(String[] args) {
-        UpdateTest updateTest = new UpdateTest();
-    }
-*/
 }

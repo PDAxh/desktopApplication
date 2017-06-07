@@ -5,21 +5,17 @@ import com.testverktyg.eclipselink.entity.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- * Created by Jonas Johansson, Java2, on 2017-05-02.
- *
- */
+/* Created by Jonas Johansson, Java2, on 2017-05-02. */
 public class ReadUser {
 
     private String email;
     private String password;
     private String group;
     private boolean loginStatus;
-    private List<User> studentListFromSpecificClass;
+    //private List<User> studentListFromSpecificClass;
     private List<User> studentList;
     private List<User> teacherList;
     private List<User> adminList;
@@ -63,20 +59,16 @@ public class ReadUser {
 
         studentList = entityManager.createNamedQuery("FindUserByType", User.class).setParameter("typeOfUser", "student").getResultList();
 
-        /*
-        //Use this in the GUI to collect students
-        for (int i = 0; i < studentList.size(); i++){
-            System.out.println(studentList.get(i).getFirstname() + " " + studentList.get(i).getLastname());
-        }
-        */
     }
-    public void readOnlyStudentsInClass(String selectedClass){
+
+    //Never used according to intellij
+    /*public void readOnlyStudentsInClass(String selectedClass){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
         studentListFromSpecificClass = entityManager.createNamedQuery("FindUserByTypeAndClass", User.class).setParameter("typeOfUser", "student").setParameter("selectedClass", selectedClass).getResultList();
-    }
+    }*/
 
     public void readOnlyTeacher(){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
@@ -95,19 +87,19 @@ public class ReadUser {
     }
 
 
-    public String getEmail() {
+    private String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    private void setEmail(String email) {
         this.email = email;
     }
 
-    public String getPassword() {
+    private String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    private void setPassword(String password) {
         this.password = password;
     }
 
@@ -115,11 +107,11 @@ public class ReadUser {
         return group;
     }
 
-    public void setGroup(String group) {
+    private void setGroup(String group) {
         this.group = group;
     }
 
-    public void setLoginStatus(Boolean status){
+    private void setLoginStatus(Boolean status){
         this.loginStatus = status;
     }
 
@@ -127,9 +119,9 @@ public class ReadUser {
         return this.loginStatus;
     }
 
-    public List<User> getStudentListFromSpecificClass() {
+    /*public List<User> getStudentListFromSpecificClass() {
         return studentListFromSpecificClass;
-    }
+    }*/
 
     public List<User> getStudentList() {
         return studentList;
@@ -142,12 +134,6 @@ public class ReadUser {
     public List<User> getAdminList() {
         return adminList;
     }
-
- /*   public static void main(String[] args) {
-        ReadUser readUser = new ReadUser();
-
-        readUser.readOnlyAdmin();
-    }*/
 
     public void setLoggedInUser(int userid){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
@@ -169,7 +155,6 @@ public class ReadUser {
         this.userId = userId;
     }
 
-    //--TestKod-Jonas--
     private List<User> userIdByClassList;
     private List<User> findClassWithUserIdList;
 
@@ -212,6 +197,4 @@ public class ReadUser {
     private void setFindClassWithUserIdList(List<User> findClassWithUserIdList) {
         this.findClassWithUserIdList = findClassWithUserIdList;
     }
-
-    //------
 }

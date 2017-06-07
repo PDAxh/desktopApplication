@@ -187,35 +187,6 @@ public class ReadTest {
         return alternativeStatus;
     }
 
-    //using this main for console testing\\
-    public static void main(String[] args) {
-
-        ReadTest readTest = new ReadTest();
-        readTest.getActiveTest();
-
-        System.out.println(readTest.testName);
-        System.out.println(readTest.testDescription);
-        System.out.println(readTest.testLastDate);
-        System.out.println(readTest.testTimeInMinutes);
-        System.out.println(readTest.seeResult);
-        System.out.println(readTest.selfCorrecting);
-
-        for (int i = 0; i < readTest.getAmountOfQuestions(); i++){
-            System.out.println("Frågans ID: " + readTest.getActiveQuestionId().get(i));
-            System.out.println("Fråga: " + readTest.getActiveQuestionText().get(i));
-            System.out.println("Typ av fråga: " + readTest.getActiveQuestionType().get(0));
-            System.out.println("Grade: " + readTest.getGradeOnActiveQuestion());
-            System.out.println("NonGrade: " + readTest.getNonGradeOnActiveQuestion());
-            for (int j = 0; j < readTest.getActiveAlternativeId().size(); j++){
-                System.out.println("Alternativ till fråge ID: " + readTest.getActiveQuestionId().get(i));
-                System.out.println("Alternativ: " + readTest.getActiveAlternativeText().get(j));
-                System.out.println("Status på alternativ: " + readTest.activeAlternativeStatus.get(j));
-            }
-            if (i != (readTest.getAmountOfQuestions()-1)){
-                readTest.getNextActiveQuestion();
-            }
-        }
-    }
 
     public void getTest(int testId){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");

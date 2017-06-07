@@ -1,8 +1,6 @@
 package com.testverktyg.eclipselink.service.user;
 
-/**
- * Created by Daniel on 2017-05-08.
- */
+/* Created by Daniel on 2017-05-08. */
 import com.testverktyg.eclipselink.entity.User;
 
 import javax.persistence.EntityManager;
@@ -13,7 +11,7 @@ public class DeleteUser {
 
     private int userId;
 
-    public void DeleteUser() {
+    public void DeleteSelectedUser() {
 
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
         EntityManager entitymanager = emfactory.createEntityManager( );
@@ -22,7 +20,6 @@ public class DeleteUser {
 
         User user = entitymanager.find( User.class,userId  );
         entitymanager.remove(user);
-        // TESYAR D`FÖR SYNK
         entitymanager.getTransaction( ).commit( );
         entitymanager.close( );
         emfactory.close( );

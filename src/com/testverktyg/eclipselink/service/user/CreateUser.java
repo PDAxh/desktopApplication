@@ -6,9 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 
-/**
- * Created by Daniel on 2017-05-05.
- */
+/* Created by Daniel on 2017-05-05. */
 public class CreateUser {
 
 

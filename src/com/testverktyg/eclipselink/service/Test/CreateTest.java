@@ -21,7 +21,6 @@ public class CreateTest {
 
     private Test test;
     private Question question;
-    private Alternative alternative;
 
     private EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA");
     private EntityManager entitymanager = emfactory.createEntityManager( );
@@ -38,7 +37,6 @@ public class CreateTest {
         test.setTestDescription(descriptTest);
         test.setSelfCorrecting(selfCorrecting);
         test.setSeeResultAfter(seeResult);
-        //What type will setLastDate be?
         test.setLastDate(lastDateTest);
         test.setTimeForTestMinutes(minutesForTest);
 
@@ -65,7 +63,7 @@ public class CreateTest {
     public void createAlternative(String altText, boolean alternativeStatus){
 
         //Add a new alternative to the active question
-        alternative = new Alternative();
+        Alternative alternative = new Alternative();
         alternative.setQuestionId(question.getQuestionId());
         alternative.setAlternativeText(altText);
         alternative.setAlternativeStatus(alternativeStatus);
