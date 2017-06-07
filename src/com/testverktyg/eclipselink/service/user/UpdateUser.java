@@ -1,15 +1,11 @@
 package com.testverktyg.eclipselink.service.user;
 
-/**
- * Created by Daniel on 2017-05-15
- */
+/* Created by Daniel on 2017-05-15 */
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import com.testverktyg.eclipselink.entity.User;
 
-import java.awt.*;
-import java.util.Scanner;
 
 public class UpdateUser {
 
@@ -22,9 +18,8 @@ public class UpdateUser {
     private String newTypeOfUser;
 
 
-    public void UpdateUser() {
+    public void UpdateSelectedUser() {
 
-        Scanner scanner = new Scanner(System.in);
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
         EntityManager entitymanager = emfactory.createEntityManager();
         entitymanager.getTransaction().begin();

@@ -6,10 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-/**
- * Created by Jonas Johansson on 2017-05-15.
- *
- */
+/* Created by Jonas Johansson on 2017-05-15. */
 public class ReadUserTests {
 
     private List<UserTests> userTestsList;

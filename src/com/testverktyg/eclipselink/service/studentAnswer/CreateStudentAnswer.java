@@ -3,14 +3,8 @@ package com.testverktyg.eclipselink.service.studentAnswer;
 import com.testverktyg.eclipselink.entity.StudentAnswer;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.metamodel.Metamodel;
-import javax.swing.text.html.parser.Entity;
-import java.util.Map;
 
-/**
- * Created by Andreas on 2017-05-22.
- */
+/* Created by Andreas on 2017-05-22. */
 public class CreateStudentAnswer {
 
     public void createNewStudentAnswer(int testId, int questionId, int alternativeId, int studentId){
