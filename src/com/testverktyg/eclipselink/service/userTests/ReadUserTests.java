@@ -18,9 +18,7 @@ public class ReadUserTests {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        setUserTestsList(entityManager.createNamedQuery("findAllTestForUser", UserTests.class)
-                .setParameter("userId", userId)
-                .getResultList());
+        setUserTestsList(entityManager.createNamedQuery("findAllTestForUser", UserTests.class).setParameter("userId", userId).getResultList());
 
         entityManager.close();
         entityManagerFactory.close();
@@ -30,9 +28,7 @@ public class ReadUserTests {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        setUserTestListByTestId(entityManager.createNamedQuery("findAllUsersForOneTest", UserTests.class)
-                .setParameter("testId", testId)
-                .getResultList());
+        setUserTestListByTestId(entityManager.createNamedQuery("findAllUsersForOneTest", UserTests.class).setParameter("testId", testId).getResultList());
 
         entityManager.close();
         entityManagerFactory.close();

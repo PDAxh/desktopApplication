@@ -16,9 +16,7 @@ public class DeleteUserTests {
         EntityManager entitymanager = emfactory.createEntityManager( );
 
         entitymanager.getTransaction( ).begin( );
-        entitymanager.createNamedQuery("deleteTestFromUserTests", UserTests.class)
-                .setParameter("testId", testId)
-                .executeUpdate();
+        entitymanager.createNamedQuery("deleteTestFromUserTests", UserTests.class).setParameter("testId", testId).executeUpdate();
 
         entitymanager.getTransaction( ).commit( );
         entitymanager.close();

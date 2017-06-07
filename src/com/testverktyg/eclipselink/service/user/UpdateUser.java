@@ -17,7 +17,6 @@ public class UpdateUser {
     private String newKlass;
     private String newTypeOfUser;
 
-
     public void UpdateSelectedUser() {
 
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
@@ -43,14 +42,12 @@ public class UpdateUser {
         entitymanager.getTransaction().begin();
 
         User user = entitymanager.find(User.class, userId);
-
         user.setPassword(newPassword);
 
         entitymanager.getTransaction().commit();
         entitymanager.close();
         emfactory.close();
     }
-    
 
     public int getUserId() {
         return userId;

@@ -7,8 +7,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-
 /* Created by Jonas Johansson, Java2, on 2017-05-02. */
+
 public class ReadUser {
 
     private String email;
@@ -22,6 +22,9 @@ public class ReadUser {
     private List<User> userLoggedIn;
     private int userId;
 
+    private List<User> userIdByClassList;
+    private List<User> findClassWithUserIdList;
+
     public ReadUser(){}
 
     public ReadUser(String email, String password){
@@ -30,11 +33,7 @@ public class ReadUser {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-
-        List<User> userList = entityManager.createNamedQuery("findByEmailAndPassword", User.class)
-                .setParameter("email", email)
-                .setParameter("password", password)
-                .getResultList();
+        List<User> userList = entityManager.createNamedQuery("findByEmailAndPassword", User.class).setParameter("email", email).setParameter("password", password).getResultList();
 
         for(User user : userList){
             setEmail(user.getEmail());
@@ -49,7 +48,6 @@ public class ReadUser {
 
         entityManager.close();
         entityManagerFactory.close();
-
     }
 
     public void readOnlyStudents(){
@@ -58,7 +56,6 @@ public class ReadUser {
         entityManager.getTransaction().begin();
 
         studentList = entityManager.createNamedQuery("FindUserByType", User.class).setParameter("typeOfUser", "student").getResultList();
-
     }
 
     //Never used according to intellij
@@ -86,16 +83,11 @@ public class ReadUser {
         adminList = entityManager.createNamedQuery("FindUserByType", User.class).setParameter("typeOfUser", "admin").getResultList();
     }
 
-    private List<User> userIdByClassList;
-    private List<User> findClassWithUserIdList;
-
     public void getUserIdByClass(String klass){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        setUserIdByClassList(entityManager.createNamedQuery("findUserIdByClass", User.class)
-                .setParameter("klass", klass)
-                .getResultList());
+        setUserIdByClassList(entityManager.createNamedQuery("findUserIdByClass", User.class).setParameter("klass", klass).getResultList());
 
         entityManager.close();
         entityManagerFactory.close();
@@ -105,9 +97,7 @@ public class ReadUser {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        setFindClassWithUserIdList(entityManager.createNamedQuery("findClassWithUserId", User.class)
-                .setParameter("userId", userId)
-                .getResultList());
+        setFindClassWithUserIdList(entityManager.createNamedQuery("findClassWithUserId", User.class).setParameter("userId", userId).getResultList());
 
         entityManager.close();
         entityManagerFactory.close();

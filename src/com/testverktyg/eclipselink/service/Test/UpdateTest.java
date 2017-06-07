@@ -7,11 +7,10 @@ import com.testverktyg.eclipselink.entity.Test;
 import javax.persistence.*;
 
 /* Created by jennifergisslow on 2017-05-15. */
+//To be able to use several methods after each other without calling the class again
+// EntityManagerFactory and EntityManager needs to be in every method.
 
 public class UpdateTest {
-
-    //To be able to use several methods after each other without calling the class again
-    // EntityManagerFactory and EntityManager needs to be in every method.
 
     // updates the information for the chosen test
     public void updateTestInformation(int testId, String newTestName, String newTestDescription, int newTestTime, String newLastDate, boolean newSelfCorrecting, boolean newSeeResult){

@@ -17,7 +17,6 @@ public class DeleteUser {
         EntityManager entitymanager = emfactory.createEntityManager( );
         entitymanager.getTransaction( ).begin( );
 
-
         User user = entitymanager.find( User.class,userId  );
         entitymanager.remove(user);
         entitymanager.getTransaction( ).commit( );

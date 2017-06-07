@@ -9,7 +9,6 @@ import javax.persistence.Persistence;
 /* Created by Daniel on 2017-05-05. */
 public class CreateUser {
 
-
     public CreateUser(String fname, String lname, String password, String email, String Klass, String userType){
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
         EntityManager entitymanager = emfactory.createEntityManager( );
