@@ -62,11 +62,11 @@
         </TableView>
             <HBox GridPane.columnIndex="0" GridPane.rowIndex="2">
                 <Label fx:id="messagebutton" />
-                <Button onAction="#editSelectedUser" style="-fx-background-color: orangered; -fx-text-fill: white" text="Redigera">
+                <Button onAction="#editSelectedUser" style="-fx-background-color: #EE7202; -fx-text-fill: white" text="Redigera">
             <HBox.margin>
                <Insets right="5.0" />
             </HBox.margin></Button>
-                <Button onAction="#deleteSelectedUser" style="-fx-background-color: orangered; -fx-text-fill: white" text="Ta bort" />
+                <Button onAction="#deleteSelectedUser" style="-fx-background-color: #EE7202; -fx-text-fill: white" text="Ta bort" />
             </HBox>
         </children>
 </GridPane>

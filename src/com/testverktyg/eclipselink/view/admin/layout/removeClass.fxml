@@ -23,7 +23,7 @@
             </value>
         </ComboBox>
         <Label fx:id="removeClassMessageLabel" text="" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-        <Button fx:id="removeClassButton" text="Ta bort" GridPane.columnIndex="0" GridPane.rowIndex="4" disable="true" onAction="#removeSelectedClass" style="-fx-background-color: orangered; -fx-text-fill: white"/>
+        <Button fx:id="removeClassButton" text="Ta bort" GridPane.columnIndex="0" GridPane.rowIndex="4" disable="true" onAction="#removeSelectedClass" style="-fx-background-color: #EE7202; -fx-text-fill: white"/>
     </children>
 
 </GridPane>
