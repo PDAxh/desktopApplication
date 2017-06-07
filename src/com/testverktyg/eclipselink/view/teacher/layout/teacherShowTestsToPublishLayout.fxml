@@ -10,19 +10,18 @@
       fx:id="showTeacherTestBorderPane">
     <padding><Insets top="30" left="80" right="120" bottom="30"/> </padding>
 
-    <top>
-        <HBox spacing="15">
-            <padding><Insets  bottom="30"/> </padding>
-            <Button text="Ta bort" onAction="#getSelectToDelete" style="-fx-background-color: orangered; -fx-text-fill: white"/>
-        </HBox>
-    </top>
-
     <left>
-        <ScrollPane  styleClass="edge-to-edge">
-            <VBox fx:id="showTeacherTestVbox" spacing="20" >
-                <padding><Insets right="120"/> </padding>
-            </VBox>
-        </ScrollPane>
+        <VBox>
+            <ScrollPane  styleClass="edge-to-edge">
+                <VBox fx:id="showTeacherTestVbox" spacing="20" >
+                    <padding><Insets right="120"/> </padding>
+                </VBox>
+            </ScrollPane>
+            <HBox spacing="15">
+                <padding><Insets  top="20"/> </padding>
+                <Button text="Ta bort" onAction="#getSelectToDelete" style="-fx-background-color: orangered; -fx-text-fill: white"/>
+            </HBox>
+        </VBox>
     </left>
 
 </BorderPane>
