@@ -14,7 +14,7 @@
             <padding><Insets  bottom="30"/> </padding>
             <Button text="Tilldela" onAction="#getSelectedTestToAssignClass"/>
             <ComboBox fx:id="selectClassToAssignTestComboBox" promptText="Välj klass"/>
-            <Button text="Ta bort valt prov" onAction="#getSelectTestToDelete"/>
+            <Button text="Ta bort" onAction="#getSelectTestToDelete" style="-fx-background-color: orangered; -fx-text-fill: white"/>
         </HBox>
     </top>
 
