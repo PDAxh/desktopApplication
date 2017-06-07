@@ -11,11 +11,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -26,24 +24,14 @@ import java.io.IOException;
  */
 public class MenuController {
 
-    @FXML
-    private GridPane editUserPane;
-    @FXML
-    private TableView userTable;
-
-    @FXML
-    private Label loggedInUser;
-
-    @FXML
-    private Text welcomeUser;
-
-    private int activeLoggedInUserId;
-
-    private Stage stage;
     @FXML private BorderPane borderPane;
+    @FXML private Label loggedInUser;
+    @FXML private Text welcomeUser;
+    private int activeLoggedInUserId;
     private int userId;
+    private Stage stage;
 
-    public Stage getStage() {
+    private Stage getStage() {
         return stage;
     }
 
@@ -184,17 +172,14 @@ public class MenuController {
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
 
-        //Label emailLabel = new Label();
         Label newPasswordLabel = new Label();
         Label verifyPasswordLabel = new Label();
-        //TextField emailField = new TextField();
         TextField newPasswordField = new TextField();
         TextField verifyPasswordField = new TextField();
         Label updateUserMessageLabel = new Label();
         Button updateUserButton = new Button();
         updateUserButton.setStyle("-fx-background-color: #EE7202; -fx-text-fill: white");
 
-        //emailLabel.setText("Email:");
         newPasswordLabel.setText("Nytt lösenord");
         verifyPasswordLabel.setText("Repetera lösenord");
         updateUserButton.setText("Uppdatera");
@@ -206,8 +191,6 @@ public class MenuController {
             }else if (newPasswordField.getText().equals(verifyPasswordField.getText())) {
                 UpdateUser uu = new UpdateUser();
                 uu.setUserId(activeLoggedInUserId);
-                System.out.println(uu.getUserId());
-                //uu.setNewEmail(emailField.getText());
                 uu.setNewPassword(newPasswordField.getText());
                 uu.UpdateOnlyPassword();
                 updateUserMessageLabel.setText("Lösenordet har ändrats");
@@ -216,8 +199,6 @@ public class MenuController {
             }
         });
 
-        //editUserPane.add(emailLabel, 0, 4);
-        //editUserPane.add(emailField, 0, 5);
         gridPane.add(newPasswordLabel, 0, 1);
         gridPane.add(newPasswordField, 0, 2);
         gridPane.add(verifyPasswordLabel, 0, 3);

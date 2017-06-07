@@ -35,6 +35,7 @@ public class TeacherController {
     @FXML private Button deleteQuestionButton;
     @FXML private Button updateQuestionButton;
     @FXML private Button addQuestionButton;
+    @FXML private Button saveToPdfButton;
     @FXML private CheckBox selfCorrect;
     @FXML private CheckBox showResultsToStudent;
     @FXML private ComboBox<Integer> numberOfAlternatives;
@@ -50,14 +51,19 @@ public class TeacherController {
     @FXML private TextField testName;
     @FXML private TextArea descriptionInput;
     @FXML private VBox showTeacherTestVbox;
+    @FXML private VBox showResultTeacherVbox;
     private int indexQuestion;
     private int userId;
+    private int alternativeIdList[];
     private BorderPane updateQuestionAlternativeBorderPane;
     private CreateTest createTest = new CreateTest();
     private CheckBox rightAnswerCheckbox[];
     private CheckBox updateQuestionAlternativeCheckbox[];
+    private CheckBox updateSelfCorrectCheckBox;
+    private CheckBox updateShowResultToStudentCheckBox;
     private ComboBox<String> updateTypeOfQuestion;
     private ComboBox<Integer> updateNumberOfAlternatives;
+    private DatePicker updateDateForTestDatePIcker;
     private NewTest newTest = new NewTest();
     private ObservableList<String> typeOfQuestionList = FXCollections.observableArrayList("Flervals", "Alternativ");
     private ObservableList<Integer> numberOfAlternatviesList = FXCollections.observableArrayList(2,3,4,5);
@@ -69,9 +75,14 @@ public class TeacherController {
     private RadioButton selectToEdit[];
     private ReadTest readTest;
     private Spinner updatePoints;
+    private Spinner updateTestTimeInMinutesSpinner;
+    private StatisticForAdminAndTeacher statisticForAdminAndTeacher;
+    private TextArea updateDescriptionTextArea;
     private TextField updateQuestionNameTextField;
     private TextField alternativField[];
     private TextField updateQuestionAlternativeTextField[];
+    private TextField updateTestnameTextField;
+    private ToggleGroup getTeacherTestToggleGroup;
 
     @FXML
     private void setShowResultToStudent(){
@@ -387,145 +398,6 @@ public class TeacherController {
         getNewTest().getQuestionObservableList().clear();
     }
 
-    private TextField[] getAlternativField() {
-        return alternativField;
-    }
-
-    private void setAlternativField(TextField[] alternativField) {
-        this.alternativField = alternativField;
-    }
-
-    private ComboBox<Integer> getNumberOfAlternatives() {
-        return numberOfAlternatives;
-    }
-
-    private ComboBox<NewQuestion> getAllQuestionList() {
-        return allQuestionList;
-    }
-
-    private int getIndexQuestion() {
-        return indexQuestion;
-    }
-
-    private void setIndexQuestion(int indexQuestion) {
-        this.indexQuestion = indexQuestion;
-    }
-
-    private Spinner getPointSpinner() {
-        return pointSpinner;
-    }
-
-    private void setPointSpinner(int pointSpinner) {
-        this.pointSpinner.getEditor().setText(String.valueOf(pointSpinner));
-    }
-
-    private TextField getTestName() {
-        return testName;
-    }
-
-    private CheckBox[] getRightAnswerCheckbox() {
-        return rightAnswerCheckbox;
-    }
-
-    private void setRightAnswerCheckbox(CheckBox[] rightAnswerCheckbox) {
-        this.rightAnswerCheckbox = rightAnswerCheckbox;
-    }
-
-    private RadioButton[] getRightAnswerRadioButton() {
-        return rightAnswerRadioButton;
-    }
-
-    private void setRightAnswerRadioButton(RadioButton[] rightAnswerRadioButton) {
-        this.rightAnswerRadioButton = rightAnswerRadioButton;
-    }
-    private Label getShowResultsToStudentLabel() {
-        return showResultsToStudentLabel;
-    }
-
-    private CheckBox getSelfCorrect() {
-        return selfCorrect;
-    }
-
-    private CheckBox getShowResultsToStudent() {
-        return showResultsToStudent;
-    }
-
-    private ComboBox<String> getTypOfQuestion() {
-        return typOfQuestion;
-    }
-
-    private void setBorderPaneAlternatives(GridPane gridPane){
-        this.borderPaneAlternatives.setCenter(gridPane);
-    }
-
-    private String getQuestionName(){
-        return questionName.getText();
-    }
-
-    private void setQuestionName(String questionName){
-        this.questionName.setText(questionName);
-    }
-
-    private CreateTest getCreateTest() {
-        return createTest;
-    }
-
-    private void setCreateTest(CreateTest createTest) {
-        this.createTest = createTest;
-    }
-
-    private NewTest getNewTest() {
-        return newTest;
-    }
-
-    private void setNewTest(NewTest newTest) {
-        this.newTest = newTest;
-    }
-
-    private TextArea getDescriptionInput() {
-        return descriptionInput;
-    }
-
-    private Spinner getTimeInput() {
-        return timeInput;
-    }
-
-    private DatePicker getDatePicker() {
-        return datePicker;
-    }
-
-    private Button getDeleteQuestionButton() {
-        return deleteQuestionButton;
-    }
-
-    private Button getUpdateQuestionButton() {
-        return updateQuestionButton;
-    }
-
-    private Button getAddQuestionButton() {
-        return addQuestionButton;
-    }
-
-    private RadioButton getGradeGButton() {
-        return gradeGButton;
-    }
-
-    private RadioButton getGradeVGButton() {
-        return gradeVGButton;
-    }
-
-    //----Show-Tests------------
-
-    private ToggleGroup getTeacherTestToggleGroup;
-
-    private ToggleGroup getGetTeacherTestToggleGroup() {
-        return getTeacherTestToggleGroup;
-    }
-
-    private void setGetTeacherTestToggleGroup(ToggleGroup getTeacherTestToggleGroup) {
-        this.getTeacherTestToggleGroup = getTeacherTestToggleGroup;
-    }
-
     private void getTeacherTest(){
         getShowTeacherTestVbox().getChildren().clear();
         ReadTest readTest = new ReadTest();
@@ -573,26 +445,6 @@ public class TeacherController {
                 getSelectedTestToEdit();
             }
         });
-    }
-
-    @FXML private VBox showResultTeacherVbox;
-    @FXML private Button saveToPdfButton;
-    private StatisticForAdminAndTeacher statisticForAdminAndTeacher;
-
-    private VBox getShowResultTeacherVbox() {
-        return showResultTeacherVbox;
-    }
-
-    private Button getSaveToPdfButton() {
-        return saveToPdfButton;
-    }
-
-    private StatisticForAdminAndTeacher getStatisticForAdminAndTeacher() {
-        return statisticForAdminAndTeacher;
-    }
-
-    private void setStatisticForAdminAndTeacher(StatisticForAdminAndTeacher statisticForAdminAndTeacher) {
-        this.statisticForAdminAndTeacher = statisticForAdminAndTeacher;
     }
 
     private void toggleGroupActionGetSelectedTestToShowResult(){
@@ -683,6 +535,403 @@ public class TeacherController {
         scrollPane.setContent(flowPane);
         scrollPane.setFitToWidth(true);
         getShowTeacherTestBorderPane().setCenter(scrollPane);
+    }
+
+    private void getSelectToEditButton(){
+        for(int i = 0; i < getSelectToEdit().length; i++){
+                if(getSelectToEdit()[i].isSelected()){
+
+                int id = Integer.parseInt(getSelectToEdit()[i].getId());
+                Dialog<ButtonType> message = new Dialog<>();
+                ButtonType saveTest = new ButtonType("Spara", ButtonBar.ButtonData.OK_DONE);
+                ButtonType cancel = new ButtonType("Avbryt", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                if(getSelectToEdit()[i].getText().equals("Välj fråga ")){
+                    message.setWidth(400);
+                    message.setTitle("Uppdatera fråga");
+                    message.getDialogPane().setContent(getUpdateMessageQuestionLayout(id));
+                    message.getDialogPane().getButtonTypes().addAll(saveTest, cancel);
+                    message.getDialogPane().setPrefHeight(330);
+                    message.getDialogPane().setPrefWidth(350);
+
+                    getUpdateTypeOfQuestion().setOnAction(event -> {
+                        if(getUpdateTypeOfQuestion().getValue().equals("Alternativ")){
+                            getUpdateAlternativeLayout();
+                        }
+                        else if(getUpdateTypeOfQuestion().getValue().equals("Flervals")){
+                            getUpdateMultiLayout();
+                        }
+                    });
+
+                    getUpdateNumberOfAlternatives().setOnAction(event -> {
+                        if(getUpdateTypeOfQuestion().getValue().equals("Alternativ")){
+                            getUpdateAlternativeLayout();
+                        }
+                        else if(getUpdateTypeOfQuestion().getValue().equals("Flervals")){
+                            getUpdateMultiLayout();
+                        }
+                    });
+
+                    message.showAndWait().ifPresent(response -> {
+                        if(response == saveTest){
+                            UpdateTest updateTest = new UpdateTest();
+                            updateTest.updateQuestionInformation(id, getUpdateQuestionNameTextField().getText(), getUpdateTypeOfQuestion().getValue(),
+                                    getUpdateGradeG().isSelected(), getUpdateGradeVG().isSelected(), Integer.parseInt(getUpdatePoints().getEditor().getText()));
+
+                                for(int l = 0; l < getUpdateNumberOfAlternatives().getValue(); l++ ){
+                                    if(getUpdateTypeOfQuestion().getValue().equals("Alternativ")){
+                                        updateTest.updateAlternativeInformation(Integer.parseInt(getUpdateQuestionAlternativeRadioButton()[l].getId()),getUpdateQuestionAlternativeTextField()[l].getText(), getUpdateQuestionAlternativeRadioButton()[l].isSelected());
+                                    }else if(getUpdateTypeOfQuestion().getValue().equals("Flervals")){
+                                        updateTest.updateAlternativeInformation(Integer.parseInt(getUpdateQuestionAlternativeCheckbox()[l].getId()),getUpdateQuestionAlternativeTextField()[l].getText(), getUpdateQuestionAlternativeCheckbox()[l].isSelected());
+                                    }
+                                }
+
+                            getSelectedTestToEdit();
+                        }else if(response == cancel){
+                            getSelectedTestToEdit();
+                        }
+                    });
+                }else if(getSelectToEdit()[i].getText().equals("Välj test ")){
+                    message.setTitle("Uppdatera test");
+                    message.getDialogPane().setContent(getUpdateMessageTestInfoLayout());
+                    message.getDialogPane().getButtonTypes().addAll(saveTest, cancel);
+
+                    getUpdateSelfCorrectCheckBox().setOnAction(event -> {
+                        if(getUpdateSelfCorrectCheckBox().isSelected()){
+                            getUpdateShowResultToStudentCheckBox().setDisable(false);
+                        }
+                        else{
+                            getUpdateShowResultToStudentCheckBox().setSelected(false);
+                            getUpdateShowResultToStudentCheckBox().setDisable(true);
+                        }
+                    });
+
+                    message.showAndWait().ifPresent(response -> {
+                        if(response == saveTest){
+                            UpdateTest updateTest = new UpdateTest();
+                            updateTest.updateTestInformation(getReadTest().getTestList().get(0).getTestId(), getUpdateTestnameTextField().getText(), getUpdateDescriptionTextArea().getText(),
+                                    Integer.parseInt(getUpdateTestTimeInMinutesSpinner().getEditor().getText()), getUpdateDateForTestDatePIcker().getEditor().getText(),
+                                    getUpdateSelfCorrectCheckBox().isSelected(), getUpdateShowResultToStudentCheckBox().isSelected());
+                            getSelectedTestToEdit();
+                        }else if(response == cancel){
+                            getSelectedTestToEdit();
+                        }
+                    });
+                }
+            }
+        }
+    }
+
+    private void getUpdateAlternativeLayout(){
+        GridPane alternativeGridpane = new GridPane();
+        ToggleGroup alternativToggleGroup = new ToggleGroup();
+        setUpdateQuestionAlternativeTextField(new TextField[getUpdateNumberOfAlternatives().getValue()]);
+        setUpdateQuestionAlternativeRadioButton(new  RadioButton[getUpdateNumberOfAlternatives().getValue()]);
+        alternativeGridpane.setHgap(5);
+        alternativeGridpane.setVgap(5);
+
+            for(int i = 0; i < getUpdateNumberOfAlternatives().getValue(); i++){
+                alternativeGridpane.add(new Label("Alternativ " + (i+1) + " : "),0,i);
+                alternativeGridpane.add(getUpdateQuestionAlternativeTextField()[i] = new TextField(),1,i);
+                alternativeGridpane.add(new Label(" Rätt svar: "), 2,i);
+                alternativeGridpane.add(getUpdateQuestionAlternativeRadioButton()[i] = new RadioButton(),3,i);
+                getUpdateQuestionAlternativeRadioButton()[i].setToggleGroup(alternativToggleGroup);
+            }
+
+        getUpdateQuestionAlternativeBorderPane().setCenter(alternativeGridpane);
+    }
+
+    private void getUpdateMultiLayout(){
+        GridPane alternativeGridpane = new GridPane();
+        setUpdateQuestionAlternativeTextField(new TextField[getUpdateNumberOfAlternatives().getValue()]);
+        setUpdateQuestionAlternativeCheckbox(new  CheckBox[getUpdateNumberOfAlternatives().getValue()]);
+        alternativeGridpane.setHgap(5);
+        alternativeGridpane.setVgap(5);
+
+            for(int i = 0; i < getUpdateNumberOfAlternatives().getValue(); i++){
+                alternativeGridpane.add(new Label("Alternativ " + (i+1) + " : "),0,i);
+                alternativeGridpane.add(getUpdateQuestionAlternativeTextField()[i] = new TextField(),1,i);
+                alternativeGridpane.add(new Label(" Rätt svar: "), 2,i);
+                alternativeGridpane.add(getUpdateQuestionAlternativeCheckbox()[i] = new CheckBox(),3,i);
+            }
+
+        getUpdateQuestionAlternativeBorderPane().setCenter(alternativeGridpane);
+    }
+
+    private GridPane getUpdateMessageQuestionLayout(int id){
+        GridPane gridPane = new GridPane();
+        ToggleGroup toggleGroup = new ToggleGroup();
+        gridPane.setVgap(5);
+        gridPane.setHgap(5);
+
+        for(int j = 0; j < getReadTest().getTestList().get(0).getQuestionList().size(); j++) {
+            if (getReadTest().getTestList().get(0).getQuestionList().get(j).getQuestionId() == id) {
+                setAlternativeIdList(new int[getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().size()]);
+                setUpdateQuestionNameTextField(new TextField(getReadTest().getTestList().get(0).getQuestionList().get(j).getQuestionText()));
+                setUpdateGradeG(new RadioButton());
+                getUpdateGradeG().setSelected(getReadTest().getTestList().get(0).getQuestionList().get(j).isGradeG());
+                getUpdateGradeG().setText("G");
+                getUpdateGradeG().setToggleGroup(toggleGroup);
+                setUpdateGradeVG(new RadioButton());
+                getUpdateGradeVG().setText("VG");
+                getUpdateGradeVG().setToggleGroup(toggleGroup);
+                getUpdateGradeVG().setSelected(getReadTest().getTestList().get(0).getQuestionList().get(j).isGradeVG());
+                setUpdatePoints(new Spinner(0, 100, 0, 1));
+                getUpdatePoints().getEditor().setText(String.valueOf(getReadTest().getTestList().get(0).getQuestionList().get(j).getPoints()));
+                setUpdateTypeOfQuestion(new ComboBox<>(getTypeOfQuestionList()));
+                getUpdateTypeOfQuestion().setValue(getReadTest().getTestList().get(0).getQuestionList().get(j).getTypeOfQuestion());
+                setUpdateNumberOfAlternatives(new ComboBox<>(getNumberOfAlternatviesList()));
+                getUpdateNumberOfAlternatives().setValue(getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().size());
+                setUpdateQuestionAlternativeBorderPane(new BorderPane());
+                getUpdateTypeOfQuestion().setDisable(true);
+                getUpdateNumberOfAlternatives().setDisable(true);
+
+                gridPane.add(new Label("Namn: "), 0, 0);
+                gridPane.add(getUpdateQuestionNameTextField(), 1, 0, 4, 1);
+                gridPane.add(new Label("Betyg: "), 0, 1);
+                gridPane.add(getUpdateGradeG(), 1, 1);
+                gridPane.add(getUpdateGradeVG(), 2, 1);
+                gridPane.add(new Label("Poäng: "), 0, 2);
+                gridPane.add(getUpdatePoints(), 1, 2, 2, 1);
+                gridPane.add(new Label("Typ av fråga: "), 0, 3);
+                gridPane.add(getUpdateTypeOfQuestion(), 1, 3);
+                gridPane.add(new Label("Antal alternativ: "), 2, 3);
+                gridPane.add(getUpdateNumberOfAlternatives(), 3, 3);
+                gridPane.add(getUpdateQuestionAlternativeBorderPane(), 0, 4, 4, 1);
+
+                if (getUpdateTypeOfQuestion().getValue().equals("Alternativ")) {
+                    getUpdateAlternativeLayout();
+
+                    for (int k = 0; k < getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().size(); k++) {
+                        getUpdateQuestionAlternativeTextField()[k].setText(getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().get(k).getAlternativeText());
+                        getUpdateQuestionAlternativeRadioButton()[k].setSelected(getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().get(k).isAlternativeStatus());
+                        getUpdateQuestionAlternativeRadioButton()[k].setId(String.valueOf(getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().get(k).getAlternativeId()));
+                        getAlternativeIdList()[k] = getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().get(k).getAlternativeId();
+                    }
+
+                } else if (getUpdateTypeOfQuestion().getValue().equals("Flervals")) {
+                    getUpdateMultiLayout();
+
+                    for (int k = 0; k < getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().size(); k++) {
+                        getUpdateQuestionAlternativeTextField()[k].setText(getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().get(k).getAlternativeText());
+                        getUpdateQuestionAlternativeCheckbox()[k].setSelected(getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().get(k).isAlternativeStatus());
+                        getUpdateQuestionAlternativeCheckbox()[k].setId(String.valueOf(getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().get(k).getAlternativeId()));
+                        getAlternativeIdList()[k] = getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().get(k).getAlternativeId();
+                    }
+                }
+            }
+        }
+        return gridPane;
+    }
+
+    private GridPane getUpdateMessageTestInfoLayout(){
+        GridPane gridPane = new GridPane();
+        gridPane.setVgap(5);
+        gridPane.setHgap(5);
+
+        setUpdateTestnameTextField(new TextField(getReadTest().getTestList().get(0).getTestName()));
+        setUpdateDescriptionTextArea(new TextArea(getReadTest().getTestList().get(0).getTestDescription()));
+        setUpdateDateForTestDatePIcker(new DatePicker());
+        getUpdateDateForTestDatePIcker().getEditor().setText(getReadTest().getTestList().get(0).getLastDate());
+        setUpdateTestTimeInMinutesSpinner(new Spinner(0,100,0,1));
+        getUpdateTestTimeInMinutesSpinner().getEditor().setText(String.valueOf(getReadTest().getTestList().get(0).getTimeForTestMinutes()));
+        setUpdateSelfCorrectCheckBox(new CheckBox());
+        getUpdateSelfCorrectCheckBox().setSelected(getReadTest().getTestList().get(0).isSelfCorrecting());
+        setUpdateShowResultToStudentCheckBox(new CheckBox());
+        getUpdateShowResultToStudentCheckBox().setSelected(getReadTest().getTestList().get(0).isSeeResultAfter());
+
+        if(!getReadTest().getTestList().get(0).isSelfCorrecting()){
+            getUpdateShowResultToStudentCheckBox().setDisable(true);
+        }
+
+        gridPane.add(new Label("Namn: "), 0,0);
+        gridPane.add(getUpdateTestnameTextField(),1,0);
+        gridPane.add(new Label("Beskrivning: "), 0,1);
+        gridPane.add(getUpdateDescriptionTextArea(),1,1);
+        gridPane.add(new Label("Datum: "), 0,2);
+        gridPane.add(getUpdateDateForTestDatePIcker(),1,2);
+        gridPane.add(new Label("Tid: "), 0,3);
+        gridPane.add(getUpdateTestTimeInMinutesSpinner(),1,3);
+        gridPane.add(new Label("Självrättande: "), 0,4);
+        gridPane.add(getUpdateSelfCorrectCheckBox(),1,4);
+        gridPane.add(new Label("Visa test för student: "), 0,5);
+        gridPane.add(getUpdateShowResultToStudentCheckBox(),1,5);
+
+        return gridPane;
+    }
+
+    @FXML
+    private void getSelectToDelete(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Ta bort prov");
+        alert.setHeaderText("Borttagning av prov!");
+        alert.setContentText("Är du säker på att du vill ta bort provet?");
+        alert.showAndWait().ifPresent(response ->{
+            if (response == ButtonType.OK) {
+                for(int i = 0; i <  getSelectTestToPublishOrEdit().length; i++) {
+                    if (getSelectTestToPublishOrEdit()[i].isSelected()) {
+                        DeleteTest deleteTest = new DeleteTest();
+                        DeleteUserTests deleteUserTests = new DeleteUserTests();
+                        deleteTest.deleteTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
+                        deleteUserTests.deleteTestFromUserTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
+                        getTeacherTestToEdit();
+                        getShowTeacherTestBorderPane().setCenter(null);
+                    }
+                }
+            }
+        });
+    }
+
+    private TextField[] getAlternativField() {
+        return alternativField;
+    }
+
+    private void setAlternativField(TextField[] alternativField) {
+        this.alternativField = alternativField;
+    }
+
+    private ComboBox<Integer> getNumberOfAlternatives() {
+        return numberOfAlternatives;
+    }
+
+    private ComboBox<NewQuestion> getAllQuestionList() {
+        return allQuestionList;
+    }
+
+    private int getIndexQuestion() {
+        return indexQuestion;
+    }
+
+    private void setIndexQuestion(int indexQuestion) {
+        this.indexQuestion = indexQuestion;
+    }
+
+    private Spinner getPointSpinner() {
+        return pointSpinner;
+    }
+
+    private void setPointSpinner(int pointSpinner) {
+        this.pointSpinner.getEditor().setText(String.valueOf(pointSpinner));
+    }
+
+    private TextField getTestName() {
+        return testName;
+    }
+
+    private CheckBox[] getRightAnswerCheckbox() {
+        return rightAnswerCheckbox;
+    }
+
+    private void setRightAnswerCheckbox(CheckBox[] rightAnswerCheckbox) {
+        this.rightAnswerCheckbox = rightAnswerCheckbox;
+    }
+
+    private RadioButton[] getRightAnswerRadioButton() {
+        return rightAnswerRadioButton;
+    }
+
+    private void setRightAnswerRadioButton(RadioButton[] rightAnswerRadioButton) {
+        this.rightAnswerRadioButton = rightAnswerRadioButton;
+    }
+
+    private Label getShowResultsToStudentLabel() {
+        return showResultsToStudentLabel;
+    }
+
+    private CheckBox getSelfCorrect() {
+        return selfCorrect;
+    }
+
+    private CheckBox getShowResultsToStudent() {
+        return showResultsToStudent;
+    }
+
+    private ComboBox<String> getTypOfQuestion() {
+        return typOfQuestion;
+    }
+
+    private void setBorderPaneAlternatives(GridPane gridPane){
+        this.borderPaneAlternatives.setCenter(gridPane);
+    }
+
+    private String getQuestionName(){
+        return questionName.getText();
+    }
+
+    private void setQuestionName(String questionName){
+        this.questionName.setText(questionName);
+    }
+
+    private CreateTest getCreateTest() {
+        return createTest;
+    }
+
+    private void setCreateTest(CreateTest createTest) {
+        this.createTest = createTest;
+    }
+
+    private NewTest getNewTest() {
+        return newTest;
+    }
+
+    private void setNewTest(NewTest newTest) {
+        this.newTest = newTest;
+    }
+
+    private TextArea getDescriptionInput() {
+        return descriptionInput;
+    }
+
+    private Spinner getTimeInput() {
+        return timeInput;
+    }
+
+    private DatePicker getDatePicker() {
+        return datePicker;
+    }
+
+    private Button getDeleteQuestionButton() {
+        return deleteQuestionButton;
+    }
+
+    private Button getUpdateQuestionButton() {
+        return updateQuestionButton;
+    }
+
+    private Button getAddQuestionButton() {
+        return addQuestionButton;
+    }
+
+    private RadioButton getGradeGButton() {
+        return gradeGButton;
+    }
+
+    private RadioButton getGradeVGButton() {
+        return gradeVGButton;
+    }
+
+    private ToggleGroup getGetTeacherTestToggleGroup() {
+        return getTeacherTestToggleGroup;
+    }
+
+    private void setGetTeacherTestToggleGroup(ToggleGroup getTeacherTestToggleGroup) {
+        this.getTeacherTestToggleGroup = getTeacherTestToggleGroup;
+    }
+
+    private VBox getShowResultTeacherVbox() {
+        return showResultTeacherVbox;
+    }
+
+    private Button getSaveToPdfButton() {
+        return saveToPdfButton;
+    }
+
+    private StatisticForAdminAndTeacher getStatisticForAdminAndTeacher() {
+        return statisticForAdminAndTeacher;
+    }
+
+    private void setStatisticForAdminAndTeacher(StatisticForAdminAndTeacher statisticForAdminAndTeacher) {
+        this.statisticForAdminAndTeacher = statisticForAdminAndTeacher;
     }
 
     private VBox getShowTeacherTestVbox() {
@@ -813,34 +1062,12 @@ public class TeacherController {
         this.updateQuestionAlternativeCheckbox = updateQuestionAlternativeCheckbox;
     }
 
-    private String holdQuestionTypeForUpdate;
-    private int alternativeIdList[];
-    private int hodlQuestionIdForNewAlternatives;
-    private TextField updateTestnameTextField;
-    private TextArea updateDescriptionTextArea;
-    private Spinner updateTestTimeInMinutesSpinner;
-    private DatePicker updateDateForTestDatePIcker;
-    private CheckBox updateSelfCorrectCheckBox;
-    private CheckBox updateShowResultToStudentCheckBox;
-
-    private String getHoldQuestionTypeForUpdate() {
-        return holdQuestionTypeForUpdate;
-    }
-
-    private void setHoldQuestionTypeForUpdate(String holdQuestionTypeForUpdate) {
-        this.holdQuestionTypeForUpdate = holdQuestionTypeForUpdate;
-    }
-
     private int[] getAlternativeIdList() {
         return alternativeIdList;
     }
 
     private void setAlternativeIdList(int[] alternativeIdList) {
         this.alternativeIdList = alternativeIdList;
-    }
-
-    private void setHodlQuestionIdForNewAlternatives(int hodlQuestionIdForNewAlternatives) {
-        this.hodlQuestionIdForNewAlternatives = hodlQuestionIdForNewAlternatives;
     }
 
     private TextField getUpdateTestnameTextField() {
@@ -889,260 +1116,5 @@ public class TeacherController {
 
     private void setUpdateShowResultToStudentCheckBox(CheckBox updateShowResultToStudentCheckBox) {
         this.updateShowResultToStudentCheckBox = updateShowResultToStudentCheckBox;
-    }
-
-    private void getSelectToEditButton(){
-        for(int i = 0; i < getSelectToEdit().length; i++){
-                if(getSelectToEdit()[i].isSelected()){
-
-                int id = Integer.parseInt(getSelectToEdit()[i].getId());
-                Dialog<ButtonType> message = new Dialog<>();
-                ButtonType saveTest = new ButtonType("Spara", ButtonBar.ButtonData.OK_DONE);
-                ButtonType cancel = new ButtonType("Avbryt", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-                if(getSelectToEdit()[i].getText().equals("Välj fråga ")){
-                    message.setWidth(400);
-                    message.setTitle("Uppdatera fråga");
-                    message.getDialogPane().setContent(getUpdateMessageQuestionLayout(id));
-                    message.getDialogPane().getButtonTypes().addAll(saveTest, cancel);
-                    message.getDialogPane().setPrefHeight(330);
-                    message.getDialogPane().setPrefWidth(350);
-
-                    getUpdateTypeOfQuestion().setOnAction(event -> {
-                        if(getUpdateTypeOfQuestion().getValue().equals("Alternativ")){
-                            getUpdateAlternativeLayout();
-                        }
-                        else if(getUpdateTypeOfQuestion().getValue().equals("Flervals")){
-                            getUpdateMultiLayout();
-                        }
-                    });
-
-                    getUpdateNumberOfAlternatives().setOnAction(event -> {
-                        if(getUpdateTypeOfQuestion().getValue().equals("Alternativ")){
-                            getUpdateAlternativeLayout();
-                        }
-                        else if(getUpdateTypeOfQuestion().getValue().equals("Flervals")){
-                            getUpdateMultiLayout();
-                        }
-                    });
-
-                    message.showAndWait().ifPresent(response -> {
-                        if(response == saveTest){
-                            UpdateTest updateTest = new UpdateTest();
-                            updateTest.updateQuestionInformation(id, getUpdateQuestionNameTextField().getText(), getUpdateTypeOfQuestion().getValue(),
-                                    getUpdateGradeG().isSelected(), getUpdateGradeVG().isSelected(), Integer.parseInt(getUpdatePoints().getEditor().getText()));
-
-                            if(getUpdateTypeOfQuestion().getValue().equals(getHoldQuestionTypeForUpdate())){
-                                for(int l = 0; l < getUpdateNumberOfAlternatives().getValue(); l++ ){
-                                    if(getUpdateTypeOfQuestion().getValue().equals("Alternativ")){
-                                        updateTest.updateAlternativeInformation(Integer.parseInt(getUpdateQuestionAlternativeRadioButton()[l].getId()),getUpdateQuestionAlternativeTextField()[l].getText(), getUpdateQuestionAlternativeRadioButton()[l].isSelected());
-                                    }else if(getUpdateTypeOfQuestion().getValue().equals("Flervals")){
-                                        updateTest.updateAlternativeInformation(Integer.parseInt(getUpdateQuestionAlternativeCheckbox()[l].getId()),getUpdateQuestionAlternativeTextField()[l].getText(), getUpdateQuestionAlternativeCheckbox()[l].isSelected());
-                                    }
-                                }
-                            }else if(!getUpdateTypeOfQuestion().getValue().equals(getHoldQuestionTypeForUpdate())){
-                                //updateTest.deleteAQuestion(id);
-                                for(int m = 0; m < getAlternativeIdList().length; m++){
-                                   updateTest.deleteAnAlternative(getAlternativeIdList()[m]);
-                                    System.out.println(getAlternativeIdList()[m]);
-                                }
-                            }
-                            getSelectedTestToEdit();
-                        }else if(response == cancel){
-                            getSelectedTestToEdit();
-                        }
-                    });
-                }else if(getSelectToEdit()[i].getText().equals("Välj test ")){
-                    message.setTitle("Uppdatera test");
-                    message.getDialogPane().setContent(getUpdateMessageTestInfoLayout());
-                    message.getDialogPane().getButtonTypes().addAll(saveTest, cancel);
-
-                    getUpdateSelfCorrectCheckBox().setOnAction(event -> {
-                        if(getUpdateSelfCorrectCheckBox().isSelected()){
-                            getUpdateShowResultToStudentCheckBox().setDisable(false);
-                        }
-                        else{
-                            getUpdateShowResultToStudentCheckBox().setSelected(false);
-                            getUpdateShowResultToStudentCheckBox().setDisable(true);
-                        }
-                    });
-
-                    message.showAndWait().ifPresent(response -> {
-                        if(response == saveTest){
-                            UpdateTest updateTest = new UpdateTest();
-                            updateTest.updateTestInformation(getReadTest().getTestList().get(0).getTestId(), getUpdateTestnameTextField().getText(), getUpdateDescriptionTextArea().getText(),
-                                    Integer.parseInt(getUpdateTestTimeInMinutesSpinner().getEditor().getText()), getUpdateDateForTestDatePIcker().getEditor().getText(),
-                                    getUpdateSelfCorrectCheckBox().isSelected(), getUpdateShowResultToStudentCheckBox().isSelected());
-                            getSelectedTestToEdit();
-                        }else if(response == cancel){
-                            getSelectedTestToEdit();
-                        }
-                    });
-                }
-            }
-        }
-    }
-
-    private void getUpdateAlternativeLayout(){
-        GridPane alternativeGridpane = new GridPane();
-        ToggleGroup alternativToggleGroup = new ToggleGroup();
-        setUpdateQuestionAlternativeTextField(new TextField[getUpdateNumberOfAlternatives().getValue()]);
-        setUpdateQuestionAlternativeRadioButton(new  RadioButton[getUpdateNumberOfAlternatives().getValue()]);
-        alternativeGridpane.setHgap(5);
-        alternativeGridpane.setVgap(5);
-
-            for(int i = 0; i < getUpdateNumberOfAlternatives().getValue(); i++){
-                alternativeGridpane.add(new Label("Alternativ " + (i+1) + " : "),0,i);
-                alternativeGridpane.add(getUpdateQuestionAlternativeTextField()[i] = new TextField(),1,i);
-                alternativeGridpane.add(new Label(" Rätt svar: "), 2,i);
-                alternativeGridpane.add(getUpdateQuestionAlternativeRadioButton()[i] = new RadioButton(),3,i);
-                getUpdateQuestionAlternativeRadioButton()[i].setToggleGroup(alternativToggleGroup);
-            }
-
-        getUpdateQuestionAlternativeBorderPane().setCenter(alternativeGridpane);
-    }
-
-    private void getUpdateMultiLayout(){
-        GridPane alternativeGridpane = new GridPane();
-        setUpdateQuestionAlternativeTextField(new TextField[getUpdateNumberOfAlternatives().getValue()]);
-        setUpdateQuestionAlternativeCheckbox(new  CheckBox[getUpdateNumberOfAlternatives().getValue()]);
-        alternativeGridpane.setHgap(5);
-        alternativeGridpane.setVgap(5);
-
-            for(int i = 0; i < getUpdateNumberOfAlternatives().getValue(); i++){
-                alternativeGridpane.add(new Label("Alternativ " + (i+1) + " : "),0,i);
-                alternativeGridpane.add(getUpdateQuestionAlternativeTextField()[i] = new TextField(),1,i);
-                alternativeGridpane.add(new Label(" Rätt svar: "), 2,i);
-                alternativeGridpane.add(getUpdateQuestionAlternativeCheckbox()[i] = new CheckBox(),3,i);
-            }
-
-        getUpdateQuestionAlternativeBorderPane().setCenter(alternativeGridpane);
-    }
-
-    private GridPane getUpdateMessageQuestionLayout(int id){
-        GridPane gridPane = new GridPane();
-        ToggleGroup toggleGroup = new ToggleGroup();
-        gridPane.setVgap(5);
-        gridPane.setHgap(5);
-
-        for(int j = 0; j < getReadTest().getTestList().get(0).getQuestionList().size(); j++) {
-            if (getReadTest().getTestList().get(0).getQuestionList().get(j).getQuestionId() == id) {
-                setAlternativeIdList(new int[getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().size()]);
-                setHodlQuestionIdForNewAlternatives(getReadTest().getTestList().get(0).getQuestionList().get(j).getQuestionId());
-
-                setUpdateQuestionNameTextField(new TextField(getReadTest().getTestList().get(0).getQuestionList().get(j).getQuestionText()));
-                setUpdateGradeG(new RadioButton());
-                getUpdateGradeG().setSelected(getReadTest().getTestList().get(0).getQuestionList().get(j).isGradeG());
-                getUpdateGradeG().setText("G");
-                getUpdateGradeG().setToggleGroup(toggleGroup);
-                setUpdateGradeVG(new RadioButton());
-                getUpdateGradeVG().setText("VG");
-                getUpdateGradeVG().setToggleGroup(toggleGroup);
-                getUpdateGradeVG().setSelected(getReadTest().getTestList().get(0).getQuestionList().get(j).isGradeVG());
-                setUpdatePoints(new Spinner(0, 100, 0, 1));
-                getUpdatePoints().getEditor().setText(String.valueOf(getReadTest().getTestList().get(0).getQuestionList().get(j).getPoints()));
-                setUpdateTypeOfQuestion(new ComboBox<>(getTypeOfQuestionList()));
-                getUpdateTypeOfQuestion().setValue(getReadTest().getTestList().get(0).getQuestionList().get(j).getTypeOfQuestion());
-                setHoldQuestionTypeForUpdate(getReadTest().getTestList().get(0).getQuestionList().get(j).getTypeOfQuestion());
-                setUpdateNumberOfAlternatives(new ComboBox<>(getNumberOfAlternatviesList()));
-                getUpdateNumberOfAlternatives().setValue(getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().size());
-                setUpdateQuestionAlternativeBorderPane(new BorderPane());
-                getUpdateTypeOfQuestion().setDisable(true);
-                getUpdateNumberOfAlternatives().setDisable(true);
-
-                gridPane.add(new Label("Namn: "), 0, 0);
-                gridPane.add(getUpdateQuestionNameTextField(), 1, 0, 4, 1);
-                gridPane.add(new Label("Betyg: "), 0, 1);
-                gridPane.add(getUpdateGradeG(), 1, 1);
-                gridPane.add(getUpdateGradeVG(), 2, 1);
-                gridPane.add(new Label("Poäng: "), 0, 2);
-                gridPane.add(getUpdatePoints(), 1, 2, 2, 1);
-                gridPane.add(new Label("Typ av fråga: "), 0, 3);
-                gridPane.add(getUpdateTypeOfQuestion(), 1, 3);
-                gridPane.add(new Label("Antal alternativ: "), 2, 3);
-                gridPane.add(getUpdateNumberOfAlternatives(), 3, 3);
-                gridPane.add(getUpdateQuestionAlternativeBorderPane(), 0, 4, 4, 1);
-
-                if (getUpdateTypeOfQuestion().getValue().equals("Alternativ")) {
-                    getUpdateAlternativeLayout();
-
-                    for (int k = 0; k < getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().size(); k++) {
-                        getUpdateQuestionAlternativeTextField()[k].setText(getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().get(k).getAlternativeText());
-                        getUpdateQuestionAlternativeRadioButton()[k].setSelected(getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().get(k).isAlternativeStatus());
-                        getUpdateQuestionAlternativeRadioButton()[k].setId(String.valueOf(getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().get(k).getAlternativeId()));
-                        getAlternativeIdList()[k] = getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().get(k).getAlternativeId();
-                    }
-
-                } else if (getUpdateTypeOfQuestion().getValue().equals("Flervals")) {
-                    getUpdateMultiLayout();
-
-                    for (int k = 0; k < getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().size(); k++) {
-                        getUpdateQuestionAlternativeTextField()[k].setText(getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().get(k).getAlternativeText());
-                        getUpdateQuestionAlternativeCheckbox()[k].setSelected(getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().get(k).isAlternativeStatus());
-                        getUpdateQuestionAlternativeCheckbox()[k].setId(String.valueOf(getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().get(k).getAlternativeId()));
-                        getAlternativeIdList()[k] = getReadTest().getTestList().get(0).getQuestionList().get(j).getAlternativeList().get(k).getAlternativeId();
-                    }
-                }
-            }
-        }
-        return gridPane;
-    }
-
-    private GridPane getUpdateMessageTestInfoLayout(){
-        GridPane gridPane = new GridPane();
-        gridPane.setVgap(5);
-        gridPane.setHgap(5);
-
-        setUpdateTestnameTextField(new TextField(getReadTest().getTestList().get(0).getTestName()));
-        setUpdateDescriptionTextArea(new TextArea(getReadTest().getTestList().get(0).getTestDescription()));
-        setUpdateDateForTestDatePIcker(new DatePicker());
-        getUpdateDateForTestDatePIcker().getEditor().setText(getReadTest().getTestList().get(0).getLastDate());
-        setUpdateTestTimeInMinutesSpinner(new Spinner(0,100,0,1));
-        getUpdateTestTimeInMinutesSpinner().getEditor().setText(String.valueOf(getReadTest().getTestList().get(0).getTimeForTestMinutes()));
-        setUpdateSelfCorrectCheckBox(new CheckBox());
-        getUpdateSelfCorrectCheckBox().setSelected(getReadTest().getTestList().get(0).isSelfCorrecting());
-        setUpdateShowResultToStudentCheckBox(new CheckBox());
-        getUpdateShowResultToStudentCheckBox().setSelected(getReadTest().getTestList().get(0).isSeeResultAfter());
-
-        if(!getReadTest().getTestList().get(0).isSelfCorrecting()){
-            getUpdateShowResultToStudentCheckBox().setDisable(true);
-        }
-
-        gridPane.add(new Label("Namn: "), 0,0);
-        gridPane.add(getUpdateTestnameTextField(),1,0);
-        gridPane.add(new Label("Beskrivning: "), 0,1);
-        gridPane.add(getUpdateDescriptionTextArea(),1,1);
-        gridPane.add(new Label("Datum: "), 0,2);
-        gridPane.add(getUpdateDateForTestDatePIcker(),1,2);
-        gridPane.add(new Label("Tid: "), 0,3);
-        gridPane.add(getUpdateTestTimeInMinutesSpinner(),1,3);
-        gridPane.add(new Label("Självrättande: "), 0,4);
-        gridPane.add(getUpdateSelfCorrectCheckBox(),1,4);
-        gridPane.add(new Label("Visa test för student: "), 0,5);
-        gridPane.add(getUpdateShowResultToStudentCheckBox(),1,5);
-
-        return gridPane;
-    }
-
-    @FXML
-    private void getSelectToDelete(){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Ta bort prov");
-        alert.setHeaderText("Borttagning av prov!");
-        alert.setContentText("Är du säker på att du vill ta bort provet?");
-        alert.showAndWait().ifPresent(response ->{
-            if (response == ButtonType.OK) {
-                for(int i = 0; i <  getSelectTestToPublishOrEdit().length; i++) {
-                    if (getSelectTestToPublishOrEdit()[i].isSelected()) {
-                        DeleteTest deleteTest = new DeleteTest();
-                        DeleteUserTests deleteUserTests = new DeleteUserTests();
-                        deleteTest.deleteTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
-                        deleteUserTests.deleteTestFromUserTest(Integer.parseInt(getGetTeacherTestToggleGroup().getSelectedToggle().getUserData().toString()));
-                        getTeacherTestToEdit();
-                        getShowTeacherTestBorderPane().setCenter(null);
-                    }
-                }
-            }
-        });
     }
 }
