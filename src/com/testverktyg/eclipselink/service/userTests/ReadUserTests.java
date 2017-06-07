@@ -38,12 +38,12 @@ public class ReadUserTests {
         entityManagerFactory.close();
     }
 
-    public List<UserTests> getUserTestListByTestId() {
-        return userTestListByTestId;
-    }
-
     private void setUserTestListByTestId(List<UserTests> userTestListByTestId) {
         this.userTestListByTestId = userTestListByTestId;
+    }
+
+    public List<UserTests> getUserTestListByTestId() {
+        return userTestListByTestId;
     }
 
     public List<UserTests> getUserTestsList() {

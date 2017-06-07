@@ -15,7 +15,6 @@ public class CreateUser {
         EntityManager entitymanager = emfactory.createEntityManager( );
         entitymanager.getTransaction( ).begin();
 
-
         User user = new User( );
         user.setFirstname( fname );
         user.setLastname( lname );

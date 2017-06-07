@@ -22,18 +22,6 @@ public class TimeCounter {
         }
     }
 
-
-    public static void main(String[] args) {
-
-    TimeCounter timeCounter = new TimeCounter();
-        try {
-            timeCounter.timeCounter();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public int getTestId() {
         return testId;
     }
