@@ -20,19 +20,22 @@
             fx:controller="com.testverktyg.eclipselink.view.student.StudentController">
     <padding><Insets top="30" left="80" right="120" bottom="30"/> </padding>
     <left>
-        <VBox>
-        <ScrollPane styleClass="edge-to-edge" >
-            <VBox fx:id="showStudentTestVbox" spacing="20" >
-                <padding><Insets right="120"/> </padding>
-            </VBox>
-        </ScrollPane>
+        <HBox>
+            <VBox>
+                <ScrollPane styleClass="edge-to-edge" >
+                    <VBox fx:id="showStudentTestVbox" spacing="20" >
+                        <padding><Insets right="120"/> </padding>
+                    </VBox>
+                </ScrollPane>
 
-        <HBox spacing="15">
-            <padding><Insets  top="20"/> </padding>
-            <Button fx:id="doSelectedTestButton" text="Utför test" style="-fx-background-color: #EE7202; -fx-text-fill: white" onAction="#getSelectedTestToDo" disable="true"/>
-            <Button fx:id="showResultButton" text="Visa resultat" disable="true"/>
+                <HBox spacing="15">
+                    <padding><Insets  top="20"/> </padding>
+                    <Button fx:id="doSelectedTestButton" text="Utför test" style="-fx-background-color: #EE7202; -fx-text-fill: white" onAction="#getSelectedTestToDo" disable="true"/>
+                    <Button fx:id="showResultButton" text="Visa resultat" onAction="#getShowResultForTest" disable="true"/>
+                </HBox>
+            </VBox>
+            <HBox fx:id="studentResultHbox"/>
         </HBox>
-        </VBox>
     </left>
 
     <center>

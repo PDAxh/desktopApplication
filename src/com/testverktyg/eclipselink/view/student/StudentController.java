@@ -51,6 +51,7 @@ public class StudentController {
     @FXML private VBox showStudentTestVbox;
     @FXML private Button doSelectedTestButton;
     @FXML private Button showResultButton;
+    @FXML private HBox studentResultHbox;
     private ReadTest newTest;
     private CreateStudentAnswer csa = new CreateStudentAnswer();
     private RadioButton setSelectTestToDo[];
@@ -425,6 +426,55 @@ public class StudentController {
         }
 
         getShowToStudentClassLabel().setText(readUser.getFindClassWithUserIdList().get(0).getKlass());
+    }
+
+    @FXML
+    private void getShowResultForTest(){
+        int testId = Integer.parseInt(getStudentTestToggleGroup().getSelectedToggle().getUserData().toString());
+        int gGrade = 0;
+        int vgGrade = 0;
+        String grade = "";
+
+        ReadStudentAnswer readStudentAnswer = new ReadStudentAnswer();
+        VBox vBox = new VBox();
+
+        readStudentAnswer.getStudentAnswerFromSpecificStudent(getUserId(), testId);
+        readStudentAnswer.getCorrectAnswers(testId);
+
+        if(!(readStudentAnswer.getMaxPointsG() == 0)){
+            gGrade = (readStudentAnswer.getStudPointsG()*100)/readStudentAnswer.getMaxPointsG();
+        }
+
+        if(!(readStudentAnswer.getMaxPointsVG() == 0)){
+            vgGrade = (readStudentAnswer.getStudPointsVG()*100)/readStudentAnswer.getMaxPointsVG();
+        }
+
+        if(gGrade>=60){
+            if(vgGrade>=60){
+                grade = "VG";
+            }else{
+                grade = "G";
+            }
+        }else{
+            grade = "IG";
+        }
+
+        vBox.getChildren().add(new Label("Ditt resultat:"));
+        vBox.getChildren().add(new Label("G poäng: :" + readStudentAnswer.getStudPointsG() + " / " + readStudentAnswer.getMaxPointsG()));
+        vBox.getChildren().add(new Label("VG poäng: :" + readStudentAnswer.getStudPointsVG() + " / " + readStudentAnswer.getMaxPointsVG()));
+        vBox.getChildren().add(new Label("Betyg: :" + grade));
+        vBox.getChildren().add(new Label("Poäng: " + (readStudentAnswer.getStudPointsG() + readStudentAnswer.getStudPointsVG()) + " / "
+                + (readStudentAnswer.getMaxPointsG() + readStudentAnswer.getMaxPointsVG())));
+
+        getStudentResultHbox().getChildren().add(vBox);
+
+        getStudentTestToggleGroup().selectedToggleProperty().addListener(event -> {
+            getStudentResultHbox().getChildren().clear();
+        });
+    }
+
+    private HBox getStudentResultHbox() {
+        return studentResultHbox;
     }
 
     private ToggleGroup getStudentTestToggleGroup() {
