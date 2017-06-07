@@ -44,26 +44,6 @@
         <CheckBox fx:id="showResultsToStudent" disable="true" GridPane.columnIndex="4" GridPane.rowIndex="5" />
 
         <Button onAction="#confirmedTestMessage" style="-fx-background-color: #EE7202; -fx-text-fill: white" text="Spara" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-         <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
         </GridPane>
     </left>
 
