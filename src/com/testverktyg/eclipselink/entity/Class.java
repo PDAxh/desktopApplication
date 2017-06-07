@@ -13,7 +13,6 @@ import javax.persistence.*;
 public class Class {
 
     @Id
-    @SequenceGenerator(name="seq", initialValue = 1, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private int classId;
 

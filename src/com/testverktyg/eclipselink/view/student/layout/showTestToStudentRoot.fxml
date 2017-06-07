@@ -19,21 +19,20 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.testverktyg.eclipselink.view.student.StudentController">
     <padding><Insets top="30" left="80" right="120" bottom="30"/> </padding>
-
-    <top>
-        <HBox spacing="15">
-            <padding><Insets  bottom="30"/> </padding>
-            <Button fx:id="doSelectedTestButton" text="Gör valt test" onAction="#getSelectedTestToDo" disable="true"/>
-            <Button fx:id="showResultButton" text="Visa resultat" disable="true"/>
-        </HBox>
-    </top>
-
     <left>
+        <VBox>
         <ScrollPane styleClass="edge-to-edge" >
             <VBox fx:id="showStudentTestVbox" spacing="20" >
                 <padding><Insets right="120"/> </padding>
             </VBox>
         </ScrollPane>
+
+        <HBox spacing="15">
+            <padding><Insets  top="20"/> </padding>
+            <Button fx:id="doSelectedTestButton" text="Gör valt test" onAction="#getSelectedTestToDo" disable="true"/>
+            <Button fx:id="showResultButton" text="Visa resultat" disable="true"/>
+        </HBox>
+        </VBox>
     </left>
 
     <center>
@@ -71,4 +70,5 @@
                 <Button fx:id="showToUserNextButton" onAction="#getNewQuestion" text="Nästa" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="4" />
         </GridPane>
     </center>
+
 </BorderPane>

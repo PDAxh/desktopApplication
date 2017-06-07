@@ -2,10 +2,7 @@ package com.testverktyg.eclipselink.entity;
 
 import javax.persistence.*;
 
-/**
- * Created by Grodfan on 2017-05-15.
- *
- */
+/* Created by Grodfan on 2017-05-15. */
 
 @Entity
 @NamedQueries({
@@ -17,7 +14,6 @@ import javax.persistence.*;
 public class UserTests {
 
     @Id
-    @SequenceGenerator(name="seq", initialValue = 1, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private int userTestsId;
     private int userId;

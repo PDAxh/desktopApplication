@@ -2,9 +2,7 @@ package com.testverktyg.eclipselink.entity;
 
 import javax.persistence.*;
 
-/**
- * Created by Andreas on 2017-05-22.
- */
+/* Created by Andreas on 2017-05-22. */
 @Entity
 @NamedQueries({
         @NamedQuery(name="getStudentAnswer", query = "select s from StudentAnswer s where s.studentId = :sId and s.testId = :tId"),
