@@ -1,87 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import java.lang.Integer?>
+<?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.testverktyg.eclipselink.view.teacher.TeacherController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testverktyg.eclipselink.view.teacher.TeacherController">
 
     <left>
-        <GridPane vgap="5" hgap="5" alignment="TOP_CENTER" >
-        <padding><Insets top="30" left="120"/> </padding>
+        <GridPane alignment="TOP_CENTER" hgap="5" vgap="5">
+        <padding><Insets left="120" top="30" /> </padding>
 
         <Label text="Namn:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <TextField fx:id="testName" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="9"/>
+        <TextField fx:id="testName" GridPane.columnIndex="0" GridPane.columnSpan="9" GridPane.rowIndex="1" />
 
-        <Label text="Beskrivning:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-        <TextArea fx:id="descriptionInput" GridPane.columnIndex="0" GridPane.rowIndex="3"  GridPane.columnSpan="9"/>
+        <Label text="Beskrivning:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextArea fx:id="descriptionInput" GridPane.columnIndex="0" GridPane.columnSpan="9" GridPane.rowIndex="3" />
 
-        <Label text="Tid (i minuter):" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-        <Spinner  fx:id="timeInput" min="0" initialValue="0" amountToStepBy="1" max="600" GridPane.columnIndex="0" GridPane.rowIndex="5" prefWidth="120" editable="true" />
+        <Label text="Tid (i minuter):" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <Spinner fx:id="timeInput" amountToStepBy="1" editable="true" initialValue="0" max="600" min="0" prefWidth="120" GridPane.columnIndex="0" GridPane.rowIndex="5" />
 
-        <Label text="Datum:" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-        <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="5" prefWidth="120"/>
+        <Label text="Datum:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <DatePicker fx:id="datePicker" prefWidth="120" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-        <Label text="Självrättande:" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
-        <CheckBox fx:id="selfCorrect" onAction="#setShowResultToStudent" GridPane.columnIndex="4" GridPane.rowIndex="4"/>
+        <Label text="Självrättande:" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+        <CheckBox fx:id="selfCorrect" onAction="#setShowResultToStudent" GridPane.columnIndex="4" GridPane.rowIndex="4" />
 
-        <Label text="Visa resultat:" fx:id="showResultsToStudentLabel" GridPane.columnIndex="3" GridPane.rowIndex="5" textFill="#d3d3d3"/>
-        <CheckBox fx:id="showResultsToStudent" disable="true" GridPane.columnIndex="4" GridPane.rowIndex="5"/>
+        <Label fx:id="showResultsToStudentLabel" text="Visa resultat:" textFill="#d3d3d3" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+        <CheckBox fx:id="showResultsToStudent" disable="true" GridPane.columnIndex="4" GridPane.rowIndex="5" />
 
-        <Button text="Spara" onAction="#confirmedTestMessage" GridPane.columnIndex="0" GridPane.rowIndex="6" style="-fx-background-color: #EE7202; -fx-text-fill: white"/>
+        <Button onAction="#confirmedTestMessage" style="-fx-background-color: #EE7202; -fx-text-fill: white" text="Spara" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
         </GridPane>
     </left>
 
     <center>
-        <GridPane vgap="5" hgap="5">
-            <padding><Insets top="50" left="100"/> </padding>
-            <Label text="Betyg:" GridPane.rowIndex="2" GridPane.columnIndex="10"/>
+        <GridPane hgap="5" vgap="5">
+            <padding><Insets left="15.0" top="50.0" /> </padding>
+            <Label text="Betyg:" GridPane.columnIndex="10" GridPane.rowIndex="1" />
+
+            <RadioButton fx:id="gradeGButton" text="G" GridPane.columnIndex="11" GridPane.halignment="LEFT" GridPane.rowIndex="1"
+                         style="-fx-mark-highlight-color: #EE7202 ;
+                         -fx-mark-color: #EE7202 ;">
+            <toggleGroup>
+               <ToggleGroup fx:id="gradeToggleGroup" />
+            </toggleGroup></RadioButton>
+            <RadioButton fx:id="gradeVGButton" text="VG" toggleGroup="$gradeToggleGroup" GridPane.columnIndex="11" GridPane.halignment="RIGHT" GridPane.rowIndex="1"
+                         style="-fx-mark-highlight-color: #EE7202 ;
+                         -fx-mark-color: #EE7202 ;"/>
+            <Label text="Poäng:" GridPane.columnIndex="12" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Spinner fx:id="pointSpinner" amountToStepBy="1" initialValue="0" max="100" min="0" prefWidth="70" GridPane.columnIndex="13" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+
+            <Label text="Namn:" GridPane.columnIndex="10" GridPane.rowIndex="3" />
+            <TextField fx:id="questionName" GridPane.columnIndex="11" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+
+            <Label text="Typ av fråga:" GridPane.columnIndex="10" GridPane.rowIndex="4" />
+
+            <ComboBox fx:id="typOfQuestion" onAction="#setNumberOfAlternativesToTrue" promptText="Välj" GridPane.columnIndex="11" GridPane.rowIndex="4">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Flervals" />
+                        <String fx:value="Alternativ" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <Label text="Antal alternativ:" GridPane.columnIndex="12" GridPane.rowIndex="4" />
+            <ComboBox fx:id="numberOfAlternatives" disable="true" onAction="#getCreateTypeOfQuestion" promptText="Välj" GridPane.columnIndex="13" GridPane.rowIndex="4">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <Integer fx:value="2" />
+                        <Integer fx:value="3" />
+                        <Integer fx:value="4" />
+                        <Integer fx:value="5" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <BorderPane fx:id="borderPaneAlternatives" GridPane.columnIndex="10" GridPane.columnSpan="4" GridPane.rowIndex="5" />
+
+            <Button fx:id="addQuestionButton" onAction="#addQuestion" style="-fx-background-color: #EE7202; -fx-text-fill: white" text="Lägg till" GridPane.columnIndex="10" GridPane.rowIndex="11" />
+            <Button fx:id="updateQuestionButton" disable="true" onAction="#setUpdateQuestion" text="Uppdatera" GridPane.columnIndex="11" GridPane.rowIndex="11" />
+            <Button fx:id="deleteQuestionButton" disable="true" onAction="#setDeleteQuestion" text="Ta bort" GridPane.columnIndex="12" GridPane.rowIndex="11" />
+            <ComboBox fx:id="allQuestionList" maxWidth="100" onAction="#getSelectedQuestionFromComboBox" prefWidth="100" promptText="Frågor" GridPane.columnIndex="14" GridPane.columnSpan="3" GridPane.rowIndex="1" />
             <fx:define>
-                <ToggleGroup fx:id="gradeToggleGroup"/>
+                <ToggleGroup fx:id="gradeToggleGroup" />
             </fx:define>
-
-            <RadioButton fx:id="gradeGButton" text="G" toggleGroup="$gradeToggleGroup" GridPane.rowIndex="2" GridPane.columnIndex="11"/>
-            <RadioButton fx:id="gradeVGButton" text="VG" toggleGroup="$gradeToggleGroup" GridPane.rowIndex="2" GridPane.columnIndex="12"/>
-            <Label text="Poäng:" GridPane.rowIndex="2" GridPane.columnIndex="13"/>
-            <Spinner  fx:id="pointSpinner" min="0" initialValue="0" amountToStepBy="1" max="100" GridPane.columnIndex="14" GridPane.rowIndex="2" prefWidth="70" />
-
-            <Label text="Namn:" GridPane.rowIndex="3" GridPane.columnIndex="10"/>
-            <TextField fx:id="questionName" GridPane.rowIndex="3" GridPane.columnIndex="11" GridPane.columnSpan="3"/>
-
-            <Label text="Typ av fråga:" GridPane.rowIndex="4" GridPane.columnIndex="10"/>
-
-            <ComboBox fx:id="typOfQuestion" onAction="#setNumberOfAlternativesToTrue" promptText="Välj" GridPane.rowIndex="4" GridPane.columnIndex="11">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Flervals"/>
-                        <String fx:value="Alternativ"/>
-                    </FXCollections>
-                </items>
-            </ComboBox>
-
-            <Label text="Antal alternativ:" GridPane.rowIndex="4" GridPane.columnIndex="12"/>
-            <ComboBox fx:id="numberOfAlternatives" onAction="#getCreateTypeOfQuestion" disable="true" promptText="Välj" GridPane.rowIndex="4" GridPane.columnIndex="13">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <Integer fx:value="2"/>
-                        <Integer fx:value="3"/>
-                        <Integer fx:value="4"/>
-                        <Integer fx:value="5"/>
-                    </FXCollections>
-                </items>
-            </ComboBox>
-            <BorderPane fx:id="borderPaneAlternatives" GridPane.rowIndex="5" GridPane.columnIndex="10" GridPane.columnSpan="4"/>
-
-            <Button text="Lägg till" fx:id="addQuestionButton" onAction="#addQuestion" GridPane.rowIndex="11" GridPane.columnIndex="10" style="-fx-background-color: #EE7202; -fx-text-fill: white"/>
-            <Button text="Uppdatera" fx:id="updateQuestionButton" onAction="#setUpdateQuestion" disable="true" GridPane.rowIndex="11" GridPane.columnIndex="11"/>
-            <Button text="Ta bort"   fx:id="deleteQuestionButton" onAction="#setDeleteQuestion" disable="true" GridPane.rowIndex="11" GridPane.columnIndex="12"/>
-            <ComboBox fx:id="allQuestionList" onAction="#getSelectedQuestionFromComboBox" promptText="Frågor" maxWidth="100" prefWidth="100" GridPane.rowIndex="1" GridPane.columnIndex="13" GridPane.columnSpan="3"/>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
         </GridPane>
 
     </center>
