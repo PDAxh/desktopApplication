@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/* Created by Grodfan on 2017-04-28. */
+/* Created by Jonas Johansson on 2017-04-28. */
 public class loginUser {
 
     public loginUser(String email, String password, String group){

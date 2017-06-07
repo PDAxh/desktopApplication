@@ -5,7 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/* Created by Grodfan on 2017-05-15. */
+/* Created by Jonas Johansson on 2017-05-15. */
 public class CreateUserTests {
 
     private int testId;
