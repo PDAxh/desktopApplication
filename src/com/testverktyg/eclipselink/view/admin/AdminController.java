@@ -8,29 +8,21 @@ import com.testverktyg.eclipselink.service.Class.DeleteClass;
 import com.testverktyg.eclipselink.service.Class.ReadClass;
 import com.testverktyg.eclipselink.service.Test.DeleteTest;
 import com.testverktyg.eclipselink.service.Test.ReadTest;
-import com.testverktyg.eclipselink.service.studentAnswer.ReadStudentAnswer;
 import com.testverktyg.eclipselink.service.user.CreateUser;
 import com.testverktyg.eclipselink.service.user.DeleteUser;
 import com.testverktyg.eclipselink.service.user.ReadUser;
 import com.testverktyg.eclipselink.service.user.UpdateUser;
 import com.testverktyg.eclipselink.service.userTests.CreateUserTests;
 import com.testverktyg.eclipselink.service.userTests.DeleteUserTests;
-import com.testverktyg.eclipselink.service.userTests.ReadUserTests;
 import com.testverktyg.eclipselink.view.main.layout.StatisticForAdminAndTeacher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Andreas
@@ -60,8 +52,6 @@ public class AdminController {
     @FXML
     private ComboBox<String> editUserClassList;
     @FXML
-    private Label editUserUserLabel;
-    @FXML
     private ComboBox<String> editUserUserList;
     @FXML
     private Button editUserRemoveButton;
@@ -80,7 +70,7 @@ public class AdminController {
     @FXML
     private Label removeClassMessageLabel;
     @FXML
-    private TableView userTable;
+    private TableView<User> userTable;
     @FXML
     private ComboBox userTypeList;
     @FXML
@@ -96,11 +86,7 @@ public class AdminController {
     @FXML
     private TableColumn typeCol;
     @FXML
-    private TextField searchField;
-    @FXML
     private GridPane editUserPane;
-    @FXML
-    private GridPane newUserPane;
 
     private ObservableList<User> data = FXCollections.observableArrayList();
     private int selectedID;
@@ -112,38 +98,10 @@ public class AdminController {
     private TextField fnameField = new TextField();
     private TextField lnameField = new TextField();
     private TextField emailField = new TextField();
-    private TextField newPasswordField = new TextField();
-    private TextField verifyPasswordField = new TextField();
+    private PasswordField newPasswordField = new PasswordField();
+    private PasswordField verifyPasswordField = new PasswordField();
     private Label updateUserMessageLabel = new Label();
     private Button updateUserButton = new Button();
-
-    public void addSearchListener() {
-        FilteredList<User> filteredData = new FilteredList<>(data, p -> true);
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(user -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                if (user.getFname().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (user.getLname().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (user.getEmail().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (user.getKlass().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (user.getType().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                }
-                return false;
-            });
-        });
-
-        SortedList<User> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(userTable.comparatorProperty());
-        userTable.setItems(sortedData);
-    }
 
     @FXML
     private void setStudentClassOption() {
@@ -163,11 +121,6 @@ public class AdminController {
         }
     }
 
-   /* @FXML
-    public void fillClassList() {
-        //TEMP METHOD
-        fillClasses(classList);
-    }*/
 
     @FXML
     public void fillClasses() {
@@ -192,55 +145,58 @@ public class AdminController {
     @FXML
     private void fillUserList(String type) {
         ReadUser newReadUser = new ReadUser();
-        if (type.equals("Student")) {
-            //addSearchListener();
-            newReadUser.readOnlyStudents();
-            data.clear();
-            for (int i = 0; i < newReadUser.getStudentList().size(); i++) {
-                int ID = newReadUser.getStudentList().get(i).getUserId();
-                String fname = newReadUser.getStudentList().get(i).getFirstname();
-                String lname = newReadUser.getStudentList().get(i).getLastname();
-                String email = newReadUser.getStudentList().get(i).getEmail();
-                String klass = newReadUser.getStudentList().get(i).getKlass();
-                String usertype = newReadUser.getStudentList().get(i).getTypeOfUser();
-                User newUser = new User();
-                newUser.createNewUser(ID, fname, lname, email, klass, usertype);
-                data.add(newUser);
-            }
-            userTable.setItems(data);
-            userTable.getColumns().setAll(IDCol, fnameCol, lnameCol, emailCol, klassCol, typeCol);
-        } else if (type.equals("Teacher")) {
-            newReadUser.readOnlyTeacher();
-            data.clear();
-            for (int i = 0; i < newReadUser.getTeacherList().size(); i++) {
-                int ID = newReadUser.getTeacherList().get(i).getUserId();
-                String fname = newReadUser.getTeacherList().get(i).getFirstname();
-                String lname = newReadUser.getTeacherList().get(i).getLastname();
-                String email = newReadUser.getTeacherList().get(i).getEmail();
-                String klass = newReadUser.getTeacherList().get(i).getKlass();
-                String usertype = newReadUser.getTeacherList().get(i).getTypeOfUser();
-                User newUser = new User();
-                newUser.createNewUser(ID, fname, lname, email, klass, usertype);
-                data.add(newUser);
-            }
-            userTable.setItems(data);
-            userTable.getColumns().setAll(IDCol, fnameCol, lnameCol, emailCol, klassCol, typeCol);
-        } else if (type.equals("Admin")) {
-            newReadUser.readOnlyAdmin();
-            data.clear();
-            for (int i = 0; i < newReadUser.getAdminList().size(); i++) {
-                int ID = newReadUser.getAdminList().get(i).getUserId();
-                String fname = newReadUser.getAdminList().get(i).getFirstname();
-                String lname = newReadUser.getAdminList().get(i).getLastname();
-                String email = newReadUser.getAdminList().get(i).getEmail();
-                String klass = newReadUser.getAdminList().get(i).getKlass();
-                String usertype = newReadUser.getAdminList().get(i).getTypeOfUser();
-                User newUser = new User();
-                newUser.createNewUser(ID, fname, lname, email, klass, usertype);
-                data.add(newUser);
-            }
-            userTable.setItems(data);
-            userTable.getColumns().setAll(IDCol, fnameCol, lnameCol, emailCol, klassCol, typeCol);
+        switch (type) {
+            case "Student":
+                newReadUser.readOnlyStudents();
+                data.clear();
+                for (int i = 0; i < newReadUser.getStudentList().size(); i++) {
+                    int ID = newReadUser.getStudentList().get(i).getUserId();
+                    String fname = newReadUser.getStudentList().get(i).getFirstname();
+                    String lname = newReadUser.getStudentList().get(i).getLastname();
+                    String email = newReadUser.getStudentList().get(i).getEmail();
+                    String klass = newReadUser.getStudentList().get(i).getKlass();
+                    String usertype = newReadUser.getStudentList().get(i).getTypeOfUser();
+                    User newUser = new User();
+                    newUser.createNewUser(ID, fname, lname, email, klass, usertype);
+                    data.add(newUser);
+                }
+                userTable.setItems(data);
+                userTable.getColumns().setAll(IDCol, fnameCol, lnameCol, emailCol, klassCol, typeCol);
+                break;
+            case "Teacher":
+                newReadUser.readOnlyTeacher();
+                data.clear();
+                for (int i = 0; i < newReadUser.getTeacherList().size(); i++) {
+                    int ID = newReadUser.getTeacherList().get(i).getUserId();
+                    String fname = newReadUser.getTeacherList().get(i).getFirstname();
+                    String lname = newReadUser.getTeacherList().get(i).getLastname();
+                    String email = newReadUser.getTeacherList().get(i).getEmail();
+                    String klass = newReadUser.getTeacherList().get(i).getKlass();
+                    String usertype = newReadUser.getTeacherList().get(i).getTypeOfUser();
+                    User newUser = new User();
+                    newUser.createNewUser(ID, fname, lname, email, klass, usertype);
+                    data.add(newUser);
+                }
+                userTable.setItems(data);
+                userTable.getColumns().setAll(IDCol, fnameCol, lnameCol, emailCol, klassCol, typeCol);
+                break;
+            case "Admin":
+                newReadUser.readOnlyAdmin();
+                data.clear();
+                for (int i = 0; i < newReadUser.getAdminList().size(); i++) {
+                    int ID = newReadUser.getAdminList().get(i).getUserId();
+                    String fname = newReadUser.getAdminList().get(i).getFirstname();
+                    String lname = newReadUser.getAdminList().get(i).getLastname();
+                    String email = newReadUser.getAdminList().get(i).getEmail();
+                    String klass = newReadUser.getAdminList().get(i).getKlass();
+                    String usertype = newReadUser.getAdminList().get(i).getTypeOfUser();
+                    User newUser = new User();
+                    newUser.createNewUser(ID, fname, lname, email, klass, usertype);
+                    data.add(newUser);
+                }
+                userTable.setItems(data);
+                userTable.getColumns().setAll(IDCol, fnameCol, lnameCol, emailCol, klassCol, typeCol);
+                break;
         }
     }
 
@@ -267,17 +223,12 @@ public class AdminController {
         if (getPassword().getText().equals(getPasswordRepeat().getText())) {
             passwordMessageLabel.setText("");
             String fname = getFirstName().getText();
-            System.out.println(fname);
             String lname = getLastName().getText();
-            System.out.println(lname);
             String emailString = getEmail().getText();
-            System.out.println(email);
             String Klass = getStudentClass().getValue().toString();
             System.out.println(Klass);
             String passwordString = getPassword().getText();
-            System.out.println(password);
             String userType = getUserType().getValue().toString();
-            System.out.println(userType);
             CreateUser newUser = new CreateUser(fname, lname, passwordString, emailString, Klass, userType);
             passwordMessageLabel.setText("Användare för " + fname + " " + lname + " " + " är tillagd");
             firstName.setText("");
@@ -310,7 +261,6 @@ public class AdminController {
                 System.out.println("Comparing: " + className + " and " + String.valueOf(newReadClass.getClassNameList().get(i)));
                 if (className.equals(String.valueOf(newReadClass.getClassNameList().get(i)))) {
                     matchFound = true;
-                } else {
                 }
             }
             if (matchFound) {
@@ -350,15 +300,22 @@ public class AdminController {
         lnameLabel.setText("Efternamn");
         emailLabel.setText("Email:");
         updateUserButton.setText("Uppdatera");
+        newPasswordLabel.setText("Lösenord:");
+        verifyPasswordLabel.setText("Repetera:");
         updateUserButton.setOnAction(event -> {
-            UpdateUser uu = new UpdateUser();
-            uu.setUserId(selectedID);
-            uu.setNewfirstname(fnameField.getText());
-            uu.setNewLastname(lnameField.getText());
-            uu.setNewEmail(emailField.getText());
-            uu.setNewPassword(password);
-            uu.UpdateUser();
-            updateUserMessageLabel.setText("Användaren har ändrats");
+            if(newPasswordField.getText().equals(verifyPasswordField.getText())){
+                UpdateUser uu = new UpdateUser();
+                uu.setUserId(selectedID);
+                uu.setNewfirstname(fnameField.getText());
+                uu.setNewLastname(lnameField.getText());
+                uu.setNewEmail(emailField.getText());
+                uu.setNewPassword(newPasswordField.getText());
+                uu.UpdateUser();
+                updateUserMessageLabel.setText("Användaren har ändrats");
+            }else{
+                updateUserMessageLabel.setText("Lösenorden stämmer inte överens");
+            }
+
         });
 
         editUserPane.add(fnameLabel, 0, 0);
@@ -367,17 +324,23 @@ public class AdminController {
         editUserPane.add(lnameField, 0, 3);
         editUserPane.add(emailLabel, 0, 4);
         editUserPane.add(emailField, 0, 5);
-        editUserPane.add(updateUserMessageLabel, 0, 6);
-        editUserPane.add(updateUserButton, 0, 7);
+        editUserPane.add(newPasswordLabel, 0, 6);
+        editUserPane.add(newPasswordField, 0, 7);
+        editUserPane.add(verifyPasswordLabel, 0, 8);
+        editUserPane.add(verifyPasswordField, 0, 9);
+        editUserPane.add(updateUserMessageLabel, 0, 10);
+        editUserPane.add(updateUserButton, 0, 11);
 
         fnameField.setText(data.get(selectedUserIndex).fname);
         lnameField.setText(data.get(selectedUserIndex).lname);
         emailField.setText(data.get(selectedUserIndex).email);
+        newPasswordField.setText(password);
+        verifyPasswordField.setText(password);
 
     }
 
     //Getters for createUser
-    private ComboBox getUserType() {
+    private ComboBox<String> getUserType() {
         return userType;
     }
 
@@ -398,11 +361,11 @@ public class AdminController {
         return editUserUsertypeList;
     }
 
-    private ComboBox getEditUserClassList() {
+    private ComboBox<String> getEditUserClassList() {
         return editUserClassList;
     }
 
-    private ComboBox getEditUserUserList() {
+    private ComboBox<String> getEditUserUserList() {
         return editUserUserList;
     }
 
