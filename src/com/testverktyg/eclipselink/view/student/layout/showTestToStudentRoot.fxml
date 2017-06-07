@@ -29,7 +29,7 @@
 
         <HBox spacing="15">
             <padding><Insets  top="20"/> </padding>
-            <Button fx:id="doSelectedTestButton" text="Gör valt test" onAction="#getSelectedTestToDo" disable="true"/>
+            <Button fx:id="doSelectedTestButton" text="Utför test" style="-fx-background-color: #EE7202; -fx-text-fill: white" onAction="#getSelectedTestToDo" disable="true"/>
             <Button fx:id="showResultButton" text="Visa resultat" disable="true"/>
         </HBox>
         </VBox>
@@ -61,13 +61,13 @@
                     <Label fx:id="questionPointsLabel" visible="false" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
                     <Label fx:id="timeTextLabel" text="Tid: " visible="false" GridPane.columnIndex="6" GridPane.rowIndex="1"/>
                     <Label fx:id="timerLabel" visible="false" text="3:00" GridPane.columnIndex="7" GridPane.rowIndex="1"
-                           style="-fx-font-weight: bold; -fx-text-fill: orangered;"/>
+                           style="-fx-font-weight: bold; -fx-text-fill: #EE7202;"/>
                 </GridPane>
 
                     <GridPane fx:id="alternativePane" GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.rowIndex="3"/>
 
-                <Button fx:id="showToUserStartTestButton" onAction="#startTest" text="Starta" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                <Button fx:id="showToUserNextButton" onAction="#getNewQuestion" text="Nästa" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <Button fx:id="showToUserStartTestButton" onAction="#startTest" text="Starta" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-background-color: #EE7202; -fx-text-fill: white"/>
+                <Button fx:id="showToUserNextButton" onAction="#getNewQuestion" text="Nästa" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-background-color: #EE7202; -fx-text-fill: white"/>
         </GridPane>
     </center>
 

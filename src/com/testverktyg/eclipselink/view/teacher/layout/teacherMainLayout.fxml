@@ -36,7 +36,7 @@
                     <ImageView fx:id="cogIcon" layoutX="1182.0" layoutY="7.0" onMouseClicked="#updateAccount" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="7.0">
                         <Image url="@../../../../../../path9.png" />
                     </ImageView>
-                    <Label fx:id="loggedInUser" onMouseClicked="#updateAccount" style="-fx-font-weight: bold; -fx-text-fill: #EE7202;" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+                    <Label fx:id="loggedInUser" onMouseClicked="#updateAccount" style="-fx-font-weight: bold; -fx-text-fill: orangered;" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
         </AnchorPane>
     </top>
 

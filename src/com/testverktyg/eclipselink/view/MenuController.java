@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -191,6 +192,7 @@ public class MenuController {
         TextField verifyPasswordField = new TextField();
         Label updateUserMessageLabel = new Label();
         Button updateUserButton = new Button();
+        updateUserButton.setStyle("-fx-background-color: #EE7202; -fx-text-fill: white");
 
         //emailLabel.setText("Email:");
         newPasswordLabel.setText("Nytt lösenord");

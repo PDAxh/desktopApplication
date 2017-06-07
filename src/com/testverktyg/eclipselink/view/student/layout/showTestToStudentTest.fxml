@@ -21,7 +21,7 @@
 
             </children>
         </GridPane>
-        <Button fx:id="showToUserNextButton" text="Nästa" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <Button fx:id="showToUserNextButton" text="Nästa" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-background-color: #EE7202; -fx-text-fill: white"/>
     </children>
 </GridPane>
 </BorderPane>
