@@ -9,14 +9,12 @@ import com.testverktyg.eclipselink.service.user.ReadUser;
 import com.testverktyg.eclipselink.service.userTests.ReadUserTests;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -119,7 +117,6 @@ public class StudentController {
         showToStudentQuestionsLeft.setText(activeQuestion + "/" + newTest.getAmountOfQuestions() + "    ");
         showToStudentGrade.setText(newTest.getGradeOnActiveQuestion());
         questionPointsLabel.setText(String.valueOf(newTest.getActiveQuestionPoints().get(0) + "   "));
-        //showToStudentTextLabel.setText(String.valueOf(newTest.getActiveQuestionText().get(activeQuestionsForDB)));
         showToStudentTextLabel.setText("");
         alternativePane.getChildren().clear();
         if (activeQuestion == maxQuestions) {
@@ -170,7 +167,7 @@ public class StudentController {
 
     private void createAnswer() {
         int currentQuestionId = Integer.parseInt(String.valueOf(newTest.getActiveQuestionId().get(newTest.getQuestionCount())));
-        int selectedAlternative = 0;
+        int selectedAlternative;
         if(getNewTest().getActiveQuestionType().toString().equals("[Flervals]")){
             for(int i = 0; i < getAlternativeCheckBox().length; i++){
                 if(getAlternativeCheckBox()[i].isSelected()){
@@ -252,23 +249,6 @@ public class StudentController {
         contentPane.add(showToStudentTestNameLabel, 0, 0);
         Label resultLabel = new Label("Provets poäng:");
         contentPane.add(resultLabel, 0,1);
-
-        /*HBox firstBox = new HBox();
-        contentPane.add(firstBox, 0,2);
-        Label VGQuestionLabel = new Label("VG Frågor: ");
-        Label VGQuestionResultLabel = new Label();
-        Label GQuestionLabel = new Label("G Frågor: ");
-        Label GQuestionResultLabel = new Label();
-        Label TotalLabel = new Label("Totalt: ");
-        Label TotalResultLabel = new Label();
-        firstBox.getChildren().addAll(
-                VGQuestionLabel,
-                VGQuestionResultLabel,
-                GQuestionLabel,
-                GQuestionResultLabel,
-                TotalLabel,
-                TotalResultLabel);*/
-
         HBox secondBox = new HBox();
         contentPane.add(secondBox, 0,3);
         HBox VGBox = new HBox();
@@ -303,7 +283,6 @@ public class StudentController {
         secondBox.setSpacing(10);
         secondBox.setBorder(new Border(new BorderStroke(Color.LIGHTGRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         secondBox.setPadding(new Insets(10, 10, 10, 10));
-
         VBox StudentResultBox = new VBox();
         HBox GpointsBox = new HBox();
         HBox VGpointsBox = new HBox();
@@ -353,7 +332,6 @@ public class StudentController {
         StudentResultBox.setSpacing(10);
         StudentResultBox.setBorder(new Border(new BorderStroke(Color.LIGHTGRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         StudentResultBox.setPadding(new Insets(10, 10, 10, 10));
-
         Button studentPrintResultButton = new Button();
         studentPrintResultButton.setText("Spara som PDF");
         contentPane.add(studentPrintResultButton,0,6);
@@ -365,7 +343,6 @@ public class StudentController {
 
         rsa.getStudentAnswerFromSpecificStudent(getUserId(),activeTest);
         rsa.getCorrectAnswers(activeTest);
-
         int maxG=rsa.getMaxPointsG();
         int maxVG=rsa.getMaxPointsVG();
         int stuG=rsa.getStudPointsG();
@@ -424,7 +401,6 @@ public class StudentController {
                 }
             }
         }
-
         getShowToStudentClassLabel().setText(readUser.getFindClassWithUserIdList().get(0).getKlass());
     }
 
@@ -433,22 +409,17 @@ public class StudentController {
         int testId = Integer.parseInt(getStudentTestToggleGroup().getSelectedToggle().getUserData().toString());
         int gGrade = 0;
         int vgGrade = 0;
-        String grade = "";
-
+        String grade;
         ReadStudentAnswer readStudentAnswer = new ReadStudentAnswer();
         VBox vBox = new VBox();
-
         readStudentAnswer.getStudentAnswerFromSpecificStudent(getUserId(), testId);
         readStudentAnswer.getCorrectAnswers(testId);
-
         if(!(readStudentAnswer.getMaxPointsG() == 0)){
             gGrade = (readStudentAnswer.getStudPointsG()*100)/readStudentAnswer.getMaxPointsG();
         }
-
         if(!(readStudentAnswer.getMaxPointsVG() == 0)){
             vgGrade = (readStudentAnswer.getStudPointsVG()*100)/readStudentAnswer.getMaxPointsVG();
         }
-
         if(gGrade>=60){
             if(vgGrade>=60){
                 grade = "VG";
@@ -465,12 +436,8 @@ public class StudentController {
         vBox.getChildren().add(new Label("Betyg: :" + grade));
         vBox.getChildren().add(new Label("Poäng: " + (readStudentAnswer.getStudPointsG() + readStudentAnswer.getStudPointsVG()) + " / "
                 + (readStudentAnswer.getMaxPointsG() + readStudentAnswer.getMaxPointsVG())));
-
         getStudentResultHbox().getChildren().add(vBox);
-
-        getStudentTestToggleGroup().selectedToggleProperty().addListener(event -> {
-            getStudentResultHbox().getChildren().clear();
-        });
+        getStudentTestToggleGroup().selectedToggleProperty().addListener(event -> getStudentResultHbox().getChildren().clear());
     }
 
     private HBox getStudentResultHbox() {
