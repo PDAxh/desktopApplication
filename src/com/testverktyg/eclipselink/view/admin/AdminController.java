@@ -541,7 +541,7 @@ public class AdminController {
         for(int i = 0; i < getSelectTestToAssignToClass().length; i++){
             if(getSelectTestToAssignToClass()[i].isSelected()){
 
-                if(getSelectClassToAssignTestComboBox().getValue() == null){
+                if((getSelectClassToAssignTestComboBox().getValue() == null) || (getSelectClassToAssignTestComboBox().getValue().equals("Välj klass"))){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Välj klass");
                     alert.setHeaderText("Du måste välja en klass för att kunna tilldela ett prov.");
