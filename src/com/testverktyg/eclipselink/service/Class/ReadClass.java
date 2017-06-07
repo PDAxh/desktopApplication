@@ -34,15 +34,4 @@ public class ReadClass {
         this.classNameList = classNameList;
     }
 
-
-    // public void readOneClass(){}
-    /*    public static void main(String[] args) {
-        ReadClass readClass = new ReadClass();
-
-        readClass.readAllClasses();
-
-        for (int i = 0; i < readClass.classNameList.size(); i++){
-            System.out.println(readClass.classNameList.get(i));
-        }
-    }*/
 }

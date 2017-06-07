@@ -27,10 +27,4 @@ public class CreateClass {
 
     }
 
-
-    public static void main(String[] args) {
-        CreateClass createClass = new CreateClass();
-        createClass.CreateClass("Java 1");
-    }
-
 }

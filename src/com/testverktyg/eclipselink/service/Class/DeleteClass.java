@@ -28,8 +28,4 @@ public class DeleteClass {
 
     }
 
-    public static void main(String[] args) {
-        DeleteClass deleteClass =  new DeleteClass();
-        deleteClass.deleteClass("Java2");
-    }
 }
