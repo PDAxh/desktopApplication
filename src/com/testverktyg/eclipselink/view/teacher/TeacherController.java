@@ -630,7 +630,7 @@ public class TeacherController {
                 getSelectToEdit()[j].setId(String.valueOf(getReadTest().getTestList().get(j).getTestId()));
                 getSelectToEdit()[j].setText("Välj test ");
                 VBox vBox = new VBox();
-                vBox.setStyle("-fx-border-color: black;");
+                vBox.setStyle("-fx-border-color: gray;");
                 vBox.setPadding(new Insets(10));
                 vBox.setSpacing(5);
                 vBox.getChildren().add(new Label("Test: " + getReadTest().getTestList().get(j).getTestName()));
@@ -646,7 +646,7 @@ public class TeacherController {
                     getSelectToEdit()[(k+1)].setId(String.valueOf(getReadTest().getTestList().get(j).getQuestionList().get(k).getQuestionId()));
                     getSelectToEdit()[(k+1)].setText("Välj fråga ");
                     VBox vBox1 = new VBox();
-                    vBox1.setStyle("-fx-border-color: black;");
+                    vBox1.setStyle("-fx-border-color: gray;");
                     vBox1.setPadding(new Insets(10));
                     vBox1.setSpacing(5);
 

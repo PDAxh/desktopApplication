@@ -85,7 +85,7 @@
             <Spinner fx:id="pointSpinner" amountToStepBy="1" initialValue="0" max="100" min="0" prefWidth="70" GridPane.columnIndex="13" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
 
             <Label text="Namn:" GridPane.columnIndex="10" GridPane.rowIndex="3" />
-            <TextField fx:id="questionName" GridPane.columnIndex="11" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+            <TextField fx:id="questionName" GridPane.columnIndex="11" GridPane.columnSpan="3" GridPane.rowIndex="3"/>
 
             <Label text="Typ av fråga:" GridPane.columnIndex="10" GridPane.rowIndex="4" />
 
@@ -118,39 +118,6 @@
             <fx:define>
                 <ToggleGroup fx:id="gradeToggleGroup" />
             </fx:define>
-         <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
         </GridPane>
-
     </center>
 </BorderPane>
