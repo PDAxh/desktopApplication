@@ -34,7 +34,7 @@
         <Label text="Visa resultat:" fx:id="showResultsToStudentLabel" GridPane.columnIndex="3" GridPane.rowIndex="5" textFill="#d3d3d3"/>
         <CheckBox fx:id="showResultsToStudent" disable="true" GridPane.columnIndex="4" GridPane.rowIndex="5"/>
 
-        <Button text="Spara" onAction="#confirmedTestMessage" GridPane.columnIndex="0" GridPane.rowIndex="6" style="-fx-background-color: orangered; -fx-text-fill: white"/>
+        <Button text="Spara" onAction="#confirmedTestMessage" GridPane.columnIndex="0" GridPane.rowIndex="6" style="-fx-background-color: #EE7202; -fx-text-fill: white"/>
         </GridPane>
     </left>
 
@@ -78,7 +78,7 @@
             </ComboBox>
             <BorderPane fx:id="borderPaneAlternatives" GridPane.rowIndex="5" GridPane.columnIndex="10" GridPane.columnSpan="4"/>
 
-            <Button text="Lägg till" fx:id="addQuestionButton" onAction="#addQuestion" GridPane.rowIndex="11" GridPane.columnIndex="10" style="-fx-background-color: orangered; -fx-text-fill: white"/>
+            <Button text="Lägg till" fx:id="addQuestionButton" onAction="#addQuestion" GridPane.rowIndex="11" GridPane.columnIndex="10" style="-fx-background-color: #EE7202; -fx-text-fill: white"/>
             <Button text="Uppdatera" fx:id="updateQuestionButton" onAction="#setUpdateQuestion" disable="true" GridPane.rowIndex="11" GridPane.columnIndex="11"/>
             <Button text="Ta bort"   fx:id="deleteQuestionButton" onAction="#setDeleteQuestion" disable="true" GridPane.rowIndex="11" GridPane.columnIndex="12"/>
             <ComboBox fx:id="allQuestionList" onAction="#getSelectedQuestionFromComboBox" promptText="Frågor" maxWidth="100" prefWidth="100" GridPane.rowIndex="1" GridPane.columnIndex="13" GridPane.columnSpan="3"/>

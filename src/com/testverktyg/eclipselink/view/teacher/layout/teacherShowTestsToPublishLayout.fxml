@@ -19,7 +19,7 @@
             </ScrollPane>
             <HBox spacing="15">
                 <padding><Insets  top="20"/> </padding>
-                <Button text="Ta bort" onAction="#getSelectToDelete" style="-fx-background-color: orangered; -fx-text-fill: white"/>
+                <Button text="Ta bort" onAction="#getSelectToDelete" style="-fx-background-color: #EE7202; -fx-text-fill: white"/>
             </HBox>
         </VBox>
     </left>

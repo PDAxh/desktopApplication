@@ -27,7 +27,7 @@
         <Label text="Vänligen logga in" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
         <TextField fx:id="usernameTextField" maxWidth="-Infinity" text="teacher" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
         <PasswordField fx:id="passwordTextField" maxWidth="-Infinity" text="teacher" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-        <Button onAction="#logInButton" text="Logga in" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="4" style="-fx-background-color: orangered; -fx-text-fill: white"/>
+        <Button onAction="#logInButton" text="Logga in" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="4" style="-fx-background-color: #EE7202; -fx-text-fill: white"/>
         <Text fx:id="loginFailed" GridPane.columnIndex="0" GridPane.rowIndex="5" />
     </children>
 </GridPane>

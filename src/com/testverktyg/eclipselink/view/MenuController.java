@@ -232,5 +232,4 @@ public class MenuController {
         loggedInUser.setText("Inloggad som: " + nameOnActiveUser+"       ");
         welcomeUser.setText("Välkommen " + nameOnActiveUser);
     }
-
 }
