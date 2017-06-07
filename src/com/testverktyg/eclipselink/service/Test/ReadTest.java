@@ -115,6 +115,38 @@ public class ReadTest {
         }
     }
 
+    public void getTest(int testId){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        setTestList(entityManager.createNamedQuery("getTest", Test.class).setParameter("testId", testId).getResultList());
+        entityManager.close();
+        entityManagerFactory.close();
+    }
+
+    public void getAllTestsForAdmin(){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        setGetAllTestsForAdminList(entityManager.createNamedQuery("getAllTest", Test.class).getResultList());
+        entityManager.close();
+        entityManagerFactory.close();
+    }
+
+    private void setGetAllTestsForAdminList(List<Test> getAllTestsForAdminList) {
+        this.getAllTestsForAdminList = getAllTestsForAdminList;
+    }
+
+    public List<Test> getTestList() {
+        return testList;
+    }
+
+    private void setTestList(List<Test> testList) {
+        this.testList = testList;
+    }
+
+    public List<Test> getGetAllTestsForAdminList() {
+        return getAllTestsForAdminList;
+    }
+
     public String getTestName() {
         return testName;
     }
@@ -185,38 +217,5 @@ public class ReadTest {
 
     public List<Alternative> getAlternativeStatus() {
         return alternativeStatus;
-    }
-
-
-    public void getTest(int testId){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        setTestList(entityManager.createNamedQuery("getTest", Test.class).setParameter("testId", testId).getResultList());
-        entityManager.close();
-        entityManagerFactory.close();
-    }
-
-    public void getAllTestsForAdmin(){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        setGetAllTestsForAdminList(entityManager.createNamedQuery("getAllTest", Test.class).getResultList());
-        entityManager.close();
-        entityManagerFactory.close();
-    }
-
-    public List<Test> getTestList() {
-        return testList;
-    }
-
-    private void setTestList(List<Test> testList) {
-        this.testList = testList;
-    }
-
-    public List<Test> getGetAllTestsForAdminList() {
-        return getAllTestsForAdminList;
-    }
-
-    private void setGetAllTestsForAdminList(List<Test> getAllTestsForAdminList) {
-        this.getAllTestsForAdminList = getAllTestsForAdminList;
     }
 }
