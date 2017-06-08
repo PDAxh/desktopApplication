@@ -419,7 +419,7 @@ public class TeacherController {
                 hBoxLeft.getChildren().addAll(new Label("Prov: " + test.getTestName()), new Label(" Beskrivning: " + test.getTestDescription()),
                         new Label(" Datum: " + test.getLastDate()), new Label(" Tid: " + String.valueOf(test.getTimeForTestMinutes())));
                 hBoxRight.getChildren().addAll( new Label("Välj:"), getSelectTestToPublishOrEdit()[counter]);
-                borderPane.setStyle("-fx-border-color: gray;");
+                borderPane.setStyle("-fx-border-color: lightgray;");
                 borderPane.setPadding(new Insets(10));
                 borderPane.setLeft(hBoxLeft);
                 borderPane.setRight(hBoxRight);
@@ -482,7 +482,7 @@ public class TeacherController {
                 getSelectToEdit()[j].setId(String.valueOf(getReadTest().getTestList().get(j).getTestId()));
                 getSelectToEdit()[j].setText("Välj test ");
                 VBox vBox = new VBox();
-                vBox.setStyle("-fx-border-color: gray;");
+                vBox.setStyle("-fx-border-color: lightgray;");
                 vBox.setPadding(new Insets(10));
                 vBox.setSpacing(5);
                 vBox.getChildren().add(new Label("Test: " + getReadTest().getTestList().get(j).getTestName()));

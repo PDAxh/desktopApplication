@@ -527,7 +527,7 @@ public class AdminController {
             hBoxLeft.getChildren().addAll(new Label("Prov: " + test.getTestName()), new Label(" Beskrivning: " + test.getTestDescription()),
                     new Label(" Datum: " + test.getLastDate()), new Label(" Tid: " + String.valueOf(test.getTimeForTestMinutes())));
             hBoxRight.getChildren().addAll( new Label("Välj:"),  getSelectTestToAssignToClass()[counter]);
-            borderPane.setStyle("-fx-border-color: black;");
+            borderPane.setStyle("-fx-border-color: lightgray;");
             borderPane.setPadding(new Insets(10));
             borderPane.setLeft(hBoxLeft);
             borderPane.setRight(hBoxRight);
@@ -636,7 +636,7 @@ public class AdminController {
             hBoxLeft.getChildren().addAll(new Label("Prov: " + test.getTestName()), new Label(" Beskrivning: " + test.getTestDescription()),
                     new Label(" Datum: " + test.getLastDate()), new Label(" Tid: " + String.valueOf(test.getTimeForTestMinutes())));
             hBoxRight.getChildren().addAll( new Label("Välj:"),  getSelectTestToAssignToClass()[counter]);
-            borderPane.setStyle("-fx-border-color: black;");
+            borderPane.setStyle("-fx-border-color: lightgray;");
             borderPane.setPadding(new Insets(10));
             borderPane.setLeft(hBoxLeft);
             borderPane.setRight(hBoxRight);
