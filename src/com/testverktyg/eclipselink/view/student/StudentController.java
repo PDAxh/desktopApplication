@@ -431,9 +431,9 @@ public class StudentController {
         }
 
         vBox.getChildren().add(new Label("Ditt resultat:"));
-        vBox.getChildren().add(new Label("G poäng: :" + readStudentAnswer.getStudPointsG() + " / " + readStudentAnswer.getMaxPointsG()));
-        vBox.getChildren().add(new Label("VG poäng: :" + readStudentAnswer.getStudPointsVG() + " / " + readStudentAnswer.getMaxPointsVG()));
-        vBox.getChildren().add(new Label("Betyg: :" + grade));
+        vBox.getChildren().add(new Label("G poäng: " + readStudentAnswer.getStudPointsG() + " / " + readStudentAnswer.getMaxPointsG()));
+        vBox.getChildren().add(new Label("VG poäng: " + readStudentAnswer.getStudPointsVG() + " / " + readStudentAnswer.getMaxPointsVG()));
+        vBox.getChildren().add(new Label("Betyg: " + grade));
         vBox.getChildren().add(new Label("Poäng: " + (readStudentAnswer.getStudPointsG() + readStudentAnswer.getStudPointsVG()) + " / "
                 + (readStudentAnswer.getMaxPointsG() + readStudentAnswer.getMaxPointsVG())));
         getStudentResultHbox().getChildren().add(vBox);
