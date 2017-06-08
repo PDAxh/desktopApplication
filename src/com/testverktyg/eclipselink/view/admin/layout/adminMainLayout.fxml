@@ -11,33 +11,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.geometry.Insets?>
 <BorderPane fx:id="borderPane" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testverktyg.eclipselink.view.MenuController">
 
     <top>
-     <!--   <MenuBar>
-            <Menu text="Arkiv">
-                <MenuItem text="Logga ut" onAction="#logout"/>
-                <MenuItem text="Avsluta"  onAction="#getExitProgram"/>
-            </Menu>
-            <Menu text="Edit">
-                <MenuItem text="Lägg till konto" onAction="#addUser"/>
-                <MenuItem text="Ändra konto" onAction="#removeUser"/>
-                <SeparatorMenuItem/>
-                <MenuItem text="Lägg till klass" onAction="#addClass"/>
-                <MenuItem text="Ta bort klass" onAction="#removeClass"/>
-            </Menu>
-            <Menu text="Prov">
-                <MenuItem text="Publicera prov"/>
-            </Menu>
-            <Menu text="Hjälp">
-                <MenuItem text="Hjälp"/>
-                <MenuItem text="Om oss"/>
-            </Menu>
-
-        </MenuBar>
-        -->
         <AnchorPane styleClass="menu-bar" xmlns:fx="http://javafx.com/fxml/1">
             <MenuBar AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
                 <Menu text="Arkiv">

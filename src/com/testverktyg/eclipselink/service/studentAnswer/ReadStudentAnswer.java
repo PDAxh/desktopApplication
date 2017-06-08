@@ -58,15 +58,10 @@ public class ReadStudentAnswer {
                 maxPointsVG = maxPointsVG + rt.getTestList().get(0).getQuestionList().get(i).getPoints();
             }
         }
-        System.out.println("Maxpoäng G: " + maxPointsG);
-        System.out.println("Maxpoäng VG: " + maxPointsVG);
-        System.out.println("Student G: " + studPointsG);
-        System.out.println("Student VG: " + studPointsVG);
 
         entitymanager.getTransaction().commit();
         entitymanager.close();
         emfactory.close();
-
     }
 
     public void getStudentAnswerFromSpecificStudent(int sId, int tId) {

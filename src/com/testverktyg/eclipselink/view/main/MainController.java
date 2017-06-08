@@ -70,7 +70,6 @@ public class MainController {
         setUsernameTextField("");
         setPasswordTextField("");
         menuController.activeLoggedInUser(ru.getLoggedInUser().get(0).getFirstname() + " " + ru.getLoggedInUser().get(0).getLastname(), userId);
-        System.out.println(ru.getLoggedInUser().get(0).getFirstname());
     }
 
     @FXML
