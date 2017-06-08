@@ -23,7 +23,7 @@ public class Main extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("NEWTON™ Testverktyg 0.5");
+        primaryStage.setTitle("NEWTON™ Testverktyg 1.1");
         MainController mainController = loader.getController();
         mainController.setStage(primaryStage);
         primaryStage.show();

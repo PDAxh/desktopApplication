@@ -137,7 +137,6 @@ public class AdminController {
 
     @FXML
     private void showUsers() {
-        System.out.println("showUser Started");
         String userType = String.valueOf(userTypeList.getValue());
         fillUserList(userType);
     }
@@ -226,7 +225,6 @@ public class AdminController {
             String lname = getLastName().getText();
             String emailString = getEmail().getText();
             String Klass = getStudentClass().getValue().toString();
-            System.out.println(Klass);
             String passwordString = getPassword().getText();
             String userType = getUserType().getValue().toString();
             CreateUser newUser = new CreateUser(fname, lname, passwordString, emailString, Klass, userType);
@@ -251,20 +249,17 @@ public class AdminController {
         ReadClass newReadClass = new ReadClass();
         newReadClass.readAllClasses();
         if (newReadClass.getClassNameList().size() == 0) {
-            System.out.println("Class list is empty. 0 expcetion");
             CreateClass addClass = new CreateClass();
             addClass.CreateNewClass(className);
             addClassMessageLabel.setText("Klass är skapad");
             studentClassName.setText("");
         } else {
             for (int i = 0; i < newReadClass.getClassNameList().size(); i++) {
-                System.out.println("Comparing: " + className + " and " + String.valueOf(newReadClass.getClassNameList().get(i)));
                 if (className.equals(String.valueOf(newReadClass.getClassNameList().get(i)))) {
                     matchFound = true;
                 }
             }
             if (matchFound) {
-                System.out.println("Match");
                 addClassMessageLabel.setText(className + " finns redan");
                 studentClassName.setText("");
             } else {
