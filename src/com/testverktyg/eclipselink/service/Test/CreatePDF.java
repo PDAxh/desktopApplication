@@ -26,7 +26,7 @@ public class CreatePDF {
     private int totalGStudents;
     private int totalVgStudents;
 
-    private void createStudentPDF()throws DocumentException, IOException {
+    public void createStudentPDF(String StudentGPointsResultLabel, String StudentVGPointsResultLabel, String StudentTotalPointsResultLabel, String GradeResultLabelText)throws DocumentException, IOException {
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream("testStudentpdf.pdf"));
         document.open();
@@ -37,10 +37,11 @@ public class CreatePDF {
         Paragraph emptySpace = new Paragraph(" ");
         document.add(emptySpace);
         document.add(emptySpace);
-        document.add(new Paragraph(getFirstname() + " " + getLastname()));
-        document.add(new Paragraph("Klass: "));
-        document.add(new Paragraph("Antal Godkänd frågor:"));
-        document.add(new Paragraph("Antal Väl godkänd frågor:"));
+        document.add(new Paragraph("Antal G poäng: " + StudentGPointsResultLabel));
+        document.add(new Paragraph("Antal VG poäng: " + StudentVGPointsResultLabel));
+        document.add(new Paragraph("Totalt antal poäng: " + StudentTotalPointsResultLabel));
+        document.add(new Paragraph("Betyg: " + GradeResultLabelText));
+
         document.close();
     }
 

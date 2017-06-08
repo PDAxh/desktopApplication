@@ -1,7 +1,9 @@
 package com.testverktyg.eclipselink.view.student;
+import com.itextpdf.text.DocumentException;
 import com.testverktyg.eclipselink.entity.Test;
 import com.testverktyg.eclipselink.entity.User;
 import com.testverktyg.eclipselink.entity.UserTests;
+import com.testverktyg.eclipselink.service.Test.CreatePDF;
 import com.testverktyg.eclipselink.service.Test.ReadTest;
 import com.testverktyg.eclipselink.service.studentAnswer.CreateStudentAnswer;
 import com.testverktyg.eclipselink.service.studentAnswer.ReadStudentAnswer;
@@ -335,8 +337,18 @@ public class StudentController {
         Button studentPrintResultButton = new Button();
         studentPrintResultButton.setText("Spara som PDF");
         contentPane.add(studentPrintResultButton,0,6);
-        studentPrintResultButton.setOnAction(null);
+        //studentPrintResultButton.setOnAction(null);
         studentPrintResultButton.setOnAction(event -> {
+
+            CreatePDF createPDF = new CreatePDF();
+            try {
+                createPDF.createStudentPDF(StudentGPointsResultLabel.getText(),StudentVGPointsResultLabel.getText(), StudentTotalPointsResultLabel.getText(), GradeResultLabel.getText());
+            } catch (DocumentException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
 
         });
 
